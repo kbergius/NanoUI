@@ -1,33 +1,34 @@
 ### Note: this repository is under construction. See you later after couple of days!
 
-NanoUI is a library (not an out-of-box solution) and it doesn't know anything where/why/how you use it (OS, graphics, windowing etc).
+NanoUI is a small, extendable and quite feature-rich ui library. It doesn't know anything **where** / **why** / **how** you use it (your OS, graphics, windowing etc).
 
-This means that you must create some wrapper classes, that act as a "bridge" between your application and NanoUI. You can check what is needed from the samples.
+This means that you must create some wrapper classes, that act as a bridge between your application and NanoUI. You can check what is needed from the samples.
 
-## Main features:
-- independent drawing layer
+## Main features
+- Independent drawing layer
 - UI layer that handles user inputs, layouting, theming/styling etc
 - 50+ extendable ui widgets
-- support for custom widgets
-- dynamic, extendable layouting
-- dynamic, extendable theming/styling
+- Support for custom widgets
+- Dynamic, extendable layouting
+- Dynamic, extendable theming/styling
 - 4 ways to render texts
 - SVG support
 - Docking (barebones)
+- No XAML
 
-See "Screenshots" for more info what NanoUI can do.
+**... and NanoUI is pretty fast**.
 
 If you are new to NanoUI, please read "Basics" to better understand, how NanoUI is designed & working.
+
+## Screenshot(s)
+
+You can find more screenshots "here".
 
 ## Contributing
 
 All bug reports, feature requests & PRs are of course very welcome.
 
-However NanoUI promises to be "simplistic" and it doesn't accept any external dependencies or extra assets. So your submission may be rejected for these reasons. In these cases you can create your own repository and it can be linked here, if it is deemed to be useful for other users.
-
-Please, read "Contributing" document before you send any PRs.
-
-## Links
+However if this is the first time, please read "Contributing" document before sending your PR.
 
 ## Credits
 
