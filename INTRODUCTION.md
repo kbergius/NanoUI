@@ -1,4 +1,4 @@
-This document is a brief introduction to the NanoUI. You can find in samples/NanoUIDemos & code, how the things described here are implemented and can be used.
+This document is a brief introduction to the NanoUI. You can find in **samples/NanoUIDemos** & code, how the things described here are implemented and can be used.
 
 # Integrating NanoUI
 
@@ -17,7 +17,7 @@ INvgRenderer has 2 basic purposes:
 1. Handle texture actions (create, update, delete, etc)
 2. Do the real rendering (it is called when you issue **EndFrame** command)
 
-NanoUI treates all textures as ints. All negative values and 0 is treated as there is no texture.
+NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
 
 Rendering is bit more complicated since NanoUI uses 3 different kind of pipelines:
 - **Standard:** This is normal/basic alpha blend draw pipeline
@@ -25,8 +25,6 @@ Rendering is bit more complicated since NanoUI uses 3 different kind of pipeline
 - **Fill:** This uses created stencil buffer as mask and really draws the fills
 
 When you loop through draw commands, you must switch between pipelines based on DrawCommanType in the draw command.
-
-**Note**: NanoUI can produce hundreds of draw commands/calls. This sounds very inefficient, but as it is tested NanoUI still uses well below 1 ms to draw in modern hardware.
 
 # Drawing Layer
 
@@ -61,7 +59,7 @@ UIScreen is the root widget in widget tree and so it kind of owns it. It is itse
 
 # Layouting
 
-NanoUI uses relative positioning system and used top-left coordinate as position "anchor". That means that every widget knows only their position in their parent's space. So for example position (0, 0) means that widget is positioned in top-left corner of its parent space.
+NanoUI uses relative positioning system and uses top-left coordinate as position "anchor". That means that every widget knows only their position in their parent's space. So for example position (0, 0) means that widget is positioned in top-left corner of its parent space.
 
 Layouts are defined in separate classes and can be dynamically changed at the runtime. When you attach specific layout class to widget, you must also call either **PerformLayout** or **RequestLayoutUpdate** in order to really process layout calculations and widget positioning & sizing.
 
