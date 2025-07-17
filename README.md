@@ -1,5 +1,3 @@
-### Note: this repository is under construction. See you later after couple of days!
-
 NanoUI is a small, extendable and quite feature-rich UI library. It doesn't know anything **where** / **why** / **how** you use it (your OS, graphics, windowing etc). This means that you must create some wrapper classes, that act as a bridge between your application and NanoUI.
 
 ## Main features
