@@ -21,7 +21,7 @@ If you are new to NanoUI, please read [Introduction](INTRODUCTION.md).
 
 ![Drawing](screenshots/drawing.png)
 
-[More screenshots](screenshots/SCREENSHORS.md)
+[More screenshots](screenshots/SCREENSHOTS.md)
 
 ## Credits
 
