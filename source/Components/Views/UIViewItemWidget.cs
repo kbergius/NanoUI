@@ -1,0 +1,66 @@
+﻿using NanoUI.Components.Simple;
+using NanoUI.Nvg;
+using System.Numerics;
+
+namespace NanoUI.Components.Views
+{
+    // most of the views / view panels use this as is
+    // extensions: MenuItemWidget, UITreeItemWidget
+    public class UIViewItemWidget<T> : UIWidget
+    {
+        public UIViewItemWidget(UIWidget parent, IViewItem<T> viewRow)
+            : base(parent)
+        {
+            // change/set item cells parent to this
+            foreach (var item in viewRow.Widgets)
+            {
+                item.CreateParented(this);
+            }
+
+            // set params
+            Name = viewRow.Id;
+            ParentId = viewRow.ParentId;
+            EventData = viewRow.EventData;
+
+            // if row height not set - use default
+            Size = new Vector2(Size.X, viewRow.RowHeight.HasValue ? viewRow.RowHeight.Value : GetTheme().ViewPanel.RowHeight);
+
+            // todo : should these be in theme?
+            // note: these are overridden if focused/pointerFocused (uses theme colors)
+            //BackgroundMode = BackgroundMode.NONE;
+            Border = false;
+        }
+
+        #region Properties
+
+        // this determines if we sync width width parent width
+        // note: only flow & menu view currently doesn't use parent strech
+        public bool StretchWidth { get; set; } = false;
+
+        // needed to place correctly into hierarcial structure
+        public string ParentId { get; }
+        public T? EventData { get; set; }
+        
+        // there is special handling for separator (do not pointer click/focus etc)
+        public bool IsSeparator
+        {
+            get => Children.Count == 1 && Children[0] is UISeparator;
+        }
+
+        #endregion
+
+        #region Layout
+
+        public override void PerformLayout(NvgContext ctx)
+        {
+            base.PerformLayout(ctx);
+
+            if (StretchWidth)
+            {
+                Size = new Vector2(Parent.Size.X, Size.Y);
+            }
+        }
+
+        #endregion
+    }
+}
