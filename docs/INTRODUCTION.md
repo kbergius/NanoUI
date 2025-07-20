@@ -24,7 +24,7 @@ Rendering is bit more complicated since NanoUI uses 3 different kind of pipeline
 - **FillStencil:** This just fills stencil buffer with values (no drawing here)
 - **Fill:** This uses stencil buffer as a mask and really draws the fills
 
-When you loop through draw commands, you must switch between pipelines based on DrawCommanType in the draw command.
+When you loop through draw commands, you must switch between pipelines based on DrawCommandType in the draw command.
 
 # Drawing Layer
 

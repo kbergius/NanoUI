@@ -9,17 +9,16 @@ NanoUI is a small, extendable and quite feature-rich UI library. It doesn't know
 - Dynamic, extendable theming/styling
 - SVG support
 - Docking (barebones)
-- No XAML
 
 **... and NanoUI is pretty fast**.
 
-If you are new to NanoUI, please read [Introduction](INTRODUCTION.md).
+If you are new to NanoUI, please read [Introduction](docs/INTRODUCTION.md).
 
 ## Screenshot(s)
 
 ![Drawing](screenshots/ui_basic.png)
 
-[More screenshots](screenshots/SCREENSHOTS.md)
+[More screenshots](docs/screenshots/SCREENSHOTS.md)
 
 ## Credits
 
