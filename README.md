@@ -16,7 +16,7 @@ If you are new to NanoUI, please read [Introduction](docs/INTRODUCTION.md).
 
 ## Screenshot(s)
 
-![Drawing](screenshots/ui_basic.png)
+![Drawing](docs/screenshots/ui_basic.png)
 
 [More screenshots](docs/screenshots/SCREENSHOTS.md)
 
