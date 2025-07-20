@@ -1,0 +1,15 @@
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 360'>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="yellow" />
+      <stop offset="100%" stop-color="red" />
+    </linearGradient>
+  </defs>
+  <!-- todo: decoration should be 0,0-based, so no need to translate -->
+  <path transform="translate(-35,-35)" fill='url(#grad1)' stroke="white" stroke-linecap='round' stroke-linejoin='round' stroke-width='5'
+        d='M440 180a49.6 49.6 0 0 1-26-56.3l6-23.7h-20V90H297.4A69.8 69.8 0 0 1 240 60l-1.6 2.2A69.8 69.8 0 0 1
+        182.6 90H80v10H60l6 23.7c5.5 22.5-5.2 46-26 56.3a49.6 49.6 0 0 1 26 56.3L60
+        260h20v10h102.6a69.8 69.8 0 0 1 57.4 30l1.6-2.2a69.8 69.8 0 0 1 55.8-27.8H400v-10h20l-6-23.7a49.6
+        49.6 0 0 1 26-56.3Z'>
+  </path>
+</svg>

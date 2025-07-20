@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VeldridExample</RootNamespace>
+    <Nullable>disable</Nullable>
+    <AssemblyName>VeldridExample</AssemblyName>
+    <TargetFramework>net8.0</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Shaders\PostProcess.frag" />
+    <None Remove="Shaders\PostProcess.vert" />
+    <None Remove="Shaders\shader.frag" />
+    <None Remove="Shaders\shader.vert" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Shaders\postprocess.frag">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shaders\postprocess.vert">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shaders\shader.frag">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shaders\shader.vert">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+<ItemGroup>
+    <PackageReference Include="StbImageSharp" Version="2.27.13" />
+    <PackageReference Include="Silk.NET.Input" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Input.Common" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Windowing" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Windowing.Common" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Windowing.Extensions.Veldrid" Version="2.22.0" />
+    <PackageReference Include="Veldrid" Version="4.9.0" />
+    <PackageReference Include="Veldrid.SPIRV" Version="1.0.15" />
+  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\NanoUIDemos\NanoUIDemos.csproj" />
+</ItemGroup>
+
+</Project>
