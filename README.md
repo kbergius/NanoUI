@@ -30,7 +30,6 @@ If you are new to NanoUI, please read [Introduction](docs/INTRODUCTION.md).
 - [stbtruetype](https://github.com/nothings/stb)
 
 **Samples**:
-- [MoonWorks](https://github.com/MoonsideGames/MoonWorks)
 - [Silk.NET](https://github.com/dotnet/Silk.NET)
 - [Veldrid](https://github.com/veldrid/veldrid)
 - [StbImageSharp](https://github.com/StbSharp/StbImageSharp)
