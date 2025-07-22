@@ -19,9 +19,7 @@
     <Features>strict</Features>
     <AnalysisLevel>preview</AnalysisLevel>
     <RestoreConfigFile>$(MSBuildThisFileDirectory)NuGet.config</RestoreConfigFile>
-    <IsAotCompatible>true</IsAotCompatible>
     <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <UseSharedCompilation>true</UseSharedCompilation>
   </PropertyGroup>
 
