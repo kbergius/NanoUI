@@ -30,16 +30,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-<ItemGroup>
-    <PackageReference Include="StbImageSharp" Version="2.27.13" />
-    <PackageReference Include="Silk.NET.Input" Version="2.22.0" />
-    <PackageReference Include="Silk.NET.Input.Common" Version="2.22.0" />
-    <PackageReference Include="Silk.NET.Windowing" Version="2.22.0" />
-    <PackageReference Include="Silk.NET.Windowing.Common" Version="2.22.0" />
-    <PackageReference Include="Silk.NET.Windowing.Extensions.Veldrid" Version="2.22.0" />
-    <PackageReference Include="Veldrid" Version="4.9.0" />
-    <PackageReference Include="Veldrid.SPIRV" Version="1.0.15" />
-  </ItemGroup>
+
 <ItemGroup>
   <ProjectReference Include="..\NanoUIDemos\NanoUIDemos.csproj" />
 </ItemGroup>
