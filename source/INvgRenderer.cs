@@ -18,7 +18,8 @@ namespace NanoUI
         bool DeleteTexture(int texture);
 
         // todo: we should pass only region data (now gets all texture data)
-        bool UpdateTextureRegion(int texture, Rect regionRect, ReadOnlySpan<byte> allData);
+        // rect is (x, y, width, height)
+        bool UpdateTextureRegion(int texture, Vector4 regionRect, ReadOnlySpan<byte> allData);
 
         bool GetTextureSize(int texture, out Vector2 size);
 
