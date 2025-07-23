@@ -110,7 +110,8 @@ namespace VeldridExample
         }
 
         // todo: we should pass only region data (now gets all texture data)
-        public bool UpdateTextureRegion(int texture, Rect regionRect, ReadOnlySpan<byte> allData)
+        // rect is (x, y, width, height)
+        public bool UpdateTextureRegion(int texture, Vector4 regionRect, ReadOnlySpan<byte> allData)
         {
             if (_textures.TryGetValue(texture, out var tex))
             {

@@ -578,7 +578,8 @@ namespace NanoUI.Nvg
             return _nvgRenderer.UpdateTexture(texture, data);
         }
 
-        public bool UpdateTextureRegion(int texture, Rect regionRect, ReadOnlySpan<byte> allData)
+        // rect is (x, y, width, height)
+        public bool UpdateTextureRegion(int texture, Vector4 regionRect, ReadOnlySpan<byte> allData)
         {
             if (texture == Globals.INVALID)
                 return false;
