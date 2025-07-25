@@ -23,16 +23,11 @@
     <UseSharedCompilation>true</UseSharedCompilation>
   </PropertyGroup>
 
-  <!-- Version -->
-  <PropertyGroup>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <VersionSuffix Condition="'$(VersionSuffix)' == ''"></VersionSuffix>
-  </PropertyGroup>
-
   <PropertyGroup>
     <Authors>Klaus Bergius</Authors>
     <Copyright>Copyright (c) Klaus Bergius</Copyright>
     <Product>NanoUI</Product>
+    <Version>1.0.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
