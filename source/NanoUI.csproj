@@ -5,6 +5,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Version>1.0.1</Version>
     <BaseIntermediateOutputPath />
   </PropertyGroup>
 
