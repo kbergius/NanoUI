@@ -23,6 +23,12 @@
     <UseSharedCompilation>true</UseSharedCompilation>
   </PropertyGroup>
 
+  <!-- Version -->
+  <PropertyGroup>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionSuffix Condition="'$(VersionSuffix)' == ''"></VersionSuffix>
+  </PropertyGroup>
+
   <PropertyGroup>
     <Authors>Klaus Bergius</Authors>
     <Copyright>Copyright (c) Klaus Bergius</Copyright>

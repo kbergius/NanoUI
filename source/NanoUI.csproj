@@ -8,12 +8,6 @@
     <BaseIntermediateOutputPath />
   </PropertyGroup>
 
-  <!-- Version -->
-  <PropertyGroup>
-    <VersionPrefix>1.0.1</VersionPrefix>
-    <VersionSuffix Condition="'$(VersionSuffix)' == ''"></VersionSuffix>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
