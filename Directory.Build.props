@@ -27,7 +27,6 @@
     <Authors>Klaus Bergius</Authors>
     <Copyright>Copyright (c) Klaus Bergius</Copyright>
     <Product>NanoUI</Product>
-    <Version>1.0.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
