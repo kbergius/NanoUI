@@ -18,4 +18,4 @@ jobs:
     - name: Pack nugets
       run: dotnet pack source/NanoUI.csproj --configuration Release
     - name: Push to NuGet
-      run: dotnet nuget push artifacts/package/release/*.nupkg -k ${{secrets.NUGET_KEY}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push artifacts/package/release/*.nupkg -k ${{secrets.NUGET_KEY}} --skip-duplicate --source https://api.nuget.org/v3/index.json
