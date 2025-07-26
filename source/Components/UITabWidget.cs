@@ -220,9 +220,12 @@ namespace NanoUI.Components
             {
                 _activeTab = 0;
 
-                if (TabChanged != null && Children.TryGet(index, out UITabItem selectedTab))
+                if (TabChanged != null && Children.TryGet(index, out UITabItem? selectedTab))
                 {
-                    TabChanged.Invoke(selectedTab);
+                    if(selectedTab != null)
+                    {
+                        TabChanged.Invoke(selectedTab);
+                    }
                 }
             }
 

@@ -54,9 +54,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
             if (value == null)
                 return;
 
-            string str = value.ToString();
+            string? str = value.ToString();
 
-            if (_currentValue == str)
+            if (str == null || _currentValue == str)
                 return;
 
             _currentValue = str;

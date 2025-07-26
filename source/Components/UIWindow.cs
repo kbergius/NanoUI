@@ -35,8 +35,8 @@ namespace NanoUI.Components
         // support for "highlighting"
         ScrollableDragMode _scrollableDragMode = ScrollableDragMode.None;
 
-        UIScrollbar _verticalScrollbar = null;
-        UIScrollbar _horizontalScrollbar = null;
+        UIScrollbar? _verticalScrollbar = null;
+        UIScrollbar? _horizontalScrollbar = null;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIWindow()
