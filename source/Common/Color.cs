@@ -271,9 +271,9 @@ namespace NanoUI.Common
                 (byte)(color.A / value));
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            return obj is Color && Equals((Color)obj);
+            return obj != null && obj is Color && Equals((Color)obj);
         }
 
         public bool Equals(Color other)

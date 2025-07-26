@@ -14,10 +14,10 @@ namespace NanoUI.Components.Views
     public abstract class UIViewWidget<T> : UIWidget
     {
         // when selection mode = item
-        public Action<T> SelectedChanged;
+        public Action<T>? SelectedChanged;
 
         // when selection mode = cell - int is column index
-        public Action<UIViewItemWidget<T>, int> CellSelectedChanged;
+        public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIViewWidget()
@@ -41,7 +41,7 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
-        UIScrollPanel _vscroll;
+        UIScrollPanel? _vscroll;
 
         UIViewPanel<T> _viewPanel;
 
@@ -101,9 +101,12 @@ namespace NanoUI.Components.Views
             // pass to scroll
             var preferred = PreferredSize(ctx);
 
-            _vscroll.FixedSize = preferred;
-            _vscroll.Size = preferred;
-
+            if(_vscroll != null)
+            {
+                _vscroll.FixedSize = preferred;
+                _vscroll.Size = preferred;
+            }
+            
             base.PerformLayout(ctx);
         }
 
