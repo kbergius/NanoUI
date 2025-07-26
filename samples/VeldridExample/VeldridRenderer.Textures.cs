@@ -66,7 +66,6 @@ namespace VeldridExample
 
             // note: id is 1-based (not 0-based), since then we can neglect texture (int) value when
             // serializing theme/ui to file & have all properties with texture as default (= 0)
-            // todo: check this!
             counter++;
 
             _textures.Add(counter, _gd.ResourceFactory.CreateTexture(desc));

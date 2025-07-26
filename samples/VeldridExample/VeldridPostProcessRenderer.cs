@@ -10,14 +10,6 @@ namespace VeldridExample
 
         public Vector2 Position;
         public Vector2 UV;
-
-        public FullScreenVertex(float x, float y, float u, float v)
-        {
-            Position.X = x;
-            Position.Y = y;
-            UV.X = u;
-            UV.Y = v;
-        }
     }
 
     // this is mainly used to provide msaa antialiasing
@@ -136,10 +128,10 @@ namespace VeldridExample
         {
             FullScreenVertex[] vertices =
                 [
-                        new FullScreenVertex{ Position = new Vector2(-1, 1), UV = new Vector2(0, 0) },
-                        new FullScreenVertex{ Position = new Vector2(1, 1), UV = new Vector2(1, 0) },
-                        new FullScreenVertex{ Position = new Vector2(1, -1), UV = new Vector2(1, 1) },
-                        new FullScreenVertex{ Position = new Vector2(-1, -1), UV = new Vector2(0, 1) }
+                    new FullScreenVertex{ Position = new Vector2(-1, 1), UV = new Vector2(0, 0) },
+                    new FullScreenVertex{ Position = new Vector2(1, 1), UV = new Vector2(1, 0) },
+                    new FullScreenVertex{ Position = new Vector2(1, -1), UV = new Vector2(1, 1) },
+                    new FullScreenVertex{ Position = new Vector2(-1, -1), UV = new Vector2(0, 1) }
                 ];
 
             ushort[] quadIndices = [0, 1, 2, 0, 2, 3];
