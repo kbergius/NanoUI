@@ -20,7 +20,7 @@ namespace NanoUI.Components.Docking
         #region Properties
 
         string? _tabCaption;
-        public string TabCaption
+        public string? TabCaption
         {
             get => _tabCaption ?? Title;
             set => _tabCaption = value;

@@ -65,7 +65,7 @@ namespace NanoUIDemos.Experimental.Components.Editors
         }
 
         // call from Draw OR ValueChanged event
-        void SetValue(T value)
+        new void SetValue(T value)
         {
             if (value == _currentValue)
                 return;

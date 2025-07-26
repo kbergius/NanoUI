@@ -231,7 +231,8 @@ namespace NanoUI.Components.Dialogs
             }
             else
             {
-                _selectionPathText.Caption = Path.GetDirectoryName(selectedInfo.Path);
+                var dir = Path.GetDirectoryName(selectedInfo.Path);
+                _selectionPathText.Caption = dir?? selectedInfo.Path;
                 _selectionFilename.Text = Path.GetFileName(selectedInfo.Path);
             }
         }

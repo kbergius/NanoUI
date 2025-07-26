@@ -12,10 +12,6 @@ namespace NanoUI.Components.Scrolling
         // owner widget
         UIWidget _owner;
 
-        // this may need to do some calculations when size changes
-        // note; we want to do these calculations only whenever necessary
-        bool _sizeChanged;
-
         public UIScrollbar(UIWidget owner, Orientation orientation)
         {
             _owner = owner;
@@ -39,7 +35,6 @@ namespace NanoUI.Components.Scrolling
                     return;
 
                 _size = value;
-                _sizeChanged = true;
             }
         }
 

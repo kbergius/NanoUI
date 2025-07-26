@@ -20,7 +20,7 @@ public class Program
     // DemoTypes:
     // Docking, Drawing, SDFText, SvgShapes, TextShapes, UIBasic, UIExtended, UIExtended2,
     // UIExperimental, UILayouts
-    static DemoType _demoType = DemoType.UIBasic;
+    static DemoType _demoType = DemoType.UIExperimental;
 
     static PerfGraph _frameGraph;
 

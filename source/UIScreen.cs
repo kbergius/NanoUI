@@ -79,7 +79,7 @@ namespace NanoUI
         // note2: be sure that tooltip's visibility is set to false, so it doesn't effect any layout code &
         // is not drawn in normal draw
         UITooltip _tooltip;
-        public UITooltip Tooltip
+        public new UITooltip Tooltip
         {
             get => _tooltip;
             set

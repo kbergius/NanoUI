@@ -281,6 +281,11 @@ namespace NanoUI.Common
             return PackedValue == other.PackedValue;
         }
 
+        public override int GetHashCode()
+        {
+            return (int)PackedValue;
+        }
+
         #region Named Colors
 
         // Transparent color (R:0,G:0,B:0,A:0).

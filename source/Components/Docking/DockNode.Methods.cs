@@ -89,7 +89,7 @@ namespace NanoUI.Components.Docking
             if (!dockWindow.WasDockNode)
             {
                 // just add tab
-                tabItem = _tabWidget.AddTab(dockWindow.TabCaption);
+                tabItem = _tabWidget.AddTab(dockWindow.TabCaption != null? dockWindow.TabCaption : "Tab");
                 dockWindow.Parent = tabItem;
 
                 // note: PerformLayout called in AddTab method

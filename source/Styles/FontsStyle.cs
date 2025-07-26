@@ -106,7 +106,7 @@ namespace NanoUI.Styles
             return 0;
         }
 
-        public string GetFontType(int fontId)
+        public string? GetFontType(int fontId)
         {
             foreach (var kvp in _fontMappings)
             {

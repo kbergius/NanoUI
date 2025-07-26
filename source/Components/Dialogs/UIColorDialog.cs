@@ -1,7 +1,6 @@
 ﻿using NanoUI.Common;
 using NanoUI.Components.Colors;
 using NanoUI.Layouts;
-using NanoUI.Layouts;
 using NanoUI.Nvg;
 using System;
 using System.Numerics;
