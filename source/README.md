@@ -1,1 +1,3 @@
-NanoUI is a small, extendable and quite feature-rich C# UI library.
+Small, extendable and quite feature-rich C# UI library with no external dependencies and no extra assets.
+
+More information in the source repository.
