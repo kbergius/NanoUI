@@ -141,14 +141,14 @@ namespace NanoUI.Components.Views
     public class UIViewPanel<T> : UIViewPanel
     {
         // ViewSelectionMode = item
-        public Action<UIViewItemWidget<T>> SelectedChanged;
+        public Action<UIViewItemWidget<T>>? SelectedChanged;
 
         // ViewSelectionMode = part - ViewItemWidget is row, int is column index
         // note: this provides also possibility to edit parts dynamically. however there are
         // no helpers to do editing (needs cells to provide editing functionality - possibly use same
         // kind of editing as in propertygrid!)
         // note: this is fired only when selection mode is Cell
-        public Action<UIViewItemWidget<T>, int> CellSelectedChanged;
+        public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
         // cell indexes
         int _cellSelectedIndex;
