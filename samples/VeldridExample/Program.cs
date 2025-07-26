@@ -89,7 +89,7 @@ public class Program
     {
         _renderer = new(_window, _msaa);
 
-        // create nvg context width default font manager (StbTrueType)
+        // create nvg context with default font manager (StbTrueType)
         _ctx = new NvgContext(_renderer, GetDevicePixelRatio());
 
         _demo = DemoFactory.CreateDemo(_ctx, _demoType, new Vector2(_window.Size.X, _window.Size.Y));

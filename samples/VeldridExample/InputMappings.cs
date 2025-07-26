@@ -1,10 +1,10 @@
 ﻿using Silk.NET.Input;
+using System;
 // map to NanoUI
 using UIKey = NanoUI.Common.Key;
-using UIPointerButton = NanoUI.Common.PointerButton;
 using UIKeyModifiers = NanoUI.Common.KeyModifiers;
+using UIPointerButton = NanoUI.Common.PointerButton;
 using UIPointerType = NanoUI.Common.PointerType;
-using System;
 
 namespace VeldridExample
 {
@@ -229,25 +229,22 @@ namespace VeldridExample
             }
         }
 
-        public static UIPointerButton MapMouseButtons(MouseButton mouseButton)
+        public static UIPointerButton MapMouseButtons(MouseButton mouseButton) => mouseButton switch
         {
-            switch (mouseButton)
-            {
-                case MouseButton.Left: return UIPointerButton.Left;
-                case MouseButton.Middle: return UIPointerButton.Middle;
-                case MouseButton.Right: return UIPointerButton.Right;
-                case MouseButton.Button4: return UIPointerButton.Button4;
-                case MouseButton.Button5: return UIPointerButton.Button5;
-                case MouseButton.Button6: return UIPointerButton.Button6;
-                case MouseButton.Button7: return UIPointerButton.Button7;
-                case MouseButton.Button8: return UIPointerButton.Button8;
-                case MouseButton.Button9: return UIPointerButton.Button9;
-                case MouseButton.Button10: return UIPointerButton.Button10;
-                case MouseButton.Button11: return UIPointerButton.Button11;
-                case MouseButton.Button12: return UIPointerButton.Button12;
-                default: return UIPointerButton.LastButton;
-            }
-        }
+            MouseButton.Left => UIPointerButton.Left,
+            MouseButton.Middle => UIPointerButton.Middle,
+            MouseButton.Right => UIPointerButton.Right,
+            MouseButton.Button4 => UIPointerButton.Button4,
+            MouseButton.Button5 => UIPointerButton.Button5,
+            MouseButton.Button6 => UIPointerButton.Button6,
+            MouseButton.Button7 => UIPointerButton.Button7,
+            MouseButton.Button8 => UIPointerButton.Button8,
+            MouseButton.Button9 => UIPointerButton.Button9,
+            MouseButton.Button10 => UIPointerButton.Button10,
+            MouseButton.Button11 => UIPointerButton.Button11,
+            MouseButton.Button12 => UIPointerButton.Button12,
+            _ => UIPointerButton.LastButton
+        };
 
         public static StandardCursor GetCursorType(int pointerType, out CursorType cursorType)
         {
@@ -261,24 +258,21 @@ namespace VeldridExample
             return GetCursor((UIPointerType)pointerType);
         }
 
-        static StandardCursor GetCursor(UIPointerType mouseCursor)
+        static StandardCursor GetCursor(UIPointerType pointerType) => pointerType switch
         {
-            switch (mouseCursor)
-            {
-                case UIPointerType.Arrow: return StandardCursor.Arrow;
-                case UIPointerType.Crosshair: return StandardCursor.Crosshair;
-                case UIPointerType.Hand: return StandardCursor.Hand;
-                case UIPointerType.IBeam: return StandardCursor.IBeam;
-                case UIPointerType.No: return StandardCursor.NotAllowed;
-                case UIPointerType.SizeAll: return StandardCursor.ResizeAll;
-                case UIPointerType.SizeNESW: return StandardCursor.NeswResize;
-                case UIPointerType.SizeNS: return StandardCursor.VResize;
-                case UIPointerType.SizeNWSE: return StandardCursor.NwseResize;
-                case UIPointerType.SizeWE: return StandardCursor.HResize;
-                case UIPointerType.Wait: return StandardCursor.Wait;
-                case UIPointerType.WaitArrow: return StandardCursor.WaitArrow;
-                default: return StandardCursor.Default;
-            }
-        }
+            UIPointerType.Arrow => StandardCursor.Arrow,
+            UIPointerType.Crosshair => StandardCursor.Crosshair,
+            UIPointerType.Hand => StandardCursor.Hand,
+            UIPointerType.IBeam => StandardCursor.IBeam,
+            UIPointerType.No => StandardCursor.NotAllowed,
+            UIPointerType.SizeAll => StandardCursor.ResizeAll,
+            UIPointerType.SizeNESW => StandardCursor.NeswResize,
+            UIPointerType.SizeNS => StandardCursor.VResize,
+            UIPointerType.SizeNWSE => StandardCursor.NwseResize,
+            UIPointerType.SizeWE => StandardCursor.HResize,
+            UIPointerType.Wait => StandardCursor.Wait,
+            UIPointerType.WaitArrow => StandardCursor.WaitArrow,
+            _ => StandardCursor.Default
+        };
     }
 }

@@ -5,6 +5,8 @@ using System.Numerics;
 
 namespace NanoUIDemos.Drawing
 {
+    // This is ported demo from NanoVG https://github.com/memononen/nanovg.
+    // It shows drawing layer capabilities (quite a lot of code).
     public class DrawingDemo : DemoBase
     {
         private const int ICON_SEARCH = (int)FontAwesomeIcon.MagnifyingGlass;
