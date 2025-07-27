@@ -12,7 +12,7 @@
         // needed to place correctly into hierarcial structure
         public string ParentId { get; internal set; }
 
-        public UIWidget[] Widgets { get; set; }
+        public UIWidget[]? Widgets { get; set; }
         public T? EventData { get; set; }
 
         // if this is not defined view item widget uses default row height from theme

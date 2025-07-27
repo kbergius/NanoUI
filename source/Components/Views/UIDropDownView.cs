@@ -15,10 +15,10 @@ namespace NanoUI.Components.Views
     public class UIDropDownView<T> : UIPopupButton
     {
         UIViewPanel<T> _viewPanel;
-        UIScrollPanel _scroll;
+        UIScrollPanel? _scroll;
 
         // must be here (panel calls - popup button no)
-        public Action<T> SelectedChanged;
+        public Action<T>? SelectedChanged;
 
         // when popup closes OnSelectionChanged event, we must get focus back
         bool _requestFocus;
@@ -113,7 +113,10 @@ namespace NanoUI.Components.Views
         protected void RequestListUpdate()
         {
             // todo?
-            _scroll.VerticalScrollbar.Scroll = 0;
+            if(_scroll != null && _scroll.VerticalScrollbar != null)
+            {
+                _scroll.VerticalScrollbar.Scroll = 0;
+            }
 
             // if no children - disable
             Disabled = _viewPanel.Children.Count == 0;
@@ -175,9 +178,12 @@ namespace NanoUI.Components.Views
             Popup.Size = Popup.FixedSize;
 
             // set scroll to fill all popup area
-            _scroll.FixedSize = Popup.FixedSize;
-            _scroll.Size = _scroll.FixedSize;
-
+            if(_scroll != null)
+            {
+                _scroll.FixedSize = Popup.FixedSize;
+                _scroll.Size = _scroll.FixedSize;
+            }
+            
             // perform layout in popup
             Popup.PerformLayout(ctx);
         }
