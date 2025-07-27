@@ -32,13 +32,20 @@ namespace NanoUI
         // does nothing extra
         // note: we can't (de)serialize widget dictionary, since Type is not serializable as key &
         // Type is more convenient key than whatever string
-        Dictionary<Type, UIWidget> _widgets = new();
+        readonly Dictionary<Type, UIWidget> _widgets = [];
 
         // note if you extend this class, extended theme class should have empty constructor
         // if you use static CreateDefault or Load methods
         public UITheme()
         {
-
+            // todo: styles should be structs so we don't need these
+            Borders = new();
+            Common = new();
+            Docks = new();
+            Files = new();
+            Pointer = new();
+            Scrollbars = new();
+            Windows = new();
         }
 
         #region Global styles
@@ -62,20 +69,25 @@ namespace NanoUI
         // note: type should inherit from Widget & have empty constructor (no params)
         public UIWidget Get(Type type)
         {
-            if (!_widgets.TryGetValue(type, out var widget))
+            if (!_widgets.TryGetValue(type, out UIWidget? widget))
             {
-                widget = (UIWidget)Activator.CreateInstance(type);
-                _widgets[type] = widget;
+                object? obj = Activator.CreateInstance(type);
+                if(obj != null && obj is UIWidget w)
+                {
+                    _widgets[type] = w;
+                    return w;
+                }
+                return new UIWidget();
             }
 
-            return widget;
+            return widget!;
         }
 
         // note: we lazy initialize (create only when called first time)
         // note: T should have empty constructor (no params)
         public T Get<T>() where T : UIWidget, new()
         {
-            if (!_widgets.TryGetValue(typeof(T), out var widget))
+            if (!_widgets.TryGetValue(typeof(T), out UIWidget? widget))
             {
                 widget = new T();
                 _widgets[typeof(T)] = widget;
@@ -302,19 +314,13 @@ namespace NanoUI
 
         // this supports dynamic theming with file parts
         // note: this can be extended with using Path in FileFolderInfo (different filetypes ...)
-        public virtual (int, Color) GetFileIcon(in FileFolderInfo fileFolderInfo)
+        public virtual (int, Color) GetFileIcon(in FileFolderInfo fileFolderInfo) => fileFolderInfo.FileFolderType switch
         {
-            switch (fileFolderInfo.FileFolderType)
-            {
-                case FileFolderType.HardDrive:
-                    return (Fonts.IconHardDrive, Files.HardDriveColor);
-                case FileFolderType.Folder:
-                    return (Fonts.IconFolder, Files.FolderColor);
-                case FileFolderType.File:
-                default:
-                    return (Fonts.IconFile, Files.FileColor);
-            }
-        }
+            FileFolderType.HardDrive => (Fonts.IconHardDrive, Files.HardDriveColor),
+            FileFolderType.Folder => (Fonts.IconFolder, Files.FolderColor),
+            // file & default
+            _ => (Fonts.IconFile, Files.FileColor)
+        };
 
         // Init with default theme
         // T must be Theme or extension of it
@@ -324,7 +330,7 @@ namespace NanoUI
         // It is recommended that you use Load function & provide your own theme file
         public static T CreateDefault<T>(NvgContext ctx, FontsStyle fonts) where T : UITheme, new()
         {
-            var theme = new T();
+            T theme = new();
             // populate values with default values
             DefaultTheme.Populate(theme);
 
@@ -336,27 +342,27 @@ namespace NanoUI
         }
 
         // T must be Theme or extension of it
-        public static T Load<T>(NvgContext ctx, string themefile) where T : UITheme
+        public static T? Load<T>(NvgContext ctx, string themefile) where T : UITheme
         {
             if (!File.Exists(themefile))
                 throw new FileNotFoundException(themefile);
 
-            var serializer = new ThemeSerializer();
+            ThemeSerializer serializer = new();
             
             // todo/note : we configure font ids after theme widgets created, so we can't have
             // font ids set there!!!!
             // note : font ids are set to 0 in theme widgets (whilch is normal font)
-            T theme = serializer.Load<T>(themefile);
+            T? theme = serializer.Load<T>(themefile);
 
             // init fonts etc (read from theme xml)
-            theme.Fonts?.Init(ctx);
+            theme?.Fonts?.Init(ctx);
 
             return theme;
         }
 
         public void Save(string filename)
         {
-            var serializer = new ThemeSerializer();
+            ThemeSerializer serializer = new();
             serializer.Save(filename, this);
         }
 
