@@ -180,8 +180,8 @@ namespace NanoUI.Components.Docking
             }
 
             // if tabwidget has tabs, we must change their parent to correct subnode (tab node)
-            DockNode dockNode;
-            DockNode tabNode;
+            DockNode? dockNode;
+            DockNode? tabNode;
 
             if (dockArea == DockArea.Left || dockArea == DockArea.Right)
             {
@@ -215,20 +215,34 @@ namespace NanoUI.Components.Docking
             }
 
             // move all tabs in this to tab node
-            foreach (var child in _tabWidget.Children.AsSpan())
+            if(tabNode != null)
             {
-                if (child is UITabItem)
+                foreach (var child in _tabWidget.Children.AsSpan())
                 {
-                    child.Parent = tabNode._tabWidget;
+                    if (child is UITabItem)
+                    {
+                        child.Parent = tabNode._tabWidget;
+                    }
                 }
             }
-
+            
             // we have created new nodes - set titles to them
-            dockNode.Title = dockWindow.Title;
-            tabNode.Title = Title;
+            if(dockNode != null)
+            {
+                dockNode.Title = dockWindow.Title?? "DockNode";
+            }
+            if (tabNode != null)
+            {
+                tabNode.Title = Title;
+            }
 
-            // attach
-            return dockNode.TryAttach(dockWindow, out _);
+            if (dockNode != null)
+            {
+                // attach
+                return dockNode.TryAttach(dockWindow, out _);
+            }
+
+            return false;
         }
 
         #endregion

@@ -25,8 +25,8 @@ namespace NanoUI.Components.Docking
 
         #region Properties
 
-        public DockNode FirstNode => _root.FirstNode;
-        public DockNode SecondNode => _root.SecondNode;
+        public DockNode? FirstNode => _root.FirstNode;
+        public DockNode? SecondNode => _root.SecondNode;
 
         public Orientation RootOrientaton
         {

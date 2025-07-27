@@ -11,7 +11,7 @@ namespace NanoUI.Svg.Data
         // transform property
         public Matrix3x2? Transform;
 
-        public SvgLinearGradient[]? LinearGradients;
-        public SvgRadialGradient[]? RadialGradients;
+        //public SvgLinearGradient[]? LinearGradients;
+        //public SvgRadialGradient[]? RadialGradients;
     }
 }

@@ -7,10 +7,10 @@
     public class TreeItem<T> : IViewItem<T>
     {
         // this is obligatory in "flat" but mandatory in hierarcial structures
-        public string Id { get; internal set; }
+        public string? Id { get; internal set; }
 
         // needed to place correctly into hierarcial structure
-        public string ParentId { get; internal set; }
+        public string? ParentId { get; internal set; }
 
         public UIWidget[]? Widgets { get; set; }
         public T? EventData { get; set; }
@@ -19,14 +19,14 @@
         public int? RowHeight { get; set; }
 
         // for hierarcial structures (treeview) - id & parentId are mandatory
-        public TreeItem(T eventData, string id, string parentId)
+        public TreeItem(T eventData, string? id, string? parentId)
         {
             EventData = eventData;
             Id = id;
             ParentId = parentId;
         }
 
-        public TreeItem(UIWidget[] widgets, T eventData, string id, string parentId)
+        public TreeItem(UIWidget[] widgets, T eventData, string? id, string? parentId)
         {
             Widgets = widgets;
             EventData = eventData;

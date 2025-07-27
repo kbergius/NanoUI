@@ -45,7 +45,10 @@ namespace NanoUI.Components
             set
             {
                 _splitterLayout.Orientation = value;
-                Splitter.Orientation = value;
+                if(Splitter != null)
+                {
+                    Splitter.Orientation = value;
+                }
             }
         }
         public Vector2 Spacing

@@ -117,7 +117,11 @@ namespace NanoUI.Components.Dialogs
             _pickButton.FixedSize = new Vector2(90, 0);
             _pickButton.Clicked += () =>
             {
-                _colorSelected?.Invoke(_caller, _currentColor);
+                if (_caller != null)
+                {
+                    _colorSelected?.Invoke(_caller, _currentColor);
+                }
+                    
                 Close();
             };
 

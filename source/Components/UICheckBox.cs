@@ -20,7 +20,6 @@ namespace NanoUI.Components
             // set defaults to theme impl - prevents circular reference
             CheckedIcon = default;
             _boxBackgroundBrush = new();
-            _caption = string.Empty;
         }
 
         public UICheckBox(UIWidget parent)
@@ -41,7 +40,7 @@ namespace NanoUI.Components
 
         #region Properties
 
-        string _caption;
+        string _caption = string.Empty;
         public string Caption
         {
             get => _caption;

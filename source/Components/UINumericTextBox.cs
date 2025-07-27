@@ -13,8 +13,8 @@ namespace NanoUI.Components
         // numeric format (decimals)
         NumericFormat _numericFormat = NumericFormat.NONE;
 
-        public Action<T> ValueChanged;
-        public Action InvalidFormat;
+        public Action<T>? ValueChanged;
+        public Action? InvalidFormat;
 
         public UINumericTextBox(UIWidget parent)
             : this(parent, default)

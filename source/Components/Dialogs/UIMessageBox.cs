@@ -89,7 +89,11 @@ namespace NanoUI.Components.Dialogs
             _altButton.Visible = false;
             _altButton.Clicked += () =>
             {
-                _buttonClicked?.Invoke(_caller, 1);
+                if(_caller != null)
+                {
+                    _buttonClicked?.Invoke(_caller, 1);
+                }
+                
                 Close();
             };
         }
@@ -162,7 +166,7 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         // we use caller as identifier
-        public void SetCallback(UIWidget caller, Action<UIWidget, int> action)
+        public void SetCallback(UIWidget caller, Action<UIWidget, int>? action)
         {
             _caller = caller;
             _buttonClicked = action;

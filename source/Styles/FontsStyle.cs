@@ -16,8 +16,8 @@ namespace NanoUI.Styles
 
         #region Fonts
 
-        public string DefaultFontType { get; set; }
-        public string DefaultIconsType { get; set; }
+        public string? DefaultFontType { get; set; }
+        public string? DefaultIconsType { get; set; }
 
         // note: first font type is default
         // this is saved to JSON

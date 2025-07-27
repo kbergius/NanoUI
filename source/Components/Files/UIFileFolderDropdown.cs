@@ -182,7 +182,7 @@ namespace NanoUI.Components.Files
         void SetSelectedText(string path)
         {
             // we must get right display value
-            string text = Path.GetFileName(path);
+            string? text = Path.GetFileName(path);
 
             if (string.IsNullOrEmpty(Path.GetDirectoryName(path)))
             {
@@ -228,30 +228,36 @@ namespace NanoUI.Components.Files
                         if (Columns.Length < i)
                             break;
 
-                        UIWidget part;
+                        UIWidget? part;
 
                         // special handling for text part
                         if(i == TEXT_PART_INDEX)
                         {
                             // text part
                             part = _textPart;
-                            part.Position = viewItem.Children[i].Position;
-                            part.Size = viewItem.Children[i].Size;
+                            if (part != null)
+                            {
+                                part.Position = viewItem.Children[i].Position;
+                                part.Size = viewItem.Children[i].Size;
+                            }
                         }
                         else
                         {
                             part = viewItem.Children[i];
                         }
 
-                        // set sciccor to part - so it doesn't overflow
-                        ctx.SaveState();
+                        if(part != null)
+                        {
+                            // set scissor to part - so it doesn't overflow
+                            ctx.SaveState();
 
-                        ctx.IntersectScissor(part.Position, part.Size);
+                            ctx.IntersectScissor(part.Position, part.Size);
 
-                        // do draw
-                        part.Draw(ctx);
+                            // do draw
+                            part.Draw(ctx);
 
-                        ctx.RestoreState();
+                            ctx.RestoreState();
+                        }
                     }
 
 

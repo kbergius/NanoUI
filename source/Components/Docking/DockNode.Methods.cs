@@ -131,10 +131,10 @@ namespace NanoUI.Components.Docking
         bool DeleteNode(DockNode childNode)
         {
             // get the remaining node
-            DockNode remaining = FirstNode == childNode ? SecondNode : FirstNode;
+            DockNode? remaining = FirstNode == childNode ? SecondNode : FirstNode;
 
             // todo: there could be totally different logic
-            if (remaining.HasSubnodes)
+            if (remaining == null || remaining.HasSubnodes)
                 return false;
 
             // move tabs from remaining to this
