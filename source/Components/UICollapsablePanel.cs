@@ -63,7 +63,7 @@ namespace NanoUI.Components
         // todo: should be calculated dynamically?
         // todo2: use button layout/draw code?
 
-        public Action<bool> CollapsedChanged;
+        public Action<bool>? CollapsedChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UICollapsablePanelHeader()

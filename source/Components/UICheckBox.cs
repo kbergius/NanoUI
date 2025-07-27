@@ -9,7 +9,7 @@ namespace NanoUI.Components
     // todo : should we have configurable corner radius?
     public class UICheckBox : UIWidget
     {
-        public Action<bool> CheckedChanged;
+        public Action<bool>? CheckedChanged;
 
         // this is used if not wrapping caption
         string _displayCaption = string.Empty;
@@ -20,6 +20,7 @@ namespace NanoUI.Components
             // set defaults to theme impl - prevents circular reference
             CheckedIcon = default;
             _boxBackgroundBrush = new();
+            _caption = string.Empty;
         }
 
         public UICheckBox(UIWidget parent)
