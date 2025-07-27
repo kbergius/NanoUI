@@ -26,7 +26,7 @@ namespace NanoUI.Components.Simple
 
         #region Properties
 
-        public string Text { get; set; }
+        public string? Text { get; set; }
         
         float? _fontSize;
         public override float FontSize

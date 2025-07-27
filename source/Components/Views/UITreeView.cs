@@ -33,7 +33,7 @@ namespace NanoUI.Components.Views
             internal set;
         }
 
-        public UITreeItemWidget<T> ParentItem;
+        public UITreeItemWidget<T>? ParentItem;
 
         #endregion
 

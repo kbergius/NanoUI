@@ -7,12 +7,12 @@
     public class RowItem<T> : IViewItem<T>
     {
         // this is obligatory in "flat" but mabdatory in hierarcial structures
-        public string Id { get; }
+        public string? Id { get; }
 
         // needed to place correctly into hierarcial structure
-        public string ParentId { get; }
+        public string? ParentId { get; }
 
-        public UIWidget[] Widgets { get; set; }
+        public UIWidget[]? Widgets { get; set; }
         public T? EventData { get; set; }
 
         // if this is not defined view item widget uses default row height from theme

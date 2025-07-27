@@ -48,7 +48,7 @@ namespace NanoUI.Components.Simple
             get => _iconColor ?? GetTheme().Widget.TextColor;
             set => _iconColor = value;
         }
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         float? _fontSize;
         public override float FontSize
