@@ -15,17 +15,17 @@ namespace NanoUI.Components.Dialogs
         Color _currentColor;
 
         // note: this is singleton in Screen - so user must set callback (Action) when starting using this
-        Action<UIWidget, Color> _colorSelected;
+        Action<UIWidget, Color>? _colorSelected;
 
-        UIColorWheel _colorWheel;
-        UIAlphaBar _alphaBar;
+        UIColorWheel? _colorWheel;
+        UIAlphaBar? _alphaBar;
 
         bool _inited;
 
-        UINumericTextBox<byte> _redText;
-        UINumericTextBox<byte> _greenText;
-        UINumericTextBox<byte> _blueText;
-        UINumericTextBox<byte> _alphaText;
+        UINumericTextBox<byte>? _redText;
+        UINumericTextBox<byte>? _greenText;
+        UINumericTextBox<byte>? _blueText;
+        UINumericTextBox<byte>? _alphaText;
 
         // flag to prevent circular event firing
         bool _textChanging;
@@ -142,11 +142,11 @@ namespace NanoUI.Components.Dialogs
 
         #region Properties
 
-        UIButton _pickButton;
-        public UIButton PickButton => _pickButton;
+        UIButton? _pickButton;
+        public UIButton? PickButton => _pickButton;
         
-        UIButton _cancelButton;
-        public UIButton CancelButton => _cancelButton;
+        UIButton? _cancelButton;
+        public UIButton? CancelButton => _cancelButton;
 
         #endregion
 
@@ -166,8 +166,12 @@ namespace NanoUI.Components.Dialogs
         public void SetColor(Color color)
         {
             // must set alpha first
-            _alphaBar.AlphaValue = color.A;
-            _colorWheel.SetColor(color);
+            if(_alphaBar != null)
+            {
+                _alphaBar.AlphaValue = color.A;
+            }
+            
+            _colorWheel?.SetColor(color);
         }
 
         #endregion
@@ -200,11 +204,15 @@ namespace NanoUI.Components.Dialogs
 
             _textChanging = true;
 
-            SetColor(new Color(
-                _redText.CurrentValue,
-                _greenText.CurrentValue,
-                _blueText.CurrentValue,
-                _alphaText.CurrentValue));
+            if (_redText != null && _greenText != null &&
+                _blueText != null && _alphaText != null)
+            {
+                SetColor(new Color(
+                    _redText.CurrentValue,
+                    _greenText.CurrentValue,
+                    _blueText.CurrentValue,
+                    _alphaText.CurrentValue));
+            }
 
             _textChanging = false;
         }
@@ -215,10 +223,22 @@ namespace NanoUI.Components.Dialogs
 
             _currentColor = col;
 
-            _redText.Text = col.R.ToString();
-            _greenText.Text = col.G.ToString();
-            _blueText.Text = col.B.ToString();
-            _alphaText.Text = col.A.ToString();
+            if(_redText != null)
+            {
+                _redText.Text = col.R.ToString();
+            }
+            if (_greenText != null)
+            {
+                _greenText.Text = col.G.ToString();
+            }
+            if (_blueText != null)
+            {
+                _blueText.Text = col.B.ToString();
+            }
+            if (_alphaText != null)
+            {
+                _alphaText.Text = col.A.ToString();
+            }
         }
 
         #endregion

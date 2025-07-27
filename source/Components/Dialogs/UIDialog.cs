@@ -8,7 +8,7 @@ namespace NanoUI.Components.Dialogs
     public class UIDialog : UIWindow
     {
         // caller is used to set focus back to caller when dialog closes
-        protected UIWidget _caller;
+        protected UIWidget? _caller;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIDialog()

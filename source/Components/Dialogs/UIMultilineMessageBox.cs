@@ -9,9 +9,9 @@ namespace NanoUI.Components.Dialogs
     public class UIMultilineMessageBox : UIDialog
     {
         bool _inited;
-        UIScrollableLabel _multilineText;
+        UIScrollableLabel? _multilineText;
 
-        Action<UIWidget, int> _buttonClicked;
+        Action<UIWidget, int>? _buttonClicked;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIMultilineMessageBox()
@@ -57,21 +57,15 @@ namespace NanoUI.Components.Dialogs
 
         public string Text
         {
-            set => _multilineText.SetText(value);
+            set => _multilineText?.SetText(value);
         }
 
-        UIButton _okButton;
-        public UIButton OKButton
-        {
-            get => _okButton;
-        }
-
-        UIButton _altButton;
-        public UIButton AltButton
-        {
-            get => _altButton;
-        }
-
+        UIButton? _okButton;
+        public UIButton? OKButton => _okButton;
+        
+        UIButton? _altButton;
+        public UIButton? AltButton => _altButton;
+        
         #endregion
 
         #region Methods

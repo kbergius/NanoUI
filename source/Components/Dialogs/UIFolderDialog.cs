@@ -18,10 +18,10 @@ namespace NanoUI.Components.Dialogs
 
         bool _inited;
 
-        UIFileFolderList _fileFolderList;
-        UITextField _selectionPathText;
+        UIFileFolderList? _fileFolderList;
+        UITextField? _selectionPathText;
 
-        Action<UIWidget, string> _folderSelected;
+        Action<UIWidget, string>? _folderSelected;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIFolderDialog()
@@ -71,7 +71,7 @@ namespace NanoUI.Components.Dialogs
             _okButton.FixedSize = new Vector2(90, 0);
             _okButton.Clicked += () =>
             {
-                if (_selectionPathText.Text.Trim().Length == 0)
+                if (_selectionPathText != null && _selectionPathText.Text.Trim().Length == 0)
                 {
                     // show message box
                     var box = screen.GetDialog<UIMessageBox>();
@@ -81,7 +81,10 @@ namespace NanoUI.Components.Dialogs
                     return;
                 }
 
-                _folderSelected?.Invoke(_caller, _selectionPathText.Text);
+                if(_caller != null && _selectionPathText != null)
+                {
+                    _folderSelected?.Invoke(_caller, _selectionPathText.Text);
+                }
 
                 Close();
             };
@@ -111,18 +114,12 @@ namespace NanoUI.Components.Dialogs
             }
         }
 
-        UIButton _okButton;
-        public UIButton OKButton
-        {
-            get => _okButton;
-        }
-
-        UIButton _cancelButton;
-        public UIButton CancelButton
-        {
-            get => _cancelButton;
-        }
-
+        UIButton? _okButton;
+        public UIButton? OKButton => _okButton;
+        
+        UIButton? _cancelButton;
+        public UIButton? CancelButton => _cancelButton;
+        
         #endregion
 
         #region Methods
@@ -148,9 +145,13 @@ namespace NanoUI.Components.Dialogs
                 // delayed set
                 _inited = true;
 
-                _fileFolderList.CreateList(_startPath);
-                _selectionPathText.Text = _startPath;
+                _fileFolderList?.CreateList(_startPath);
 
+                if(_selectionPathText != null)
+                {
+                    _selectionPathText.Text = _startPath;
+                }
+                
                 base.ReInit(ctx);
             }
 

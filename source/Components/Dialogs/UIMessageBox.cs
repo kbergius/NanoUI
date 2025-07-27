@@ -11,14 +11,14 @@ namespace NanoUI.Components.Dialogs
     public class UIMessageBox : UIDialog
     {
         bool _inited;
-        UILabel _iconLabel;
-        // supoort for single & multilines
-        UIScrollableLabel _multilineText;
-        UILabel _textLabel;
+        UILabel? _iconLabel;
+        // support for single & multilines
+        UIScrollableLabel? _multilineText;
+        UILabel? _textLabel;
 
         // int is button index ("Ok" = 0, "Cancel" = 1)
         // note we don't want to have reference => could be disposed (no need to create new)!!!
-        Action<UIWidget, int> _buttonClicked;
+        Action<UIWidget, int>? _buttonClicked;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIMessageBox()
@@ -116,9 +116,16 @@ namespace NanoUI.Components.Dialogs
             {
                 _scrollText = value;
 
-                _multilineText.Visible = _scrollText;
-                _textLabel.Visible = !_scrollText;
+                if (_multilineText != null)
+                {
+                    _multilineText.Visible = _scrollText;
+                }
 
+                if (_textLabel != null)
+                {
+                    _textLabel.Visible = !_scrollText;
+                }
+                
                 RequestLayoutUpdate(this);
             }
         }
@@ -128,8 +135,12 @@ namespace NanoUI.Components.Dialogs
             set
             {
                 // set to both possible widgets (supports user sets single line property after text property)
-                _textLabel.Caption = value;
-                _multilineText.SetText(value);
+                if (_textLabel != null)
+                {
+                    _textLabel.Caption = value;
+                }
+                    
+                _multilineText?.SetText(value);
             }
         }
         
@@ -140,18 +151,12 @@ namespace NanoUI.Components.Dialogs
             set => _icon = value;
         }
 
-        UIButton _okButton;
-        public UIButton OKButton
-        {
-            get => _okButton;
-        }
-
-        UIButton _altButton;
-        public UIButton AltButton
-        {
-            get => _altButton;
-        }
-
+        UIButton? _okButton;
+        public UIButton? OKButton => _okButton;
+        
+        UIButton? _altButton;
+        public UIButton? AltButton => _altButton;
+        
         #endregion
 
         #region Methods
@@ -175,8 +180,11 @@ namespace NanoUI.Components.Dialogs
             if (!_inited)
             {
                 // delayed set
-                _iconLabel.Caption = char.ConvertFromUtf32(Icon);
-
+                if(_iconLabel != null)
+                {
+                    _iconLabel.Caption = char.ConvertFromUtf32(Icon);
+                }
+                
                 _inited = true;
 
                 ReInit(ctx);
