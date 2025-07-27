@@ -18,8 +18,8 @@ namespace NanoUI.Components.Scrolling
         Rect _vertSlider;
         Rect _horizontalSlider;
 
-        UIScrollbar _horizontalScrollbar;
-        UIScrollbar _verticalScrollbar;
+        UIScrollbar? _horizontalScrollbar;
+        UIScrollbar? _verticalScrollbar;
 
         // should we update scroll content?
         bool _updateLayout;
@@ -48,8 +48,8 @@ namespace NanoUI.Components.Scrolling
 
         #region Properties
 
-        public UIScrollbar HorizontalScrollbar => _horizontalScrollbar;
-        public UIScrollbar VerticalScrollbar => _verticalScrollbar;
+        public UIScrollbar? HorizontalScrollbar => _horizontalScrollbar;
+        public UIScrollbar? VerticalScrollbar => _verticalScrollbar;
 
         public override Layout ChildrenLayout
         {
@@ -109,64 +109,73 @@ namespace NanoUI.Components.Scrolling
 
             if (_scrollableType == ScrollbarType.Vertical)
             {
-                if (overflowY)
+                if (_verticalScrollbar != null)
                 {
-                    child.Position = new Vector2(0, - _verticalScrollbar.Scroll * (ContentPreferredSize.Y - Size.Y));
-                    // todo: should we set some margin
-                    child.Size = new Vector2(Size.X - _verticalScrollbar.Dimension, ContentPreferredSize.Y);
-                }
-                else
-                {
-                    child.Position = Vector2.Zero;
-                    child.Size = Size;
-                    _verticalScrollbar.Scroll = 0;
+                    if (overflowY)
+                    {
+                        child.Position = new Vector2(0, -_verticalScrollbar.Scroll * (ContentPreferredSize.Y - Size.Y));
+                        // todo: should we set some margin
+                        child.Size = new Vector2(Size.X - _verticalScrollbar.Dimension, ContentPreferredSize.Y);
+                    }
+                    else
+                    {
+                        child.Position = Vector2.Zero;
+                        child.Size = Size;
+                        _verticalScrollbar.Scroll = 0;
+                    }
                 }
             }
             else if (_scrollableType == ScrollbarType.Horizontal)
             {
-                if (overflowX)
+                if (_horizontalScrollbar != null)
                 {
-                    child.Position = new Vector2(-_horizontalScrollbar.Scroll * (ContentPreferredSize.X - Size.X), 0);
-                    // todo: should we set some margin
-                    child.Size = new Vector2(ContentPreferredSize.X, Size.Y - _horizontalScrollbar.Dimension);
-                }
-                else
-                {
-                    child.Position = Vector2.Zero;
-                    child.Size = Size;
-                    _horizontalScrollbar.Scroll = 0;
+                    if (overflowX)
+                    {
+                        child.Position = new Vector2(-_horizontalScrollbar.Scroll * (ContentPreferredSize.X - Size.X), 0);
+                        // todo: should we set some margin
+                        child.Size = new Vector2(ContentPreferredSize.X, Size.Y - _horizontalScrollbar.Dimension);
+                    }
+                    else
+                    {
+                        child.Position = Vector2.Zero;
+                        child.Size = Size;
+                        _horizontalScrollbar.Scroll = 0;
+                    }
                 }
             }
             else
             {
-                // both
-                if(overflowX || overflowY)
+                if (_horizontalScrollbar != null && _verticalScrollbar != null)
                 {
-                    child.Position = new Vector2
+                    // both
+                    if (overflowX || overflowY)
                     {
-                        X = overflowX? -_horizontalScrollbar.Scroll * (ContentPreferredSize.X - Size.X) : 0,
-                        Y = overflowY? -_verticalScrollbar.Scroll * (ContentPreferredSize.Y - Size.Y) : 0
-                    };
+                        child.Position = new Vector2
+                        {
+                            X = overflowX ? -_horizontalScrollbar.Scroll * (ContentPreferredSize.X - Size.X) : 0,
+                            Y = overflowY ? -_verticalScrollbar.Scroll * (ContentPreferredSize.Y - Size.Y) : 0
+                        };
 
-                    if(overflowX && overflowY)
-                    {
-                        child.Size = ContentPreferredSize;
+                        if (overflowX && overflowY)
+                        {
+                            child.Size = ContentPreferredSize;
+                        }
+                        else if (overflowX)
+                        {
+                            child.Size = new Vector2(ContentPreferredSize.X, Size.Y - _horizontalScrollbar.Dimension);
+                        }
+                        else if (overflowY)
+                        {
+                            child.Size = new Vector2(Size.X - _verticalScrollbar.Dimension, ContentPreferredSize.Y);
+                        }
                     }
-                    else if (overflowX)
+                    else
                     {
-                        child.Size = new Vector2(ContentPreferredSize.X, Size.Y - _horizontalScrollbar.Dimension);
+                        child.Position = Vector2.Zero;
+                        child.Size = Size;
+                        _horizontalScrollbar.Scroll = 0;
+                        _verticalScrollbar.Scroll = 0;
                     }
-                    else if (overflowY)
-                    {
-                        child.Size = new Vector2(Size.X - _verticalScrollbar.Dimension, ContentPreferredSize.Y);
-                    }
-                }
-                else
-                {
-                    child.Position = Vector2.Zero;
-                    child.Size = Size;
-                    _horizontalScrollbar.Scroll = 0;
-                    _verticalScrollbar.Scroll = 0;
                 }
             }
 
