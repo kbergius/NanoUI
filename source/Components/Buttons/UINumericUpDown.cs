@@ -16,8 +16,8 @@ namespace NanoUI.Components.Buttons
         
         UpDownButton<T> _upDownButton;
 
-        public Action<T> ValueChanged;
-        public Action InvalidFormat;
+        public Action<T>? ValueChanged;
+        public Action? InvalidFormat;
 
         public UINumericUpDown(UIWidget parent, T value, NumericFormat numericFormat = NumericFormat.NONE)
             :base(parent)

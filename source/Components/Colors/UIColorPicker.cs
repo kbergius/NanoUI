@@ -12,8 +12,8 @@ namespace NanoUI.Components.Colors
         Color _currentColor;
 
         // this is not used anywhere here (its just if user want to watch colorwheel changes)
-        public Action<Color> Changed;
-        public Action<Color> FinalColor;
+        public Action<Color>? Changed;
+        public Action<Color>? FinalColor;
 
         StackLayout _popupLayout;
 

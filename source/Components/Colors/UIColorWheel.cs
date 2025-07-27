@@ -35,7 +35,7 @@ namespace NanoUI.Components.Colors
         // The 'V' (value) component of the HSV color model. Valid values are in the range [0, 1].
         float _white;
 
-        public Action<Color> ColorChanged;
+        public Action<Color>? ColorChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIColorWheel()
