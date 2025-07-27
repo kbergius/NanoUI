@@ -17,7 +17,7 @@ namespace NanoUI.Svg.Data
         // The y position of the end circle of the radial gradient. Default is 50%
         public float cy;
         // The radius of the start circle of the radial gradient. Default is 0%
-        public float fr;
+        //public float fr;
         // The x position of the start circle of the radial gradient. Default is 50%
         public float fx;
         // The y position of the start circle of the radial gradient. Default is 50%

@@ -246,15 +246,18 @@ namespace NanoUI.Components.Files
                             part = viewItem.Children[i];
                         }
 
-                        // set sciccor to part - so it doesn't overflow
-                        ctx.SaveState();
+                        if(part != null)
+                        {
+                            // set scissor to part - so it doesn't overflow
+                            ctx.SaveState();
 
-                        ctx.IntersectScissor(part.Position, part.Size);
+                            ctx.IntersectScissor(part.Position, part.Size);
 
-                        // do draw
-                        part.Draw(ctx);
+                            // do draw
+                            part.Draw(ctx);
 
-                        ctx.RestoreState();
+                            ctx.RestoreState();
+                        }
                     }
 
 

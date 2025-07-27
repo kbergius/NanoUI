@@ -215,14 +215,17 @@ namespace NanoUI.Components.Docking
             }
 
             // move all tabs in this to tab node
-            foreach (var child in _tabWidget.Children.AsSpan())
+            if(tabNode != null)
             {
-                if (child is UITabItem)
+                foreach (var child in _tabWidget.Children.AsSpan())
                 {
-                    child.Parent = tabNode._tabWidget;
+                    if (child is UITabItem)
+                    {
+                        child.Parent = tabNode._tabWidget;
+                    }
                 }
             }
-
+            
             // we have created new nodes - set titles to them
             if(dockNode != null)
             {

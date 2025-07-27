@@ -114,8 +114,11 @@ namespace NanoUI.Components
         {
             _scroll.FixedSize = Size;
 
-            _label.FixedSize = new Vector2(Size.X - _scroll.VerticalScrollbar.Dimension, Size.Y);
-
+            if(_scroll.VerticalScrollbar != null)
+            {
+                _label.FixedSize = new Vector2(Size.X - _scroll.VerticalScrollbar.Dimension, Size.Y);
+            }
+            
             base.PerformLayout(ctx);
         }
 

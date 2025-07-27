@@ -49,7 +49,7 @@ namespace NanoUI.Components
 
         #region Properties
 
-        string _caption;
+        string _caption = string.Empty;
         public string Caption
         {
             get => _caption;

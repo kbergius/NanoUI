@@ -346,29 +346,32 @@ namespace NanoUI.Components
 
                     if (scrollbarType == ScrollbarType.Vertical)
                     {
-                        // vertical
-                        float contentHeight = _contentRect.Size.Y;
-                        Vector2 size = _verticalScrollbar.Size;
-                        
-                        int scrollH = (int)(size.Y * MathF.Min(1.0f, size.Y / contentHeight));
-                        int start = (int)(_verticalScrollbar.Position.Y + (size.Y - scrollH) * _verticalScrollbar.Scroll);
+                        if (_verticalScrollbar != null)
+                        {
+                            // vertical
+                            float contentHeight = _contentRect.Size.Y;
+                            Vector2 size = _verticalScrollbar.Size;
 
-                        float delta = 0.0f;
+                            int scrollH = (int)(size.Y * MathF.Min(1.0f, size.Y / contentHeight));
+                            int start = (int)(_verticalScrollbar.Position.Y + (size.Y - scrollH) * _verticalScrollbar.Scroll);
 
-                        if (localPos.Y < start)
-                            delta = -size.Y / contentHeight;
-                        else if (localPos.Y > start + scrollH)
-                            delta = size.Y / contentHeight;
+                            float delta = 0.0f;
 
-                        _verticalScrollbar.Scroll = Math.Clamp(_verticalScrollbar.Scroll + delta, 0, 1);
+                            if (localPos.Y < start)
+                                delta = -size.Y / contentHeight;
+                            else if (localPos.Y > start + scrollH)
+                                delta = size.Y / contentHeight;
 
-                        _scrollingDirty = true;
+                            _verticalScrollbar.Scroll = Math.Clamp(_verticalScrollbar.Scroll + delta, 0, 1);
 
-                        // set dragging
-                        _scrollableDragMode = ScrollableDragMode.Vertical;
+                            _scrollingDirty = true;
 
-                        // set this as drag widget -> call for OnPointerDrag
-                        Screen?.SetDragWidget(this);
+                            // set dragging
+                            _scrollableDragMode = ScrollableDragMode.Vertical;
+
+                            // set this as drag widget -> call for OnPointerDrag
+                            Screen?.SetDragWidget(this);
+                        }
 
                         return true;
                     }
