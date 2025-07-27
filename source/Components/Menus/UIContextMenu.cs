@@ -9,7 +9,7 @@ namespace NanoUI.Components.Menus
     {
         // this is called from the child menu item buttons, if they have ItemId specified
         // handles clicks & shortcut matches.
-        public Action<int> MenuItemSelected;
+        public Action<int>? MenuItemSelected;
 
         UIWidget? _owner;
 
