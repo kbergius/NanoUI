@@ -33,7 +33,7 @@ namespace NanoUI.Components.Docking
         SplitLayout _splitLayout;
 
         // these are invisible outside (only accessed in this class)
-        UISplitter _splitter;
+        UISplitter? _splitter;
         DockTabWidget _tabWidget;
         // titlebar only visible when has no subnodes
         DockTitlebar _titlebar;
@@ -83,8 +83,8 @@ namespace NanoUI.Components.Docking
             }
         }
 
-        public DockNode FirstNode { get; private set; }
-        public DockNode SecondNode { get; private set; }
+        public DockNode? FirstNode { get; private set; }
+        public DockNode? SecondNode { get; private set; }
 
         public DockTabWidget TabWidget => _tabWidget;
 
@@ -261,8 +261,11 @@ namespace NanoUI.Components.Docking
             {
                 // sync splitter & split layout orientation
                 _splitLayout.Orientation = Orientation;
-                _splitter.Orientation = Orientation;
-
+                if(_splitter != null)
+                {
+                    _splitter.Orientation = Orientation;
+                }
+                
                 // perform splitter layout
                 _splitLayout.PerformLayout(ctx, this);
             }
