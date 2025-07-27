@@ -179,7 +179,7 @@ namespace NanoUI.Components.Views
 
         void CreateItem(TreeItem<T> treeItem, bool isGroup)
         {
-            UITreeItemWidget<T> parent = null;
+            UITreeItemWidget<T>? parent = null;
 
             if(treeItem.ParentId != null)
             {
@@ -195,7 +195,7 @@ namespace NanoUI.Components.Views
             }
 
             var item = new UITreeItemWidget<T>(ViewPanel, treeItem);
-            item.Name = treeItem.Id;
+            item.Name = treeItem.Id?? "No name";
             
             // ROOT IS INVISIBLE - all under root gets 0
             item.Level = parent != null ? parent.Level + 1 : -1;
@@ -236,7 +236,10 @@ namespace NanoUI.Components.Views
             // we must handle expand/collapse (change visibility of widgets)
             HandleExpandCollapse(widget);
 
-            base.OnSelectedChanged(widget.EventData);
+            if(widget.EventData != null)
+            {
+                base.OnSelectedChanged(widget.EventData);
+            }
         }
 
         #endregion

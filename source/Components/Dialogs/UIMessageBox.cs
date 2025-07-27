@@ -162,7 +162,7 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         // we use caller as identifier
-        public void SetCallback(UIWidget caller, Action<UIWidget, int> action)
+        public void SetCallback(UIWidget caller, Action<UIWidget, int>? action)
         {
             _caller = caller;
             _buttonClicked = action;
