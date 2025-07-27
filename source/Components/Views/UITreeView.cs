@@ -98,11 +98,11 @@ namespace NanoUI.Components.Views
             // set defaults to theme impl - prevents circular reference
         }
 
-        public UITreeView(UIWidget parent)
+        /*public UITreeView(UIWidget parent)
             :this(parent, default)
         {
         
-        }
+        }*/
 
         public UITreeView(UIWidget parent, T rootData)
             : base(parent)
