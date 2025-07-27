@@ -618,11 +618,11 @@ namespace NanoUI
 
         #region Clipboard & Pointer type & Input text start/stop
 
-        public Action<string> ClipboardSet;
-        public Func<string> ClipboardGet;
-        public Action<int> PointerTypeChanged;
-        public Action OnStartTextInput;
-        public Action OnStopTextInput;
+        public Action<string>? ClipboardSet;
+        public Func<string>? ClipboardGet;
+        public Action<int>? PointerTypeChanged;
+        public Action? OnStartTextInput;
+        public Action? OnStopTextInput;
 
         // User should extend these (they need access to windowing platform)
         public virtual string GetClipboardString()

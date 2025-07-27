@@ -335,14 +335,17 @@ namespace NanoUI.Components.Docking
             // get hit area properties
             float cornerRadius = GetTheme().Docks.HitAreaCornerRadius;
             Color backgroundColor = GetTheme().Docks.HitAreaBackgroundColor;
-            BrushBase brush = GetTheme().Docks.HitAreaFillBrush;
+            BrushBase? brush = GetTheme().Docks.HitAreaFillBrush;
 
             // draw hit areas
-            for (int i = 0; i < _hitAreas.Length; i++)
+            if(brush != null)
             {
-                _hitAreas[i].DrawHitArea(ctx, cornerRadius, backgroundColor, brush);
+                for (int i = 0; i < _hitAreas.Length; i++)
+                {
+                    _hitAreas[i].DrawHitArea(ctx, cornerRadius, backgroundColor, brush);
+                }
             }
-
+            
             // Draw overlay if we have active dock area
             if (_activeDockArea != DockArea.NONE)
             {
