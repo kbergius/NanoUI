@@ -79,7 +79,11 @@ namespace NanoUI.Components.Dialogs
             _okButton.FixedSize = new Vector2(90, 0);
             _okButton.Clicked += () =>
             {
-                _buttonClicked?.Invoke(_caller, 0);
+                if(_caller != null)
+                {
+                    _buttonClicked?.Invoke(_caller, 0);
+                }
+                
                 Close();
             };
 

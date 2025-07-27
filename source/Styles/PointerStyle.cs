@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace NanoUI.Styles
 {
-    public class PointerStyle
+    public struct PointerStyle
     {
         // this is default pointer type when no other spesified or ResetCursor called
         public int PointerType { get; set; }
@@ -15,6 +15,8 @@ namespace NanoUI.Styles
 
         // todo: should this be in globals?
         public float MarkerRadius { get; set; } = 14f;
+
+        public PointerStyle() { }
 
         // this is the marker for dock widget in redocking process
         // - we don't want to draw whole redocking window content

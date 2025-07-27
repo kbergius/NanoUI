@@ -30,7 +30,7 @@ namespace NanoUI.Components.Simple
         [JsonIgnore]
         public override int FontIconsId
         {
-            get => _fontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.DefaultIconsType);
+            get => _fontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.GetDefaultIconType());
             set => _fontIconsId = value;
         }
 

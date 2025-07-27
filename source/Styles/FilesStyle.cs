@@ -3,7 +3,7 @@ using System;
 
 namespace NanoUI.Styles
 {
-    public class FilesStyle
+    public struct FilesStyle
     {
         public Color HardDriveColor { get; set; }
         public Color FolderColor { get; set; }
@@ -13,5 +13,7 @@ namespace NanoUI.Styles
         public ColumnDefinition[] DropdownColumns { get; set; } = Array.Empty<ColumnDefinition>();
         public ColumnDefinition[] ListColumns { get; set; } = Array.Empty<ColumnDefinition>();
         public ColumnDefinition[] TreeColumns { get; set; } = Array.Empty<ColumnDefinition>();
+
+        public FilesStyle() { }
     }
 }

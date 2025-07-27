@@ -18,7 +18,13 @@ namespace NanoUI.Components.Docking
             // todo: in properties
             BackgroundFocused = GetTheme().Docks.TitleBackgroundFocused;
             BackgroundUnfocused = GetTheme().Docks.TitleBackgroundUnfocused;
-            FontType = GetTheme().Docks.TitleFontType;
+
+            string? fontType = GetTheme().Docks.TitleFontType;
+            if (fontType != null)
+            {
+                FontType = fontType;
+            }
+            
             FontSize = GetTheme().Docks.TitleFontSize;
             ButtonSize = GetTheme().Docks.TitleButtonSize;
         }

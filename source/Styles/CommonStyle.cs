@@ -4,7 +4,7 @@ namespace NanoUI.Styles
 {
     // this is used to set all widgets base properties
     // note: we don't use base Widget as theme type, since it will "pollute" theme json file
-    public class CommonStyle
+    public struct CommonStyle
     {
         // this can be used to "highlight" some area (not all widgets use this by now)
         public Color AccentColor { get; set; }

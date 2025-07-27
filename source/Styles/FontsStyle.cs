@@ -9,16 +9,19 @@ namespace NanoUI.Styles
     // todo?: embed FontAwesome icons & use it as default icon file (because icons point at enum FontAwesome)?
 
     // Fonts - normal & icons file is required, rest is optional
-    public partial class FontsStyle
+    public struct FontsStyle
     {
         // note: at runtime we use this
         Dictionary<string, int> _fontMappings = new();
 
+        public FontsStyle() { }
+
         #region Fonts
 
         public string? DefaultFontType { get; set; }
-        public string? DefaultIconsType { get; set; }
 
+        public string? DefaultIconsType { get; set; }
+        
         // note: first font type is default
         // this is saved to JSON
         public Dictionary<string, string> FontTypes { get; set; } = new();
@@ -104,6 +107,38 @@ namespace NanoUI.Styles
 
             // default
             return 0;
+        }
+
+        public string GetDefaultFontType()
+        {
+            if(DefaultFontType != null)
+                return DefaultFontType;
+
+            foreach (var fontMapping in _fontMappings)
+            {
+                return fontMapping.Key;
+            }
+
+            // todo: should we throw?
+            return string.Empty;
+        }
+
+        public string GetDefaultIconType()
+        {
+            if (DefaultIconsType != null)
+                return DefaultIconsType;
+
+            foreach (var fontMapping in _fontMappings)
+            {
+                // todo: this is just a guess
+                if (fontMapping.Key.ToLower().Contains("icon"))
+                {
+                    return fontMapping.Key;
+                }
+            }
+
+            // todo: should we throw?
+            return string.Empty;
         }
 
         public string? GetFontType(int fontId)

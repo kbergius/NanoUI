@@ -94,7 +94,7 @@ namespace StbTrueTypeSharp
 		/// <param name="data"></param>
 		/// <param name="offset"></param>
 		/// <returns>null if the data was invalid</returns>
-		public static stbtt_fontinfo CreateFont(byte[] data, int offset)
+		public static stbtt_fontinfo? CreateFont(byte[] data, int offset)
 		{
 			var dataCopy = (byte*)CRuntime.malloc(data.Length);
 			Marshal.Copy(data, 0, new IntPtr(dataCopy), data.Length);

@@ -1,8 +1,7 @@
 ﻿using NanoUI.Common;
-
 namespace NanoUI.Styles
 {
-    public class BorderStyle
+    public struct BorderStyle
     {
         public Color Dark { get; set; }
         public Color Light { get; set; }
