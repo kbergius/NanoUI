@@ -9,11 +9,12 @@ namespace NanoUI.Styles
     // todo?: embed FontAwesome icons & use it as default icon file (because icons point at enum FontAwesome)?
 
     // Fonts - normal & icons file is required, rest is optional
-    // todo: struct
-    public partial class FontsStyle
+    public struct FontsStyle
     {
         // note: at runtime we use this
         Dictionary<string, int> _fontMappings = new();
+
+        public FontsStyle() { }
 
         #region Fonts
 

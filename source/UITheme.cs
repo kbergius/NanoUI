@@ -38,19 +38,11 @@ namespace NanoUI
         // if you use static CreateDefault or Load methods
         public UITheme()
         {
-            // todo: styles should be structs so we don't need these
-            Borders = new();
-            Common = new();
-            Docks = new();
-            Files = new();
-            Pointer = new();
-            Scrollbars = new();
-            Windows = new();
+
         }
 
         #region Global styles
 
-        // Decorators
         public BorderStyle Borders { get; set; }
         public CommonStyle Common { get; set; }
         public DockingStyle Docks { get; set; }
@@ -355,7 +347,7 @@ namespace NanoUI
             T? theme = serializer.Load<T>(themefile);
 
             // init fonts etc (read from theme xml)
-            theme?.Fonts?.Init(ctx);
+            theme?.Fonts.Init(ctx);
 
             return theme;
         }

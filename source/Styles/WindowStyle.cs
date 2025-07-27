@@ -3,8 +3,7 @@
 namespace NanoUI.Styles
 {
     // These are properties that are same to all window instances
-    // todo: struct
-    public class WindowStyle
+    public struct WindowStyle
     {
         public Color BorderFocusedColor { get; set; }
         public Color BorderUnfocusedColor { get; set; }
@@ -14,5 +13,7 @@ namespace NanoUI.Styles
         // todo: this could be same as margin?
         public uint DragAreaWidth { get; set; } = 10;
         public float ResizingTriangleSize { get; set; } = 25f;
+
+        public WindowStyle() { }
     }
 }
