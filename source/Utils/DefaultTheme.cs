@@ -327,7 +327,7 @@ namespace NanoUI.Utils
             theme.Titlebar.BackgroundUnfocused = new LinearGradient(
                     new Color(120, 120, 120, 255), new Color(48, 48, 48, 255), windowHeaderRounding);
             theme.Titlebar.ButtonSize = new Vector2(25);
-            theme.Titlebar.ButtonFontIconsId = theme.Fonts.GetFontId(theme.Fonts.DefaultIconsType);
+            theme.Titlebar.ButtonFontIconsId = theme.Fonts.GetFontId(theme.Fonts.GetDefaultIconType());
             theme.Titlebar.ButtonIcons = [theme.Fonts.IconClose];
             theme.Titlebar.Margin = new Thickness(10, 5);
             // to label
