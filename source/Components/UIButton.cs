@@ -11,10 +11,10 @@ namespace NanoUI.Components
         // this makes pushed button text dimmer
         const float PUSHED_TEXT_MULTIPLIER = 0.6f;
 
-        public Action Clicked;
+        public Action? Clicked;
 
         // The callback issued for toggle & radio buttons.
-        public Action<UIButton, bool> StateChanged;
+        public Action<UIButton, bool>? StateChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIButton()
@@ -23,6 +23,7 @@ namespace NanoUI.Components
             IconAlign = default;
             TextHorizontalAlignment = default;
             _padding = new();
+            Caption = string.Empty;
         }
 
         public UIButton(UIWidget parent)
@@ -81,8 +82,8 @@ namespace NanoUI.Components
         }
         
         // The button group for radio buttons
-        List<UIButton> _buttonGroup;
-        public List<UIButton> ButtonGroup
+        List<UIButton>? _buttonGroup;
+        public List<UIButton>? ButtonGroup
         {
             get => _buttonGroup;
             set => _buttonGroup = value;

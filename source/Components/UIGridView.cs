@@ -61,7 +61,13 @@ namespace NanoUI.Components
         // note: widgets are stored in widget list (this is just a mapping)
         Dictionary<Guid, Cell> _widgetAnchors = new();
 
-        public UIGridView() { }
+        public UIGridView()
+        {
+            _columns = new();
+            _rows = new();
+            _columnStretches = Array.Empty<float>();
+            _rowStreches = Array.Empty<float>();
+        }
 
         public UIGridView(UIWidget parent)
             : this(parent, new List<int>(), new List<int>())

@@ -17,7 +17,7 @@ namespace NanoUI.Components
         Vector2 _parentPosition = new Vector2(-1);
         Vector2 _parentSize = new Vector2(-1);
 
-        UIPopupButton _parentButton;
+        UIPopupButton? _parentButton;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIPopup()

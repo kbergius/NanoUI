@@ -15,7 +15,11 @@ namespace NanoUI.Components
     {
         GridLayout _gridLayout;
 
-        public UIGrid() { }
+        public UIGrid()
+        {
+            // Create a 2-column grid layout by default
+            _gridLayout = new GridLayout(Orientation.Horizontal, 2, LayoutAlignment.Minimum);
+        }
 
         public UIGrid(UIWidget parent)
             : base(parent)
