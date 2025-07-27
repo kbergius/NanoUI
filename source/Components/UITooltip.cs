@@ -85,7 +85,7 @@ namespace NanoUI.Components
         #region Drawing
 
         Rect _bounds;
-        string _toolTiptext;
+        string _toolTiptext = string.Empty;
         string[] _lines = Array.Empty<string>();
         bool _needRecalculate;
 

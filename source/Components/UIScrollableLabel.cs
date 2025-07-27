@@ -15,7 +15,8 @@ namespace NanoUI.Components
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIScrollableLabel()
         {
-
+            _scroll = new();
+            _label = new();
         }
 
         public UIScrollableLabel(UIWidget parent)

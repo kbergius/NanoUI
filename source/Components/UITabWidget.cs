@@ -74,7 +74,7 @@ namespace NanoUI.Components
         int _closeIndex = INVALID;
         int _closeIndexPushed = INVALID;
                 
-        public Action<UITabItem> TabChanged;
+        public Action<UITabItem>? TabChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UITabWidget()
@@ -255,9 +255,12 @@ namespace NanoUI.Components
 
                 if (closeActive)
                 {
-                    if (TabChanged != null && Children.TryGet(SelectedIndex, out UITabItem selectedTab))
+                    if (TabChanged != null && Children.TryGet(SelectedIndex, out UITabItem? selectedTab))
                     {
-                        TabChanged.Invoke(selectedTab);
+                        if (selectedTab != null)
+                        {
+                            TabChanged.Invoke(selectedTab);
+                        }
                     }
                 }
             }
@@ -417,9 +420,12 @@ namespace NanoUI.Components
 
                             if (tabChanged)
                             {
-                                if (TabChanged != null && Children.TryGet(SelectedIndex, out UITabItem selectedTab))
+                                if (TabChanged != null && Children.TryGet(SelectedIndex, out UITabItem? selectedTab))
                                 {
-                                    TabChanged.Invoke(selectedTab);
+                                    if(selectedTab != null)
+                                    {
+                                        TabChanged.Invoke(selectedTab);
+                                    }
                                 }
 
                                 UpdateVisibility();

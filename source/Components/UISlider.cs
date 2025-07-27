@@ -11,8 +11,8 @@ namespace NanoUI.Components
     // todo: vertical
     public class UISlider : UIWidget
     {
-        public Action<float> ValueChanged;
-        public Action<float> FinalValue;
+        public Action<float>? ValueChanged;
+        public Action<float>? FinalValue;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UISlider()

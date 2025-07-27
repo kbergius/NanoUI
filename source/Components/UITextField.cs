@@ -19,7 +19,7 @@ namespace NanoUI.Components
 
         static Vector2 VECTOR_INVALID = new Vector2(-1);
 
-        public Action<string> TextChanged;
+        public Action<string>? TextChanged;
 
         // if not committed, we must (re)calculate text (using tempText) & caret pos etc
         bool _committed;
@@ -52,6 +52,7 @@ namespace NanoUI.Components
             CaretColor = default;
             SelectionColor = default;
             PlaceHolderColor = default;
+            _text = string.Empty;
         }
 
         public UITextField(UIWidget parent)
@@ -93,8 +94,8 @@ namespace NanoUI.Components
             }
         }
 
-        public string DefaultText {  get; set; }
-        public string Units { get; set; }
+        public string DefaultText {  get; set; } = string.Empty;
+        public string Units { get; set; } = string.Empty;
 
         // note: this is proportional line height (default is 1)
         float? _lineHeight;
@@ -138,7 +139,7 @@ namespace NanoUI.Components
 
         // this is used as a hint for user what value textbox expects
         // (shown only if value = empty)
-        string _placeholderText;
+        string _placeholderText = string.Empty;
         public string PlaceholderText
         {
             get => _placeholderText;
