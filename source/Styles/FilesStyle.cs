@@ -3,6 +3,7 @@ using System;
 
 namespace NanoUI.Styles
 {
+    // todo: struct
     public class FilesStyle
     {
         public Color HardDriveColor { get; set; }

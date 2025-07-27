@@ -4,6 +4,7 @@ using System.Numerics;
 
 namespace NanoUI.Styles
 {
+    // todo: struct
     public class PointerStyle
     {
         // this is default pointer type when no other spesified or ResetCursor called

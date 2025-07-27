@@ -5,6 +5,7 @@ namespace NanoUI.Styles
 {
     // Docking - used only used when drawing docking layout screen
     // basically determines docking "texture" (hit areas) params (hit areas: top, left, bottom, right, center)
+    // todo: struct
     public class DockingStyle
     {
         public float HitAreaCornerRadius { get; set; }

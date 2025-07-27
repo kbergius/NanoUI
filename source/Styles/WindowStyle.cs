@@ -3,6 +3,7 @@
 namespace NanoUI.Styles
 {
     // These are properties that are same to all window instances
+    // todo: struct
     public class WindowStyle
     {
         public Color BorderFocusedColor { get; set; }

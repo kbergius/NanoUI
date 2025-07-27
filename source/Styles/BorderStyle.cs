@@ -2,6 +2,7 @@
 
 namespace NanoUI.Styles
 {
+    // todo: struct
     public class BorderStyle
     {
         public Color Dark { get; set; }
