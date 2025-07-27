@@ -13,16 +13,16 @@ namespace NanoUI.Components.Dialogs
     // todo: calculate dynamically layout & widgets
     public class UIFileDialog : UIDialog
     {
-        Action<UIWidget, FileFolderInfo> _selected;
+        Action<UIWidget, FileFolderInfo>? _selected;
 
         bool _inited;
 
-        UIFileFolderList _fileFolderList;
-        UIFileFolderDetails _fileFolderDetails;
+        UIFileFolderList? _fileFolderList;
+        UIFileFolderDetails? _fileFolderDetails;
 
-        UILabel _selectionPathText;
+        UILabel? _selectionPathText;
         // Open - not editable, Save as editable
-        UITextField _selectionFilename;
+        UITextField? _selectionFilename;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIFileDialog()
@@ -114,22 +114,28 @@ namespace NanoUI.Components.Dialogs
             _okButton.FixedSize = new Vector2(90, 0);
             _okButton.Clicked += () =>
             {
-                if (_selectionFilename.Text.Trim().Length == 0)
+                if (_selectionFilename != null && _selectionFilename.Text.Trim().Length == 0)
                 {
                     // show message box
                     var box = Screen.GetDialog<UIMessageBox>();
-                    box.DialogType = MessageDialogType.Error;
-                    box.Text = "Path is invalid: <empty>";
-                    // todo : test!
-                    box.SetCallback(this, null);
-
+                    if(box != null)
+                    {
+                        box.DialogType = MessageDialogType.Error;
+                        box.Text = "Path is invalid: <empty>";
+                        // todo : test!
+                        box.SetCallback(this, null);
+                    }
+                    
                     return;
                 }
 
                 // we combine - todo: should not need trimming?
-                _selected?.Invoke(_caller,
+                if(_caller != null && _selectionPathText != null)
+                {
+                    _selected?.Invoke(_caller,
                     new FileFolderInfo(Path.Combine(
                         _selectionPathText.Caption, _selectionFilename.Text.Trim()), FileFolderType.File));
+                }
 
                 Close();
             };
@@ -161,18 +167,12 @@ namespace NanoUI.Components.Dialogs
 
         public FileDialogType DialogType { get; set; } = FileDialogType.Open;
 
-        UIButton _okButton;
-        public UIButton OKButton
-        {
-            get => _okButton;
-        }
-
-        UIButton _cancelButton;
-        public UIButton CancelButton
-        {
-            get => _cancelButton;
-        }
-
+        UIButton? _okButton;
+        public UIButton? OKButton => _okButton;
+        
+        UIButton? _cancelButton;
+        public UIButton? CancelButton => _cancelButton;
+        
         #endregion
 
         #region Methods
@@ -202,11 +202,14 @@ namespace NanoUI.Components.Dialogs
                 SetSelection(new FileFolderInfo(_startPath, FileFolderType.Folder));
 
                 // set params (open has different, save as & new requires filename)
-                _fileFolderDetails.ShowFiles = DialogType == FileDialogType.Open ? true : false;
+                if(_fileFolderDetails != null)
+                {
+                    _fileFolderDetails.ShowFiles = DialogType == FileDialogType.Open ? true : false;
+                }
                 _selectionFilename.Editable = DialogType == FileDialogType.Open ? false : true;
 
                 // init file views
-                _fileFolderList.CreateList(_startPath);
+                _fileFolderList?.CreateList(_startPath);
                 _fileFolderDetails.CreateView(_startPath);
 
                 base.ReInit(ctx);
@@ -225,14 +228,22 @@ namespace NanoUI.Components.Dialogs
             if (selectedInfo.FileFolderType == FileFolderType.Folder)
             {
                 // SET PATH
-                _selectionPathText.Caption = selectedInfo.Path;
+                if(_selectionPathText != null)
+                {
+                    _selectionPathText.Caption = selectedInfo.Path;
+                }
+                
                 // can't be string.Empty
                 _selectionFilename.Text = " ";
             }
             else
             {
                 var dir = Path.GetDirectoryName(selectedInfo.Path);
-                _selectionPathText.Caption = dir?? selectedInfo.Path;
+                if (_selectionPathText != null)
+                {
+                    _selectionPathText.Caption = dir ?? selectedInfo.Path;
+                }
+                
                 _selectionFilename.Text = Path.GetFileName(selectedInfo.Path);
             }
         }
