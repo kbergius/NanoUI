@@ -20,7 +20,7 @@ namespace NanoUI.Components.Files
         bool _drives = false;
 
         // this is to handle display text, when part has "..."
-        UIText _textPart;
+        UIText? _textPart;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIFileFolderDropdown()
@@ -189,7 +189,10 @@ namespace NanoUI.Components.Files
                 text = Path.GetPathRoot(path);
             }
 
-            _textPart.Text = text;
+            if (_textPart != null)
+            {
+                _textPart.Text = text;
+            }
         }
 
         #endregion
