@@ -12,7 +12,10 @@ namespace NanoUI.Components
         // we use splitter layout to handle all layouting work
         SplitLayout _splitterLayout;
         
-        public UISplitPanel() { }
+        public UISplitPanel()
+        {
+            _splitterLayout = new SplitLayout(Orientation.Horizontal);
+        }
 
         public UISplitPanel(UIWidget parent)
             :base(parent)
@@ -52,9 +55,9 @@ namespace NanoUI.Components
         }
 
         // these acts as containers meaning you should set all your widgets to these panels
-        public UIWidget Panel1 { get; private set; }
-        public UIWidget Panel2 { get; private set; }
-        public UISplitter Splitter { get; private set; }
+        public UIWidget? Panel1 { get; private set; }
+        public UIWidget? Panel2 { get; private set; }
+        public UISplitter? Splitter { get; private set; }
 
         #endregion
 

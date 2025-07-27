@@ -12,6 +12,7 @@ namespace NanoUI.Components
         {
             // set defaults to theme impl - prevents circular reference
             MaxPopupHeight = default;
+            _popup = new();
         }
 
         public UIPopupButton(UIWidget parent)
