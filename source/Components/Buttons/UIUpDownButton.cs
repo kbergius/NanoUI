@@ -42,11 +42,11 @@ namespace NanoUI.Components.Buttons
         int _lastState = 0;
         float _lastDelta = 0;
 
-        UIButton _up;
-        UIButton _down;
+        UIButton? _up;
+        UIButton? _down;
 
         // informs pushed numeric step value (+Step / -Step)
-        public Action<T> ButtonPushed;
+        public Action<T>? ButtonPushed;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UpDownButton()
@@ -125,19 +125,31 @@ namespace NanoUI.Components.Buttons
             // set buttons fixed size
             if (Orientation == Orientation.Horizontal)
             {
-                _up.FixedSize = new Vector2(FixedSize.Y);
-                _up.IconExtraScale = IconExtraScale;
+                if (_up != null)
+                {
+                    _up.FixedSize = new Vector2(FixedSize.Y);
+                    _up.IconExtraScale = IconExtraScale;
+                }
 
-                _down.FixedSize = new Vector2(FixedSize.Y);
-                _down.IconExtraScale = IconExtraScale;
+                if (_down != null)
+                {
+                    _down.FixedSize = new Vector2(FixedSize.Y);
+                    _down.IconExtraScale = IconExtraScale;
+                }
             }
             else
             {
-                _up.FixedSize = new Vector2(FixedSize.Y / 2);
-                _up.IconExtraScale = IconExtraScale / 2;
+                if(_up != null)
+                {
+                    _up.FixedSize = new Vector2(FixedSize.Y / 2);
+                    _up.IconExtraScale = IconExtraScale / 2;
+                }
 
-                _down.FixedSize = new Vector2(FixedSize.Y / 2);
-                _down.IconExtraScale = IconExtraScale / 2;
+                if (_down != null)
+                {
+                    _down.FixedSize = new Vector2(FixedSize.Y / 2);
+                    _down.IconExtraScale = IconExtraScale / 2;
+                }
             }
 
             base.PerformLayout(ctx);
@@ -153,7 +165,7 @@ namespace NanoUI.Components.Buttons
             base.Draw(ctx);
 
             // set action
-            int curState = _down.Pushed ? -1 : _up.Pushed ? 1 : 0;
+            int curState = _down != null && _down.Pushed ? -1 : _up != null && _up.Pushed ? 1 : 0;
 
             if (curState != 0 && _lastState == curState)
             {

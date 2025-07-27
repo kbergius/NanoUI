@@ -14,7 +14,7 @@ namespace NanoUI.Components.Colors
         // marker pos (y position in relation to size y)
         float _markerY = 0;
 
-        public Action<byte> AlphaChanged;
+        public Action<byte>? AlphaChanged;
 
         public UIAlphaBar(UIWidget parent)
             : base(parent)

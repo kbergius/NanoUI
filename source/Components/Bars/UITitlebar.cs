@@ -17,7 +17,7 @@ namespace NanoUI.Components.Bars
         // note: this is static since you probably want all titlebars do the same with button clicked &
         // this way you can only wrap action once
         // widget is Titlebar instance & int is icon id
-        public static Action<UIWidget, int> ButtonClicked;
+        public static Action<UIWidget, int>? ButtonClicked;
 
         public UITitlebar()
         {
@@ -60,7 +60,7 @@ namespace NanoUI.Components.Bars
             set => _buttonFontIconsId = value;
         }
 
-        int[] _buttonIcons;
+        int[]? _buttonIcons;
         public virtual int[] ButtonIcons
         {
             get => _buttonIcons?? GetTheme().Titlebar.ButtonIcons;
