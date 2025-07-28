@@ -147,9 +147,9 @@ namespace NanoUI.Components.Docking
             _tabWidget.Visible = true;
 
             // clear child dock nodes & splitter
-            FirstNode.Dispose();
-            SecondNode.Dispose();
-            _splitter.Dispose();
+            FirstNode?.Dispose();
+            SecondNode?.Dispose();
+            _splitter?.Dispose();
 
             FirstNode = null;
             SecondNode = null;

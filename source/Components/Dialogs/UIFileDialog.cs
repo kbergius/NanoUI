@@ -130,7 +130,7 @@ namespace NanoUI.Components.Dialogs
                 }
 
                 // we combine - todo: should not need trimming?
-                if(_caller != null && _selectionPathText != null)
+                if(_caller != null && _selectionPathText != null && _selectionFilename != null)
                 {
                     _selected?.Invoke(_caller,
                     new FileFolderInfo(Path.Combine(
@@ -206,11 +206,14 @@ namespace NanoUI.Components.Dialogs
                 {
                     _fileFolderDetails.ShowFiles = DialogType == FileDialogType.Open ? true : false;
                 }
-                _selectionFilename.Editable = DialogType == FileDialogType.Open ? false : true;
+                if (_selectionFilename != null)
+                {
+                    _selectionFilename.Editable = DialogType == FileDialogType.Open ? false : true;
+                }
 
                 // init file views
                 _fileFolderList?.CreateList(_startPath);
-                _fileFolderDetails.CreateView(_startPath);
+                _fileFolderDetails?.CreateView(_startPath);
 
                 base.ReInit(ctx);
             }
@@ -232,9 +235,12 @@ namespace NanoUI.Components.Dialogs
                 {
                     _selectionPathText.Caption = selectedInfo.Path;
                 }
-                
+
                 // can't be string.Empty
-                _selectionFilename.Text = " ";
+                if (_selectionFilename != null)
+                {
+                    _selectionFilename.Text = " ";
+                }
             }
             else
             {
@@ -243,8 +249,11 @@ namespace NanoUI.Components.Dialogs
                 {
                     _selectionPathText.Caption = dir ?? selectedInfo.Path;
                 }
-                
-                _selectionFilename.Text = Path.GetFileName(selectedInfo.Path);
+
+                if (_selectionFilename != null)
+                {
+                    _selectionFilename.Text = Path.GetFileName(selectedInfo.Path);
+                }
             }
         }
 

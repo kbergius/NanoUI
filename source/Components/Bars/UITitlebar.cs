@@ -56,7 +56,7 @@ namespace NanoUI.Components.Bars
         [JsonIgnore]
         public virtual int ButtonFontIconsId
         {
-            get => _buttonFontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.DefaultIconsType);
+            get => _buttonFontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.GetDefaultIconType());
             set => _buttonFontIconsId = value;
         }
 
