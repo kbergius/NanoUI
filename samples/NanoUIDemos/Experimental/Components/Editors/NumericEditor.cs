@@ -21,7 +21,7 @@ namespace NanoUIDemos.Experimental.Components.Editors
         T? _currentValue;
 
         public NumericEditor(UIWidget parent, NumericFormat numericFormat = NumericFormat.NONE)
-            : base(parent, default, numericFormat)
+            : base(parent, T.Zero, numericFormat)
         {
            
         }
@@ -58,9 +58,12 @@ namespace NanoUIDemos.Experimental.Components.Editors
                 return;
 
             // parse
-            if (T.TryParse(value.ToString(), null, out T val))
+            if (T.TryParse(value.ToString(), null, out T? val))
             {
-                SetValue(val);
+                if(val != null)
+                {
+                    SetValue(val);
+                }
             }
         }
 

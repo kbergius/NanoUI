@@ -406,6 +406,9 @@ namespace NanoUIDemos.UI
         // note: window toolbar positioning is handled in UIWindow
         void CreateToolbar(UIWidget parent, float offsetY = 0)
         {
+            if (_screen == null)
+                return;
+
             var toolbar = new UIToolbar(parent);
             toolbar.Position = new Vector2(0, offsetY);
 

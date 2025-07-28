@@ -18,6 +18,9 @@ namespace NanoUIDemos.UI
         // todo: load docking specification from file & create docking hierarchy (call dock container)
         void CreateLayout()
         {
+            if (_screen == null)
+                return;
+
             var container = new DockContainer(_screen);
             container.RootOrientaton = Orientation.Horizontal;
             // note: we set container to occupy whole screen area

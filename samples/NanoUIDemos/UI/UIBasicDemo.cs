@@ -219,7 +219,6 @@ namespace NanoUIDemos.UI
             window.ChildrenLayout = new GroupLayout();
             //window.FixedSize = new Vector2(350);
 
-
             var lblEvent = new UILabel(window, "Event Value");
             lblEvent.TextColor = Color.Red;
 
@@ -237,12 +236,15 @@ namespace NanoUIDemos.UI
             b1.Name = "Info";
             b1.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIMessageBox>();
-                dlg.DialogType = MessageDialogType.Information;
-                dlg.Text = "This is an information message.";
-                dlg.ScrollText = false;
+                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
+                if (dlg != null)
+                {
+                    dlg.DialogType = MessageDialogType.Information;
+                    dlg.Text = "This is an information message.";
+                    dlg.ScrollText = false;
 
-                dlg.SetCallback(b1, MessageBoxRes);
+                    dlg.SetCallback(b1, MessageBoxRes);
+                }
             };
 
             // this is to test very long message text
@@ -250,11 +252,14 @@ namespace NanoUIDemos.UI
             b2.Name = "Info2";
             b2.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIMessageBox>();
-                dlg.DialogType = MessageDialogType.Information;
-                dlg.Text = _longText.Substring(0, 200);
-                dlg.ScrollText = true;
-                dlg.SetCallback(b2, MessageBoxRes);
+                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
+                if (dlg != null)
+                {
+                    dlg.DialogType = MessageDialogType.Information;
+                    dlg.Text = _longText.Substring(0, 200);
+                    dlg.ScrollText = true;
+                    dlg.SetCallback(b2, MessageBoxRes);
+                }
             };
 
             // this is message box with user specified wrapping (new line char '\n')
@@ -262,38 +267,59 @@ namespace NanoUIDemos.UI
             b3.Name = "Warn";
             b3.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIMessageBox>();
-                dlg.DialogType = MessageDialogType.Warning;
-                dlg.Text = "This is a warning message\nwrapped by new line char.";
-                dlg.ScrollText = false;
-                dlg.SetCallback(b3, MessageBoxRes);
+                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
+                if (dlg != null)
+                {
+                    dlg.DialogType = MessageDialogType.Warning;
+                    dlg.Text = "This is a warning message\nwrapped by new line char.";
+                    dlg.ScrollText = false;
+                    dlg.SetCallback(b3, MessageBoxRes);
+                }
             };
 
             UIButton b4 = new UIButton(boxes, "Ask");
             b4.Name = "Ask";
             b4.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIMessageBox>();
-                dlg.DialogType = MessageDialogType.Question;
-                dlg.Text = "This is a question message?";
-                dlg.ScrollText = false;
-                // alt button is by default invisible
-                dlg.AltButton.Visible = true;
-                dlg.SetCallback(b4, MessageBoxRes);
+                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
+                if (dlg != null)
+                {
+                    dlg.DialogType = MessageDialogType.Question;
+                    dlg.Text = "This is a question message?";
+                    dlg.ScrollText = false;
+                    // alt button is by default invisible
+                    if (dlg.AltButton != null)
+                    {
+                        dlg.AltButton.Visible = true;
+                    }
+                    dlg.SetCallback(b4, MessageBoxRes);
+                }
             };
 
             var multi = new UIButton(boxes, "Multi");
             multi.Name = "Multi";
             multi.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIMultilineMessageBox>();
-                dlg.Text = _longText;
-                dlg.Title = "License";
-                dlg.OKButton.Caption = "Agree";
-                dlg.AltButton.Caption = "Disagree";
-                dlg.AltButton.Visible = true;
+                UIMultilineMessageBox? dlg = screen.GetDialog<UIMultilineMessageBox>();
+                if (dlg != null)
+                {
+                    dlg.Text = _longText;
+                    dlg.Title = "License";
 
-                dlg.SetCallback(multi, MessageBoxRes);
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.OKButton != null)
+                    {
+                        dlg.OKButton.Caption = "Agree";
+                    }
+
+                    if (dlg.AltButton != null)
+                    {
+                        dlg.AltButton.Caption = "Disagree";
+                        dlg.AltButton.Visible = true;
+                    }
+
+                    dlg.SetCallback(multi, MessageBoxRes);
+                }
             };
 
             void MessageBoxRes(UIWidget caller, int res)
@@ -314,14 +340,25 @@ namespace NanoUIDemos.UI
 
             colorButton.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIColorDialog>();
-                dlg.PickButton.Caption = "Pick";
-                dlg.CancelButton.Caption = "Cancel";
+                UIColorDialog? dlg = screen.GetDialog<UIColorDialog>();
+                if (dlg != null)
+                {
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.PickButton != null)
+                    {
+                        dlg.PickButton.Caption = "Pick";
+                    }
 
-                // set start color
-                dlg.SetColor(initialColor);
+                    if (dlg.CancelButton != null)
+                    {
+                        dlg.CancelButton.Caption = "Cancel";
+                    }
 
-                dlg.SetCallback(colorButton, ColorChanged);
+                    // set start color
+                    dlg.SetColor(initialColor);
+
+                    dlg.SetCallback(colorButton, ColorChanged);
+                }                
 
                 void ColorChanged(UIWidget widget, Color color)
                 {
@@ -349,42 +386,72 @@ namespace NanoUIDemos.UI
             newFile.Name = "NewFile";
             newFile.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIFileDialog>();
-                dlg.Title = "New file";
-                dlg.StartPath = startPath;
-                dlg.DialogType = FileDialogType.New;
-                dlg.OKButton.Caption = "Create";
-                dlg.CancelButton.Caption = "Cancel";
+                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
+                if (dlg != null)
+                {
+                    dlg.Title = "New file";
+                    dlg.StartPath = startPath;
+                    dlg.DialogType = FileDialogType.New;
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.OKButton != null)
+                    {
+                        dlg.OKButton.Caption = "Create";
+                    }
+                    if (dlg.CancelButton != null)
+                    {
+                        dlg.CancelButton.Caption = "Cancel";
+                    }
 
-                dlg.SetCallback(newFile, FileChanged);
+                    dlg.SetCallback(newFile, FileChanged);
+                }
             };
 
             var openFile = new UIButton(tools, "Open...");
             openFile.Name = "OpenFile";
             openFile.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIFileDialog>();
-                dlg.Title = "Open file";
-                dlg.StartPath = startPath;
-                dlg.DialogType = FileDialogType.Open;
-                dlg.OKButton.Caption = "Open";
-                dlg.CancelButton.Caption = "Cancel";
+                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
+                if (dlg != null)
+                {
+                    dlg.Title = "Open file";
+                    dlg.StartPath = startPath;
+                    dlg.DialogType = FileDialogType.Open;
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.OKButton != null)
+                    {
+                        dlg.OKButton.Caption = "Open";
+                    }
+                    if (dlg.CancelButton != null)
+                    {
+                        dlg.CancelButton.Caption = "Cancel";
+                    }
 
-                dlg.SetCallback(openFile, FileChanged);
+                    dlg.SetCallback(openFile, FileChanged);
+                }
             };
 
             var saveAs = new UIButton(tools, "SaveAs...");
             saveAs.Name = "SaveAsFile";
             saveAs.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIFileDialog>();
-                dlg.Title = "Save file as";
-                dlg.StartPath = startPath;
-                dlg.DialogType = FileDialogType.SaveAs;
-                dlg.OKButton.Caption = "Save";
-                dlg.CancelButton.Caption = "Cancel";
+                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
+                if (dlg != null)
+                {
+                    dlg.Title = "Save file as";
+                    dlg.StartPath = startPath;
+                    dlg.DialogType = FileDialogType.SaveAs;
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.OKButton != null)
+                    {
+                        dlg.OKButton.Caption = "Save";
+                    }
+                    if (dlg.CancelButton != null)
+                    {
+                        dlg.CancelButton.Caption = "Cancel";
+                    }
 
-                dlg.SetCallback(saveAs, FileChanged);
+                    dlg.SetCallback(saveAs, FileChanged);
+                } 
             };
 
             void FileChanged(UIWidget caller, FileFolderInfo fileFolderInfo)
@@ -398,13 +465,22 @@ namespace NanoUIDemos.UI
             var chooseFolder = new UIButton(window, "Choose folder");
             chooseFolder.Clicked += () =>
             {
-                var dlg = screen.GetDialog<UIFolderDialog>();
-
-                dlg.StartPath = startPath;
-                dlg.OKButton.Caption = "OK";
-                dlg.CancelButton.Caption = "Cancel";
-
-                dlg.SetCallback(chooseFolder, ChangeFoldet);
+                UIFolderDialog? dlg = screen.GetDialog<UIFolderDialog>();
+                if (dlg != null)
+                {
+                    dlg.StartPath = startPath;
+                    // todo: SetButtonTexts(string[] texts) or localization
+                    if (dlg.OKButton != null)
+                    {
+                        dlg.OKButton.Caption = "OK";
+                    }
+                    if (dlg.CancelButton != null)
+                    {
+                        dlg.CancelButton.Caption = "Cancel";
+                    }
+                    
+                    dlg.SetCallback(chooseFolder, ChangeFoldet);
+                }
 
                 void ChangeFoldet(UIWidget widget, string path)
                 {

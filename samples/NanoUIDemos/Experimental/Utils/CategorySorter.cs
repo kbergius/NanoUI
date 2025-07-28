@@ -112,13 +112,17 @@ namespace NanoUIDemos.Experimental.Utils
         // check if we display property
         static bool IsDisplayProperty(PropertyInfo prop)
         {
+            if (prop.GetGetMethod() == null || prop.GetSetMethod() == null)
+            {
+                return false;
+            }
+
             // must have public get/set && non-static
-            if (prop.GetGetMethod() == null ||
-                !prop.GetGetMethod().IsPublic ||
-                prop.GetGetMethod().IsStatic ||
-                prop.GetSetMethod() == null ||
-                !prop.GetSetMethod().IsPublic ||
-                prop.GetSetMethod().IsStatic)
+            // we checked already nulls so "!"
+            if (!prop.GetGetMethod()!.IsPublic ||
+                prop.GetGetMethod()!.IsStatic ||
+                !prop.GetSetMethod()!.IsPublic ||
+                prop.GetSetMethod()!.IsStatic)
             {
                 return false;
             }
