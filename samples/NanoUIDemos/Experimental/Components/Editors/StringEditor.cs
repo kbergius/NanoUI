@@ -8,9 +8,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
     // have TextBox as child
     public class StringEditor : UITextField, IPropertyEditor
     {
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
         string _currentValue = string.Empty;
 

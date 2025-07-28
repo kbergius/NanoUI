@@ -8,9 +8,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
     // have CheckBox as child
     public class BoolEditor : UICheckBox, IPropertyEditor
     {
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
         bool _currentValue;
 

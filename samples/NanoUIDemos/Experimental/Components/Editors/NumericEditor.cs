@@ -14,11 +14,11 @@ namespace NanoUIDemos.Experimental.Components.Editors
 
     public class NumericEditor<T> : UINumericUpDown<T>, INumericEditor where T : INumber<T>
     {
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
-        T _currentValue;
+        T? _currentValue;
 
         public NumericEditor(UIWidget parent, NumericFormat numericFormat = NumericFormat.NONE)
             : base(parent, default, numericFormat)
@@ -75,7 +75,10 @@ namespace NanoUIDemos.Experimental.Components.Editors
             // set value to underlying up down (1. text, 2. value)
             base.SetValue(value);
 
-            _setValue?.Invoke(_propertyInfo, value);
+            if (_propertyInfo != null)
+            {
+                _setValue?.Invoke(_propertyInfo, value);
+            }
         }
 
         // we use prorotype editor when creating new editor

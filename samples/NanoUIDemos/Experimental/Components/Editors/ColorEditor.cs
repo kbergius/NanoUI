@@ -16,9 +16,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
         Color _currentColor;
         UIButton _button;
 
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
         public ColorEditor(UIWidget parent)
             : base(parent)

@@ -16,9 +16,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
         NumericEditor<float> _floatX;
         NumericEditor<float> _floatY;
 
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
         Vector2 _currentValue = Vector2.Zero;
 
@@ -33,7 +33,7 @@ namespace NanoUIDemos.Experimental.Components.Editors
             : base(parent)
         {
             var layout = new GridLayout(Orientation.Vertical, 2, LayoutAlignment.Middle);
-            layout.SetColumnAlignments(new[] { LayoutAlignment.Minimum, LayoutAlignment.Fill });
+            layout.SetColumnAlignments([LayoutAlignment.Minimum, LayoutAlignment.Fill]);
             ChildrenLayout = layout;// new BoxLayout(Orientation.Vertical);
 
             // create widgets
