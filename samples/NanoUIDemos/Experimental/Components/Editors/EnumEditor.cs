@@ -7,9 +7,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
     public class EnumEditor<TEnum> : UIEnumDropDown<TEnum>, IPropertyEditor
         where TEnum :struct, Enum
     {
-        Func<PropertyInfo, object?> _getValue;
-        Action<PropertyInfo, object?> _setValue;
-        PropertyInfo _propertyInfo;
+        Func<PropertyInfo, object?>? _getValue;
+        Action<PropertyInfo, object?>? _setValue;
+        PropertyInfo? _propertyInfo;
 
         TEnum _currentValue = default;
 

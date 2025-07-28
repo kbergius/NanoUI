@@ -33,7 +33,7 @@ namespace NanoUIDemos.UI
                 "id est laborum.";
 
         // we update progress here, so we must have reference
-        UIProgressbar _progress;
+        UIProgressbar? _progress;
 
         public UIBasicDemo(UIScreen screen)
             :base(screen)
@@ -827,10 +827,13 @@ namespace NanoUIDemos.UI
         public override void Update(float deltaSeconds)
         {
             // progress bar
-            _progress.Value += deltaSeconds / 5;
+            if (_progress != null)
+            {
+                _progress.Value += deltaSeconds / 5;
 
-            if (_progress.Value >= 1)
-                _progress.Value = 0;
+                if (_progress.Value >= 1)
+                    _progress.Value = 0;
+            }
 
             base.Update(deltaSeconds);
         }

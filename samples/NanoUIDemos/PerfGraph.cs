@@ -38,9 +38,9 @@ namespace NanoUIDemos
 
 
         // note: these are used just to reduce string allocations unnecessarily (too often)
-        string _milliseconds;
-        string _framesPerSecond;
-        string _percent;
+        string? _milliseconds;
+        string? _framesPerSecond;
+        string? _percent;
         float _updateTime = 1;
 
         public void Update(float frameTime)
@@ -148,21 +148,33 @@ namespace NanoUIDemos
 
             if (_style == GraphRenderStyle.Fps)
             {
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _milliseconds);
+                if (!string.IsNullOrEmpty(_milliseconds))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _milliseconds);
+                }
 
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Baseline);
-                ctx.Text(valueBottomPos, _framesPerSecond);
+                if (!string.IsNullOrEmpty(_framesPerSecond))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Baseline);
+                    ctx.Text(valueBottomPos, _framesPerSecond);
+                }
             }
             else if (_style == GraphRenderStyle.Percent)
             {
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _percent);
+                if (!string.IsNullOrEmpty(_percent))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _percent);
+                }
             }
             else if (_style == GraphRenderStyle.Ms)
             {
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _milliseconds);
+                if (!string.IsNullOrEmpty(_milliseconds))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _milliseconds);
+                }
             }
         }
 

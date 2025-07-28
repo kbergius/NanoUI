@@ -11,7 +11,7 @@ namespace NanoUIDemos.Experimental.Components
         Rect iconClearRect;
         bool _clearHovered;
 
-        public Action<string> Search;
+        public Action<string>? Search;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UISearchBox()

@@ -36,8 +36,14 @@ namespace NanoUIDemos.UI
                     container.FirstNode.FirstNode.CreateSubNodes(Orientation.Horizontal);
 
                     // set titles
-                    container.FirstNode.FirstNode.FirstNode.Title = "First";
-                    container.FirstNode.FirstNode.SecondNode.Title = "Second";
+                    if (container.FirstNode.FirstNode.FirstNode != null)
+                    {
+                        container.FirstNode.FirstNode.FirstNode.Title = "First";
+                    }
+                    if (container.FirstNode.FirstNode.SecondNode != null)
+                    {
+                        container.FirstNode.FirstNode.SecondNode.Title = "Second";
+                    }
                 }
 
                 if (container.FirstNode.SecondNode != null)
@@ -45,13 +51,19 @@ namespace NanoUIDemos.UI
                     container.FirstNode.SecondNode.CreateSubNodes(Orientation.Vertical);
 
                     // set titles
-                    container.FirstNode.SecondNode.FirstNode.Title = "Third";
-                    container.FirstNode.SecondNode.SecondNode.Title = "Fourth";
+                    if (container.FirstNode.SecondNode.FirstNode != null)
+                    {
+                        container.FirstNode.SecondNode.FirstNode.Title = "Third";
+                    }
+                    if (container.FirstNode.SecondNode.FirstNode != null)
+                    {
+                        container.FirstNode.SecondNode.FirstNode.Title = "Fourth";
+                    }
                 }
             }
 
             // set dockNodes & splitter
-            if (container.SecondNode != null)
+            if (container.SecondNode != null && Screen != null)
             {
                 // todo: there is problem with tabcontrol tabs background A != 255
                 // this is window background

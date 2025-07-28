@@ -80,10 +80,10 @@ namespace NanoUIDemos.Experimental.Components
         Dictionary<Type, IPropertyEditor> _prototypes = new();
 
         // if new type is same as old type we don't need to create grid again
-        Type _currentType;
+        Type? _currentType;
 
-        public Func<PropertyInfo, object?> GetValueFunc;
-        public Action<PropertyInfo, object?> SetValueFunc;
+        public Func<PropertyInfo, object?>? GetValueFunc;
+        public Action<PropertyInfo, object?>? SetValueFunc;
 
         public UIPropertyGrid(UIWidget parent)
             : base(parent)
@@ -129,7 +129,7 @@ namespace NanoUIDemos.Experimental.Components
         }
 
         // note: we don't store object in grid since structs creates copy of the original
-        public void Set<T>(T obj)
+        public void Set<T>(T? obj)
         {
             if (obj == null)
                 return;
@@ -260,10 +260,10 @@ namespace NanoUIDemos.Experimental.Components
                 editor.Name = property.Name;
 
                 // init editor with callbacks to get/set value
-                editor.InitEditor(
-                    property,
-                    GetValueFunc,
-                    SetValueFunc);
+                if( GetValueFunc != null && SetValueFunc != null)
+                {
+                    editor.InitEditor(property, GetValueFunc, SetValueFunc);
+                }
             }
         }
 

@@ -17,7 +17,7 @@ namespace NanoUIDemos.Experimental.Components
         Vector2 _size;
         Vector2 _center;
 
-        public Action<bool> CheckedChanged;
+        public Action<bool>? CheckedChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UISwitchBox()

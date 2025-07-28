@@ -44,10 +44,13 @@ namespace NanoUIDemos.UI
             _svgShape = ctx.CreateSvg("./Assets/svg/tiger2.svg");
             _svgBrush = ctx.CreateSvg("./Assets/svg/decoration.svg");
 
-            var info = new UILabel(_screen, "If window is selected, shortcuts goes to window, otherwise to screen.");
-            info.Position = new Vector2(35, 60);
-            info.TextColor = Color.White;
-            info.FontSize = 22;
+            if (_screen != null)
+            {
+                var info = new UILabel(_screen, "If window is selected, shortcuts goes to window, otherwise to screen.");
+                info.Position = new Vector2(35, 60);
+                info.TextColor = Color.White;
+                info.FontSize = 22;
+            }
 
             // ImageViewer & Flows
             TestImageViewerFlows(screen);
@@ -91,10 +94,13 @@ namespace NanoUIDemos.UI
             flowView.Size = new Vector2(245, 150);
             flowView.PartSize = new Vector2(64);
 
-            for (int i = 0; i < DemoAssets.Textures.Length; i++)
+            if(DemoAssets.Textures != null)
             {
-                // we set data cell since it is in tableView
-                flowView.Add(new FlowItem<int>(new UIImage(DemoAssets.Textures[i]), DemoAssets.Textures[i]));
+                for (int i = 0; i < DemoAssets.Textures.Length; i++)
+                {
+                    // we set data cell since it is in tableView
+                    flowView.Add(new FlowItem<int>(new UIImage(DemoAssets.Textures[i]), DemoAssets.Textures[i]));
+                }
             }
 
             flowView.CellSelectedChanged += (widget, columnIndex) =>
@@ -215,6 +221,9 @@ namespace NanoUIDemos.UI
 
         void TestMenus(NvgContext ctx)
         {
+            if (_screen == null)
+                return;
+
             // screen menu
             var screenMenubar = new UIMenubar(_screen);
             

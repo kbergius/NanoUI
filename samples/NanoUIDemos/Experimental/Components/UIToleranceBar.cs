@@ -12,7 +12,7 @@ namespace NanoUIDemos.Experimental.Components
     // todo: more 2.5D style
     public class UIToleranceBar : UIWidget
     {
-        public Action<float> ValueChanged;
+        public Action<float>? ValueChanged;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIToleranceBar()

@@ -11,7 +11,7 @@ namespace NanoUIDemos.UI
 {
     public class UIExperimentalDemo : DemoBase
     {
-        UIRoundMeter _speedMeter;
+        UIRoundMeter? _speedMeter;
 
         public UIExperimentalDemo(UIScreen screen)
             :base(screen)
@@ -204,7 +204,7 @@ namespace NanoUIDemos.UI
 
         #region PropertyGrid
 
-        object _propertGridObj;
+        object? _propertGridObj;
 
         void TestPropertyGrid(UIScreen screen)
         {
@@ -225,7 +225,7 @@ namespace NanoUIDemos.UI
             propertyGrid.Set(_propertGridObj);
         }
 
-        public object GetValue(PropertyInfo property)
+        public object? GetValue(PropertyInfo property)
         {
             // note : for structs this should be dynamic
             // classes work with static _currentObj
@@ -236,11 +236,11 @@ namespace NanoUIDemos.UI
 
             return null;
         }
-        public void SetValue(PropertyInfo property, object value)
+        public void SetValue(PropertyInfo property, object? value)
         {
             // note : for structs this should be dynamic,
             // classes work with static _currentObj
-            if (_propertGridObj != null)
+            if (_propertGridObj != null && value != null)
             {
                 property?.SetValue(_propertGridObj, value);
             }
@@ -250,10 +250,13 @@ namespace NanoUIDemos.UI
 
         public override void Update(float deltaSeconds)
         {
-            _speedMeter.CurrentValue += deltaSeconds * 20;
+            if (_speedMeter != null)
+            {
+                _speedMeter.CurrentValue += deltaSeconds * 20;
 
-            if (_speedMeter.CurrentValue >= _speedMeter.MaxValue)
-                _speedMeter.CurrentValue = _speedMeter.MinValue;
+                if (_speedMeter.CurrentValue >= _speedMeter.MaxValue)
+                    _speedMeter.CurrentValue = _speedMeter.MinValue;
+            }
 
             base.Update(deltaSeconds);
         }

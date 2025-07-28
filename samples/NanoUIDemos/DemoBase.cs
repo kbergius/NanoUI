@@ -9,10 +9,10 @@ namespace NanoUIDemos
 {
     public abstract class DemoBase
     {
-        protected UIScreen _screen;
-        public UIScreen Screen => _screen;
+        protected UIScreen? _screen;
+        public UIScreen? Screen => _screen;
 
-        public DemoBase(UIScreen screen)
+        public DemoBase(UIScreen? screen)
         {
             _screen = screen;
 
@@ -88,13 +88,16 @@ namespace NanoUIDemos
         // we use this for all titlebars & their button actions
         void OnTitlebarButtonClicked(UIWidget titlebar, int buttonIcon)
         {
-            var themeIcons = _screen.Theme.Fonts;
-
-            if(buttonIcon == themeIcons.IconClose)
+            if( _screen != null)
             {
-                // we call close that can be overridden in widget implementation OR here (show message box ...)
-                // note: Close() in base Widget just disposes widget
-                titlebar?.Parent?.Close();
+                var themeIcons = _screen.Theme.Fonts;
+
+                if (buttonIcon == themeIcons.IconClose)
+                {
+                    // we call close that can be overridden in widget implementation OR here (show message box ...)
+                    // note: Close() in base Widget just disposes widget
+                    titlebar?.Parent?.Close();
+                }
             }
         }
 
