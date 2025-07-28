@@ -144,10 +144,13 @@ namespace NanoUIDemos.Experimental.Components
                     _accumulatedTime = 0;
 
                     // simple animation
-                    float val = Values[0];
+                    if(Values != null && Values.Count > 0)
+                    {
+                        float val = Values[0];
 
-                    Values.RemoveAt(0);
-                    Values.Add(val);
+                        Values.RemoveAt(0);
+                        Values.Add(val);
+                    }
                 }
             }
         }

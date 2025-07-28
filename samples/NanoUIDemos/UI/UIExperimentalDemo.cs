@@ -114,6 +114,9 @@ namespace NanoUIDemos.UI
 
         void TextArea()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "TextArea");
             window.Position = new Vector2(30, 380);
             window.ChildrenLayout = new GroupLayout();

@@ -111,11 +111,20 @@ namespace NanoUIDemos.Experimental.Components.Editors
         void OpenColorDialog()
         {
             //var dlg = new ColorDialog(Screen);
-            var dlg = Screen.GetDialog<UIColorDialog>();
+            UIColorDialog? dlg = Screen.GetDialog<UIColorDialog>();
+
+            if (dlg == null)
+                return;
 
             // todo: get these strings sowewhere
-            dlg.PickButton.Caption = "Pick";
-            dlg.CancelButton.Caption = "Cancel";
+            if (dlg.PickButton != null)
+            {
+                dlg.PickButton.Caption = "Pick";
+            }
+            if (dlg.CancelButton != null)
+            {
+                dlg.CancelButton.Caption = "Cancel";
+            }
 
             // set initial color
             Color color = _currentColor != default ?
@@ -133,7 +142,10 @@ namespace NanoUIDemos.Experimental.Components.Editors
             void ColorChanged(UIWidget widget, Color color)
             {
                 _currentColor = color;
-                _setValue?.Invoke(_propertyInfo, color);
+                if (_propertyInfo != null)
+                {
+                    _setValue?.Invoke(_propertyInfo, color);
+                }
             }
         }
 
