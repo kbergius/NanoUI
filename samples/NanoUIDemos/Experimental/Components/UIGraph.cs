@@ -31,8 +31,8 @@ namespace NanoUIDemos.Experimental.Components
 
         // this uses values between 0 - 1
         // todo : could be array/span
-        List<float> _values;
-        public List<float> Values 
+        List<float>? _values;
+        public List<float>? Values 
         {
             get => _values;
             set => _values = value;

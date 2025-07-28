@@ -60,7 +60,7 @@ namespace NanoUIDemos.Experimental.Components
             set => _mode = value;
         }
 
-        public string Caption { get; set; }
+        public string? Caption { get; set; }
        
         Color? _fillColor;
         public Color FillColor
@@ -145,29 +145,44 @@ namespace NanoUIDemos.Experimental.Components
 
             if (!string.IsNullOrEmpty(Caption))
             {
-                ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
-                ctx.Text(Position.X + PADDING, valueTopPos.Y, Caption);
+                if (!string.IsNullOrEmpty(Caption))
+                {
+                    ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
+                    ctx.Text(Position.X + PADDING, valueTopPos.Y, Caption);
+                }
             }            
 
             if (Mode == PerfGraphMode.FPS)
             {
                 float val = 1.0f / avg;
 
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _milliseconds);
+                if (!string.IsNullOrEmpty(_milliseconds))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _milliseconds);
+                }
 
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Baseline);
-                ctx.Text(valueBottomPos, _framesPerSecond);
+                if (!string.IsNullOrEmpty(_framesPerSecond))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Baseline);
+                    ctx.Text(valueBottomPos, _framesPerSecond);
+                }
             }
             else if (Mode == PerfGraphMode.Percent)
             {
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _percent);
+                if (!string.IsNullOrEmpty(_percent))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _percent);
+                }
             }
             else if (Mode == PerfGraphMode.MilliSeconds)
             {
-                ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
-                ctx.Text(valueTopPos, _milliseconds);
+                if (!string.IsNullOrEmpty(_milliseconds))
+                {
+                    ctx.TextAlign(TextAlignment.Right | TextAlignment.Top);
+                    ctx.Text(valueTopPos, _milliseconds);
+                }
             }
 
             // border
@@ -179,9 +194,9 @@ namespace NanoUIDemos.Experimental.Components
         #region Private
 
         // note: these are used just to reduce string allocations unnecessarily (too often)
-        string _milliseconds;
-        string _framesPerSecond;
-        string _percent;
+        string? _milliseconds;
+        string? _framesPerSecond;
+        string? _percent;
         float _accumulatedTime = 1;
 
         void UpdateGraph()

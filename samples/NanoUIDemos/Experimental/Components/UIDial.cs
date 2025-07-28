@@ -12,9 +12,9 @@ namespace NanoUIDemos.Experimental.Components
         // todo: make configurable
         float _kshadow = 2;
 
-        public Action<float> ValueChanged;
+        public Action<float>? ValueChanged;
 
-        public Action<float> FinalValue;
+        public Action<float>? FinalValue;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIDial()

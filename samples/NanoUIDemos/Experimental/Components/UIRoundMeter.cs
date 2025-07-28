@@ -22,7 +22,7 @@ namespace NanoUIDemos.Experimental.Components
 
         // this is current value rounded with ValueTolerance
         float _value;
-        string _valueText;
+        string? _valueText;
 
         bool _isOverThreshold = false;
 
@@ -37,8 +37,8 @@ namespace NanoUIDemos.Experimental.Components
         float _scaleFontSize => FontSize - 3;
 
         // note : this sends rounded value.
-        public Action<float> ValueChanged;
-        public Action<bool> OverThreshold;
+        public Action<float>? ValueChanged;
+        public Action<bool>? OverThreshold;
 
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         public UIRoundMeter()
@@ -125,8 +125,8 @@ namespace NanoUIDemos.Experimental.Components
             }
         }
 
-        string _unitsText;
-        public string UnitsText
+        string? _unitsText;
+        public string? UnitsText
         {
             get => _unitsText;
             set
@@ -136,8 +136,8 @@ namespace NanoUIDemos.Experimental.Components
             }
         }
 
-        string _caption;
-        public string Caption
+        string? _caption;
+        public string? Caption
         {
             get => _caption;
             set
@@ -406,7 +406,7 @@ namespace NanoUIDemos.Experimental.Components
             ctx.FontSize(_unitsFontSize);
             ctx.FontFaceId(FontFaceId);
 
-            if (_needUpdateUnitsText)
+            if (_needUpdateUnitsText && !string.IsNullOrEmpty(UnitsText))
             {
                 ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
                 float tw = ctx.TextBounds(0, 0, UnitsText, out _);
@@ -526,13 +526,16 @@ namespace NanoUIDemos.Experimental.Components
             {
                 ctx.FillColor(TextColor);
             }
-            
-            ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
-            // goes below center Y
-            ctx.Text(
-                _center.X - _valueTextRealSize.X / 2,
-                _center.Y - _valueTextRealSize.Y / 2 + 0.4f * _meterRadius,
-                _valueText);
+
+            if (!string.IsNullOrEmpty(_valueText))
+            {
+                ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
+                // goes below center Y
+                ctx.Text(
+                    _center.X - _valueTextRealSize.X / 2,
+                    _center.Y - _valueTextRealSize.Y / 2 + 0.4f * _meterRadius,
+                    _valueText);
+            }
         }
 
         void DrawCaption(NvgContext ctx)
@@ -540,7 +543,7 @@ namespace NanoUIDemos.Experimental.Components
             ctx.FontSize(FontSize);
             ctx.FontFaceId(FontFaceId);
 
-            if (_needUpdateCaption)
+            if (_needUpdateCaption && !string.IsNullOrEmpty(Caption))
             {
                 ctx.TextAlign(TextAlignment.Left | TextAlignment.Top);
                 float tw = ctx.TextBounds(0, 0, Caption, out _);
