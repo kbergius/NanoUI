@@ -129,7 +129,7 @@ namespace NanoUIDemos.Experimental.Components
         }
 
         // note: we don't store object in grid since structs creates copy of the original
-        public void Set<T>(T obj)
+        public void Set<T>(T? obj)
         {
             if (obj == null)
                 return;

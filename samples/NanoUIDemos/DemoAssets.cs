@@ -53,13 +53,21 @@ namespace NanoUIDemos
             fonts.FontTypes.Add("Icons", FontIcons);
 
             // create default theme
-            UITheme theme = UITheme.CreateDefault<ThemeEXT>(ctx, fonts);
+            ThemeEXT theme = UITheme.CreateDefault<ThemeEXT>(ctx, fonts);
             theme.Save("DefaultTheme.json");
 
             // create
-            theme = UITheme.Load<ThemeEXT>(ctx, "DefaultTheme.json");
+            ThemeEXT? loadTheme = UITheme.Load<ThemeEXT>(ctx, "DefaultTheme.json");
 
-            ((ThemeEXT)theme).PopulateExt();
+            if(loadTheme != null)
+            {
+                loadTheme.PopulateExt();
+
+                // this is just for testing
+                InitTestTextures(ctx);
+
+                return loadTheme;
+            }
 
             // this is just for testing
             InitTestTextures(ctx);

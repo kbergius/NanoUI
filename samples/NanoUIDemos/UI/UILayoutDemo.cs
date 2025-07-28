@@ -17,7 +17,7 @@ namespace NanoUIDemos.UI
         public UILayoutDemo(UIScreen screen)
             :base(screen)
         {
-            var info = new UILabel(_screen, "We use same widgets (minimal configuration) in all layouts to show how layout positions them.");
+            var info = new UILabel(screen, "We use same widgets (minimal configuration) in all layouts to show how layout positions them.");
             info.Position = new Vector2(20);
             info.TextColor = Color.White;
             info.FontSize = 22;
@@ -34,6 +34,9 @@ namespace NanoUIDemos.UI
 
         void GroupLayout()
         {
+            if(_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "GroupLayout");
             window.Position = new Vector2(20, 170);
             window.ChildrenLayout = new GroupLayout();
@@ -47,6 +50,9 @@ namespace NanoUIDemos.UI
 
         void StackLayoutHorizontal()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "StackLayout-Horizontal");
             window.Position = new Vector2(20, 70);
             window.ChildrenLayout = new StackLayout(Orientation.Horizontal, LayoutAlignment.Middle) { Spacing = new Vector2(10)};
@@ -57,6 +63,9 @@ namespace NanoUIDemos.UI
 
         void StackLayoutVertical()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "StackLayout-Vertical");
             window.Position = new Vector2(220, 170);
             window.ChildrenLayout = new StackLayout(Orientation.Vertical) { Spacing = new Vector2(10) };
@@ -70,6 +79,9 @@ namespace NanoUIDemos.UI
 
         void GridLayout()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "GridLayout");
             window.Position = new Vector2(490, 170);
 
@@ -89,6 +101,9 @@ namespace NanoUIDemos.UI
 
         void FlowLayout()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "FlowLayout");
             window.Position = new Vector2(820, 170);
             window.Size = new Vector2(300);
@@ -113,6 +128,9 @@ namespace NanoUIDemos.UI
 
         void SplitLayout()
         {
+            if (_screen == null)
+                return;
+
             UIWindow window = new UIWindow(_screen, "SplitLayout");
             window.Position = new Vector2(490, 415);
             window.ChildrenLayout = new GroupLayout();
@@ -122,11 +140,16 @@ namespace NanoUIDemos.UI
                 var splitPanel = new UISplitPanel(window) { Orientation = Orientation.Horizontal };
                 splitPanel.Size = new Vector2(600, 200);
 
-                splitPanel.Panel1.ChildrenLayout = new GridLayout() { DefaultColumnAlignment = LayoutAlignment.Fill, Spacing = new Vector2(10) };
-                CreateLayoutWidgets(splitPanel.Panel1);
-
-                splitPanel.Panel2.ChildrenLayout = new GridLayout() { DefaultColumnAlignment = LayoutAlignment.Fill, Spacing = new Vector2(10) };
-                CreateLayoutWidgets(splitPanel.Panel2);
+                if (splitPanel.Panel1 != null)
+                {
+                    splitPanel.Panel1.ChildrenLayout = new GridLayout() { DefaultColumnAlignment = LayoutAlignment.Fill, Spacing = new Vector2(10) };
+                    CreateLayoutWidgets(splitPanel.Panel1);
+                }
+                if (splitPanel.Panel2 != null)
+                {
+                    splitPanel.Panel2.ChildrenLayout = new GridLayout() { DefaultColumnAlignment = LayoutAlignment.Fill, Spacing = new Vector2(10) };
+                    CreateLayoutWidgets(splitPanel.Panel2);
+                } 
             }
             else
             {
