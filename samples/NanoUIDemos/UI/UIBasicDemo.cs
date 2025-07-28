@@ -306,7 +306,7 @@ namespace NanoUIDemos.UI
                     dlg.Text = _longText;
                     dlg.Title = "License";
 
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.OKButton != null)
                     {
                         dlg.OKButton.Caption = "Agree";
@@ -343,7 +343,7 @@ namespace NanoUIDemos.UI
                 UIColorDialog? dlg = screen.GetDialog<UIColorDialog>();
                 if (dlg != null)
                 {
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.PickButton != null)
                     {
                         dlg.PickButton.Caption = "Pick";
@@ -392,7 +392,7 @@ namespace NanoUIDemos.UI
                     dlg.Title = "New file";
                     dlg.StartPath = startPath;
                     dlg.DialogType = FileDialogType.New;
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.OKButton != null)
                     {
                         dlg.OKButton.Caption = "Create";
@@ -416,7 +416,7 @@ namespace NanoUIDemos.UI
                     dlg.Title = "Open file";
                     dlg.StartPath = startPath;
                     dlg.DialogType = FileDialogType.Open;
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.OKButton != null)
                     {
                         dlg.OKButton.Caption = "Open";
@@ -440,7 +440,7 @@ namespace NanoUIDemos.UI
                     dlg.Title = "Save file as";
                     dlg.StartPath = startPath;
                     dlg.DialogType = FileDialogType.SaveAs;
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.OKButton != null)
                     {
                         dlg.OKButton.Caption = "Save";
@@ -469,7 +469,7 @@ namespace NanoUIDemos.UI
                 if (dlg != null)
                 {
                     dlg.StartPath = startPath;
-                    // todo: SetButtonTexts(string[] texts)
+                    // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.OKButton != null)
                     {
                         dlg.OKButton.Caption = "OK";
