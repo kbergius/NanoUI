@@ -98,8 +98,6 @@ namespace NanoUI.Common
 
         public void AddRange(ReadOnlySpan<T> items)
         {
-            Debug.Assert(items != null);
-
             int requiredSize = _count + items.Length;
             if (requiredSize > _items.Length)
             {
@@ -265,13 +263,8 @@ namespace NanoUI.Common
         // release reference for unused classes (outside count)
         public void ReleaseUnused()
         {
-            for (int i = _count; i < _items.Length; i++)
-            {
-                if (_items[i] == null)
-                    break;
-
-                _items[i] = default;
-            }
+            // todo
+            return;
         }
 
         public int IndexOf(T item)

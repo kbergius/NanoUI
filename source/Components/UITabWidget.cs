@@ -241,7 +241,7 @@ namespace NanoUI.Components
         // Removes a tab with the specified index
         public void RemoveTab(int index)
         {
-            if (Children.TryGet(index, out UITabItem tab))
+            if (Children.TryGet(index, out UITabItem? tab))
             {
                 bool closeActive = index == _activeTab;
 
@@ -407,9 +407,9 @@ namespace NanoUI.Components
                             bool tabChanged = _activeTab != index;
                             _activeTab = index;
                             
-                            if(Children.TryGet(index, out UITabItem tab))
+                            if(Children.TryGet(index, out UITabItem? tab))
                             {
-                                _tabDragIndex = tab.Draggable ? index : INVALID;
+                                _tabDragIndex = tab != null && tab.Draggable ? index : INVALID;
                             }
                                                         
                             _tabDragStart = _tabDragEnd = (int)p.X;
@@ -731,9 +731,12 @@ namespace NanoUI.Components
                     bool closable = false;
                     if(i < Children.Count)
                     {
-                        if(Children.TryGet(i, out UITabItem childTab))
+                        if(Children.TryGet(i, out UITabItem? childTab))
                         {
-                            closable = childTab.Closable;
+                            if (childTab != null)
+                            {
+                                closable = childTab.Closable;
+                            }
                         }
                     }
 

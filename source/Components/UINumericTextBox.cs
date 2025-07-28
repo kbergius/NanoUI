@@ -8,7 +8,7 @@ namespace NanoUI.Components
     public class UINumericTextBox<T> : UITextField where T : INumber<T>
     {
         // needed when we parse failed --> reset
-        T _currentValue = default;
+        T _currentValue = T.Zero;
 
         // numeric format (decimals)
         NumericFormat _numericFormat = NumericFormat.NONE;
@@ -17,7 +17,7 @@ namespace NanoUI.Components
         public Action? InvalidFormat;
 
         public UINumericTextBox(UIWidget parent)
-            : this(parent, default)
+            : this(parent, T.Zero)
         {
 
         }
@@ -43,8 +43,8 @@ namespace NanoUI.Components
         public T CurrentValue => _currentValue;
 
         // minimum & maximum allowed values
-        public T Min { get; set; }
-        public T Max { get; set; }
+        public T Min { get; set; } = T.Zero;
+        public T Max { get; set; } = T.One;
 
         #endregion
 

@@ -74,10 +74,13 @@ namespace NanoUI.Components.Dialogs
                 if (_selectionPathText != null && _selectionPathText.Text.Trim().Length == 0)
                 {
                     // show message box
-                    var box = screen.GetDialog<UIMessageBox>();
-                    box.DialogType = MessageDialogType.Error;
-                    box.Text = "Path is invalid: <empty>";
-
+                    UIMessageBox? box = screen.GetDialog<UIMessageBox>();
+                    if (box != null)
+                    {
+                        box.DialogType = MessageDialogType.Error;
+                        box.Text = "Path is invalid: <empty>";
+                    }
+                    
                     return;
                 }
 
