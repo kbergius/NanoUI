@@ -30,7 +30,7 @@ namespace StbTrueTypeSharp
 			public stbtt__buf subrs;
 			public int svg;
 			public void* userdata;
-			public bool useOldRasterizer;
+			public bool useOldRasterizer = false;
 
 			public void Dispose()
 			{
