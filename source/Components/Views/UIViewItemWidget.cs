@@ -59,7 +59,7 @@ namespace NanoUI.Components.Views
         {
             base.PerformLayout(ctx);
 
-            if (StretchWidth)
+            if (Parent != null && StretchWidth)
             {
                 Size = new Vector2(Parent.Size.X, Size.Y);
             }

@@ -49,7 +49,7 @@ namespace NanoUI.Components
         }
 
         // if title is null, we don't create titlebar
-        public UIWindow(UIWidget parent, string? title, ScrollbarType scrollbars = ScrollbarType.Both)
+        public UIWindow(UIWidget? parent, string? title, ScrollbarType scrollbars = ScrollbarType.Both)
             : base(parent)
         {
             if(title != null)
@@ -254,12 +254,12 @@ namespace NanoUI.Components
                     case ScrollbarType.Vertical:
                         _verticalScrollbar!.PointerFocus = true;
                         // pointer type can be other than default - so reset
-                        Screen.ResetPointerType();
+                        Screen?.ResetPointerType();
                         return true;
                     case ScrollbarType.Horizontal:
                         _horizontalScrollbar!.PointerFocus = true;
                         // pointer type can be other than default - so reset
-                        Screen.ResetPointerType();
+                        Screen?.ResetPointerType();
                         return true;
                 }
             }
@@ -432,7 +432,7 @@ namespace NanoUI.Components
                     {
                         // Check if in right-bottom corner
                         // note: this is focused
-                        bool inCorner = Screen.GetCurrentPointerType() == (int)PointerType.SizeNWSE;
+                        bool inCorner = Screen?.GetCurrentPointerType() == (int)PointerType.SizeNWSE;
 
                         if (down && inCorner)
                         {
@@ -531,7 +531,8 @@ namespace NanoUI.Components
                 // todo : take into account mainmenubar, maintoolbars & mainstatusbar
                 // (= get screen client size)
                 Position = Vector2.Max(Position, Vector2.Zero);
-                Position = Vector2.Min(Position, Parent.Size - Size);
+                if(Parent != null)
+                    Position = Vector2.Min(Position, Parent.Size - Size);
 
                 return true;
             }
@@ -863,7 +864,7 @@ namespace NanoUI.Components
                 float triangleSize = _resizingTriangleSize;
 
                 // check if pointer is in corner
-                bool inCorner = Focused && Screen.GetCurrentPointerType() == (int)PointerType.SizeNWSE;
+                bool inCorner = Focused && Screen?.GetCurrentPointerType() == (int)PointerType.SizeNWSE;
 
                 ctx.BeginPath();
 

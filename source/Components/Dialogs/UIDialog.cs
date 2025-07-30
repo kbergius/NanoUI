@@ -68,7 +68,7 @@ namespace NanoUI.Components.Dialogs
             else
             {
                 // todo: get window!
-                Screen.RequestFocus();
+                Screen?.RequestFocus();
             }
 
             Visible = false;

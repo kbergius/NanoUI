@@ -51,7 +51,8 @@ namespace NanoUI.Components.Menus
         {
             base.PerformLayout(ctx);
             // stretch with parent
-            Size = new Vector2(Parent.Size.X, Size.Y);
+            if(Parent != null)
+                Size = new Vector2(Parent.Size.X, Size.Y);
         }
 
         #endregion

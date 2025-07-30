@@ -47,6 +47,9 @@ namespace NanoUI.Components.Docking
         // todo: could be internal?
         public void BeginDocking()
         {
+            if(Screen == null)
+                return;
+
             // now we must find DockNode where the pointer is & inform screen of this DockNode
             DockNode? pointerNode = FindLastNode(_root, Screen.PointerPosition); // - _root.Position);
 

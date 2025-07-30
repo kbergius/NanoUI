@@ -138,6 +138,9 @@ namespace NanoUI.Components
 
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            if(Parent == null)
+                return false;
+
             // Check pointer drag not outside parent area
             if (Orientation == Orientation.Vertical)
             {

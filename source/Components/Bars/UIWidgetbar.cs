@@ -35,7 +35,8 @@ namespace NanoUI.Components.Bars
             base.PerformLayout(ctx);
 
             // stretch
-            Size = new Vector2(Parent.Size.X, Size.Y);
+            if(Parent != null)
+                Size = new Vector2(Parent.Size.X, Size.Y);
         }
 
         #endregion

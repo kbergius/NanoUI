@@ -467,7 +467,7 @@ namespace NanoUI.Components
                 if(_tabDragIndex >= 0)
                 {
                     // signal parent that tab item wants to be detached
-                    if (Parent.OnDetach(Children[_tabDragIndex]))
+                    if (Parent != null && Parent.OnDetach(Children[_tabDragIndex]))
                     {
                         
                     }

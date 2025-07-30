@@ -30,7 +30,11 @@ namespace NanoUI.Components
         {
             base.PerformLayout(ctx);
 
-            Size = new Vector2(Parent.Size.X, Size.Y);
+            if (Parent != null)
+            {
+                Size = new Vector2(Parent.Size.X, Size.Y);
+            }
+            
             Position = new Vector2(0, Position.Y);
         }
 
@@ -163,7 +167,8 @@ namespace NanoUI.Components
 
             base.PerformLayout(ctx);
 
-            Size = new Vector2(Parent.Size.X, Size.Y);
+            if(Parent != null)
+                Size = new Vector2(Parent.Size.X, Size.Y);
         }
 
         #endregion

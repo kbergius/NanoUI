@@ -158,9 +158,9 @@ namespace NanoUI
         // todo: can't handle recursive popups (HandlePopupFocused)
         // todo: should we set here pointer focus widget???
         bool looping = false;
-        public void UpdateFocus(UIWidget widget)
+        public void UpdateFocus(UIWidget? widget)
         {
-            if (looping)
+            if (widget == null || looping)
                 return;
             
             looping = true;
@@ -208,7 +208,7 @@ namespace NanoUI
         // note: we "queue" widgets since there can be many same widgets or one of the 
         // widgets parent has already requested layout update
         // real update is executed before draw operations
-        public override void RequestLayoutUpdate(UIWidget widget)
+        public override void RequestLayoutUpdate(UIWidget? widget)
         {
             // check for null, duplicates or parent(s)
             if (widget != null && !_needsLayoutUpdate.Contains(widget))
@@ -222,7 +222,7 @@ namespace NanoUI
                 {
                     parent = parent.Parent;
 
-                    if (_needsLayoutUpdate.Contains(parent))
+                    if (parent != null && _needsLayoutUpdate.Contains(parent))
                     {
                         // found
                         add = false;
@@ -383,7 +383,7 @@ namespace NanoUI
             }
 
             // 3. drag'n drop
-            if (_dragWidget != null && !down)
+            if (_dragWidget != null && _dragWidget.Parent != null && !down)
             {
                 _dragWidget.OnPointerUpDown(
                         pointerPos - _dragWidget.Parent.GetDisplayPosition(), button,
@@ -441,7 +441,7 @@ namespace NanoUI
             else
             {
                 // shouldn't be null - but check anyway
-                if (_dragWidget != null)
+                if (_dragWidget != null && _dragWidget.Parent != null)
                 {
                     ret = _dragWidget.OnPointerDrag(
                         pointerPos - _dragWidget.Parent.GetDisplayPosition(), rel);

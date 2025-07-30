@@ -51,7 +51,7 @@ namespace NanoUI.Components.Scrolling
         public UIScrollbar? HorizontalScrollbar => _horizontalScrollbar;
         public UIScrollbar? VerticalScrollbar => _verticalScrollbar;
 
-        public override Layout ChildrenLayout
+        public override Layout? ChildrenLayout
         {
             get => GetScrollContent().ChildrenLayout;
             set => GetScrollContent().ChildrenLayout = value;

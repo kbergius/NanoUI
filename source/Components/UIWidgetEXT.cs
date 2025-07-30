@@ -101,7 +101,7 @@ namespace NanoUI.Components
             }
 
             // Walk up the hierarchy and return the parent
-            UIWidget parent = w.Parent;
+            UIWidget? parent = w.Parent;
 
             while (true)
             {
@@ -148,7 +148,7 @@ namespace NanoUI.Components
         public static bool GetVisibleRecursive(this UIWidget w)
         {
             bool visible = true;
-            UIWidget widget = w;
+            UIWidget? widget = w;
 
             while (widget != null)
             {

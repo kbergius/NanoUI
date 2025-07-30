@@ -30,7 +30,7 @@ namespace NanoUI.Components
 
         #region Properties
 
-        public override Layout ChildrenLayout
+        public override Layout? ChildrenLayout
         {
             get => _splitterLayout;
             set

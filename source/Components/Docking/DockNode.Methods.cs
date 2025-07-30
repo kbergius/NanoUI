@@ -45,6 +45,9 @@ namespace NanoUI.Components.Docking
         // but don't delete node (it is just empty). Delete node is processes, when Close() is called
         void DetachNode(DockNode childNode)
         {
+            if(Screen == null)
+                return;
+
             // create window to screen
             var dockWidget = new DockWindow(Screen);
             // todo: should we set some mark that this was dock node

@@ -117,7 +117,7 @@ namespace NanoUI.Components.Dialogs
                 if (_selectionFilename != null && _selectionFilename.Text.Trim().Length == 0)
                 {
                     // show message box
-                    var box = Screen.GetDialog<UIMessageBox>();
+                    var box = Screen?.GetDialog<UIMessageBox>();
                     if(box != null)
                     {
                         box.DialogType = MessageDialogType.Error;

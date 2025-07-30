@@ -137,6 +137,9 @@ namespace NanoUI.Components.Bars
 
         public override void PerformLayout(NvgContext ctx)
         {
+            if(Parent == null || ChildrenLayout == null)
+                return;
+
             // stretch to parent width
             Size = new Vector2(Parent.Size.X, PreferredSize(ctx).Y);
             
@@ -179,7 +182,7 @@ namespace NanoUI.Components.Bars
                 return;
 
             // background
-            if (Parent.Focused)
+            if (Parent != null && Parent.Focused)
             {
                 BackgroundFocused?.Draw(ctx, Position, Size, null);
             }
