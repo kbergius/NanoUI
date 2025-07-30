@@ -42,6 +42,9 @@ namespace NanoUI.Fonts
         // fonsExpandAtlas, fons__atlasExpand
         public static bool ExpandAtlas(int width, int height)
         {
+            if(_nvgRenderer == null)
+                return false;
+
             // calculate new width & height
             width = Math.Max(width, _atlas.Width);
             height = Math.Max(height, _atlas.Height);
@@ -127,6 +130,9 @@ namespace NanoUI.Fonts
         // fonsResetAtlas, fons__atlasReset
         public static bool ResetAtlas(int width, int height)
         {
+            if (_nvgRenderer == null)
+                return false;
+
             // texture description
             var desc = new TextureDesc
             {

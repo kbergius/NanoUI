@@ -32,8 +32,8 @@ namespace NanoUI.Fonts
         // these is only one used at time
         static GlyphQuad _quad;
 
-        static IFontManager _fontManager;
-        static INvgRenderer _nvgRenderer;
+        static IFontManager? _fontManager;
+        static INvgRenderer? _nvgRenderer;
 
         // prevent multiple inits
         static bool _inited = false;
@@ -78,7 +78,7 @@ namespace NanoUI.Fonts
         // fonsAddFontMem
         public static int AddFont(ReadOnlySpan<char> name, ReadOnlySpan<byte> data, GlyphBaking fontBaking, int fontCollectionIndex)
         {
-            if (_fontManager.Load(_fontCounter, data, fontCollectionIndex))
+            if (_fontManager != null && _fontManager.Load(_fontCounter, data, fontCollectionIndex))
             {
                 int fontId = _fontCounter;
 
@@ -139,7 +139,7 @@ namespace NanoUI.Fonts
         static float[] _textBoxBounds = new float[4];
         static float TextBounds(in Font font, float x, float y, ReadOnlySpan<char> chars)
         {
-            if (chars.IsEmpty)
+            if (_fontManager == null || chars.IsEmpty)
             {
                 _textBoxBounds[0] = 0;
                 _textBoxBounds[1] = 0;
@@ -254,7 +254,7 @@ namespace NanoUI.Fonts
 
             if(_atlasTexture != Globals.INVALID)
             {
-                _nvgRenderer.DeleteTexture(_atlasTexture);
+                _nvgRenderer?.DeleteTexture(_atlasTexture);
             }
             
             // unmanaged buffers
