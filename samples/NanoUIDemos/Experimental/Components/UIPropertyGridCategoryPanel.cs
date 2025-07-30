@@ -24,7 +24,7 @@ namespace NanoUIDemos.Experimental.Components
             Content.Visible = !collapsed;
 
             // This should be because we must find vscroll
-            if (Parent.Parent != null)
+            if (Parent != null && Parent.Parent != null)
             {
                 RequestLayoutUpdate(Parent.Parent);
             }
@@ -41,7 +41,8 @@ namespace NanoUIDemos.Experimental.Components
         public override void PerformLayout(NvgContext ctx)
         {
             // set fixed width so we can calculate editors widths
-            FixedSize = new Vector2(Parent.Size.X, 0);
+            if(Parent != null)
+                FixedSize = new Vector2(Parent.Size.X, 0);
 
             // set editor widths
             foreach (var child in Content.Children.AsReadOnlySpan())

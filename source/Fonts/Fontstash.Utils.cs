@@ -98,6 +98,9 @@ namespace NanoUI.Fonts
         {
             glyphIndex = Globals.INVALID;
 
+            if (_fontManager == null)
+                return false;
+
             int counter = 0;
 
             // these are counted only if baking is Normal
@@ -333,7 +336,7 @@ namespace NanoUI.Fonts
         {
             ref Glyph glyph = ref _getGlyph(fontId, glyphIndex);
 
-            if (prevGlyphIndex > Globals.INVALID)
+            if (_fontManager != null && prevGlyphIndex > Globals.INVALID)
             {
                 // we must use fontGlyphIndexes
                 ref Glyph prevGlyph = ref _getGlyph(fontId, prevGlyphIndex);
@@ -662,7 +665,7 @@ namespace NanoUI.Fonts
         // we calculate scale & store current font values to font state
         static float _getFontScale(in NvgState nvgState, in NvgParams nvgParams)
         {
-            if (!_isValidFont(nvgState.FontId))
+            if (_fontManager == null || !_isValidFont(nvgState.FontId))
             {
                 // todo : should we throw / debug assert / set default font?
                 throw new Exception("Font not found: " + nvgState.FontId);

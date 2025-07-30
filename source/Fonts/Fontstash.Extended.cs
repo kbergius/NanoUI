@@ -717,7 +717,7 @@ namespace NanoUI.Fonts
                     int h = _updateTextureRect[3] - _updateTextureRect[1];
 
                     // todo: slice data, so we can only update dirty rect data area
-                    _nvgRenderer.UpdateTextureRegion(_atlasTexture, new Vector4(x, y, w, h), _atlasData);
+                    _nvgRenderer?.UpdateTextureRegion(_atlasTexture, new Vector4(x, y, w, h), _atlasData);
                 }
             }
         }

@@ -110,6 +110,9 @@ namespace NanoUIDemos.Experimental.Components.Editors
 
         void OpenColorDialog()
         {
+            if(Screen == null)
+                return;
+
             //var dlg = new ColorDialog(Screen);
             UIColorDialog? dlg = Screen.GetDialog<UIColorDialog>();
 

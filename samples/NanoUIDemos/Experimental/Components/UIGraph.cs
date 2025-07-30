@@ -134,7 +134,7 @@ namespace NanoUIDemos.Experimental.Components
         // if you extend this graph, override this
         protected virtual void AnimationFunc()
         {
-            if (AnimationThreshold > 0)
+            if (AnimationThreshold > 0 && Screen != null)
             {
                 _accumulatedTime += Screen.DeltaSeconds;
 
