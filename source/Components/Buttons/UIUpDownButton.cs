@@ -167,7 +167,7 @@ namespace NanoUI.Components.Buttons
             // set action
             int curState = _down != null && _down.Pushed ? -1 : _up != null && _up.Pushed ? 1 : 0;
 
-            if (curState != 0 && _lastState == curState)
+            if (Screen != null && curState != 0 && _lastState == curState)
             {
                 _lastDelta += Screen.DeltaSeconds;
 
