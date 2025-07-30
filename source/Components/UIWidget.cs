@@ -20,7 +20,7 @@ namespace NanoUI.Components
         WidgetList _children;
         // objects
         UIScreen? _screen;
-        UIWidget _parent;
+        UIWidget? _parent;
         Layout? _childrenLayout;
         UIContextMenu? _contextMenu;
 
@@ -51,16 +51,18 @@ namespace NanoUI.Components
             // default with string is null
             FontType = string.Empty;
             IconExtraScale = default;
+
+            _children = new(this);
         }
 
         // note: this is only needed for scene, since passes null as parent
-        internal UIWidget(UIWidget parent, Vector2 size)
+        internal UIWidget(UIWidget? parent, Vector2 size)
             :this(parent)
         {
             Size = size;
         }
 
-        public UIWidget(UIWidget parent)
+        public UIWidget(UIWidget? parent)
         {
             _parent = parent;
             _isParentPopup = _parent != null && _parent is UIPopup;
@@ -101,7 +103,7 @@ namespace NanoUI.Components
         }
 
         [JsonIgnore]
-        public virtual UIWidget Parent
+        public virtual UIWidget? Parent
         {
             get => _parent;
             set
@@ -128,7 +130,8 @@ namespace NanoUI.Components
                         _parent?.Children.Add(this);
 
                         // set new parent to layout update list
-                        RequestLayoutUpdate(_parent);
+                        // we know _parent is not null, so "!"
+                        RequestLayoutUpdate(_parent!);
                     }
 
                     // we just nullify screen - so it is searched again
@@ -419,7 +422,7 @@ namespace NanoUI.Components
         [JsonIgnore]
         public virtual int FontIconsId
         {
-            get => _fontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.DefaultIconsType);
+            get => _fontIconsId?? GetTheme().Fonts.GetFontId(GetTheme().Fonts.GetDefaultIconType());
             set => _fontIconsId = value;
         }
 
@@ -534,7 +537,7 @@ namespace NanoUI.Components
 
         // get the theme from screen
         // todo: me should use fallback theme in case these is no Screen (where to store it?)
-        public UITheme GetTheme() => Screen?.Theme;
+        public UITheme GetTheme() => Screen?.Theme ?? new UITheme();
 
         // Request the focus to be moved to this widget
         public virtual void RequestFocus()
@@ -554,7 +557,6 @@ namespace NanoUI.Components
             {
                 Screen?.UpdateFocus(this);
             }
-            
         }
 
         // This triggers layout update before next Draw call
