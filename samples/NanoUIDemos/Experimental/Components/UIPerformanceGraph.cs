@@ -201,6 +201,9 @@ namespace NanoUIDemos.Experimental.Components
 
         void UpdateGraph()
         {
+            if(Screen == null)
+                return;
+
             _head = (_head + 1) % GRAPH_HISTORY_COUNT;
             _values[_head] = Screen.DeltaSeconds;
 

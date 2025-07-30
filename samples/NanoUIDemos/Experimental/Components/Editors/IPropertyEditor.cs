@@ -7,7 +7,7 @@ namespace NanoUIDemos.Experimental.Components.Editors
     {
         // we set id so user can search for spesific editor in propertygrid
         // id is set to <property name>
-        string Name { get; internal set; }
+        string? Name { get; internal set; }
 
         void InitEditor(PropertyInfo propertyInfo,
             Func<PropertyInfo, object?> getValue,

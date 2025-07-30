@@ -45,10 +45,10 @@ namespace NanoUIDemos.Experimental.Components
         public override void PerformLayout(NvgContext ctx)
         {
             // todo:
-            Size = new Vector2(Parent.Size.X, Size.Y);
-
-            if (Parent is UIScrollPanel scrollPanel)
+            if (Parent != null && Parent is UIScrollPanel scrollPanel &&
+                scrollPanel.VerticalScrollbar != null)
             {
+                Size = new Vector2(Parent.Size.X, Size.Y);
                 Size -= new Vector2(scrollPanel.VerticalScrollbar.Dimension, 0);
             }
             
