@@ -19,10 +19,10 @@ namespace NanoUI.Components
     {
         WidgetList _children;
         // objects
-        UIScreen _screen;
+        UIScreen? _screen;
         UIWidget _parent;
-        Layout _childrenLayout;
-        UIContextMenu _contextMenu;
+        Layout? _childrenLayout;
+        UIContextMenu? _contextMenu;
 
         bool _isParentPopup = false;
 
@@ -80,7 +80,7 @@ namespace NanoUI.Components
         public WidgetList Children => _children;
 
         [JsonIgnore]
-        public virtual UIScreen Screen
+        public virtual UIScreen? Screen
         {
             get
             {
@@ -140,7 +140,7 @@ namespace NanoUI.Components
 
         // todo:
         [JsonIgnore]
-        public UIContextMenu ContextMenu
+        public UIContextMenu? ContextMenu
         {
             get => _contextMenu;
             set
@@ -153,7 +153,7 @@ namespace NanoUI.Components
         }
 
         [JsonIgnore]
-        public virtual Layout ChildrenLayout
+        public virtual Layout? ChildrenLayout
         {
             get => _childrenLayout;
             set => _childrenLayout = value;
@@ -195,7 +195,7 @@ namespace NanoUI.Components
         // for searching, user identifiction
         // todo: nullable?
         [Category(Globals.CATEGORY_BASIC)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         
         // sorting helper (default sort operator)
         [Category(Globals.CATEGORY_BASIC)]
@@ -203,7 +203,7 @@ namespace NanoUI.Components
         
         // todo: nullable?
         [Category(Globals.CATEGORY_BASIC)]
-        public virtual string Tooltip { get; set; }
+        public virtual string? Tooltip { get; set; }
         
         #endregion
 
