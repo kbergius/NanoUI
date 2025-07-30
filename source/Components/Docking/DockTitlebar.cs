@@ -58,7 +58,7 @@ namespace NanoUI.Components.Docking
                 Screen?.SetDragWidget(null);
 
                 // signal parent dock node that it should be detached
-                if (Parent.OnDetach(this))
+                if (Parent != null && Parent.OnDetach(this))
                 {
 
                 }

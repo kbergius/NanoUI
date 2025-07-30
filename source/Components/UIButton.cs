@@ -110,15 +110,18 @@ namespace NanoUI.Components
                     {
                         if (ButtonGroup == null || ButtonGroup.Count == 0)
                         {
-                            foreach (var widget in Parent.Children.AsReadOnlySpan())
+                            if(Parent != null)
                             {
-                                if (widget is UIButton b)
+                                foreach (var widget in Parent.Children.AsReadOnlySpan())
                                 {
-                                    if (b != this && b != null && (b.Flags & ButtonFlags.RadioButton) != 0 && b.Pushed)
+                                    if (widget is UIButton b)
                                     {
-                                        b.Pushed = false;
+                                        if (b != this && b != null && (b.Flags & ButtonFlags.RadioButton) != 0 && b.Pushed)
+                                        {
+                                            b.Pushed = false;
 
-                                        //b.StateChanged?.Invoke(this, _pushed);
+                                            //b.StateChanged?.Invoke(this, _pushed);
+                                        }
                                     }
                                 }
                             }

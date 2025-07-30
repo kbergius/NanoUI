@@ -58,7 +58,7 @@ namespace NanoUI.Components.Menus
                     // lost focus => propagate to owner
                     _owner?.FindParentWindow()?.OnFocusChanged(false);
                 }
-                else
+                else if(Screen != null)
                 {
                     // bring window to front
                     _owner?.FindParentWindow()?.MoveToLast();

@@ -44,6 +44,9 @@ namespace NanoUI.Components.Docking
 
         public virtual void SetState(bool docked, bool wasDockNode)
         {
+            if(Screen == null)
+                return;
+
             // set docked flag
             _docked = docked;
             WasDockNode = wasDockNode;
@@ -116,7 +119,7 @@ namespace NanoUI.Components.Docking
             if (!_docked && WindowDragMode == DragMode.Header)
             {
                 // now we must inform dock container (& screen) that we are in attaching process
-                DockContainer? container = Screen.Children.FindFirst<DockContainer>();
+                DockContainer? container = Screen?.Children.FindFirst<DockContainer>();
 
                 container?.BeginDocking();
             }
