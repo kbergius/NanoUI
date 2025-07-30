@@ -49,7 +49,7 @@ namespace NanoUI.Components
         }
 
         // if title is null, we don't create titlebar
-        public UIWindow(UIWidget parent, string? title, ScrollbarType scrollbars = ScrollbarType.Both)
+        public UIWindow(UIWidget? parent, string? title, ScrollbarType scrollbars = ScrollbarType.Both)
             : base(parent)
         {
             if(title != null)

@@ -100,7 +100,8 @@ namespace NanoUI.Components
         public override void Draw(NvgContext ctx)
         {
             // todo: better way, clear elapsed?
-            _elapsed += Screen.DeltaSeconds;
+            if(Screen != null)
+                _elapsed += Screen.DeltaSeconds;
 
             double t = _elapsed * Speed;
 

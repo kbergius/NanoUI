@@ -566,7 +566,7 @@ namespace NanoUI.Components
                 if (Globals.BLINK_TEXTBOX_CARET)
                 {
                     // set caret blinking values
-                    _accumulatedTime += Screen.DeltaSeconds;
+                    _accumulatedTime += Screen?.DeltaSeconds?? 0;
 
                     if (_accumulatedTime > CARET_BLINKING_INTERVAL)
                     {
@@ -706,6 +706,9 @@ namespace NanoUI.Components
         // paste from clipboard (if there is any text)
         void PasteFromClipboard()
         {
+            if (Screen == null)
+                return;
+
             string cbstr = Screen.GetClipboardString();
 
             if (!string.IsNullOrEmpty(cbstr))
@@ -744,6 +747,9 @@ namespace NanoUI.Components
 
         void UpdateCursor(float lastX, ReadOnlySpan<GlyphPosition> glyphs)
         {
+            if (Screen == null)
+                return;
+
             // handle pointer type events
             if (_pointerDownPos.X != -1)
             {

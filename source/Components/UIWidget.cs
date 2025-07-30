@@ -560,8 +560,11 @@ namespace NanoUI.Components
         }
 
         // This triggers layout update before next Draw call
-        public virtual void RequestLayoutUpdate(UIWidget widget)
+        public virtual void RequestLayoutUpdate(UIWidget? widget)
         {
+            if(widget == null)
+                return;
+
             // null is handled in screen
             Screen?.RequestLayoutUpdate(widget);
         }

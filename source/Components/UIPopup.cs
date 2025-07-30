@@ -32,15 +32,15 @@ namespace NanoUI.Components
             Visible = false;
         }
 
-        public UIPopup(UIPopupButton parentButton)
-            :this(parentButton.Screen)
+        public UIPopup(UIPopupButton? parentButton)
+            :this(parentButton?.Screen)
         {
             _parentButton = parentButton;
         }
 
         // this is for individual popups (no popupbutton - like context menu)
         // do not create titlebar
-        public UIPopup(UIScreen screen)
+        public UIPopup(UIScreen? screen)
             : base(screen, null, ScrollbarType.NONE)
         {            
             // defaults
