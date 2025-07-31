@@ -425,7 +425,9 @@ namespace StbTrueTypeSharp
 
 		public static int stbtt__GetGlyphShapeTT(stbtt_fontinfo info, int glyph_index, stbtt_vertex** pvertices)
 		{
-			short numberOfContours = 0;
+#pragma warning disable CA2014 // Potential stack overflow (stackalloc in loop)
+
+            short numberOfContours = 0;
 			byte* endPtsOfContours;
 			var data = info.data;
 			stbtt_vertex* vertices = null;
@@ -596,7 +598,7 @@ namespace StbTrueTypeSharp
 				var comp = data + g + 10;
 				num_vertices = 0;
 				vertices = null;
-				while (more != 0)
+                while (more != 0)
 				{
 					ushort flags = 0;
 					ushort gidx = 0;
@@ -701,7 +703,9 @@ namespace StbTrueTypeSharp
 				}
 			}
 
-			*pvertices = vertices;
+#pragma warning restore CA2014
+
+            *pvertices = vertices;
 			return num_vertices;
 		}
 
@@ -1408,7 +1412,8 @@ namespace StbTrueTypeSharp
 		public static byte* stbtt_GetGlyphSDF(stbtt_fontinfo info, float scale, int glyph, int padding,
 			byte onedge_value, float pixel_dist_scale, int* width, int* height, int* xoff, int* yoff)
 		{
-			var scale_x = scale;
+#pragma warning disable CA2014 // Potential stack overflow (stackalloc in loop)
+            var scale_x = scale;
 			var scale_y = scale;
 			var ix0 = 0;
 			var iy0 = 0;
@@ -1624,8 +1629,8 @@ namespace StbTrueTypeSharp
 				CRuntime.free(precompute);
 				CRuntime.free(verts);
 			}
-
-			return data;
+#pragma warning restore CA2014
+            return data;
 		}
 
 		public static int stbtt_GetGlyphShape(stbtt_fontinfo info, int glyph_index, stbtt_vertex** pvertices)
