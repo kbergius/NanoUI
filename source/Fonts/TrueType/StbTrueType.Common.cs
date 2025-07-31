@@ -146,7 +146,9 @@ namespace StbTrueTypeSharp
 				y -= 0.01f;
 			orig[0] = x;
 			orig[1] = y;
-			for (i = 0; i < nverts; ++i)
+
+#pragma warning disable CA2014 // Potential stack overflow (stackalloc in loop)
+            for (i = 0; i < nverts; ++i)
 			{
 				if (verts[i].type == STBTT_vline)
 				{
@@ -211,8 +213,9 @@ namespace StbTrueTypeSharp
 					}
 				}
 			}
+#pragma warning restore CA2014
 
-			return winding;
+            return winding;
 		}
 
 		public static float stbtt__cuberoot(float x)
