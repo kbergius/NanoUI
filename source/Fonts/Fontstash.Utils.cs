@@ -192,7 +192,7 @@ namespace NanoUI.Fonts
                 if (!added)
                 {
                     // invoke event so user can expand atlas
-                    _fontManager.OnAtlasFull(NvgContext.Instance, _atlas.Width, _atlas.Height);
+                    _fontManager.OnAtlasFull(NvgContext.Instance!, _atlas.Width, _atlas.Height);
 
                     // try again
                     added = _atlasAddRect(gw, gh, ref gx, ref gy);
