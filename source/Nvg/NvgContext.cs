@@ -22,7 +22,8 @@ namespace NanoUI.Nvg
         internal UnsafeBuffer<NvgPathCommand> _commands = new(256);
 
         // by now needed static in UIText, UITextEdit, UITextEditEXT
-        public static NvgContext Instance { get; private set; }
+        // note: you can safely call NvgContext.Instance!, since this is set in init
+        public static NvgContext? Instance { get; private set; }
 
         INvgRenderer _nvgRenderer;
 

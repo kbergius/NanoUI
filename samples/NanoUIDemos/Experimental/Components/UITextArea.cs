@@ -107,7 +107,7 @@ namespace NanoUIDemos.Experimental.Components
 
         public void Append(string text)
         {
-            NvgContext ctx = NvgContext.Instance;
+            NvgContext ctx = NvgContext.Instance!;
 
             ctx.FontSize(FontSize);
             ctx.FontFaceId(FontFaceId);
@@ -418,7 +418,7 @@ namespace NanoUIDemos.Experimental.Components
 
         BlockPosition PositionToBlock(Vector2 pos)
         {
-            NvgContext ctx = NvgContext.Instance;
+            NvgContext ctx = NvgContext.Instance!;
             
             int index = int.MaxValue;
             

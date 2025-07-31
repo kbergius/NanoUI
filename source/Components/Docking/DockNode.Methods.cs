@@ -65,7 +65,7 @@ namespace NanoUI.Components.Docking
                 childNode.TabWidget.Children[0].Parent = tabWidget;
             }
 
-            dockWidget.PerformLayout(NvgContext.Instance);
+            dockWidget.PerformLayout(NvgContext.Instance!);
 
             // todo: set flag that this is dock node (different handling for tabs etc)
             // if dock window has tabwidget, we must move individually all tabs
@@ -158,7 +158,7 @@ namespace NanoUI.Components.Docking
             SecondNode = null;
             _splitter = null;
 
-            PerformLayout(NvgContext.Instance);
+            PerformLayout(NvgContext.Instance!);
 
             return true;
         }
