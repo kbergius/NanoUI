@@ -49,14 +49,15 @@ namespace NanoUI.Components.Buttons
         internal UINumericTextBox<T> TextBox => _numericTextBox;
 
         // minimum & maximum allowed values
+        // note: we set defaults (0 - 1) if not specified
         public T Min
         {
-            get => _numericTextBox.Min;
+            get => _numericTextBox.Min?? T.Zero;
             set => _numericTextBox.Min = value;
         }
         public T Max
         {
-            get => _numericTextBox.Max;
+            get => _numericTextBox.Max ?? T.One;
             set => _numericTextBox.Max = value;
         }
 
