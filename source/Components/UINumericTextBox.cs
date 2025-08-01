@@ -43,8 +43,8 @@ namespace NanoUI.Components
         public T CurrentValue => _currentValue;
 
         // minimum & maximum allowed values
-        public T Min { get; set; } = T.Zero;
-        public T Max { get; set; } = T.One;
+        public T? Min { get; set; }
+        public T? Max { get; set; }
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace NanoUI.Components
         {
             if (T.TryParse((_currentValue + valueChange).ToString(), null, out var val))
             {
-                if (Min < Max && (val < Min || val > Max))
+                if (Min != null && Max != null && Min < Max && (val < Min || val > Max))
                 {
                     // do nothing
                     return;
@@ -86,7 +86,7 @@ namespace NanoUI.Components
             if (T.TryParse(value, null, out var val))
             {
                 // check min & max range
-                if(Min < Max && (val < Min || val > Max))
+                if(Min != null && Max != null && Min < Max && (val < Min || val > Max))
                 {
                     // must reset
                 }
