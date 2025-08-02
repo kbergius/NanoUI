@@ -28,7 +28,7 @@ When you loop through draw commands, you must switch between pipelines based on 
 
 ### Shaders
 
-There are shaders in GLSL and HLSL format in samples/NanoUIDemos/Assets/shaders.
+There are sample shaders in GLSL and HLSL format in **samples/NanoUIDemos/Assets/shaders**.
 
 
 # Drawing Layer
