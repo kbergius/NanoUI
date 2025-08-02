@@ -17,7 +17,7 @@ This is basically quite simple task to achieve: you just convert keyboard keys, 
 1. Handle texture actions (create, update, delete, etc)
 2. Do the real rendering (it is called when you issue **EndFrame** command)
 
-NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
+**Note:** NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
 
 Rendering is bit more complicated since NanoUI uses 3 different kind of pipelines:
 - **Standard:** This is normal/basic alpha blend draw pipeline
@@ -25,6 +25,11 @@ Rendering is bit more complicated since NanoUI uses 3 different kind of pipeline
 - **Fill:** This uses stencil buffer as a mask and really draws the fills
 
 When you loop through draw commands, you must switch between pipelines based on **DrawCommandType** in the draw command.
+
+### Shaders
+
+There are shaders in GLSL and HLSL format in samples/NanoUIDemos/Assets/shaders.
+
 
 # Drawing Layer
 
