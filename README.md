@@ -1,5 +1,6 @@
 [![Actions Status](https://github.com/kbergius/NanoUI/workflows/Build/badge.svg)](https://github.com/kbergius/NanoUI/Build)
 [![NuGet](https://img.shields.io/nuget/v/NanoUI.svg)](https://www.nuget.org/packages/NanoUI)
+[![Nuget](https://img.shields.io/nuget/dt/NanoUI)](https://www.nuget.org/packages/NanoUI/)
 
 NanoUI is a small, extendable and quite feature-rich UI library. It doesn't know anything **where** / **why** / **how** you use it (your OS, graphics, windowing etc). This means that you must create some wrapper classes, that act as a bridge between your application and NanoUI.
 
