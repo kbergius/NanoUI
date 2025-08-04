@@ -10,6 +10,7 @@ NanoUI is a small, extendable and quite feature-rich UI library. It doesn't know
 - Support for custom widgets
 - Dynamic, extendable layouting
 - Dynamic, extendable theming/styling
+- Text shapes with custom fill
 - SVG support
 - Docking (barebones)
 
