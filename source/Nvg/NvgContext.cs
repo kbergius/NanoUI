@@ -533,9 +533,6 @@ namespace NanoUI.Nvg
         // nvgCreateImage, nvgCreateImageMem
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
-            if (!File.Exists(path))
-                return Globals.INVALID;
-
             return _nvgRenderer.CreateTexture(path, textureFlags);
         }
 
