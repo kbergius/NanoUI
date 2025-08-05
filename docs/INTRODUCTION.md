@@ -1,35 +1,5 @@
 This document is a brief introduction to the NanoUI. You can find in code and samples, how the things described here are implemented and can be used.
 
-# Integrating NanoUI
-
-NanoUI knows nothing about your OS, graphics system and windowing environment. So you must create 2 files/classes:
-
-### InputMappings
-
-InputMappings should map user inputs from your windowing environment to format, that NanoUI understands.
-This is basically quite simple task to achieve: you just convert keyboard keys, mouse buttons and pointer types to the NanoUI format.
-
-### INvgRenderer
-
-**INvgRenderer** is an interface to your NanoUI renderer implementation. When you init NanoUI, you must pass this implementation to NanoUI.
-
-**INvgRenderer** has 2 basic purposes:
-1. Handle texture actions (create, update, delete, etc)
-2. Do the real rendering (it is called when you issue **EndFrame** command)
-
-**Note:** NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
-
-Rendering is bit more complicated since NanoUI uses 3 different kind of pipelines:
-- **Standard:** This is normal/basic alpha blend draw pipeline
-- **FillStencil:** This just fills stencil buffer with values (no drawing here)
-- **Fill:** This uses stencil buffer as a mask and really draws the fills
-
-When you loop through draw commands, you must switch between pipelines based on **DrawCommandType** in the draw command.
-
-### Shaders
-
-There are sample shaders in GLSL and HLSL format in **samples/NanoUIDemos/Assets/shaders**.
-
 
 # Drawing Layer
 
