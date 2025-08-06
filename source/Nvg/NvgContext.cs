@@ -4,7 +4,6 @@ using NanoUI.Nvg.Data;
 using NanoUI.Rendering;
 using NanoUI.Utils;
 using System;
-using System.IO;
 using System.Numerics;
 
 namespace NanoUI.Nvg
@@ -531,6 +530,9 @@ namespace NanoUI.Nvg
         #region Images
 
         // nvgCreateImage, nvgCreateImageMem
+        // note: this is just a helper method and params are passed as-is to renderer.
+        // so you can set in path param whatever file identication you like or
+        // call your renderer directly
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
             return _nvgRenderer.CreateTexture(path, textureFlags);
