@@ -45,6 +45,8 @@ namespace NanoUI.Nvg
         #region Fonts
 
         // nvgCreateFont
+        // note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        // If you use some other filesystem solution, pass byte array.
         public int CreateFont(ReadOnlySpan<char> name, string path, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             if (!File.Exists(path))
