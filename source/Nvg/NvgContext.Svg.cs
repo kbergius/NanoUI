@@ -15,6 +15,8 @@ namespace NanoUI.Nvg
         ArrayBuffer<SvgShape> _svgShapes = new();
 
         // returns shapeId or -1 if couldn't create svg shape
+        // note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        // If you use some other filesystem solution, pass byte array.
         public int CreateSvg(string path)
         {
             if (!File.Exists(path))
@@ -23,8 +25,28 @@ namespace NanoUI.Nvg
             }
 
             // store
-            SvgShape shape = SvgManager.CreateSvg(this, path);
-            _svgShapes.Add(shape);
+            using (FileStream stream = File.OpenRead(path))
+            {
+                SvgShape shape = SvgManager.CreateSvg(this, stream);
+                _svgShapes.Add(shape);
+            }  
+
+            return _svgShapes.Count - 1;
+        }
+
+        // returns shapeId or -1 if couldn't create svg shape
+        public int CreateSvg(byte[] data)
+        {
+            if (data == null || data.Length == 0)
+            {
+                return Globals.INVALID;
+            }
+
+            using (MemoryStream stream = new MemoryStream(data))
+            {
+                SvgShape shape = SvgManager.CreateSvg(this, stream);
+                _svgShapes.Add(shape);
+            }
 
             return _svgShapes.Count - 1;
         }

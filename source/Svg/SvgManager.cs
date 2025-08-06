@@ -31,21 +31,16 @@ namespace NanoUI.Svg
         // this is needed for example with gradients
         static Dictionary<string, (object, Type)> _svgResources = new();
 
-        public static SvgShape CreateSvg(NvgContext ctx, string path)
+        public static SvgShape CreateSvg(NvgContext ctx, Stream stream)
         {
-            if (!File.Exists(path))
-            {
-                return default;
-            }
-
             // clear parents & result
             _svgResources.Clear();
             _parentElements.Clear();
             _svgPaths.Clear();
             _svgShape.Reset();
-            
+
             // parse & create svg paths with commands
-            ParseXML(ctx, path);
+            ParseXML(ctx, stream);
 
             // we got all paths collected
             _svgShape.Paths = _svgPaths.AsReadOnlySpan().ToArray();
@@ -57,7 +52,7 @@ namespace NanoUI.Svg
             return _svgShape;
         }
 
-        static void ParseXML(NvgContext ctx, string path)
+        static void ParseXML(NvgContext ctx, Stream stream)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreComments = true;
@@ -73,131 +68,128 @@ namespace NanoUI.Svg
             // we need to get clean state for all paths
             ctx.SaveState();
 
-            using (FileStream stream = File.OpenRead(path))
+            using (XmlReader reader = XmlReader.Create(stream, settings))
             {
-                using (XmlReader reader = XmlReader.Create(stream, settings))
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    switch (reader.NodeType)
                     {
-                        switch (reader.NodeType)
-                        {
-                            case XmlNodeType.Element:
-                                // remove namespace from element name
-                                split = reader.Name.Split(":");
-                                nodeName = split[split.Length - 1];
+                        case XmlNodeType.Element:
+                            // remove namespace from element name
+                            split = reader.Name.Split(":");
+                            nodeName = split[split.Length - 1];
 
-                                // ignore not valid elements
-                                if (_xmlElements.Contains(nodeName))
+                            // ignore not valid elements
+                            if (_xmlElements.Contains(nodeName))
+                            {
+                                // we use same NvgState struct & reset it for the "clean" state
+                                // before creating paths
+                                // note: not all elements create path, but it is easier to have it here
+                                ctx.ResetState();
+
+                                // we read all valid elements attributes
+                                ParseXmlAttributes(reader);
+
+                                switch (nodeName)
                                 {
-                                    // we use same NvgState struct & reset it for the "clean" state
-                                    // before creating paths
-                                    // note: not all elements create path, but it is easier to have it here
-                                    ctx.ResetState();
-
-                                    // we read all valid elements attributes
-                                    ParseXmlAttributes(reader);
-
-                                    switch (nodeName)
-                                    {
-                                        case "svg":
-                                            // this is not implemented
-                                            CreateSvg();
-                                            break;
-                                        case "defs":
-                                            // this is not implemented
-                                            CreateDefs();
-                                            break;
-                                        case "linearGradient":
-                                            // this is not fully implemented
-                                            StoreLinearGradient();
-                                            break;
-                                        case "radialGradient":
-                                            // this is not fully implemented
-                                            StoreRadialGradient();
-                                            break;
-                                        case "stop":
-                                            // we are inside gradient (linear, radial)
-                                            // this is partly implemented
-                                            CreateGradientStop();
-                                            break;
-                                        case "g":
-                                            StoreG();
-                                            break;
-                                        case "path":
-                                            CreatePath(ctx);
-                                            break;
-                                        case "rect":
-                                            CreateRect(ctx);
-                                            break;
-                                        case "circle":
-                                            CreateCircle(ctx);
-                                            break;
-                                        case "ellipse":
-                                            CreateEllipse(ctx);
-                                            break;
-                                        case "line":
-                                            CreateLine(ctx);
-                                            break;
-                                        case "polyline":
-                                            CreatePolyline(ctx);
-                                            break;
-                                        case "polygon":
-                                            CreatePolygon(ctx);
-                                            break;
-                                    }
+                                    case "svg":
+                                        // this is not implemented
+                                        CreateSvg();
+                                        break;
+                                    case "defs":
+                                        // this is not implemented
+                                        CreateDefs();
+                                        break;
+                                    case "linearGradient":
+                                        // this is not fully implemented
+                                        StoreLinearGradient();
+                                        break;
+                                    case "radialGradient":
+                                        // this is not fully implemented
+                                        StoreRadialGradient();
+                                        break;
+                                    case "stop":
+                                        // we are inside gradient (linear, radial)
+                                        // this is partly implemented
+                                        CreateGradientStop();
+                                        break;
+                                    case "g":
+                                        StoreG();
+                                        break;
+                                    case "path":
+                                        CreatePath(ctx);
+                                        break;
+                                    case "rect":
+                                        CreateRect(ctx);
+                                        break;
+                                    case "circle":
+                                        CreateCircle(ctx);
+                                        break;
+                                    case "ellipse":
+                                        CreateEllipse(ctx);
+                                        break;
+                                    case "line":
+                                        CreateLine(ctx);
+                                        break;
+                                    case "polyline":
+                                        CreatePolyline(ctx);
+                                        break;
+                                    case "polygon":
+                                        CreatePolygon(ctx);
+                                        break;
                                 }
-                                break;
-                            case XmlNodeType.Text:
-                                // note: we don't support any inner text currently (no support for <text>!)
-                                break;
-                            case XmlNodeType.EndElement:
-                                // remove namespace from element name
-                                split = reader.Name.Split(":");
-                                nodeName = split[split.Length - 1];
+                            }
+                            break;
+                        case XmlNodeType.Text:
+                            // note: we don't support any inner text currently (no support for <text>!)
+                            break;
+                        case XmlNodeType.EndElement:
+                            // remove namespace from element name
+                            split = reader.Name.Split(":");
+                            nodeName = split[split.Length - 1];
 
-                                // ignore not valid elements
-                                if (_xmlElements.Contains(nodeName))
+                            // ignore not valid elements
+                            if (_xmlElements.Contains(nodeName))
+                            {
+                                switch (nodeName)
                                 {
-                                    switch (nodeName)
-                                    {
-                                        case "svg":
-                                            // no need to do anything
-                                            break;
-                                        case "defs":
-                                            // no need to do anything
-                                            break;
-                                        case "linearGradient":
-                                            if (_linearGradient != null && !string.IsNullOrEmpty(_linearGradient.Value.id))
-                                            {
-                                                // store for later use
-                                                var gradient = _linearGradient.Value;
-                                                _svgResources[gradient.id] = (gradient, typeof(SvgLinearGradient));
-                                                
-                                                // don't need anymore
-                                                _linearGradient = null;
-                                            }
-                                            break;
-                                        case "radialGradient":
-                                            if (_radialGradient != null && !string.IsNullOrEmpty(_radialGradient.Value.id))
-                                            {
-                                                // store for later use
-                                                var gradient = _radialGradient.Value;
-                                                _svgResources[gradient.id] = (gradient, typeof(SvgRadialGradient));
+                                    case "svg":
+                                        // no need to do anything
+                                        break;
+                                    case "defs":
+                                        // no need to do anything
+                                        break;
+                                    case "linearGradient":
+                                        if (_linearGradient != null && !string.IsNullOrEmpty(_linearGradient.Value.id))
+                                        {
+                                            // store for later use
+                                            var gradient = _linearGradient.Value;
+                                            _svgResources[gradient.id] = (gradient, typeof(SvgLinearGradient));
 
-                                                // don't need anymore
-                                                _radialGradient = null;
-                                            }
-                                            break;
-                                        case "g":
-                                            // remove last stored element
-                                            _parentElements.RemoveLast();
-                                            break;
-                                    }
+                                            // don't need anymore
+                                            _linearGradient = null;
+                                        }
+                                        break;
+                                    case "radialGradient":
+                                        if (_radialGradient != null && !string.IsNullOrEmpty(_radialGradient.Value.id))
+                                        {
+                                            // store for later use
+                                            var gradient = _radialGradient.Value;
+                                            _svgResources[gradient.id] = (gradient, typeof(SvgRadialGradient));
+
+                                            // don't need anymore
+                                            _radialGradient = null;
+                                        }
+                                        break;
+                                    case "g":
+                                        // remove last stored element
+                                        _parentElements.RemoveLast();
+                                        break;
                                 }
-                                break;
-                            default:
-                                break;
-                        }
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
