@@ -33,7 +33,7 @@ namespace NanoUI.Components.Simple
                 if(_texture > Globals.INVALID)
                 {
                     // calculate image size
-                    NvgContext.Instance!.GetTextureSize(Texture, out _imgSize);
+                    NvgContext.Instance.GetTextureSize(Texture, out _imgSize);
                 }
             }
         }

@@ -20,9 +20,17 @@ namespace NanoUI.Nvg
         // must be internal since svg must access these
         internal UnsafeBuffer<NvgPathCommand> _commands = new(256);
 
-        // by now needed static in UIText, UITextEdit, UITextEditEXT
-        // note: you can safely call NvgContext.Instance!, since this is set in init
-        public static NvgContext? Instance { get; private set; }
+        // This is not a "correct" way of doing things. However on the user's point of view
+        // it would be quite frustrating to do allways nullable checks with this.
+        // And I guess this will be used a lot.
+        // Since NanoUI is a library, that doesn't know anything where/how/why it is used,
+        // the responsibility to init NanoUI correctly, before any user can access it,
+        // lies on the framework, that provides NanoUI service/renderer.
+        // So if you, the user, get any NPE, blame your framework provider not the NanoUI!
+        // note: this "hack" is not used elsewhere in the NanoUI.
+#pragma warning disable CS8618 // disable nullable warning
+        public static NvgContext Instance { get; private set; }
+#pragma warning restore CS8618 // enable nullable warning
 
         INvgRenderer _nvgRenderer;
 
@@ -33,7 +41,7 @@ namespace NanoUI.Nvg
 
         public NvgContext(INvgRenderer nvgRenderer, IFontManager fontManager, float devicePixelRatio = 1.0f)
         {
-            // some ´widgets may want to get NvgContext
+            // some widgets may want to get NvgContext
             Instance = this;
 
             _nvgRenderer = nvgRenderer;
