@@ -237,7 +237,6 @@ namespace NanoUI.Common
     {
         R, // this is single channel texture used to create font atlas texture
         RG,
-        RGB,
         RGBA // this is used for images (default in TextureDesc)
     }
 
