@@ -108,20 +108,6 @@ namespace VeldridExample
             return false;
         }
 
-        // todo: we should pass only region data (now gets all texture data)
-        // rect is (x, y, width, height)
-        public bool UpdateTextureRegion(int texture, Vector4 regionRect, ReadOnlySpan<byte> allData)
-        {
-            if (_textures.TryGetValue(texture, out var tex))
-            {
-                UpdateTextureBytes(tex, allData, Vector2.Zero, new Vector2(tex.Width, tex.Height));
-
-                return true;
-            }
-
-            return false;
-        }
-
         // this is called also when font atlas texture is resized
         // (delete old, create new)
         public bool DeleteTexture(int texture)

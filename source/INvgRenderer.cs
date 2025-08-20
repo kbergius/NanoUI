@@ -17,10 +17,6 @@ namespace NanoUI
         // (delete old, create new)
         bool DeleteTexture(int texture);
 
-        // todo: we should pass only region data (now gets all texture data)
-        // rect is (x, y, width, height)
-        bool UpdateTextureRegion(int texture, Vector4 regionRect, ReadOnlySpan<byte> allData);
-
         bool GetTextureSize(int texture, out Vector2 size);
 
         // triggerred from NvgContext when EndFrame called
