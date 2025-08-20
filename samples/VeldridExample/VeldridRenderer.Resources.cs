@@ -223,6 +223,13 @@ namespace VeldridExample
                     DepthFail = StencilOperation.Zero,
                     Pass = StencilOperation.Zero,
                 },
+                StencilBack = new StencilBehaviorDescription
+                {
+                    Comparison = ComparisonKind.Never,
+                    Fail = StencilOperation.Zero,
+                    DepthFail = StencilOperation.Zero,
+                    Pass = StencilOperation.Zero,
+                },
             };
 
             return desc;
