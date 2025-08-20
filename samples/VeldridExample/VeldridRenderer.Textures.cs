@@ -54,14 +54,13 @@ namespace VeldridExample
         }
 
         // this is used for creating textures for images (RGBA) & font atlas (R)
-        // note: this implemenation does not support TextureFormat.RG & TextureFormat.RGB
         public int CreateTexture(TextureDesc description)
         {
             var desc = TextureDescription.Texture2D(
                 description.Width,
                 description.Height,
                 1, 1,
-                description.Format == TextureFormat.RGBA ? PixelFormat.R8_G8_B8_A8_UNorm : PixelFormat.R8_UNorm,
+                MapTextureFormat(description.Format),
                 TextureUsage.Sampled);
 
             // note: id is 1-based (not 0-based), since then we can neglect texture (int) value when
@@ -88,7 +87,7 @@ namespace VeldridExample
                 description.Width,
                 description.Height,
                 1, 1,
-                description.Format == TextureFormat.RGBA ? PixelFormat.R8_G8_B8_A8_UNorm : PixelFormat.R8_UNorm,
+                MapTextureFormat(description.Format),
                 TextureUsage.Sampled);
 
             _textures[texture] = _gd.ResourceFactory.CreateTexture(desc);
@@ -127,6 +126,17 @@ namespace VeldridExample
             return false;
         }
 
+        static PixelFormat MapTextureFormat(TextureFormat format)
+        {
+            return format switch
+            {
+                TextureFormat.R => PixelFormat.R8_UNorm,
+                TextureFormat.RG => PixelFormat.R8_G8_UNorm,
+                TextureFormat.RGBA => PixelFormat.R8_G8_B8_A8_UNorm,
+                _ => PixelFormat.R8_G8_B8_A8_UNorm,
+            };
+        }
+
         public bool GetTextureSize(int texture, out Vector2 size)
         {
             if (_textures.TryGetValue(texture, out var tex))
@@ -139,6 +149,8 @@ namespace VeldridExample
             return false;
         }
 
+        // this is bit complicated, but it handles also cases when bounds & offset is outside
+        // current texture dimensions (must create new bigger texture and dispose old)
         Texture UpdateTextureBytes(Texture tex, ReadOnlySpan<byte> bytes, Vector2 offset, Vector2 bounds)
         {
             // if the addition totally fits inside the current texture, update the current texture and return.
