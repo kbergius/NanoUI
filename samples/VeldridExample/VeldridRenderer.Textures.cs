@@ -72,8 +72,9 @@ namespace VeldridExample
             return counter;
         }
 
-        // this is used for resizing existing textures for images (RGBA) & font atlas (R)
-        // note: this implemenation does not support TextureFormat.RG & TextureFormat.RGB
+        // This just resizes texture. It doesn't copy data from the old texture to the new one.
+        // note: NanoUI uses this function - when it wants to resize font atlas texture -
+        // this way: it first calls ResizeTexture and then calls UpdateTexture with new data.
         public bool ResizeTexture(int texture, TextureDesc description)
         {
             if (!_textures.TryGetValue(texture, out var tex))
