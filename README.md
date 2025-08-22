@@ -2,7 +2,7 @@
 [![NuGet](https://img.shields.io/nuget/v/NanoUI.svg)](https://www.nuget.org/packages/NanoUI)
 [![Nuget](https://img.shields.io/nuget/dt/NanoUI)](https://www.nuget.org/packages/NanoUI/)
 
-NanoUI is a small, extendable and quite feature-rich UI library with no external dependencies and no extra assets.
+NanoUI is a small, extendable and quite feature-rich UI library with no external dependencies, native libraries and no extra assets.
 
 ## Main features
 - Independent drawing layer
