@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E94958C3-5109-4384-A9CB-E165EC5754CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoUI", "..\source\NanoUI.csproj", "{834BA603-9AAD-B01B-58EF-4E3159EF7F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NanoUIDemos", "NanoUIDemos\NanoUIDemos.csproj", "{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeldridExample", "VeldridExample\VeldridExample.csproj", "{8AFAD758-A7FA-E439-FE0C-46E73B1E8332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{834BA603-9AAD-B01B-58EF-4E3159EF7F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834BA603-9AAD-B01B-58EF-4E3159EF7F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834BA603-9AAD-B01B-58EF-4E3159EF7F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834BA603-9AAD-B01B-58EF-4E3159EF7F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFAD758-A7FA-E439-FE0C-46E73B1E8332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFAD758-A7FA-E439-FE0C-46E73B1E8332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFAD758-A7FA-E439-FE0C-46E73B1E8332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFAD758-A7FA-E439-FE0C-46E73B1E8332}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DD43AB41-304F-DAAA-7C3A-3F0EB1052F7A} = {E94958C3-5109-4384-A9CB-E165EC5754CE}
+		{8AFAD758-A7FA-E439-FE0C-46E73B1E8332} = {E94958C3-5109-4384-A9CB-E165EC5754CE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08FE0BD8-4253-419D-9FBF-7F9671C9AAC2}
+	EndGlobalSection
+EndGlobal
