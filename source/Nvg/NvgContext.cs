@@ -34,8 +34,10 @@ namespace NanoUI.Nvg
 
         INvgRenderer _nvgRenderer;
 
-        public NvgContext(INvgRenderer nvgRenderer, float devicePixelRatio = 1.0f)
-            :this(nvgRenderer, new StbTrueTypeManager(), devicePixelRatio)
+        // note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the FontManager
+        // (unmanaged uses pointers)
+        public NvgContext(INvgRenderer nvgRenderer, bool useSafeFontManager = false, float devicePixelRatio = 1.0f)
+            :this(nvgRenderer, useSafeFontManager? new SafeStbTrueTypeManager() : new StbTrueTypeManager(), devicePixelRatio)
         {
         }
 
