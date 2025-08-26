@@ -64,7 +64,6 @@ There are also sample shaders in GLSL and HLSL format in **samples/NanoUIDemos/A
 
 **Base library**:
 - [nanovg](https://github.com/memononen/nanovg)
-- [nanogui](https://github.com/wjakob/nanogui)
 - [stbtruetype](https://github.com/nothings/stb)
 
 **Samples**:
