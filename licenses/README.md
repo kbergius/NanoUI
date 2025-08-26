@@ -1,9 +1,15 @@
-**NanoUI** is MIT licenced.
+**NanoUI** is MIT licensed.
 
-However **NanoUI** consists modified ports from the [NanoVG](https://github.com/memononen/nanovg) library (**zlib** license).
+**NanoUI** consists modified ports from the [NanoVG](https://github.com/memononen/nanovg) library (**zlib** license).
 
-**NanoUI** also consists a port of the [StbTrueType](https://github.com/nothings/stb), but it's license is **Public Domain**.
+Additionally **NanoUI's** UI layer is more or less inspired by [NanoGUI](https://github.com/wjakob/nanogui) (**BSD style** license).
 
-So when you ship your application, you should add both **NanoUI** and **NanoVG** licenses to your application.
+Also **NanoUI** consists a port of the [StbTrueType](https://github.com/nothings/stb) (**Public Domain** license).
+
+All these licenses are permissive, free, open-source and commercial-friendly software licenses.
+
+---
+
+So when you ship your application/game, you should add - to be sure - **NanoUI**, **NanoGUI** and **NanoVG** licenses to your application/game.
 
 PS I am not a lawyer, so this is not a legal advice.

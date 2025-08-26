@@ -63,8 +63,9 @@ There are also sample shaders in GLSL and HLSL format in **samples/NanoUIDemos/A
 ## Credits
 
 **Base library**:
-- [nanovg](https://github.com/memononen/nanovg)
-- [stbtruetype](https://github.com/nothings/stb)
+- [NanoVG](https://github.com/memononen/nanovg)
+- [NanoGUI](https://github.com/wjakob/nanogui)
+- [StbTruetype](https://github.com/nothings/stb)
 
 **Samples**:
 - [Silk.NET](https://github.com/dotnet/Silk.NET)
