@@ -2,7 +2,7 @@
 [![NuGet](https://img.shields.io/nuget/v/NanoUI.svg)](https://www.nuget.org/packages/NanoUI)
 [![Nuget](https://img.shields.io/nuget/dt/NanoUI)](https://www.nuget.org/packages/NanoUI/)
 
-NanoUI is a small, extendable and quite feature-rich UI library with no external dependencies, native libraries and no extra assets.
+NanoUI is a small, extendable and quite feature-rich UI & drawing library with no external dependencies, native libraries and no extra assets.
 
 ## Main features
 - Independent drawing layer
@@ -41,7 +41,7 @@ This is basically quite simple task to achieve: you just convert keyboard keys, 
 **INvgRenderer** is an interface to your NanoUI renderer implementation. When you init NanoUI, you must pass this implementation to NanoUI.
 
 **INvgRenderer** has 2 basic purposes:
-1. Handle texture actions (create, update, delete, etc)
+1. Handle texture actions (create, update, delete, resize etc)
 2. Do the real rendering (it is called when you issue **EndFrame** command)
 
 **Note:** NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
