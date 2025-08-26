@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Description>Small, extendable and quite feature-rich C# UI library with no external dependencies, native libraries and no extra assets</Description>
+    <Description>Small, extendable and quite feature-rich C# UI and drawing library with no external dependencies, native libraries and no extra assets</Description>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>

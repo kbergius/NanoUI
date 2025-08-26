@@ -6,4 +6,4 @@ However **NanoUI** consists modified ports from the [NanoVG](https://github.com/
 
 So when you ship your application, you should add both **NanoUI** and **NanoVG** licenses to your application.
 
-PS I am not a laywer, so this is not a legal advice.
+PS I am not a lawyer, so this is not a legal advice.

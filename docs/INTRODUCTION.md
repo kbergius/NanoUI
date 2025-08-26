@@ -15,7 +15,7 @@ You issue commands to the drawing layer through its API, that is in **NvgContext
 UI layer is the extendable part of the NanoUI. It basically consist widgets, that are arranged in tree.
 
 ### UIWidget
-**UIWidget** is the base class in UI layer. It provides most common properties & functions. All other widgets are derived from this component.
+**UIWidget** is the base class in UI layer. It provides most common properties and functions. All other widgets are derived from this component.
 When you extend/override functionality in this class, you probably should also call same function in the base class, since there is often functionality that needs to be executed to keep UI layer consistent.
 
 ### WidgetList
