@@ -5,8 +5,8 @@ cbuffer UniformBlock : register(b0, space1)
 
 struct Input
 {
-    float2 Position : TEXCOORD0;
-    float2 UV : TEXCOORD1;
+    float2 Position : POSITION;
+    float2 UV : TEXCOORD0;
 };
 
 struct Output

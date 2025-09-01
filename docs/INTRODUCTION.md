@@ -34,7 +34,7 @@ When you extend/override functionality in this class, you probably should also c
 
 # Layouting
 
-NanoUI uses relative positioning system and uses top-left coordinate as position "anchor". That means that every widget knows only their position in their parent's space. So for example position (0, 0) means that widget is positioned in the top-left corner of its parent space.
+NanoUI uses relative positioning system and uses top-left coordinate as position "anchor". This means that every widget knows only their position in their parent's space. So for example position (0, 0) means that widget is positioned in the top-left corner of its parent space.
 
 Layouts are defined in separate classes and can be dynamically changed at the runtime. When you attach specific layout class to widget, you must also call either **PerformLayout** or **RequestLayoutUpdate** in order to really process layout calculations and set child widgets' positions & sizes.
 
