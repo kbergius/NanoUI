@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NanoUI" Version="1.0.7" />
+    <ProjectReference Include="..\..\source\NanoUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
