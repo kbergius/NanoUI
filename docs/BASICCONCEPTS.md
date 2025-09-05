@@ -1,9 +1,9 @@
-This document is a brief introduction to the NanoUI. You can find in code and samples, how the things described here are implemented and can be used.
+This document is a brief introduction to the basic concepts of the NanoUI. You can find in the code, how the things described here are implemented.
 
 
 # Drawing Layer
 
-This is the real engine in NanoUI. It handles all commands passed to it and creates valid draw commands. When you are going to render the ui, you just loop through draw commands that are created and get vertices, indices and uniforms, that you send to your graphics engine.
+This is the real engine in the NanoUI. It handles all commands passed to it and creates valid draw commands. When you are going to render the ui, you just loop through draw commands that are created and get vertices, indices and uniforms, that you send to your graphics engine.
 
 Functions in drawing layer are mostly internal and you should consider it as a black box.
 
@@ -19,7 +19,7 @@ UI layer is the extendable part of the NanoUI. It basically consist widgets, tha
 When you extend/override functionality in this class, you probably should also call same function in the base class, since there is often functionality that needs to be executed to keep UI layer consistent.
 
 ### WidgetList
-**WidgetList** is a special class that holds all (parent) widget's childs. There are some helper methods to interact with this list, but the most important part is the order of child widgets in this list:
+**WidgetList** is a special class, that holds all (parent) widget's childs. There are some helper methods to interact with this list, but the most important part is the order of child widgets in this list:
 
 - when NanoUI tries to find which child widget should handle user input (mouse, keyboard events etc), it loops the list **backwards** (from the last to the first)
 - in drawing phase the looping is done **forwards** (from the first to the last). This ensures that you can have any kind of transparency with overlapping widgets.
@@ -36,10 +36,10 @@ When you extend/override functionality in this class, you probably should also c
 
 NanoUI uses relative positioning system and uses top-left coordinate as position "anchor". This means that every widget knows only their position in their parent's space. So for example position (0, 0) means that widget is positioned in the top-left corner of its parent space.
 
-Layouts are defined in separate classes and can be dynamically changed at the runtime. When you attach specific layout class to widget, you must also call either **PerformLayout** or **RequestLayoutUpdate** in order to really process layout calculations and set child widgets' positions & sizes.
+Layouts are defined in separate classes and can be dynamically changed at the runtime. When you attach specific layout class to the widget, you must also call either **PerformLayout** or **RequestLayoutUpdate** in order to really process layout calculations and set child widgets' positions & sizes.
 
 # Theming / styling
 
-NanoUI uses dynamic styling. The **UITheme** class, that consists all styling information is only stored in the **UIScreen**. When widget wants to use its styling property, it must ask that from the **UIScreen's** theme class.
+NanoUI uses dynamic styling. The **UITheme** class, that consists all styling information is only stored in the **UIScreen**. When widget wants to use its styling property, it must ask that from the **UIScreen's** theme.
 
 However you can "hard code" styling information also directly to any individual widget.
