@@ -50,6 +50,26 @@ var ctx = new NvgContext(<your renderer>, <use safe/unsafe font manager>, <your 
 **Note:** If you are using user inputs (keys, mouse buttons, pointer types), you should map them to the format that NanoUI understands.
 
 
+### 3. Modify your main Draw/Render method
+
+At the end of this method add code:
+
+```cs
+var ctx = NvgContext.Instance;
+
+// clear NanoUI buffers
+ctx.BeginFrame();
+
+// issue draw commands
+<your NanoUI drawing code>
+
+// trigger NanoUI rendering
+ctx.EndFrame();
+```
+
+This will render UI as an overlay.
+
+
 ## How to use NanoUI
 
 NanoUI has both **immediate** and **retained** mode drawing. You can use either of these - or both.
@@ -116,8 +136,6 @@ Every widget has it's own ctor method, but basically they are like **new UIWidge
 There are plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
 
 There is also more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) document.
-
-**Note:** All the drawing commands must be executed in your rendering cycle between **ctx.BeginFrame()** and **ctx.EndFrame()** calls.
 
 
 ## Example
