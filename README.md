@@ -32,7 +32,7 @@ NanoUI is a small, extendable and quite feature-rich UI & drawing library with n
 
 NanoUI knows nothing about your OS, graphics system and windowing environment. So you must create an **INvgRenderer** implementation.
 
-There is examples, how to do this, in the **samples** folder.
+There are examples, how to do this, in the **samples** folder.
 
 If your framework already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
 
