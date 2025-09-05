@@ -113,9 +113,9 @@ You can also modify dynamically at runtime layouts and theme properties (for exa
 
 Every widget has it's own ctor method, but basically they are like **new UIWidget('widget's parent widget', 'widget params if any')**. The parent widget must be defined, if the widget is going to be added to the **UIScreen's** widget tree.
 
-There is plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
+There are plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
 
-There is more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) document.
+There is also more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) document.
 
 **Note:** All the drawing commands must be executed in your rendering cycle between **ctx.BeginFrame()** and **ctx.EndFrame()** calls.
 
