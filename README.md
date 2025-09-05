@@ -17,15 +17,38 @@ NanoUI is a small, extendable and quite feature-rich UI & drawing library with n
 
 **... and NanoUI is pretty fast**.
 
-If you are new to NanoUI, please read [INTRODUCTION](docs/INTRODUCTION.md).
-
 
 ## Screenshot(s)
 
-![UI_Basic_](docs/screenshots/ui_basic.png)
 ![Drawing](docs/screenshots/drawing.png)
+![UI_Basic](docs/screenshots/ui_basic.png)
 
 [See MORE screenshots](docs/screenshots/SCREENSHOTS.md)
+
+
+## How to setup NanoUI
+
+### 1. Create INvgRenderer
+
+NanoUI knows nothing about your OS, graphics system and windowing environment. So you must create an **INvgRenderer** implementation.
+
+There is examples, how to do this, in the **samples** folder.
+
+If your framework already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
+
+
+### 2. Init NvgContext
+
+**NvgContext** is the real engine of the NanoUI.
+
+You must init and store it at your application's startup. You will be using it a lot.
+
+```cs
+var ctx = new NvgContext(<your renderer>, <use safe/unsafe font manager>, <your display's dpi scale>);
+```
+
+**Note:** If you are using user inputs (keys, mouse buttons, pointer types), you should map them to the format that NanoUI understands.
+
 
 ## How to use NanoUI
 
@@ -33,11 +56,11 @@ NanoUI has both **immediate** and **retained** mode drawing. You can use either 
 
 ### Immediate mode
 
-You can issue draw commands directly to the **NvgContext** class (drawing layer API).
+You can issue draw commands directly to the **NvgContext** (drawing layer API).
 
 For example this will draw rectangle at position (100, 100) with size (120, 30) and fill it with blue color:
 
-```C
+```cs
 var ctx = NvgContext.Instance;
 
 ctx.BeginPath();
@@ -46,16 +69,16 @@ ctx.FillColor(Color.Blue);
 ctx.Fill();
 ```
 
-**NvgContext** can draw shapes, images, texts, text shapes and SVGs with different brushes and it can handle transforms (translate, rotate, scale, skew) & scissoring.
+**NvgContext** can draw shapes, images, texts, text shapes and SVGs with different colors & brushes and it can handle transforms (translate, rotate, scale, skew) & scissoring.
 
-The **NvgContext** API is modeled loosely on the HTML5 canvas API. So if you have web dev experience, you're up to speed with NanoUI in no time. The limitation of the immediate mode drawing is, that is purely drawing; so no actions/callbacks, dynamic layouting & styling etc.
+The **NvgContext** API is modelled loosely after the HTML5 canvas API. So if you have web dev experience, you're up to speed with NanoUI in no time. The limitation of the immediate mode drawing is, that is purely drawing; so no built-in actions/callbacks, dynamic layouting & styling etc.
 
 
 ### Retained mode
 
-The retained mode (UI layer) has the bells & whistles of the modern UI. It is basically tree of the ui widgets, where the root widget (owner) of the tree is **UIScreen**: So you first task is to create **UIScreen** object and then add any widget - you like - to it:
+The retained mode (UI layer) has the bells & whistles of the modern UI. It is basically tree of the ui widgets, where the root widget (owner) of the tree is **UIScreen**: So you first task is to create **UIScreen** object:
 
-```C
+```cs
 
 var ctx = NvgContext.Instance;
 
@@ -80,53 +103,28 @@ var theme = UITheme.CreateDefault<UITheme>(ctx, fonts);
 var screen = new UIScreen(theme, <your windowSize>);
 
 // store this screen to the place, where you can easily access it,
-since you are going to issue user inputs and update & draw method to it
+since you are going to issue user inputs and update & draw methods to it
 and it will handle rest.
-
 ```
 
 After this you can add, remove, modify any widget (based on the **UIWidget** class) in the **UIScreen's** widget tree both in the initializing and running mode.
 
-You can also modify dynamically at runtime layouts and theme properties (for example you can change the theme class in the **UIScreen** and all the widgets then use this new theme). You can also have many predefined **UIScreen's** (with their own widget sets) and change them whenever you want.
+You can also modify dynamically at runtime layouts and theme properties (for example you can change the theme in the **UIScreen** and all the widgets then use this new theme). You can also have many predefined **UIScreen's** (with their own widget sets) and change them whenever you want.
 
 Every widget has it's own ctor method, but basically they are like **new UIWidget('widget's parent widget', 'widget params if any')**. The parent widget must be defined, if the widget is going to be added to the **UIScreen's** widget tree.
 
 There is plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
 
+There is more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) document.
+
 **Note:** All the drawing commands must be executed in your rendering cycle between **ctx.BeginFrame()** and **ctx.EndFrame()** calls.
 
 
-## Integrating NanoUI
+## Example
 
-NanoUI knows nothing about your OS, graphics system and windowing environment. So you must create 2 files/classes, that act as a bridge between your application and NanoUI.
+There is an example, that uses [Veldrid](https://github.com/veldrid/veldrid) backend.
 
-### InputMappings
-
-InputMappings should map user inputs from your windowing environment to format, that NanoUI understands.
-This is basically quite simple task to achieve: you just convert keyboard keys, mouse buttons and pointer types to the NanoUI format.
-
-### INvgRenderer
-
-**INvgRenderer** is an interface to your NanoUI renderer implementation. When you init NanoUI, you must pass this implementation to NanoUI.
-
-**INvgRenderer** has 2 basic purposes:
-1. Handle texture actions (create, update, delete, resize etc)
-2. Do the real rendering (it is called when you issue **EndFrame** command)
-
-**Note:** NanoUI treates all textures as ints. All negative values and 0 are treated as there is no texture.
-
-Rendering is bit more complicated since NanoUI uses 3 different kind of pipelines:
-- **Standard:** This is normal/basic alpha blend draw pipeline
-- **FillStencil:** This just fills stencil buffer with values (no drawing here)
-- **Fill:** This uses stencil buffer as a mask and really draws the fills
-
-This way NanoUI can handle about any shape; not just predefined primitives.
-
-### Example
-
-There is an example with [Veldrid](https://github.com/veldrid/veldrid) backend, that can give you hints, when you create your implementation.
-
-There are also sample shaders in GLSL and HLSL format in **samples/NanoUIDemos/Assets/shaders**.
+There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDemos/Assets/shaders** folder.
 
 
 ## Credits
