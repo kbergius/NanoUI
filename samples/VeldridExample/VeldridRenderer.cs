@@ -1,8 +1,6 @@
 ﻿using NanoUI;
 using NanoUI.Rendering;
 using NanoUI.Rendering.Data;
-using Silk.NET.Windowing;
-using Silk.NET.Windowing.Extensions.Veldrid;
 using System;
 using System.Numerics;
 using Veldrid;
@@ -16,18 +14,14 @@ namespace VeldridExample
 
         Vector2 _windowSize;
         Matrix4x4 _tranformMatrix;
-        RgbaFloat _clearColor = new RgbaFloat(0.3f, 0.3f, 0.32f, 1);
-
-        public VeldridRenderer(IWindow window) //, bool msaa)
+        
+        public VeldridRenderer(GraphicsDevice gd, CommandList commandList, Vector2 windowSize)
         {
-            _windowSize = new Vector2(window.Size.X, window.Size.Y);
+            _gd = gd;
+            _commandList = commandList;
+            _windowSize = windowSize;
             
             CreateTransformMatrix();
-
-            // Create a device with the "default" Graphics API (Vulkan for linux, DirectX11 for Windows, Metal for MacOS.)
-            _gd = window.CreateGraphicsDevice(new GraphicsDeviceOptions(false, PixelFormat.D32_Float_S8_UInt, false, ResourceBindingModel.Improved, true, true));
-
-            _commandList = _gd.ResourceFactory.CreateCommandList();
 
             InitResources();
         }
@@ -36,29 +30,14 @@ namespace VeldridExample
         {
             // set winfow size - used with transform buffer
             _windowSize = windowSize;
-            CreateTransformMatrix();
 
-            // Main framebuffer
-            _gd.ResizeMainWindow((uint)windowSize.X, (uint)windowSize.Y);
+            CreateTransformMatrix();
         }
 
         #region Render
 
         public void Render()
         {
-            _commandList.Begin();
-
-            _commandList.SetFramebuffer(_gd.SwapchainFramebuffer);
-
-            _commandList.ClearColorTarget(0, _clearColor);
-            _commandList.ClearDepthStencil(1, 0x00);
-
-            _commandList.SetFullViewports();
-
-            // todo: scissors rect based on draw command?
-            // now scissoring is done in fragment shader
-            _commandList.SetFullScissorRects();
-
             // Update vertices & indices buffers
             // Resizes buffers if they are not big enough
             UpdateVertices(DrawCache.Vertices);
@@ -72,11 +51,6 @@ namespace VeldridExample
 
             // do the rendering
             DoRender();
-
-            _commandList.End();
-
-            _gd.SubmitCommands(_commandList);
-            _gd.SwapBuffers();
         }
 
         void DoRender()
@@ -108,8 +82,9 @@ namespace VeldridExample
                 {
                     _previousDrawCommandType = drawCommand.DrawCommandType;
 
-                    // must set new pipeline & uniform rs
+                    // set new pipeline
                     _commandList.SetPipeline(GetPipeline(drawCommand.DrawCommandType));
+                    // must rebind
                     _commandList.SetGraphicsResourceSet(0, _uniformBufferRS);
 
                     _updateTextureRS = true;
@@ -149,12 +124,9 @@ namespace VeldridExample
                     1.0f);
         }
 
+        // dispose resources
         public void Dispose()
         {
-            _gd.WaitForIdle();
-
-            _commandList?.Dispose();
-
             // pipelines
             foreach (var pipeline in _pipelines.Values)
             {
@@ -172,8 +144,6 @@ namespace VeldridExample
             {
                 tex?.Dispose();
             }
-
-            _gd.Dispose();
         }
     }
 }
