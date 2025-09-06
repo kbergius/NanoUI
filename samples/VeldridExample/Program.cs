@@ -20,12 +20,10 @@ public class Program
     // DemoTypes:
     // Docking, Drawing, SDFText, SvgShapes, TextShapes, UIBasic, UIExtended, UIExtended2,
     // UIExperimental, UILayouts
-    static DemoType _demoType = DemoType.UIBasic;
+    static DemoType _demoType = DemoType.Drawing;
 
     static PerfGraph _frameGraph;
 
-    // Multisample anti-aliasing
-    static bool _msaa = true;
     // use safe (managed) or unsafe (uses pointers) FontManager
     static bool _useSafeFontManager = false;
 
@@ -89,7 +87,7 @@ public class Program
 
     static void LoadExample()
     {
-        _renderer = new(_window, _msaa);
+        _renderer = new(_window);
 
         // create nvg context with default font manager (StbTrueType)
         _ctx = new NvgContext(_renderer, _useSafeFontManager, GetDevicePixelRatio());

@@ -18,10 +18,7 @@ namespace VeldridExample
         DeviceBuffer _transformBuffer;
         DeviceBuffer _fragmentUniformBuffer;
         ResourceSet _uniformBufferRS;
-        Framebuffer _framebuffer;
-        Texture _colorTexture;
-        Texture _depthTexture;
-
+        
         // Pipelines
         // note: you must have 3 pipelines:
         // - "normal" pipeline
@@ -38,47 +35,12 @@ namespace VeldridExample
 
         void InitResources()
         {
-            InitFramebuffer();
-
             InitModelPipeline();
 
             InitTextures();
 
             InitBuffers();
         }
-
-        #region Framebuffer
-
-        void InitFramebuffer()
-        {
-            // msaa / non-msaa
-            TextureSampleCount sampleCount = _msaa ? TextureSampleCount.Count4 : TextureSampleCount.Count1;
-
-            var colorDesc = TextureDescription.Texture2D(
-                (uint)_windowSize.X,
-                (uint)_windowSize.Y, 1, 1,
-                PixelFormat.R8_G8_B8_A8_UNorm,
-                TextureUsage.Sampled | TextureUsage.RenderTarget,
-                sampleCount);
-
-            _colorTexture = _gd.ResourceFactory.CreateTexture(colorDesc);
-
-            // note: create with stencil
-            var depthDesc = TextureDescription.Texture2D(
-                (uint)_windowSize.X,
-                (uint)_windowSize.Y, 1, 1,
-                PixelFormat.D24_UNorm_S8_UInt,
-                TextureUsage.DepthStencil,
-                sampleCount);
-
-            _depthTexture = _gd.ResourceFactory.CreateTexture(depthDesc);
-
-            var framebufferDesc = new FramebufferDescription(_depthTexture, _colorTexture);
-
-            _framebuffer = _gd.ResourceFactory.CreateFramebuffer(framebufferDesc);
-        }
-
-        #endregion
 
         #region Pipelines
 
@@ -126,7 +88,7 @@ namespace VeldridExample
                 PrimitiveTopology = PrimitiveTopology.TriangleList,
                 ShaderSet = creator.GetShaderSet(_gd),
                 ResourceLayouts = layouts,
-                Outputs = _framebuffer.OutputDescription,
+                Outputs = _gd.MainSwapchain.Framebuffer.OutputDescription,
                 ResourceBindingModel = ResourceBindingModel.Improved,
             };
         }
@@ -351,18 +313,5 @@ namespace VeldridExample
         }
 
         #endregion
-
-        void ResizeResources()
-        {
-            // Recreate framebuffer, framebuffer textures
-            _framebuffer?.Dispose();
-            _colorTexture?.Dispose();
-            _depthTexture?.Dispose();
-
-            // reinit framebuffer
-            InitFramebuffer();
-
-            // nothing to do in buffers  & pipelines
-        }
     }
 }
