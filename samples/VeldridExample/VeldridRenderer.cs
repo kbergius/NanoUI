@@ -18,16 +18,10 @@ namespace VeldridExample
         Matrix4x4 _tranformMatrix;
         RgbaFloat _clearColor = new RgbaFloat(0.3f, 0.3f, 0.32f, 1);
 
-        // used to get msaa anti-aliasing
-        VeldridPostProcessRenderer _postProcessRenderer;
-
-        bool _msaa;
-
-        public VeldridRenderer(IWindow window, bool msaa)
+        public VeldridRenderer(IWindow window) //, bool msaa)
         {
             _windowSize = new Vector2(window.Size.X, window.Size.Y);
-            _msaa = msaa;
-
+            
             CreateTransformMatrix();
 
             // Create a device with the "default" Graphics API (Vulkan for linux, DirectX11 for Windows, Metal for MacOS.)
@@ -36,8 +30,6 @@ namespace VeldridExample
             _commandList = _gd.ResourceFactory.CreateCommandList();
 
             InitResources();
-
-            _postProcessRenderer = new VeldridPostProcessRenderer(_gd, _windowSize, msaa);
         }
 
         public void WindowResize(Vector2 windowSize)
@@ -48,12 +40,6 @@ namespace VeldridExample
 
             // Main framebuffer
             _gd.ResizeMainWindow((uint)windowSize.X, (uint)windowSize.Y);
-
-            // UI Framebuffer
-            ResizeResources();
-
-            // Postprocess resolved texture
-            _postProcessRenderer.WindowResize(_gd, windowSize);
         }
 
         #region Render
@@ -62,7 +48,7 @@ namespace VeldridExample
         {
             _commandList.Begin();
 
-            _commandList.SetFramebuffer(_framebuffer);
+            _commandList.SetFramebuffer(_gd.SwapchainFramebuffer);
 
             _commandList.ClearColorTarget(0, _clearColor);
             _commandList.ClearDepthStencil(1, 0x00);
@@ -86,9 +72,6 @@ namespace VeldridExample
 
             // do the rendering
             DoRender();
-
-            // this is used to provide msaa antialiasing
-            _postProcessRenderer.Render(_commandList, _gd, _colorTexture);
 
             _commandList.End();
 
@@ -172,11 +155,6 @@ namespace VeldridExample
 
             _commandList?.Dispose();
 
-            // framebuffer
-            _framebuffer?.Dispose();
-            _colorTexture?.Dispose();
-            _depthTexture?.Dispose();
-
             // pipelines
             foreach (var pipeline in _pipelines.Values)
             {
@@ -194,8 +172,6 @@ namespace VeldridExample
             {
                 tex?.Dispose();
             }
-
-            _postProcessRenderer?.Dispose();
 
             _gd.Dispose();
         }

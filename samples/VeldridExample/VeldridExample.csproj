@@ -10,19 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Shaders\PostProcess.frag" />
-    <None Remove="Shaders\PostProcess.vert" />
     <None Remove="Shaders\shader.frag" />
     <None Remove="Shaders\shader.vert" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Shaders\postprocess.frag">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shaders\postprocess.vert">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Shaders\shader.frag">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
