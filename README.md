@@ -30,11 +30,13 @@ NanoUI is a small, extendable and quite feature-rich UI & drawing library with n
 
 ### 1. Create INvgRenderer
 
-NanoUI knows nothing about your OS, graphics system and windowing environment. So you must create an **INvgRenderer** implementation.
+NanoUI knows nothing about your OS, graphics system and windowing environment.
 
-There are examples, how to do this, in the **samples** folder.
+In the **samples** folder there are ready-made renderers for **MonoGame** and **Veldrid** - you can use them.
 
-If your framework already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
+If your platform is different, you must create your own **INvgRenderer** implementation.
+
+**Note:** If your framework already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
 
 
 ### 2. Init NvgContext
