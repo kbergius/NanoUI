@@ -11,17 +11,15 @@ namespace VeldridExample
     {
         GraphicsDevice _gd;
         CommandList _commandList;
-
-        Vector2 _windowSize;
+                
         Matrix4x4 _tranformMatrix;
         
         public VeldridRenderer(GraphicsDevice gd, CommandList commandList, Vector2 windowSize)
         {
             _gd = gd;
             _commandList = commandList;
-            _windowSize = windowSize;
-            
-            CreateTransformMatrix();
+                        
+            CreateTransformMatrix(windowSize);
 
             InitResources();
         }
@@ -29,9 +27,7 @@ namespace VeldridExample
         public void WindowResize(Vector2 windowSize)
         {
             // set winfow size - used with transform buffer
-            _windowSize = windowSize;
-
-            CreateTransformMatrix();
+            CreateTransformMatrix(windowSize);
         }
 
         #region Render
@@ -113,12 +109,12 @@ namespace VeldridExample
         #endregion
 
         // after window size changed we must create new transform matrix
-        void CreateTransformMatrix()
+        void CreateTransformMatrix(Vector2 windowSize)
         {
             _tranformMatrix = Matrix4x4.CreateOrthographicOffCenter(
                     0f,
-                    _windowSize.X,
-                    _windowSize.Y,
+                    windowSize.X,
+                    windowSize.Y,
                     0.0f,
                     -1.0f,
                     1.0f);
