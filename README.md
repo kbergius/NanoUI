@@ -36,7 +36,7 @@ In the **samples** folder there are ready-made renderers for **MonoGame** and **
 
 If your platform is different, you must create your own **INvgRenderer** implementation.
 
-**Note:** If your framework already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
+**Note:** If your platform already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
 
 
 ### 2. Init NvgContext
@@ -142,9 +142,9 @@ There are plenty of examples, how to create/use widgets in the **samples/NanoUID
 There is also more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) document.
 
 
-## Example
+## Examples
 
-There is an example, that uses [Veldrid](https://github.com/veldrid/veldrid) backend.
+There are examples, that use [MonoGame](https://monogame.net/) or [Veldrid](https://github.com/veldrid/veldrid) backend.
 
 There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDemos/Assets/shaders** folder.
 
@@ -159,4 +159,5 @@ There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDem
 **Samples**:
 - [Silk.NET](https://github.com/dotnet/Silk.NET)
 - [Veldrid](https://github.com/veldrid/veldrid)
+- [MonoGame](https://monogame.net/)
 - [StbImageSharp](https://github.com/StbSharp/StbImageSharp)
