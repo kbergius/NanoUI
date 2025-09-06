@@ -21,8 +21,8 @@ namespace VeldridExample
         
         // Pipelines
         // note: you must have 3 pipelines:
-        // - "normal" pipeline
-        // - fill stencil pipeline
+        // - standard pipeline
+        // - fill stencil pipeline (fills stencil buffer, no drawing here)
         // - fill pipeline
         // and use one based on DrawCommand's DrawCommandType
         GraphicsPipelineDescription _modelPipeline;
@@ -30,7 +30,7 @@ namespace VeldridExample
 
         // Texture resourcesets
         ResourceSetDescription _textureRSDesc;
-        ResourceSet _nullTextureRS;
+        ResourceSet _noTextureRS;
         Dictionary<int, ResourceSet> _textureRes = new();
 
         void InitResources()
@@ -203,33 +203,33 @@ namespace VeldridExample
 
         unsafe void InitTextures()
         {
-            // create white Texture
-            RgbaByte color = RgbaByte.White;
-            var nullTexture = _gd.ResourceFactory.CreateTexture(TextureDescription.Texture2D(
+            // create pink texture
+            RgbaByte color = RgbaByte.Pink;
+            var noTexture = _gd.ResourceFactory.CreateTexture(TextureDescription.Texture2D(
                     1, 1, 1, 1, PixelFormat.R8_G8_B8_A8_UNorm, TextureUsage.Sampled));
 
-            _gd.UpdateTexture(nullTexture, (nint)(&color), 4, 0, 0, 0, 1, 1, 1, 0, 0);
+            _gd.UpdateTexture(noTexture, (nint)(&color), 4, 0, 0, 0, 1, 1, 1, 0, 0);
 
             _textureRSDesc = new ResourceSetDescription(
                 _modelPipeline.ResourceLayouts[1],
-               nullTexture,
+               noTexture,
                _gd.LinearSampler); // todo overridden!
 
-            _nullTextureRS = _gd.ResourceFactory.CreateResourceSet(_textureRSDesc);
+            _noTextureRS = _gd.ResourceFactory.CreateResourceSet(_textureRSDesc);
         }
 
         ResourceSet GetTextureRS(int texture)
         {
             if (texture < 0)
             {
-                return _nullTextureRS;
+                return _noTextureRS;
             }
 
             if (!_textureRes.TryGetValue(texture, out var rs))
             {
                 if (!TryGetTexture(texture, out var tex, out var sampler))
                 {
-                    return _nullTextureRS;
+                    return _noTextureRS;
                 }
 
                 _textureRSDesc.BoundResources[0] = tex;

@@ -1,1 +1,4 @@
-**Note:** You can view other demos changing **_demoType** in VeldridExample's **Program.cs**.
+**Note:** You can view other demos changing **_demoType** in:
+
+* VeldridExample: **Program.cs**
+* MonoGameExample: **NanoUIGame**
