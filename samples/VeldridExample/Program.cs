@@ -3,15 +3,20 @@ using NanoUIDemos;
 using Silk.NET.Input;
 using Silk.NET.Maths;
 using Silk.NET.Windowing;
+using Silk.NET.Windowing.Extensions.Veldrid;
 using System.Numerics;
+using Veldrid;
+using VeldridExample;
 using Key = Silk.NET.Input.Key;
 using MouseButton = Silk.NET.Input.MouseButton;
-using VeldridExample;
 
 public class Program
 {
     static IWindow _window;
     static IInputContext _input;
+    static GraphicsDevice _gd;
+    static CommandList _commandList;
+    static RgbaFloat _clearColor = new RgbaFloat(0.3f, 0.3f, 0.32f, 1);
     static NvgContext _ctx;
     static VeldridRenderer _renderer;
 
@@ -46,10 +51,10 @@ public class Program
 
         _window = Window.Create(windowOptions);
 
-        _window.Load += Load;
+        _window.Load += OnLoad;
         _window.FramebufferResize += OnFramebufferResize;
         _window.Update += OnUpdate;
-        _window.Render += Render;
+        _window.Render += OnRender;
         _window.Closing += Dispose;
 
         _window.Run();
@@ -59,7 +64,7 @@ public class Program
 
     #region Window Events
 
-    static void Load()
+    static void OnLoad()
     {
         _input = _window.CreateInput();
 
@@ -87,12 +92,20 @@ public class Program
 
     static void LoadExample()
     {
-        _renderer = new(_window);
+        var windowSize = new Vector2(_window.Size.X, _window.Size.Y);
+
+        // Create a device with the default Graphics API (Vulkan for linux, DirectX11 for Windows, Metal for MacOS.)
+        // note: create graphics device with stencil buffer depth format (PixelFormat.D24_UNorm_S8_UInt)
+        _gd = _window.CreateGraphicsDevice(new GraphicsDeviceOptions(false, PixelFormat.D24_UNorm_S8_UInt, false, ResourceBindingModel.Improved, true, true));
+
+        _commandList = _gd.ResourceFactory.CreateCommandList();
+
+        _renderer = new(_gd, _commandList, windowSize);
 
         // create nvg context with default font manager (StbTrueType)
         _ctx = new NvgContext(_renderer, _useSafeFontManager, GetDevicePixelRatio());
 
-        _demo = DemoFactory.CreateDemo(_ctx, _demoType, new Vector2(_window.Size.X, _window.Size.Y));
+        _demo = DemoFactory.CreateDemo(_ctx, _demoType, windowSize);
         
         if(_demo.Screen != null)
         {
@@ -119,6 +132,9 @@ public class Program
     static void OnFramebufferResize(Vector2D<int> size)
     {
         var windowSize = new Vector2(size.X, size.Y);
+
+        // Main framebuffer
+        _gd.ResizeMainWindow((uint)size.X, (uint)size.Y);
 
         // handles all resource recreation
         _renderer.WindowResize(windowSize);
@@ -152,8 +168,26 @@ public class Program
         }
     }
 
-    static void Render(double _)
+    static void OnRender(double _)
     {
+        _commandList.Begin();
+
+        // set main framebuffer (this assumes that the ui is rendered as an overlay
+        // after other rendering is done)
+        _commandList.SetFramebuffer(_gd.SwapchainFramebuffer);
+
+        _commandList.ClearColorTarget(0, _clearColor);
+        _commandList.ClearDepthStencil(1, 0x00);
+
+        _commandList.SetFullViewports();
+
+        // todo: scissors rect based on draw command?
+        // now scissoring is done in fragment shader
+        _commandList.SetFullScissorRects();
+
+        // you can do here your other rendering!
+
+        // render ui as an ovelay
         _ctx.BeginFrame();
 
         _demo.Draw(_ctx);
@@ -163,15 +197,26 @@ public class Program
 
         // triggers rendering in renderer specified in NvgContext
         _ctx.EndFrame();
+
+        _commandList.End();
+
+        _gd.SubmitCommands(_commandList);
+        _gd.SwapBuffers();
     }
 
     static void Dispose()
     {
+        _gd.WaitForIdle();
+
         _demo.Dispose();
         
         _renderer?.Dispose();
 
         _ctx.Dispose();
+
+        _commandList?.Dispose();
+
+        _gd.Dispose();
     }
 
     #endregion
