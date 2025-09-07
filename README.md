@@ -36,7 +36,7 @@ In the **samples** folder there are ready-made renderers for **MonoGame** and **
 
 If your platform is different, you must create your own **INvgRenderer** implementation.
 
-**Note:** If your platform already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be similar.
+**Note:** If your platform already has a [Dear ImGui](https://github.com/ocornut/imgui) renderer, **NanoUI** renderer will be quite similar.
 
 
 ### 2. Init NvgContext
@@ -71,7 +71,7 @@ ctx.EndFrame();
 
 This will render UI as an overlay.
 
-**Hint:** You can also put **BeginFrame()** call at the beginning of your main draw/render method. So you can display your orcs' healthbars using **immediate mode** drawing and setting scale based on orc's distance to camera.
+**Hint:** You can also put **BeginFrame()** call at the beginning of your main draw/render method. So you can for example display your orcs' healthbars using **immediate mode** drawing and setting scale based on orc's distance to camera.
 
 ## How to use NanoUI
 
