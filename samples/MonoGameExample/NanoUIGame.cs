@@ -17,7 +17,7 @@ namespace MonoGameExample
         // DemoTypes:
         // Docking, Drawing, SDFText, SvgShapes, TextShapes, UIBasic, UIExtended, UIExtended2,
         // UIExperimental, UILayouts
-        static DemoType _demoType = DemoType.UIBasic;
+        static DemoType _demoType = DemoType.Drawing;
 
         // MonoGame doesn't "like" unsafe version (maybe the fault is in NanoUI?)
         static bool _useSafeFontManager = true;

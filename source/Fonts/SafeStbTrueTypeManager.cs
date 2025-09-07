@@ -138,8 +138,17 @@ namespace NanoUI.Fonts
             if (fontBaking == GlyphBaking.Normal)
             {
                 // normal bitmap with real font size
-                FakePtr<byte> output = new FakePtr<byte>(texData.ToArray(), startIndex);
+
+                // todo: this is really ugly fix
+                byte[] tempData = texData.ToArray();
+
+                FakePtr<byte> output = new FakePtr<byte>(tempData, startIndex);
                 font.stbtt_MakeGlyphBitmap(output, outWidth, outHeight, outStride, scaleX, scaleY, glyph);
+
+                for (int i = 0; i < tempData.Length; i++)
+                {
+                    texData[i] = tempData[i];
+                }
             }
             else
             {
