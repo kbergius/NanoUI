@@ -71,6 +71,7 @@ ctx.EndFrame();
 
 This will render UI as an overlay.
 
+**Hint:** You can also put **BeginFrame()** call at the beginning of your main draw/render method. So you can display your orcs' healthbars using **immediate mode** drawing and setting scale based on orc's distance to camera.
 
 ## How to use NanoUI
 
