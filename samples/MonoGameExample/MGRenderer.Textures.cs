@@ -82,7 +82,7 @@ namespace MonoGameExample
             {
                 switch (tex.Format)
                 {
-                    case SurfaceFormat.Single:
+                    case SurfaceFormat.Alpha8:
                         // note: NanoUI's font manager sends data in 8-bit format, when it wants to update
                         // font atlas texture. In this example this surface format is configured to use
                         // Alpha8 format (unsigned A 8-bit format).

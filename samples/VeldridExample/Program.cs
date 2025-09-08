@@ -34,6 +34,7 @@ public class Program
 
     public static void Main()
     {
+        // Silk.NET stuff
         WindowOptions windowOptions = WindowOptions.Default;
         windowOptions.FramesPerSecond = -1;
         windowOptions.Size = new Vector2D<int>(1200, 700);
@@ -66,6 +67,7 @@ public class Program
 
     static void OnLoad()
     {
+        // More Silk.NET
         _input = _window.CreateInput();
 
         foreach (IKeyboard keyboard in _input.Keyboards)
@@ -100,6 +102,7 @@ public class Program
 
         _commandList = _gd.ResourceFactory.CreateCommandList();
 
+        // init NnoUI
         _renderer = new(_gd, _commandList, windowSize);
 
         // create nvg context with default font manager (StbTrueType)
@@ -187,7 +190,7 @@ public class Program
 
         // you can do here your other rendering!
 
-        // render ui as an ovelay
+        // render ui as an overlay
         _ctx.BeginFrame();
 
         _demo.Draw(_ctx);
@@ -295,7 +298,7 @@ public class Program
 
     #endregion
 
-    #region Clipboard & Pointer type Events
+    #region Clipboard & Pointer type events
 
     static void OnClipboardSet(string text)
     {

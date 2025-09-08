@@ -140,9 +140,6 @@ namespace VeldridExample.Shaders
             return specializations.ToArray();
         }
 
-        // same in ui & postprocess
-        // note: if your postprocess FullScreenVertex differs from NanoUI Vertex, you must set this differently
-        // for postprocess
         static VertexLayoutDescription[] GetVertexLayouts()
         {
             return
