@@ -68,6 +68,11 @@ namespace MonoGameExample
             // loop draw commands
             foreach (var drawCommand in DrawCache.DrawCommands)
             {
+                if (drawCommand.IndexCount <= 0)
+                {
+                    continue;
+                }
+
                 // uniform params
                 if (_uniformOffset != drawCommand.UniformOffset)
                 {
@@ -87,7 +92,7 @@ namespace MonoGameExample
                     _effect.Parameters["innerCol"].SetValue(uniform.InnerCol);
                     _effect.Parameters["outerCol"].SetValue(uniform.OuterCol);
                     // note: this is not actually used, since shader has been split to separate
-                    // techniques (didn't compile as 1, because it is too complicated)
+                    // techniques (didn't compile as 1, because it is too complex)
                     //_effect.Parameters["actionType"].SetValue(uniform.ActionType);
                     _effect.Parameters["fontSize"].SetValue(uniform.FontSize);
 
@@ -133,15 +138,12 @@ namespace MonoGameExample
                 {
                     pass.Apply();
 
-                    if (drawCommand.IndexCount > 0)
-                    {
-                        // draw indexed
-                        _device.DrawIndexedPrimitives(
-                            PrimitiveType.TriangleList,
-                            drawCommand.VertexOffset,
-                            drawCommand.IndexOffset,
-                            drawCommand.IndexCount / 3);
-                    }
+                    // draw indexed
+                    _device.DrawIndexedPrimitives(
+                        PrimitiveType.TriangleList,
+                        drawCommand.VertexOffset,
+                        drawCommand.IndexOffset,
+                        drawCommand.IndexCount / 3);
                 }
             }
         }

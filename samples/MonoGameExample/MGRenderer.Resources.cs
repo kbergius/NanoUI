@@ -32,7 +32,7 @@ namespace MonoGameExample
         // 2 = FillStencil
         // 3 = Text (normal)
         // 4 = SDF
-        // note: couldn't use only 1 technique, since pixel shader is too complicated and it didn't compile.
+        // note: couldn't use only 1 technique, since pixel shader is too complex and it didn't compile.
         // (error X5608: Compiled shader code uses too many arithmetic instruction slots ...)
         EffectTechnique[] _techniques = new EffectTechnique[5];
 
@@ -76,7 +76,7 @@ namespace MonoGameExample
             _vertexBuffer = new VertexBuffer(_device, _vertexDeclaration, INIT_VERTICES_COUNT, BufferUsage.WriteOnly);
             _vertices = new Vertex[_vertexBuffer.VertexCount];
             
-            // indices
+            // indices (count is approx)
             _indexBuffer = new IndexBuffer(_device, typeof(ushort), INIT_VERTICES_COUNT * 3, BufferUsage.WriteOnly);
             _indices = new ushort[_indexBuffer.IndexCount];
         }

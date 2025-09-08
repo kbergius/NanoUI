@@ -50,6 +50,16 @@ namespace MonoGameExample
 
         protected override void LoadContent()
         {
+            Window.Title = $"NanoUI - {_demoType.ToString()}";
+
+            // add window, key & char events
+            Window.ClientSizeChanged += OnWindowResized;
+            Window.KeyDown += OnKeyDown;
+            Window.KeyUp += OnKeyUp;
+            Window.TextInput += OnChar;
+
+            // NanoUI stuff
+
             // todo: way to setup MSAA
             _renderer = new MGRenderer(GraphicsDevice);
 
@@ -71,14 +81,6 @@ namespace MonoGameExample
 
             // create performance graph
             _perfGraph = new PerfGraph(PerfGraph.GraphRenderStyle.Fps, "Frame Time");
-
-            Window.Title = $"NanoUI - {_demoType.ToString()}";
-
-            // add window, key & char events
-            Window.ClientSizeChanged += OnWindowResized;
-            Window.KeyDown += OnKeyDown;
-            Window.KeyUp += OnKeyUp;
-            Window.TextInput += OnChar;
         }
 
         // to set DPI
@@ -94,7 +96,7 @@ namespace MonoGameExample
 
         #region Window
 
-        void OnWindowResized(object? sender, EventArgs e)
+        void OnWindowResized(object? _, EventArgs e)
         {
             // MonoGame handles?
 
@@ -104,9 +106,9 @@ namespace MonoGameExample
 
         #endregion
 
-        #region Keys, chars
+        #region Keys, Chars
 
-        void OnKeyDown(object? sender, InputKeyEventArgs e)
+        void OnKeyDown(object? _, InputKeyEventArgs e)
         {
             if(InputMappings.TryGetKey(e.Key, true, out UIKey key))
             {
@@ -114,7 +116,7 @@ namespace MonoGameExample
             }
         }
 
-        void OnKeyUp(object? sender, InputKeyEventArgs e)
+        void OnKeyUp(object? _, InputKeyEventArgs e)
         {
             if (InputMappings.TryGetKey(e.Key, false, out UIKey key))
             {
@@ -122,7 +124,7 @@ namespace MonoGameExample
             }
         }
 
-        void OnChar(object? sender, TextInputEventArgs e)
+        void OnChar(object? _, TextInputEventArgs e)
         {
             // todo: we could check here if current widgets accepts chars (OnKeyChar implemented)
             // Possible wrap StartTextInput() & StopTextInput().
@@ -289,6 +291,7 @@ namespace MonoGameExample
             GraphicsDevice.Clear(_clearColor);
 
             // draw game?
+
             base.Draw(gameTime);
 
             // start NanoUI drawing (overlay)
