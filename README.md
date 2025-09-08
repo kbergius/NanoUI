@@ -1,7 +1,6 @@
 [![Actions Status](https://github.com/kbergius/NanoUI/workflows/Build/badge.svg)](https://github.com/kbergius/NanoUI/Build)
 [![NuGet](https://img.shields.io/nuget/v/NanoUI.svg)](https://www.nuget.org/packages/NanoUI)
 [![Nuget](https://img.shields.io/nuget/dt/NanoUI)](https://www.nuget.org/packages/NanoUI/)
-[![Discord](https://img.shields.io/discord/1401887764437270529.svg?style=flat&logo=discord&label=discord&logoColor=f2f2f2)](https://discord.gg/s9EDCyRbjy)
 
 NanoUI is a small, extendable and quite feature-rich UI & drawing library with no external dependencies, native libraries and no extra assets.
 
