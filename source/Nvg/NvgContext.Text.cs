@@ -89,18 +89,27 @@ namespace NanoUI.Nvg
 
         #region RenderStyles
 
+        /// <summary>
+        /// Sets the font size of current text style.
+        /// </summary>
         public void FontSize(float fontSize)
         {
             GetState().FontSize = fontSize;
         }
 
-        // note: this is additional spacing (default is 0)
+        /// <summary>
+        /// Sets the char spacing of current text style.
+        /// Note: this is additional spacing (default is 0)
+        /// </summary>
         public void TextCharSpacing(float spacing)
         {
             GetState().TextCharSpacing = spacing;
         }
 
-        // note: this is proportional line height (default is 1)
+        /// <summary>
+        /// Sets the proportinal line height of current text style. The line height is specified as multiple of font size.
+        /// Note: this is PROPORTIONAL line height (default is 1)
+        /// </summary>
         public void TextLineHeight(float lineHeight)
         {
             GetState().TextLineHeight = lineHeight;
@@ -115,16 +124,25 @@ namespace NanoUI.Nvg
             return bounds.Height;
         }
 
+        /// <summary>
+        /// Sets the text align of current text style.
+        /// </summary>
         public void TextAlign(TextHorizontalAlign horizontal, TextVerticalAlign vertical)
         {
             TextAlign(ConvertUtils.ConvertTextAlign(horizontal, vertical));
         }
 
+        /// <summary>
+        /// Sets the text align of current text style.
+        /// </summary>
         public void TextAlign(TextAlignment align)
         {
             GetState().TextAlign = align;
         }
 
+        /// <summary>
+        /// Sets the font face based on specified id of current text style.
+        /// </summary>
         public void FontFaceId(int font)
         {
             if (font == Globals.INVALID)
@@ -150,7 +168,9 @@ namespace NanoUI.Nvg
             GetState().Fill.Reset(innerColor, outerColor);
         }
 
-        // Normal baking
+        /// <summary>
+        /// Sets the blur of current text style. Only with GlypBaking.Normal.
+        /// </summary>
         public void TextNormalBlur(int val)
         {
             GetState().TextBlur = Math.Clamp(val, 0, 20);
@@ -188,15 +208,31 @@ namespace NanoUI.Nvg
 
         #region Text
 
-        // returns x position after text drawn
-        // nvgText
+        /// <summary>
+        /// Draws icon at specified location (icons should be in TTF file).
+        /// Note: Returns x position after icon drawn.
+        /// </summary>
         public float Text(float x, float y, int icon)
             => Text(new Vector2(x, y), ConvertUtils.GetIconString(icon));
+
+        /// <summary>
+        /// Draws icon at specified location (icons should be in TTF file).
+        /// Note: Returns x position after icon drawn.
+        /// </summary>
         public float Text(Vector2 pos, int icon)
             => Text(pos, ConvertUtils.GetIconString(icon));
 
+        /// <summary>
+        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Note: Returns x position after text drawn.
+        /// </summary>
         public float Text(float x, float y, ReadOnlySpan<char> text)
             => Text(new Vector2(x, y), text);
+
+        /// <summary>
+        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Note: Returns x position after text drawn.
+        /// </summary>
         public float Text(Vector2 pos, ReadOnlySpan<char> text)
         {
             // note: we must pass NvgContext in case glyphs are "baked" in shapes and we
@@ -224,8 +260,13 @@ namespace NanoUI.Nvg
 
         #region TextBox
 
-        // note: it is not recommended to use this in production code, since this calculates text rows every frame.
-        // instead use TextBreakLines and cache TextRows.
+        /// <summary>
+        /// Draws multi-line text string at specified location wrapped at the specified width. Only the sub-string up to the end is drawn.
+        /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
+        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
+        /// instead use TextBreakLines and cache TextRows.
+        /// </summary>
         public bool TextBox(Vector2 position, float breakRowWidth, ReadOnlySpan<char> text, int maxRows = int.MaxValue)
         {
             return TextBox(position.X, position.Y, breakRowWidth, text, maxRows);
