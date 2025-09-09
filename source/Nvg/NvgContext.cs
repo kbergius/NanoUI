@@ -420,7 +420,9 @@ namespace NanoUI.Nvg
             _pathWinding(dir);
         }
 
-        // nvgFill
+        /// <summary>
+        /// Fills the current path with current fill style.
+        /// </summary>
         public void Fill()
         {
             ref NvgState state = ref GetState();
@@ -434,7 +436,9 @@ namespace NanoUI.Nvg
             DrawCache.CreateFillCommands(state, state.Fill, fringeWidth, _bounds, _paths.AsReadOnlySpan());
         }
 
-        // nvgStroke
+        /// <summary>
+        /// Fills the current path with current stroke style.
+        /// </summary>
         public void Stroke()
         {
             ref NvgState state = ref GetState();
@@ -593,14 +597,24 @@ namespace NanoUI.Nvg
 
         #region Scissoring
 
-        // todo: is Scissor working if directly called (not from IntersectScissor)?
-        // nvgScissor
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(Rect rect)
             => Scissor(rect.Position, rect.Size);
 
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(float x, float y, float width, float height)
             => Scissor(new Vector2(x, y), new Vector2(width, height));
 
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(Vector2 pos, Vector2 size)
         {
             size.X = MathF.Max(0.0f, size.X);
@@ -617,13 +631,36 @@ namespace NanoUI.Nvg
             state.Scissor.Extent = size * 0.5f;
         }
 
-        // nvgIntersectScissor
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(Vector2 pos, Vector2 size)
             => IntersectScissor(new Rect(pos, size));
 
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(float x, float y, float width, float height)
             => IntersectScissor(new Rect(x, y, width, height));
 
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(Rect rect)
         {
             ref NvgState state = ref GetState();
@@ -651,7 +688,9 @@ namespace NanoUI.Nvg
             Scissor(r.Position, r.Size);
         }
 
-        // nvgResetScissor
+        /// <summary>
+        /// Resets and disables scissoring.
+        /// </summary>
         public void ResetScissor()
         {
             GetState().Scissor.Reset();
