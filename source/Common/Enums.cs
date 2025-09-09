@@ -4,12 +4,39 @@ namespace NanoUI.Common
 {
     public enum BrushType
     {
+        /// <summary>
+        /// Undefinied (none)
+        /// </summary>
         Undefinied,
+
+        /// <summary>
+        /// BoxGradient
+        /// </summary>
         BoxGradient,
+
+        /// <summary>
+        /// LinearGradient
+        /// </summary>
         LinearGradient,
+
+        /// <summary>
+        /// RadialGradient
+        /// </summary>
         RadialGradient,
+
+        /// <summary>
+        /// Solid (single) color
+        /// </summary>
         Solid,
+
+        /// <summary>
+        /// Texture (image)
+        /// </summary>
         Texture,
+
+        /// <summary>
+        /// Svg file
+        /// </summary>
         Svg
     }
 
@@ -17,96 +44,278 @@ namespace NanoUI.Common
     [Flags]
     public enum ButtonFlags
     {
+        /// <summary>
+        /// NormalButton
+        /// </summary>
         NormalButton = 1 << 0,
+
+        /// <summary>
+        /// RadioButton
+        /// </summary>
         RadioButton = 1 << 1,
+
+        /// <summary>
+        /// ToggleButton
+        /// </summary>
         ToggleButton = 1 << 2,
     }
 
     // Currently only Window uses
+    // todo: Body not implemented
     public enum DragMode
     {
+        /// <summary>
+        /// Header (reposition widget)
+        /// </summary>
         Header,
-        //Body, // this is not implemented
+
+        /// <summary>
+        /// Left (resize widget)
+        /// </summary>
         Left,
+
+        /// <summary>
+        /// Right (resize widget)
+        /// </summary>
         Right,
+
+        /// <summary>
+        /// Top (resize widget)
+        /// </summary>
         Top,
+
+        /// <summary>
+        /// Bottom (resize widget)
+        /// </summary>
         Bottom,
+
+        /// <summary>
+        /// RightBottomCorner (resize widget horizontally & vertically)
+        /// </summary>
         RightBottomCorner,
+
+        /// <summary>
+        /// None (no grag behavior)
+        /// </summary>
         NONE,
     }
 
     public enum FileDialogType
     {
+        /// <summary>
+        /// New file dialog
+        /// </summary>
         New,
+
+        /// <summary>
+        /// Open file dialog
+        /// </summary>
         Open,
+
+        /// <summary>
+        /// SaveAs file dialog
+        /// </summary>
         SaveAs,
     }
 
     public enum FileFolderType
     {
+        /// <summary>
+        /// HardDrive
+        /// </summary>
         HardDrive,
+
+        /// <summary>
+        /// Folder
+        /// </summary>
         Folder,
+
+        /// <summary>
+        /// File
+        /// </summary>
         File
     }
 
     public enum GlyphBaking : int
     {
-        Normal,  // uses normal rendering in shader (bitmap)
-        SDF,     // uses sdf rendering in shader  (bitmap)
-        Shapes   // draws glyphs as vector graphics shapes (uses Paint & PathAPI)
+        /// <summary>
+        /// Glyphs converted to "normal" bitmaps
+        /// </summary>
+        Normal,
+
+        /// <summary>
+        /// Glyphs converted to SDF bitmaps
+        /// </summary>
+        SDF,
+
+        /// <summary>
+        /// Glyphs converted to shapes
+        /// </summary>
+        Shapes
     }
 
     public enum IconAlign
     {
-        Left = 0,         ///< Button icon on the far left.
-        LeftCentered = 1, ///< Button icon on the left, centered (depends on caption text length).
-        RightCentered = 2,///< Button icon on the right, centered (depends on caption text length).
-        Right = 3         ///< Button icon on the far right.
+        /// <summary>
+        /// Button icon on the far left
+        /// </summary>
+        Left = 0,
+
+        /// <summary>
+        /// Button icon on the left, centered (depends on caption text length).
+        /// </summary>
+        LeftCentered = 1,
+
+        /// <summary>
+        /// Button icon on the right, centered (depends on caption text length).
+        /// </summary>
+        RightCentered = 2,
+
+        /// <summary>
+        /// Button icon on the far right.
+        /// </summary>
+        Right = 3
     }
 
     // The available icon positions.
+    // todo: same as IconAlign
     public enum IconPosition
     {
-        Left,         //< Button icon on the far left.
-        LeftCentered, //< Button icon on the left, centered (depends on caption text length).
-        RightCentered,//< Button icon on the right, centered (depends on caption text length).
-        Right         //< Button icon on the far right.
+        /// <summary>
+        /// Button icon on the far left
+        /// </summary>
+        Left,
+
+        /// <summary>
+        /// Button icon on the left, centered (depends on caption text length)
+        /// </summary>
+        LeftCentered,
+
+        /// <summary>
+        /// Button icon on the right, centered (depends on caption text length)
+        /// </summary>
+        RightCentered,
+
+        /// <summary>
+        /// Button icon on the far right
+        /// </summary>
+        Right
     }
 
     public enum LayoutAlignment : byte
     {
-        Minimum = 0, // Take only as much space as is required. (top/left)
-        Middle,      // Center align. (center/middle)
-        Maximum,     // Take as much space as is allowed. (bottom/right)
-        Fill         // Fill according to preferred sizes. // (stretch)
+        /// <summary>
+        /// Take only as much space as is required (top/left)
+        /// </summary>
+        Minimum = 0,
+
+        /// <summary>
+        /// Center align (center/middle)
+        /// </summary>
+        Middle,
+
+        /// <summary>
+        /// Take as much space as is allowed (bottom/right)
+        /// </summary>
+        Maximum,
+
+        /// <summary>
+        /// Fill according to preferred sizes
+        /// </summary>
+        Fill
     }
 
     public enum LineCap
     {
+        /// <summary>
+        /// Butt
+        /// </summary>
         Butt,
+
+        /// <summary>
+        /// Round
+        /// </summary>
         Round,
+
+        /// <summary>
+        /// Square
+        /// </summary>
         Square,
+
+        /// <summary>
+        /// Bevel
+        /// </summary>
         Bevel,
+
+        /// <summary>
+        /// Miter
+        /// </summary>
         Miter
     }
 
     public enum MessageDialogType
     {
+        /// <summary>
+        /// MessageBox with information icon
+        /// </summary>
         Information,
+
+        /// <summary>
+        /// MessageBox with question icon
+        /// </summary>
         Question,
+
+        /// <summary>
+        /// MessageBox with warning icon
+        /// </summary>
         Warning,
+
+        /// <summary>
+        /// MessageBox with error icon
+        /// </summary>
         Error
     }
 
     public enum NumericFormat
     {
+        /// <summary>
+        /// No decimals
+        /// </summary>
         NONE,
+
+        /// <summary>
+        /// No decimals (todo same as above)
+        /// </summary>
         Decimal0,
+
+        /// <summary>
+        /// 1 decimal
+        /// </summary>
         Decimal1,
+
+        /// <summary>
+        /// 2 decimals
+        /// </summary>
         Decimal2,
+
+        /// <summary>
+        /// 3 decimals
+        /// </summary>
         Decimal3,
+
+        /// <summary>
+        /// 4 decimals
+        /// </summary>
         Decimal4,
+
+        /// <summary>
+        /// 5 decimals
+        /// </summary>
         Decimal5,
+
+        /// <summary>
+        /// 6 decimals
+        /// </summary>
         Decimal6,
     }
 
@@ -114,68 +323,205 @@ namespace NanoUI.Common
     // value is passed to screen & user app
     public enum PointerType
     {
+        /// <summary>
+        /// Arrow
+        /// </summary>
         Arrow,
+
+        /// <summary>
+        /// IBeam (for editable texts)
+        /// </summary>
         IBeam,
+
+        /// <summary>
+        /// Crosshair
+        /// </summary>
         Crosshair,
+
+        /// <summary>
+        /// Hand
+        /// </summary>
         Hand,
+
+        /// <summary>
+        /// No
+        /// </summary>
         No,
+
+        /// <summary>
+        /// SizeAll (horizontal & vertical)
+        /// </summary>
         SizeAll,
+
+        /// <summary>
+        /// SizeNESW
+        /// </summary>
         SizeNESW,
+
+        /// <summary>
+        /// SizeNS
+        /// </summary>
         SizeNS,
+
+        /// <summary>
+        /// SizeNWSE
+        /// </summary>
         SizeNWSE,
+
+        /// <summary>
+        /// SizeWE
+        /// </summary>
         SizeWE,
+
+        /// <summary>
+        /// Wait
+        /// </summary>
         Wait,
+
+        /// <summary>
+        /// WaitArrow
+        /// </summary>
         WaitArrow,
     }
 
     // The direction of data flow for a layout
     public enum Orientation
     {
-        Horizontal = 0, // Layout expands on horizontal axis.
-        Vertical,       // Layout expands on vertical axis.
+        /// <summary>
+        /// Layout expands on horizontal axis
+        /// </summary>
+        Horizontal = 0,
+
+        /// <summary>
+        /// Layout expands on vertical axis
+        /// </summary>
+        Vertical,
     }
 
     // this is popup's position relative to its parent (UIPopupButton)
     public enum PopupPosition
     {
+        /// <summary>
+        /// LeftMiddle
+        /// </summary>
         LeftMiddle = 0,
+
+        /// <summary>
+        /// RightMiddle
+        /// </summary>
         RightMiddle,
-        RightTop, // menus etc
+
+        /// <summary>
+        /// RightTop
+        /// </summary>
+        RightTop,
+
+        /// <summary>
+        /// LeftTop
+        /// </summary>
         LeftTop,
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
         Bottom
     }
 
     [Flags]
     public enum SeparatorDrawFlag
     {
+        /// <summary>
+        /// Horizontal
+        /// </summary>
         Horizontal = 1 << 0,
+
+        /// <summary>
+        /// Vertical
+        /// </summary>
         Vertical = 1 << 1,
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
         Bottom = 1 << 2,
+
+        /// <summary>
+        /// Top
+        /// </summary>
         Top = 1 << 3,
+
+        /// <summary>
+        /// Left
+        /// </summary>
         Left = 1 << 4,
+
+        /// <summary>
+        /// Rigth
+        /// </summary>
         Rigth = 1 << 5,
+
+        /// <summary>
+        /// CenterH
+        /// </summary>
         CenterH = 1 << 6,
+
+        /// <summary>
+        /// CenterV
+        /// </summary>
         CenterV = 1 << 7
     }
 
     public enum ScrollableDragMode
     {
+        /// <summary>
+        /// None
+        /// </summary>
         None,
+
+        /// <summary>
+        /// Vertical
+        /// </summary>
         Vertical,
+
+        /// <summary>
+        /// Horizontal
+        /// </summary>
         Horizontal,
     }
 
     public enum ScrollbarType
     {
+        /// <summary>
+        /// No scrollbars
+        /// </summary>
         NONE,
+
+        /// <summary>
+        /// Horizontal
+        /// </summary>
         Horizontal,
+
+        /// <summary>
+        /// Vertical
+        /// </summary>
         Vertical,
+
+        /// <summary>
+        /// Both (vertical & horizontal)
+        /// </summary>
         Both
     }
 
     public enum Solidity
     {
+        /// <summary>
+        /// Winding CounterClockwise
+        /// </summary>
         Solid = Winding.CounterClockwise,
+
+        /// <summary>
+        /// Winding Clockwise
+        /// </summary>
         Hole = Winding.Clockwise
     }
 
@@ -184,29 +530,77 @@ namespace NanoUI.Common
     [Flags]
     public enum TextAlignment : int
     {
+        /// <summary>
+        /// Left
+        /// </summary>
         Left = 1 << 0,
+
+        /// <summary>
+        /// Center (horizontally)
+        /// </summary>
         Center = 1 << 1,
+
+        /// <summary>
+        /// Right
+        /// </summary>
         Right = 1 << 2,
 
+        /// <summary>
+        /// Top
+        /// </summary>
         Top = 1 << 3,
+
+        /// <summary>
+        /// Middle (vertically)
+        /// </summary>
         Middle = 1 << 4,
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
         Bottom = 1 << 5,
+
+        /// <summary>
+        /// Baseline
+        /// </summary>
         Baseline = 1 << 6
     }
 
     // note : some widgets have fixed alignment - ie changing property has no effect
     public enum TextHorizontalAlign
     {
+        /// <summary>
+        /// Left
+        /// </summary>
         Left,
+
+        /// <summary>
+        /// Center
+        /// </summary>
         Center,
+
+        /// <summary>
+        /// Right
+        /// </summary>
         Right
     }
 
     // note : some widgets have fixed alignment - ie changing property has no effect
     public enum TextVerticalAlign
     {
+        /// <summary>
+        /// Top
+        /// </summary>
         Top,
+
+        /// <summary>
+        /// Middle
+        /// </summary>
         Middle,
+
+        /// <summary>
+        /// Bottom
+        /// </summary>
         Bottom
     }
 
@@ -214,47 +608,94 @@ namespace NanoUI.Common
     [Flags]
     public enum TextureFlags
     {
-        // Generate mipmaps during creation of the texture.
+        /// <summary>
+        /// Generate mipmaps during creation of the texture
+        /// </summary>
         GenerateMipmaps = 1 << 0,
 
-        // Repeate texture in X direction.
+        /// <summary>
+        /// Repeat texture in X direction
+        /// </summary>
         RepeatX = 1 << 1,
 
-        // Repeate texture in Y direction.
+        /// <summary>
+        /// Repeat texture in Y direction
+        /// </summary>
         RepeatY = 1 << 2,
 
-        // Flips (inverses) texture in Y direction when rendered.
+        /// <summary>
+        /// Flips texture in Y direction when rendered
+        /// </summary>
         FlipY = 1 << 3,
 
-        // Texture data has premultiplied alpha.
+        /// <summary>
+        /// Texture data has premultiplied alpha
+        /// </summary>
         Premultiplied = 1 << 4,
 
-        // Texture interpolation is Nearest instead Linear
+        /// <summary>
+        /// Texture interpolation is Nearest instead Linear
+        /// </summary>
         Nearest = 1 << 5
     }
 
     public enum TextureFormat
     {
-        R, // this is single channel texture used to create font atlas texture
+        /// <summary>
+        /// Single channel texture used to for example create font atlas texture
+        /// </summary>
+        R,
+        /// <summary>
+        /// 2-channel texture
+        /// </summary>
         RG,
-        RGBA // this is used for images (default in TextureDesc)
+        /// <summary>
+        /// Full 4-channel texture
+        /// </summary>
+        RGBA
     }
 
     // used in views
     public enum ViewSelectionMode
     {
-        Item, // default
-        Cell // indidual widget in "cell" from item's children
+        /// <summary>
+        /// Whole item selected
+        /// </summary>
+        Item,
+
+        /// <summary>
+        /// Item's cell selected
+        /// </summary>
+        Cell
     }
 
     // used basically to get correct background brush
     // note: hovered (MouseFocus) is combined with these
     public enum WidgetState
     {
-        Unfocused, // Inactive,
-        Focused, // Active,
+        /// <summary>
+        /// Inactive
+        /// </summary>
+        Unfocused,
+
+        /// <summary>
+        /// Active
+        /// </summary>
+        Focused,
+
+        /// <summary>
+        /// Disabled
+        /// </summary>
         Disabled,
-        Pushed, // Selected // or Pressed
+
+        /// <summary>
+        /// Pushed
+        /// </summary>
+        Pushed,
+
+        /// <summary>
+        /// Invalid
+        /// </summary>
         Invalid // todo: should we handle it here or in widget level?
     }
 
@@ -262,13 +703,19 @@ namespace NanoUI.Common
     // note: if you have issues with fills, you could also try setting Winding.Manual
     public enum Winding
     {
-        // Bypasses automatic winding check & points conversion
+        /// <summary>
+        /// Bypasses automatic winding check & points conversion
+        /// </summary>
         Manual = 0,
 
-        // Winding for solid shapes.
+        /// <summary>
+        /// Winding for solid shapes
+        /// </summary>
         CounterClockwise = 1,
-        
-        // Winding for holes.
+
+        /// <summary>
+        /// Winding for holes
+        /// </summary>
         Clockwise = 2
     }
 }
