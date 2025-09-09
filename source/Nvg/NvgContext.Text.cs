@@ -89,18 +89,27 @@ namespace NanoUI.Nvg
 
         #region RenderStyles
 
+        /// <summary>
+        /// Sets the font size of current text style.
+        /// </summary>
         public void FontSize(float fontSize)
         {
             GetState().FontSize = fontSize;
         }
 
-        // note: this is additional spacing (default is 0)
+        /// <summary>
+        /// Sets the char spacing of current text style.
+        /// Note: this is additional spacing (default is 0)
+        /// </summary>
         public void TextCharSpacing(float spacing)
         {
             GetState().TextCharSpacing = spacing;
         }
 
-        // note: this is proportional line height (default is 1)
+        /// <summary>
+        /// Sets the proportinal line height of current text style. The line height is specified as multiple of font size.
+        /// Note: this is PROPORTIONAL line height (default is 1)
+        /// </summary>
         public void TextLineHeight(float lineHeight)
         {
             GetState().TextLineHeight = lineHeight;
@@ -115,16 +124,25 @@ namespace NanoUI.Nvg
             return bounds.Height;
         }
 
+        /// <summary>
+        /// Sets the text align of current text style.
+        /// </summary>
         public void TextAlign(TextHorizontalAlign horizontal, TextVerticalAlign vertical)
         {
             TextAlign(ConvertUtils.ConvertTextAlign(horizontal, vertical));
         }
 
+        /// <summary>
+        /// Sets the text align of current text style.
+        /// </summary>
         public void TextAlign(TextAlignment align)
         {
             GetState().TextAlign = align;
         }
 
+        /// <summary>
+        /// Sets the font face based on specified id of current text style.
+        /// </summary>
         public void FontFaceId(int font)
         {
             if (font == Globals.INVALID)
@@ -150,7 +168,9 @@ namespace NanoUI.Nvg
             GetState().Fill.Reset(innerColor, outerColor);
         }
 
-        // Normal baking
+        /// <summary>
+        /// Sets the blur of current text style. Only with GlypBaking.Normal.
+        /// </summary>
         public void TextNormalBlur(int val)
         {
             GetState().TextBlur = Math.Clamp(val, 0, 20);
@@ -188,15 +208,31 @@ namespace NanoUI.Nvg
 
         #region Text
 
-        // returns x position after text drawn
-        // nvgText
+        /// <summary>
+        /// Draws icon at specified location (icons should be in TTF file).
+        /// Note: Returns x position after icon drawn.
+        /// </summary>
         public float Text(float x, float y, int icon)
             => Text(new Vector2(x, y), ConvertUtils.GetIconString(icon));
+
+        /// <summary>
+        /// Draws icon at specified location (icons should be in TTF file).
+        /// Note: Returns x position after icon drawn.
+        /// </summary>
         public float Text(Vector2 pos, int icon)
             => Text(pos, ConvertUtils.GetIconString(icon));
 
+        /// <summary>
+        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Note: Returns x position after text drawn.
+        /// </summary>
         public float Text(float x, float y, ReadOnlySpan<char> text)
             => Text(new Vector2(x, y), text);
+
+        /// <summary>
+        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Note: Returns x position after text drawn.
+        /// </summary>
         public float Text(Vector2 pos, ReadOnlySpan<char> text)
         {
             // note: we must pass NvgContext in case glyphs are "baked" in shapes and we
@@ -208,13 +244,39 @@ namespace NanoUI.Nvg
 
         #region TextBounds
 
+        /// <summary>
+        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measured values are returned in local coordinate space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds of the text when returned.</param>
+        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
         public float TextBounds(float x, float y, int icon, out Rect bounds)
             => TextBounds(new Vector2(x, y), ConvertUtils.GetIconString(icon), out bounds);
+
+        /// <summary>
+        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measured values are returned in local coordinate space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds of the text when returned.</param>
+        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
         public float TextBounds(Vector2 pos, int icon, out Rect bounds)
             => TextBounds(pos, ConvertUtils.GetIconString(icon), out bounds);
 
+        /// <summary>
+        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measured values are returned in local coordinate space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds of the text when returned.</param>
+        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
         public float TextBounds(float x, float y, ReadOnlySpan<char> text, out Rect bounds)
             => TextBounds(new Vector2(x, y), text, out bounds);
+
+        /// <summary>
+        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measured values are returned in local coordinate space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds of the text when returned.</param>
+        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
         public float TextBounds(Vector2 pos, ReadOnlySpan<char> text, out Rect bounds)
         {
             return Fontstash.TextBounds(GetState(), _nvgParams, pos, text, out bounds);
@@ -224,15 +286,25 @@ namespace NanoUI.Nvg
 
         #region TextBox
 
-        // note: it is not recommended to use this in production code, since this calculates text rows every frame.
-        // instead use TextBreakLines and cache TextRows.
+        /// <summary>
+        /// Draws multi-line text string at specified location wrapped at the specified width. Only the sub-string up to the end is drawn.
+        /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
+        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
+        /// instead use TextBreakLines and cache TextRows.
+        /// </summary>
         public bool TextBox(Vector2 position, float breakRowWidth, ReadOnlySpan<char> text, int maxRows = int.MaxValue)
         {
             return TextBox(position.X, position.Y, breakRowWidth, text, maxRows);
         }
 
-        // note: it is not recommended to use this in production code, since this calculates text rows every frame.
-        // instead use TextBreakLines and cache TextRows.
+        /// <summary>
+        /// Draws multi-line text string at specified location wrapped at the specified width. Only the sub-string up to the end is drawn.
+        /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
+        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
+        /// instead use TextBreakLines and cache TextRows.
+        /// </summary>
         public bool TextBox(float x, float y, float breakRowWidth, ReadOnlySpan<char> text, int maxRows = int.MaxValue)
         {
             // note: we must pass NvgContext in case glyphs are "baked" in shapes and we
@@ -244,17 +316,37 @@ namespace NanoUI.Nvg
 
         #region TextBoxBounds
 
+        /// <summary>
+        /// Measures the specified multi-text string.<br/>
+        /// Measured values are returned in local space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
         public void TextBoxBounds(float x, float y, float breakRowWidth, ReadOnlySpan<char> text, out Rect bounds)
             => TextBoxBounds(new Vector2(x, y), breakRowWidth, text, Globals.MAX_TEXT_ROWS, out bounds);
 
+        /// <summary>
+        /// Measures the specified multi-text string.<br/>
+        /// Measured values are returned in local space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
         public void TextBoxBounds(float x, float y, float breakRowWidth, ReadOnlySpan<char> text, int maxRows, out Rect bounds)
             => TextBoxBounds(new Vector2(x, y), breakRowWidth, text, maxRows, out bounds);
 
+        /// <summary>
+        /// Measures the specified multi-text string.<br/>
+        /// Measured values are returned in local space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
         public void TextBoxBounds(Vector2 pos, float breakRowWidth, ReadOnlySpan<char> text, out Rect bounds)
         {
             TextBoxBounds(pos, breakRowWidth, text, Globals.MAX_TEXT_ROWS, out bounds);
         }
 
+        /// <summary>
+        /// Measures the specified multi-text string.<br/>
+        /// Measured values are returned in local space.
+        /// </summary>
+        /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
         public void TextBoxBounds(Vector2 pos, float breakRowWidth, ReadOnlySpan<char> text, int maxRows, out Rect bounds)
         {
             Fontstash.TextBoxBounds(ref GetState(), _nvgParams, pos, breakRowWidth, text, maxRows, out bounds);
@@ -264,10 +356,18 @@ namespace NanoUI.Nvg
 
         #region TextGlyphPositions
 
+        /// <summary>
+        /// Calculates the glyph x positions of the specified text. Only the sub-string will be used.<br/>
+        /// Measures values are returned in local coordinate space.
+        /// </summary>
         public void TextGlyphPositions(float x, float y, ReadOnlySpan<char> text, int maxGlyphs,
             out ReadOnlySpan<GlyphPosition> positions)
            => TextGlyphPositions(new Vector2(x, y), text, maxGlyphs, out positions);
 
+        /// <summary>
+        /// Calculates the glyph x positions of the specified text. Only the sub-string will be used.<br/>
+        /// Measures values are returned in local coordinate space.
+        /// </summary>
         public void TextGlyphPositions(Vector2 pos, ReadOnlySpan<char> text, int maxGlyphs,
             out ReadOnlySpan<GlyphPosition> positions)
         {
@@ -278,6 +378,10 @@ namespace NanoUI.Nvg
 
         #region TextMetrics
 
+        /// <summary>
+        /// Returns the vertical metrics based on the current text style.<br/>
+        /// Measured values are returned in local coordinate space.
+        /// </summary>
         public void TextMetrics(out float ascender, out float descender, out float lineh)
         {
             Fontstash.TextMetrics(GetState(), _nvgParams, out ascender, out descender, out lineh);
@@ -287,14 +391,21 @@ namespace NanoUI.Nvg
 
         #region TextBreakLines
 
-        // Breaks the specified text into lines.<br/>
-        // White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.<br/>
-        // Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// <summary>
+        /// Breaks the specified text into lines. Only the sub-string will be used.<br/>
+        /// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.<br/>
+        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// </summary>
         public void TextBreakLines(ReadOnlySpan<char> text, float breakRowWidth, out ReadOnlySpan<TextRow> rows)
         {
             TextBreakLines(text, breakRowWidth, Globals.MAX_TEXT_ROWS, out rows);
         }
 
+        /// <summary>
+        /// Breaks the specified text into lines. Only the sub-string will be used.<br/>
+        /// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.<br/>
+        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// </summary>
         public void TextBreakLines(ReadOnlySpan<char> text, float breakRowWidth, int maxRows, out ReadOnlySpan<TextRow> rows)
         {
             Fontstash.TextBreakLines(GetState(), _nvgParams, text, breakRowWidth, maxRows, out rows);
