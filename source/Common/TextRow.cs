@@ -2,19 +2,31 @@
 {
     public struct TextRow
     {
-        // row start in passed text
+        /// <summary>
+        /// Row start in passed text
+        /// </summary>
         public int StartPos;
 
-        // text length in row
+        /// <summary>
+        /// Text length in row
+        /// </summary>
         public int TextLength;
 
-        // Logical width of the row.
+        /// <summary>
+        /// Logical width of the row
+        /// </summary>
         public float Width;
 
-        // Actual least X-bound of the row. Logical with and bounds can differ because of kerning and some parts over extending.
+        /// <summary>
+        /// Actual least X-bound of the row. Logical with and bounds can differ
+        /// because of kerning and some parts over extending
+        /// </summary>
         public float MinX;
 
-        // Actual largest X-bound of the row. Logical with and bounds can differ because of kerning and some parts over extending.
+        /// <summary>
+        /// Actual largest X-bound of the row. Logical with and bounds can differ
+        /// because of kerning and some parts over extending.
+        /// </summary>
         public float MaxX;
     }
 }

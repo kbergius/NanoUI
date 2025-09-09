@@ -57,7 +57,10 @@ namespace NanoUI.Nvg
 
         #region Frames
 
-        // nvgBeginFrame
+        /// <summary>
+        /// Begin drawing a new frame and clear buffers. All NanoUI draw commands should be executed
+        /// between BeginFrame() and EndFrame().
+        /// </summary>
         public void BeginFrame()
         {
             // note: these could also be done in EndFrame
@@ -69,7 +72,10 @@ namespace NanoUI.Nvg
             // note: paths etc clearance done in BeginPath?
         }
 
-        // nvgEndFrame
+        /// <summary>
+        /// Ends drawing and triggers rendering in INvgRenderer. After this DrawCache
+        /// is cleared.
+        /// </summary>
         public void EndFrame()
         {
             _nvgRenderer.Render();
@@ -82,7 +88,10 @@ namespace NanoUI.Nvg
 
         #region States
 
-        // nvgSave
+        /// <summary>
+        ///  Pushes and saves the current render state into a state stack.
+        ///  A matching RestoreState() must be used to restore the state.
+        /// </summary>
         public void SaveState()
         {
             // add
@@ -99,7 +108,9 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvgRestore
+        /// <summary>
+        ///  Pops and restores current render state.
+        /// </summary>
         public void RestoreState()
         {
             if (_states.Count > 0)
@@ -108,7 +119,10 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvgReset
+        /// <summary>
+        ///  Resets current render state to default values.
+        ///  Does not affect the render state stack.
+        /// </summary>
         public void ResetState()
         {
             if (_states.Count > 0)
@@ -117,7 +131,9 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvg__getState
+        /// <summary>
+        ///  Get current state.
+        /// </summary>
         ref NvgState GetState()
         {
             if (_states.Count == 0)
@@ -132,56 +148,76 @@ namespace NanoUI.Nvg
 
         #region Render styles
 
-        // nvgStrokeWidth
+        /// <summary>
+        /// Sets the stroke width of the stroke style.
+        /// </summary>
         public void StrokeWidth(float width)
         {
             GetState().StrokeWidth = width;
         }
 
-        // nvgMiterLimit
+        /// <summary>
+        /// Sets the miter limit of the stroke style.
+        /// Miter limit controls when a sharp corner is beveled.
+        /// </summary>
         public void MiterLimit(float limit)
         {
             GetState().MiterLimit = limit;
         }
 
-        // nvgLineCap
+        /// <summary>
+        /// Sets how the end of the line (cap) is drawn,
+        /// </summary>
         public void LineCap(LineCap cap)
         {
             GetState().LineCap = cap;
         }
 
-        // nvgLineJoin
+        /// <summary>
+        /// Sets how sharp path corners are drawn.
+        /// </summary>
         public void LineJoin(LineCap join)
         {
             GetState().LineJoin = join;
         }
 
-        // nvgGlobalAlpha
+        /// <summary>
+        /// Sets the transparency applied to all rendered shapes.
+        /// Already transparent paths will get proportionally more transparent as well.
+        /// </summary>
         public void GlobalAlpha(float alpha)
         {
             GetState().Alpha = alpha;
         }
 
-        // nvgStrokeColor
+        /// <summary>
+        ///  Sets current stroke style to a solid color.
+        /// </summary>
         public void StrokeColor(Color color)
         {
             GetState().Stroke.Reset(color);
         }
 
-        // nvgStrokePaint
+        /// <summary>
+        ///  Sets current stroke style to a paint, which can be a one of the gradients or a pattern.
+        /// </summary>
         public void StrokePaint(Paint paint)
         {
             paint.Transform *= GetState().Transform;
             GetState().Stroke.Copy(paint);
         }
 
-        // nvgFillColor
+        /// <summary>
+        ///  Sets current fill style to a solid color.
+        /// </summary>
         public void FillColor(Color color)
         {
             GetState().Fill.Reset(color);
         }
 
-        // nvgFillPaint
+        /// <summary>
+        ///  Sets current fill style to a paint, which can be a one of the gradients or a pattern.
+        /// </summary>
         public void FillPaint(Paint paint)
         {
             paint.Transform *= GetState().Transform;
@@ -194,14 +230,17 @@ namespace NanoUI.Nvg
 
         // note: you can easily use any transformation method that Matrix3x2 provides
 
-        // Translate with the specified X and Y components
-        // nvgTranslate
+        /// <summary>
+        /// Translates with the specified X and Y components
+        /// </summary>
         public void Translate(float x, float y)
         {
             Translate(new Vector2(x, y));
         }
 
-        // Translate with the specified 2-dimensional vector
+        /// <summary>
+        /// Translates with the specified 2-dimensional vector
+        /// </summary>
         public void Translate(Vector2 position)
         {
             GetState().Transform = Matrix3x2.CreateTranslation(position) * GetState().Transform;
@@ -252,16 +291,19 @@ namespace NanoUI.Nvg
             GetState().Transform = Matrix3x2.CreateSkew(radiansX, radiansY, centerPoint) * GetState().Transform;
         }
 
-        // nvgTransform
+        /// <summary>
+        /// Premultiplies current transform by specified matrix.
+        /// </summary>
         public void Transform(Matrix3x2 transform)
         {
             GetState().Transform = transform * GetState().Transform;
         }
 
-        // nvgResetTransform
+        /// <summary>
+        /// Resets current transform to a identity matrix.
+        /// </summary>
         public void ResetTransform()
         {
-            // todo: should that be new Matrix3x2()?
             GetState().Transform = Matrix3x2.Identity;
         }
 
@@ -275,7 +317,9 @@ namespace NanoUI.Nvg
 
         #region Paths
 
-        // nvgBeginPath
+        /// <summary>
+        /// Clears the current path and sub-paths.
+        /// </summary>
         public void BeginPath()
         {
             _commands.Clear();
@@ -283,70 +327,102 @@ namespace NanoUI.Nvg
             _points.Clear();
         }
 
-        // nvgMoveTo
+        /// <summary>
+        /// Starts a new sub-path with specified point as first point.
+        /// </summary>
         public void MoveTo(float x, float y)
             => MoveTo(new Vector2(x, y));
 
+        /// <summary>
+        /// Starts a new sub-path with specified point as first point.
+        /// </summary>
         public void MoveTo(Vector2 p)
         {
             _pathMoveTo(GetState(), p);
         }
 
-        // nvgLineTo
+        /// <summary>
+        /// Adds line segment from the last point in the path to the specified point.
+        /// </summary>
         public void LineTo(float x, float y)
             => LineTo(new Vector2(x, y));
 
+        /// <summary>
+        /// Adds line segment from the last point in the path to the specified point.
+        /// </summary>
         public void LineTo(Vector2 p)
         {
             _pathLineTo(GetState(), p);
         }
-
-        // nvgBezierTo
-        public void BezierTo(float c1x, float c1y, float c2x, float c2y, float x, float y, float kw, float kh)
+        
+        /*public void BezierTo(float c1x, float c1y, float c2x, float c2y, float x, float y, float kw, float kh)
         {
             BezierTo(c1x * kw, c1y * kh, c2x * kw, c2y * kh, x * kw, y * kh);
-        }
+        }*/
 
+        /// <summary>
+        /// Adds cubic bezier segment from last point in the path via two control points to the specified point.
+        /// </summary>
         public void BezierTo(float c0x, float c0y, float c1x, float c1y, float x, float y)
             => BezierTo(new Vector2(c0x, c0y), new Vector2(c1x, c1y), new Vector2(x, y));
 
+        /// <summary>
+        /// Adds cubic bezier segment from last point in the path via two control points to the specified point.
+        /// </summary>
         public void BezierTo(Vector2 cp0, Vector2 cp1, Vector2 p)
         {
             _pathBezierTo(GetState(), cp0, cp1, p);
         }
 
-        // nvgQuadTo
+        /// <summary>
+        /// Adds quadratic bezier segment from last point in the path via a control point to the specified point.
+        /// </summary>
         public void QuadTo(float cx, float cy, float x, float y)
             => QuadTo(new Vector2(cx, cy), new Vector2(x, y));
 
+        /// <summary>
+        /// Adds quadratic bezier segment from last point in the path via a control point to the specified point.
+        /// </summary>
         public void QuadTo(Vector2 cp, Vector2 p)
         {
             _pathQuadTo(GetState(), cp, p);
         }
 
-        // nvgArcTo
+        /// <summary>
+        /// Adds an arc segment at the corner defined by the last path point and two specified points.
+        /// </summary>
         public void ArcTo(float x1, float y1, float x2, float y2, float radius)
             => _pathArcTo(GetState(), new Vector2(x1, y1), new Vector2(x2, y2), radius);
 
-        // nvgClosePath
+        /// <summary>
+        /// Closes current sub-path with a line segment.
+        /// </summary>
         public void ClosePath()
         {
             _pathClose();
         }
 
-        // nvgPathWinding
+        /// <summary>
+        /// Sets the current sub-path winding.
+        /// </summary>
         public void PathWinding(Solidity sol)
             => PathWinding((Winding)sol);
 
         // Normally you should use Winding.CounterClockwise (solid) or Winding.Clockwise (hole)
         // note: if you have issues with fills, you could also try setting Winding.Manual, which
         // bypasses automatic winding check & points conversion
+
+        /// <summary>
+        /// Sets the current sub-path winding.
+        /// </summary>
         public void PathWinding(Winding dir)
         {
             _pathWinding(dir);
         }
 
-        // nvgFill
+        /// <summary>
+        /// Fills the current path with current fill style.
+        /// </summary>
         public void Fill()
         {
             ref NvgState state = ref GetState();
@@ -360,7 +436,9 @@ namespace NanoUI.Nvg
             DrawCache.CreateFillCommands(state, state.Fill, fringeWidth, _bounds, _paths.AsReadOnlySpan());
         }
 
-        // nvgStroke
+        /// <summary>
+        /// Fills the current path with current stroke style.
+        /// </summary>
         public void Stroke()
         {
             ref NvgState state = ref GetState();
@@ -392,73 +470,121 @@ namespace NanoUI.Nvg
 
         #region Primitives
 
-        // nvgArc
+        /// <summary>
+        /// Creates new circle arc shaped sub-path.
+        /// The arc is drawn from angle a0 to a1.
+        /// </summary>
         public void Arc(float cx, float cy, float r, float a0, float a1, Winding dir)
             => Arc(new Vector2(cx, cy), r, a0, a1, dir);
 
+        /// <summary>
+        /// Creates new circle arc shaped sub-path.
+        /// The arc is drawn from angle a0 to a1.
+        /// </summary>
         public void Arc(Vector2 c, float r, float a0, float a1, Winding dir)
         {
             _pathArc(GetState(), c, r, a0, a1, dir);
         }
 
-        // nvgRect
+        /// <summary>
+        /// Creates a new rectangle shaped sub-path.
+        /// </summary>
         public void Rect(Vector2 pos, Vector2 size)
             => Rect(new Rect(pos, size));
 
+        /// <summary>
+        /// Creates a new rectangle shaped sub-path.
+        /// </summary>
         public void Rect(float x, float y, float width, float height)
             => Rect(new Rect(x, y, width, height));
 
+        /// <summary>
+        /// Creates a new rectangle shaped sub-path.
+        /// </summary>
         public void Rect(Rect rect)
         {
             _pathRect(GetState(), rect);
         }
 
-        // nvgRoundedRect
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path.
+        /// </summary>
         public void RoundedRect(Rect rect, float r)
         {
             RoundedRectVarying(rect, r, r, r, r);
         }
 
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path.
+        /// </summary>
         public void RoundedRect(Vector2 pos, Vector2 size, float r)
             => RoundedRect(pos.X, pos.Y, size.X, size.Y, r);
 
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path.
+        /// </summary>
         public void RoundedRect(float x, float y, float width, float height, float r)
             => RoundedRect(new Rect(x, y, width, height), r);
 
-        // nvgRoundedRectVarying
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// </summary>
         public void RoundedRectVarying(float x, float y, float width, float height, in CornerRadius radius)
             => RoundedRectVarying(new Rect(x, y, width, height),
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
+
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// </summary>
         public void RoundedRectVarying(Vector2 pos, Vector2 size, in CornerRadius radius)
             => RoundedRectVarying(new Rect(pos, size), 
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
 
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// </summary>
         public void RoundedRectVarying(float x, float y, float width, float height, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
             => RoundedRectVarying(new Rect(x, y, width, height), radTopLeft, radTopRight, radBottomRight, radBottomLeft);
 
+        /// <summary>
+        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// </summary>
         public void RoundedRectVarying(Rect rect, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
         {
             _pathRoundedRectVarying(GetState(), rect, radTopLeft, radTopRight, radBottomRight, radBottomLeft);
         }
 
-        // nvgCircle
+        /// <summary>
+        /// Creates a new circle shaped sub-path.
+        /// </summary>
         public void Circle(float centerX, float centerY, float radius)
             => Circle(new Vector2(centerX, centerY), radius);
 
+        /// <summary>
+        /// Creates a new circle shaped sub-path.
+        /// </summary>
         public void Circle(Vector2 center, float radius)
         {
             Ellipse(center, radius, radius);
         }
 
-        // nvgEllipse
+        /// <summary>
+        /// Creates a new ellipse shaped sub-path.
+        /// </summary>
         public void Ellipse(float cx, float cy, float rx, float ry)
             => Ellipse(new Vector2(cx, cy), rx, ry);
 
+        /// <summary>
+        /// Creates a new ellipse shaped sub-path.
+        /// </summary>
         public void Ellipse(Vector2 c, float rx, float ry)
         {
             _pathEllipse(GetState(), c, rx, ry);
         }
 
+        /// <summary>
+        /// Creates a new pentagram shaped sub-path.
+        /// </summary>
         public void Pentagram(Vector2 center, float radius)
         {
             if (radius <= 0)
@@ -471,14 +597,24 @@ namespace NanoUI.Nvg
 
         #region Scissoring
 
-        // todo: is Scissor working if directly called (not from IntersectScissor)?
-        // nvgScissor
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(Rect rect)
             => Scissor(rect.Position, rect.Size);
 
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(float x, float y, float width, float height)
             => Scissor(new Vector2(x, y), new Vector2(width, height));
 
+        /// <summary>
+        /// Sets the current scissor rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// </summary>
         public void Scissor(Vector2 pos, Vector2 size)
         {
             size.X = MathF.Max(0.0f, size.X);
@@ -495,13 +631,36 @@ namespace NanoUI.Nvg
             state.Scissor.Extent = size * 0.5f;
         }
 
-        // nvgIntersectScissor
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(Vector2 pos, Vector2 size)
             => IntersectScissor(new Rect(pos, size));
 
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(float x, float y, float width, float height)
             => IntersectScissor(new Rect(x, y, width, height));
 
+        /// <summary>
+        /// Intersects current scissor rectangle with the specified rectangle.
+        /// The scissor rectangle is transformed by the current transform.
+        /// Note: in case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </summary>
         public void IntersectScissor(Rect rect)
         {
             ref NvgState state = ref GetState();
@@ -529,7 +688,9 @@ namespace NanoUI.Nvg
             Scissor(r.Position, r.Size);
         }
 
-        // nvgResetScissor
+        /// <summary>
+        /// Resets and disables scissoring.
+        /// </summary>
         public void ResetScissor()
         {
             GetState().Scissor.Reset();
@@ -539,21 +700,31 @@ namespace NanoUI.Nvg
 
         #region Images
 
-        // nvgCreateImage, nvgCreateImageMem
         // note: this is just a helper method and params are passed as-is to renderer.
         // so you can set in path param whatever file identication you like or
         // call your renderer directly
+
+        /// <summary>
+        /// Creates texture by loading it from the disk from specified file name.
+        /// </summary>
+        /// <returns>Handle to the texture.</returns>
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
             return _nvgRenderer.CreateTexture(path, textureFlags);
         }
 
+        /// <summary>
+        /// Creates texture from texture description.
+        /// </summary>
+        /// <returns>Handle to the texture.</returns>
         public int CreateTexture(TextureDesc description)
         {
             return _nvgRenderer.CreateTexture(description);
         }
 
-        // nvgImageSize
+        /// <summary>
+        /// Returns the dimensions of a created texture.
+        /// </summary>
         public bool GetTextureSize(int texture, out Vector2 textureSize)
         {
             if (texture == Globals.INVALID)
@@ -565,6 +736,9 @@ namespace NanoUI.Nvg
             return _nvgRenderer.GetTextureSize(texture, out textureSize);
         }
 
+        /// <summary>
+        /// Returns the dimensions of a created texture.
+        /// </summary>
         public bool GetTextureSize(int textureIndex, out uint texWidth, out uint texHeight)
         {
             if(GetTextureSize(textureIndex, out Vector2 size))
@@ -579,7 +753,9 @@ namespace NanoUI.Nvg
             return false;
         }
 
-        // nvgUpdateImage
+        /// <summary>
+        /// Updates texture data specified by texture handle.
+        /// </summary>
         public bool UpdateTexture(int texture, ReadOnlySpan<byte> data)
         {
             if (texture == Globals.INVALID)
@@ -588,6 +764,9 @@ namespace NanoUI.Nvg
             return _nvgRenderer.UpdateTexture(texture, data);
         }
 
+        /// <summary>
+        /// Resizes created texture.
+        /// </summary>
         public void ResizeTexture(int texture, TextureDesc description)
         {
             if (texture == Globals.INVALID)
@@ -596,7 +775,9 @@ namespace NanoUI.Nvg
             _nvgRenderer.ResizeTexture(texture, description);
         }
 
-        // nvgDeleteImage
+        /// <summary>
+        /// Deletes created texture.
+        /// </summary>
         public bool DeleteTexture(int texture)
         {
             if (texture == Globals.INVALID)
