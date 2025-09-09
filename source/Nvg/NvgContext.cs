@@ -57,7 +57,10 @@ namespace NanoUI.Nvg
 
         #region Frames
 
-        // nvgBeginFrame
+        /// <summary>
+        /// Begin drawing a new frame and clear buffers. All NanoUI draw commands should be executed
+        /// between BeginFrame() and EndFrame().
+        /// </summary>
         public void BeginFrame()
         {
             // note: these could also be done in EndFrame
@@ -69,7 +72,10 @@ namespace NanoUI.Nvg
             // note: paths etc clearance done in BeginPath?
         }
 
-        // nvgEndFrame
+        /// <summary>
+        /// Ends drawing and triggers rendering in INvgRenderer. After this DrawCache
+        /// is cleared.
+        /// </summary>
         public void EndFrame()
         {
             _nvgRenderer.Render();
@@ -82,7 +88,10 @@ namespace NanoUI.Nvg
 
         #region States
 
-        // nvgSave
+        /// <summary>
+        ///  Pushes and saves the current render state into a state stack.
+        ///  A matching RestoreState() must be used to restore the state.
+        /// </summary>
         public void SaveState()
         {
             // add
@@ -99,7 +108,9 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvgRestore
+        /// <summary>
+        ///  Pops and restores current render state.
+        /// </summary>
         public void RestoreState()
         {
             if (_states.Count > 0)
@@ -108,7 +119,10 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvgReset
+        /// <summary>
+        ///  Resets current render state to default values.
+        ///  Does not affect the render state stack.
+        /// </summary>
         public void ResetState()
         {
             if (_states.Count > 0)
@@ -117,7 +131,9 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvg__getState
+        /// <summary>
+        ///  Get current state.
+        /// </summary>
         ref NvgState GetState()
         {
             if (_states.Count == 0)
@@ -132,56 +148,76 @@ namespace NanoUI.Nvg
 
         #region Render styles
 
-        // nvgStrokeWidth
+        /// <summary>
+        /// Sets the stroke width of the stroke style.
+        /// </summary>
         public void StrokeWidth(float width)
         {
             GetState().StrokeWidth = width;
         }
 
-        // nvgMiterLimit
+        /// <summary>
+        /// Sets the miter limit of the stroke style.
+        /// Miter limit controls when a sharp corner is beveled.
+        /// </summary>
         public void MiterLimit(float limit)
         {
             GetState().MiterLimit = limit;
         }
 
-        // nvgLineCap
+        /// <summary>
+        /// Sets how the end of the line (cap) is drawn,
+        /// </summary>
         public void LineCap(LineCap cap)
         {
             GetState().LineCap = cap;
         }
 
-        // nvgLineJoin
+        /// <summary>
+        /// Sets how sharp path corners are drawn.
+        /// </summary>
         public void LineJoin(LineCap join)
         {
             GetState().LineJoin = join;
         }
 
-        // nvgGlobalAlpha
+        /// <summary>
+        /// Sets the transparency applied to all rendered shapes.
+        /// Already transparent paths will get proportionally more transparent as well.
+        /// </summary>
         public void GlobalAlpha(float alpha)
         {
             GetState().Alpha = alpha;
         }
 
-        // nvgStrokeColor
+        /// <summary>
+        ///  Sets current stroke style to a solid color.
+        /// </summary>
         public void StrokeColor(Color color)
         {
             GetState().Stroke.Reset(color);
         }
 
-        // nvgStrokePaint
+        /// <summary>
+        ///  Sets current stroke style to a paint, which can be a one of the gradients or a pattern.
+        /// </summary>
         public void StrokePaint(Paint paint)
         {
             paint.Transform *= GetState().Transform;
             GetState().Stroke.Copy(paint);
         }
 
-        // nvgFillColor
+        /// <summary>
+        ///  Sets current fill style to a solid color.
+        /// </summary>
         public void FillColor(Color color)
         {
             GetState().Fill.Reset(color);
         }
 
-        // nvgFillPaint
+        /// <summary>
+        ///  Sets current fill style to a paint, which can be a one of the gradients or a pattern.
+        /// </summary>
         public void FillPaint(Paint paint)
         {
             paint.Transform *= GetState().Transform;
@@ -194,14 +230,17 @@ namespace NanoUI.Nvg
 
         // note: you can easily use any transformation method that Matrix3x2 provides
 
-        // Translate with the specified X and Y components
-        // nvgTranslate
+        /// <summary>
+        /// Translates with the specified X and Y components
+        /// </summary>
         public void Translate(float x, float y)
         {
             Translate(new Vector2(x, y));
         }
 
-        // Translate with the specified 2-dimensional vector
+        /// <summary>
+        /// Translates with the specified 2-dimensional vector
+        /// </summary>
         public void Translate(Vector2 position)
         {
             GetState().Transform = Matrix3x2.CreateTranslation(position) * GetState().Transform;
@@ -252,16 +291,19 @@ namespace NanoUI.Nvg
             GetState().Transform = Matrix3x2.CreateSkew(radiansX, radiansY, centerPoint) * GetState().Transform;
         }
 
-        // nvgTransform
+        /// <summary>
+        /// Premultiplies current transform by specified matrix.
+        /// </summary>
         public void Transform(Matrix3x2 transform)
         {
             GetState().Transform = transform * GetState().Transform;
         }
 
-        // nvgResetTransform
+        /// <summary>
+        /// Resets current transform to a identity matrix.
+        /// </summary>
         public void ResetTransform()
         {
-            // todo: should that be new Matrix3x2()?
             GetState().Transform = Matrix3x2.Identity;
         }
 

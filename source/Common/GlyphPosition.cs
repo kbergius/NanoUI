@@ -2,16 +2,24 @@
 {
     public struct GlyphPosition
     {
-        // index of glyph in passed text
+        /// <summary>
+        /// Index of glyph in passed text
+        /// </summary>
         public int Index;
 
-        // The X-coordinate of the logical glyph position.
+        /// <summary>
+        /// The X-coordinate of the logical glyph position
+        /// </summary>
         public float X;
 
-        // The smallest X-bound of the glyph shape.
+        /// <summary>
+        /// The smallest X-bound of the glyph shape
+        /// </summary>
         public float MinX;
 
-        // The largest X-bound of the glyph shape.
+        /// <summary>
+        /// The largest X-bound of the glyph shape
+        /// </summary>
         public float MaxX;
     }
 }
