@@ -44,9 +44,13 @@ namespace NanoUI.Nvg
 
         #region Fonts
 
-        // nvgCreateFont
-        // note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
-        // If you use some other filesystem solution, pass byte array.
+        /// <summary>
+        /// Creates font by loading it from the disk from specified filename.
+        /// Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        /// If you use some other filesystem solution, pass byte array.
+        /// </summary>
+        /// <returns>Handle to the font.</returns>
+        /// 
         public int CreateFont(ReadOnlySpan<char> name, string path, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             if (!File.Exists(path))
@@ -58,13 +62,19 @@ namespace NanoUI.Nvg
             return CreateFont(name, File.ReadAllBytes(path), fontBaking, fontCollectionIndex);
         }
 
-        // nvgCreateFontMem
+        /// <summary>
+        /// Creates a font by loading it from the specified memory chunk.
+        /// </summary>
+        /// <returns>Handle to the font.</returns>
         public int CreateFont(ReadOnlySpan<char> name, ReadOnlySpan<byte> data, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             return Fontstash.AddFont(name, data, fontBaking, fontCollectionIndex);
         }
 
-        // nvgFindFont
+        /// <summary>
+        /// Finds a loaded font from specified name.
+        /// </summary>
+        /// <returns>Handle to it, or -1 if the font is not found.</returns>
         public int GetFontByName(ReadOnlySpan<char> name)
         {
             if (name.IsEmpty)
