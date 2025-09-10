@@ -47,6 +47,9 @@ namespace NanoUI.Common
 
     #region BoxGradient
 
+    /// <summary>
+    /// BoxGradient brush
+    /// </summary>
     public class BoxGradient : BrushBase
     {
         public BoxGradient()
@@ -63,13 +66,31 @@ namespace NanoUI.Common
 
         #region Properties
 
+        /// <summary>
+        /// CornerRadius
+        /// </summary>
         public float CornerRadius { get; set; }
+
+        /// <summary>
+        /// Feather
+        /// </summary>
         public float Feather { get; set; } = 6;
+
+        /// <summary>
+        /// InnerColor
+        /// </summary>
         public Color InnerColor { get; set; }
+
+        /// <summary>
+        /// OuterColor
+        /// </summary>
         public Color OuterColor { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// Draw
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -96,6 +117,9 @@ namespace NanoUI.Common
 
     #region LinearGradient
 
+    /// <summary>
+    /// LinearGradient brush
+    /// </summary>
     public class LinearGradient : BrushBase
     {
         public LinearGradient()
@@ -113,13 +137,26 @@ namespace NanoUI.Common
 
         #region Properties
 
-        // todo: could be Orientation enum
+        /// <summary>
+        /// Horizontal or vertical drawing
+        /// </summary>
         public bool Horizontal { get; set; }
+
+        /// <summary>
+        /// StartColor
+        /// </summary>
         public Color StartColor { get; set; }
+
+        /// <summary>
+        /// EndColor
+        /// </summary>
         public Color EndColor { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// Draw
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -142,6 +179,9 @@ namespace NanoUI.Common
 
     #region RadialGradient
 
+    /// <summary>
+    /// RadialGradient brush
+    /// </summary>
     public class RadialGradient : BrushBase
     {
         public RadialGradient()
@@ -150,14 +190,36 @@ namespace NanoUI.Common
 
         #region Properties
 
+        /// <summary>
+        /// CenterOffset
+        /// </summary>
         public Vector2 CenterOffset { get; set; }
+
+        /// <summary>
+        /// InnerRadius
+        /// </summary>
         public float InnerRadius { get; set; }
+
+        /// <summary>
+        /// OuterRadius
+        /// </summary>
         public float OuterRadius { get; set; }
+
+        /// <summary>
+        /// InnerColor
+        /// </summary>
         public Color InnerColor { get; set; }
+
+        /// <summary>
+        /// OuterColor
+        /// </summary>
         public Color OuterColor { get; set; }
 
         #endregion
 
+        /// <summary>
+        /// Draw
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             // check valid colors & radius values
@@ -194,8 +256,14 @@ namespace NanoUI.Common
 
     #region SolidBrush
 
+    /// <summary>
+    /// Solid color brush (1 color)
+    /// </summary>
     public class SolidBrush : BrushBase
     {
+        /// <summary>
+        /// Color
+        /// </summary>
         public Color Color { get; set; }
 
         public SolidBrush()
@@ -208,6 +276,9 @@ namespace NanoUI.Common
             Color = color;
         }
 
+        /// <summary>
+        /// Draw
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -230,6 +301,9 @@ namespace NanoUI.Common
 
     #region ImageBrush
 
+    /// <summary>
+    /// Image brush
+    /// </summary>
     public class ImageBrush : BrushBase
     {
         public ImageBrush()
@@ -244,15 +318,41 @@ namespace NanoUI.Common
 
         #region Properties
 
+        /// <summary>
+        /// Texture id
+        /// </summary>
         public int Texture { get; set; }
+
+        /// <summary>
+        /// Texture width
+        /// </summary>
         public uint TexWidth { get; set; } = 32;
+
+        /// <summary>
+        /// Texture height
+        /// </summary>
         public uint TexHeight { get; set; } = 32;
+
+        /// <summary>
+        /// Offset
+        /// </summary>
         public Vector2 Offset { get; set; }
+
+        /// <summary>
+        /// Scale. Default is 1.
+        /// </summary>
         public Vector2 Scale { get; set; } = Vector2.One;
+
+        /// <summary>
+        /// Stretch. Default is false.
+        /// </summary>
         public bool Stretch { get; set; } = false;
 
         #endregion
 
+        /// <summary>
+        /// Draw.
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             if (Texture <= Globals.INVALID)
@@ -287,11 +387,19 @@ namespace NanoUI.Common
 
     #region SvgBrush
 
+    /// <summary>
+    /// Svg brush.
+    /// </summary>
     public class SvgBrush : BrushBase
     {
+        /// <summary>
+        /// Svg id.
+        /// </summary>
         public int SvgId { get; set; }
 
-        // shall we scale svg so it fits into widgets area
+        /// <summary>
+        /// Should svg fit widgets area? Default is true.
+        /// </summary>
         public bool FitSvg { get; set; } = true;
 
         public SvgBrush()
@@ -304,6 +412,9 @@ namespace NanoUI.Common
             SvgId = svgId;
         }
 
+        // <summary>
+        /// Draw
+        /// </summary>
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             if (SvgId >= 0)
