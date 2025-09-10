@@ -179,52 +179,24 @@ namespace NanoUI.Common
     public enum IconAlign
     {
         /// <summary>
-        /// Button icon on the far left
+        /// Icon on the far left
         /// </summary>
         Left = 0,
 
         /// <summary>
-        /// Button icon on the left, centered (depends on caption text length).
+        /// Icon on the left, centered (depends on caption text length).
         /// </summary>
         LeftCentered = 1,
 
         /// <summary>
-        /// Button icon on the right, centered (depends on caption text length).
+        /// Icon on the right, centered (depends on caption text length).
         /// </summary>
         RightCentered = 2,
 
         /// <summary>
-        /// Button icon on the far right.
+        /// Icon on the far right.
         /// </summary>
         Right = 3
-    }
-
-    // todo: same as IconAlign
-
-    /// <summary>
-    /// IconPosition.
-    /// </summary>
-    public enum IconPosition
-    {
-        /// <summary>
-        /// Button icon on the far left
-        /// </summary>
-        Left,
-
-        /// <summary>
-        /// Button icon on the left, centered (depends on caption text length)
-        /// </summary>
-        LeftCentered,
-
-        /// <summary>
-        /// Button icon on the right, centered (depends on caption text length)
-        /// </summary>
-        RightCentered,
-
-        /// <summary>
-        /// Button icon on the far right
-        /// </summary>
-        Right
     }
 
     /// <summary>
