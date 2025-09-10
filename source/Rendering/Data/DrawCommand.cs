@@ -1,23 +1,51 @@
 ﻿namespace NanoUI.Rendering.Data
 {
-    // this is user facing draw command (user should loop all draw commands & render them)
+    /// <summary>
+    /// Draw command to be used when rendering. Renderer should loop all draw commands &
+    /// prepare graphics engine before drawing.
+    /// </summary>
     public struct DrawCommand
     {
+        /// <summary>
+        /// DrawCommandType to select correct pipeline settings.
+        /// </summary>
         public DrawCommandType DrawCommandType;
 
-        // this can be used in rendering, if some special operation is needed (optional)
+        /// <summary>
+        /// DrawCallType can be used in rendering, if some special operation is needed (optional).
+        /// </summary>
         public DrawCallType DrawCallType;
 
+        /// <summary>
+        /// Uniform index.
+        /// </summary>
         public int UniformOffset;
+
+        /// <summary>
+        /// Texture id.
+        /// </summary>
         public int Texture;
 
+        /// <summary>
+        /// Indices start index.
+        /// </summary>
         public int IndexOffset;
+
+        /// <summary>
+        /// Indices count.
+        /// </summary>
         public int IndexCount;
 
-        // todo not needed by now
-        // note: if we set indexes starting in each command from 0, we must use this in real draw call
+        /// <summary>
+        /// Vertices start index.
+        /// </summary>
         public int VertexOffset;
-        // todo not needed by now
+        
+        /// <summary>
+        /// Vertices count.
+        /// Note: You should not use this when drawing (use indexed drawing),
+        /// since it will produce unspecified results.
+        /// </summary>
         public int VertexCount;
     }
 }
