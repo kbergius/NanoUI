@@ -14,9 +14,11 @@ namespace NanoUI.Nvg
         // todo: should be dictionary if we supoort removeing shapes!
         ArrayBuffer<SvgShape> _svgShapes = new();
 
-        // returns shapeId or -1 if couldn't create svg shape
-        // note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        /// <summary>
+        // Returns shape id or -1 if couldn't create svg shape.
+        // Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
         // If you use some other filesystem solution, pass byte array.
+        /// </summary>
         public int CreateSvg(string path)
         {
             if (!File.Exists(path))
@@ -34,7 +36,9 @@ namespace NanoUI.Nvg
             return _svgShapes.Count - 1;
         }
 
-        // returns shapeId or -1 if couldn't create svg shape
+        /// <summary>
+        // Returns shape id or -1 if couldn't create svg shape.
+        /// </summary>
         public int CreateSvg(byte[] data)
         {
             if (data == null || data.Length == 0)
@@ -51,7 +55,9 @@ namespace NanoUI.Nvg
             return _svgShapes.Count - 1;
         }
 
-        // get the size of the svg - needed when used in ui
+        /// <summary>
+        // Returns the size of the svg. You can do this as layouting hint.
+        /// </summary>
         public bool TryGetSvgSize(int svgId, out Vector2 size)
         {
             if(svgId < 0 || svgId >= _svgShapes.Count)
@@ -67,7 +73,9 @@ namespace NanoUI.Nvg
             return true;
         }
 
-        // if returns false; means shapeId is not found
+        /// <summary>
+        // Draws the SVG. if returns false, shape was not found.
+        /// </summary>
         public bool DrawSvg(int shapeId)
         {
             if(shapeId < 0 || shapeId >= _svgShapes.Count)
