@@ -12,29 +12,42 @@ namespace NanoUI.Nvg
     {
         #region Atlas
 
+        /// <summary>
+        /// Returns font atlas texture id.
+        /// </summary>
         public int GetAtlasTextureId()
         {
             return Fontstash.GetAtlasTextureId();
         }
 
-        // Returns current font atlas size.
+        /// <summary>
+        /// Returns current font atlas texture size.
+        /// </summary>
         public void GetAtlasSize(out int width, out int height)
         {
             Fontstash.GetAtlasSize(out width, out height);
         }
 
+        /// <summary>
+        /// Returns current font atlas texture data.
+        /// Note: Data is in 8-bit format.
+        /// </summary>
         public ReadOnlySpan<byte> GetAtlasData(out int width, out int height)
         {
             return Fontstash.GetTextureData(out width, out height);
         }
 
-        // Expands the atlas size
+        /// <summary>
+        /// Expands the font atlas texture size.
+        /// </summary>
         public bool AtlasExpand(uint width, uint height)
         {
             return Fontstash.ExpandAtlas((int)width, (int)height);
         }
 
-        // Resets the whole stash
+        /// <summary>
+        /// Resets (clears) the whole font atlas data.
+        /// </summary>
         public bool AtlasReset(uint width, uint height)
         {
             return Fontstash.ResetAtlas((int)width, (int)height);
