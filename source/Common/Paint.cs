@@ -4,6 +4,10 @@ using System.Runtime.InteropServices;
 
 namespace NanoUI.Common
 {
+    /// <summary>
+    /// NanoUI supports four types of paints: linear gradient, box gradient, radial gradient and image pattern.
+    /// These can be used as paints for strokes and fills.
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Paint
     {
@@ -81,8 +85,14 @@ namespace NanoUI.Common
 
         #region LinearGradient
 
-        // helper to create horizontal/vertical linear gradients
-        // nvgLinearGradient
+        /// <summary>
+        /// Creates and returns a linear gradient.
+        /// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
+        /// </summary>
+        /// <param name="topLeft">Specifies the start coordinates of the linear gradient.</param>
+        /// <param name="size"></param>
+        /// <param name="startColor">Specifies the start color.</param>
+        /// <param name="endColor">Specifies the end color.</param>
         public static Paint LinearGradient(Vector2 topLeft, Vector2 size, Color startColor, Color endColor, bool horizontal)
         {
             if (horizontal)
@@ -94,12 +104,30 @@ namespace NanoUI.Common
                 return LinearGradient(topLeft, new Vector2(topLeft.X, topLeft.Y + size.Y), startColor, endColor);
             }
         }
-        
+
+        /// <summary>
+        /// Creates and returns a linear gradient.
+        /// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
+        /// </summary>
+        /// <param name="startX">Specifies the start x-coordinate of the linear gradient.</param>
+        /// <param name="startY">Specifies the start y-coordinate of the linear gradient.</param>
+        /// <param name="endX">Specifies the end x-coordinate of the linear gradient.</param>
+        /// <param name="endY">Specifies the end y-coordinate of the linear gradient.</param>
+        /// <param name="startColor">Specifies the start color.</param>
+        /// <param name="endColor">Specifies the end color.</param>
         public static Paint LinearGradient(float startX, float startY, float endX, float endY, Color startColor, Color endColor)
         {
             return LinearGradient(new Vector2(startX, startY), new Vector2(endX, endY), startColor, endColor);
         }
 
+        /// <summary>
+        /// Creates and returns a linear gradient.
+        /// The gradient is transformed by the current transform when it is passed to FillPaint() or StrokePaint().
+        /// </summary>
+        /// <param name="start">Specifies the start coordinates of the linear gradient.</param>
+        /// <param name="end">Specifies the end coordinates of the linear gradient.</param>
+        /// <param name="startColor">Specifies the start color.</param>
+        /// <param name="endColor">Specifies the end color.</param>
         public static Paint LinearGradient(Vector2 start, Vector2 end, Color startColor, Color endColor)
         {
             const float large = 1e5f;
@@ -132,21 +160,70 @@ namespace NanoUI.Common
 
         #region BoxGradient
 
-        // nvgBoxGradient
+        /// <summary>
+        /// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
+        /// drop shadows or highlights for boxes. Feather defines how blurry the corner of the rectangle is. The gradient
+        /// is transformed by the current transform when it is passed to FillPaint() or StrokePaint();
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="cornerRadius">Defines the corner radius.</param>
+        /// <param name="feather">Defines the feather.</param>
+        /// <param name="innerColor">Inner color of the gradient.</param>
+        /// <param name="outerColor">Outer color of the gradient.</param>
+        /// <returns></returns>
         public static Paint BoxGradient(float x, float y, float width, float height, float cornerRadius, float feather, Color innerColor, Color outerColor)
         {
             return BoxGradient(new Rect(x, y, width, height), cornerRadius, feather, innerColor, outerColor);
         }
+
+        /// <summary>
+        /// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
+        /// drop shadows or highlights for boxes. Feather defines how blurry the corner of the rectangle is. The gradient
+        /// is transformed by the current transform when it is passed to FillPaint() or StrokePaint();
+        /// </summary>
+        /// <param name="boxTopLeft"></param>
+        /// <param name="size"></param>
+        /// <param name="cornerRadius">Defines the corner radius.</param>
+        /// <param name="feather">Defines the feather.</param>
+        /// <param name="innerColor">Inner color of the gradient.</param>
+        /// <param name="outerColor">Outer color of the gradient.</param>
         public static Paint BoxGradient(Vector2 boxTopLeft, Vector2 size, float cornerRadius, float feather, Color innerColor, Color outerColor)
         {
             return BoxGradient(new Rect(boxTopLeft, size), cornerRadius, feather, innerColor, outerColor);
         }
 
+        /// <summary>
+        /// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
+        /// drop shadows or highlights for boxes. Feather defines how blurry the corner of the rectangle is. The gradient
+        /// is transformed by the current transform when it is passed to FillPaint() or StrokePaint();
+        /// </summary>
+        /// <param name="boxTopLeft"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="cornerRadius">Defines the corner radius.</param>
+        /// <param name="feather">Defines the feather.</param>
+        /// <param name="innerColor">Inner color of the gradient.</param>
+        /// <param name="outerColor">Outer color of the gradient.</param>
+        /// <returns></returns>
         public static Paint BoxGradient(Vector2 boxTopLeft, float w, float h, float cornerRadius, float feather, Color innerColor, Color outerColor)
         {
             return BoxGradient(new Rect(boxTopLeft.X, boxTopLeft.Y, w, h), cornerRadius, feather, innerColor, outerColor);
         }
 
+        /// <summary>
+        /// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
+        /// drop shadows or highlitghts for boxes. Feather defines how blurry the corner of the rectangle is. The gradient
+        /// is transformed by the current transform when it is passed to NvgRenderStyle.FillPaint() or NvgRenderStyle.StrokePaint();
+        /// </summary>
+        /// <param name="box">The rectangle.</param>
+        /// <param name="cornerRadius">Defines the corner radius.</param>
+        /// <param name="feather">Defines the feather.</param>
+        /// <param name="innerColor">Inner color of the gradient.</param>
+        /// <param name="outerColor">Outer color of the gradient.</param>
+        /// <returns></returns>
         public static Paint BoxGradient(Rect box, float cornerRadius, float feather, Color innerColor, Color outerColor)
         {
             Matrix3x2 transform = Matrix3x2.Identity;
@@ -162,12 +239,32 @@ namespace NanoUI.Common
 
         #region RadialGradient
 
-        // nvgRadialGradient
+        /// <summary>
+        /// Creates and returns a radial gradient.
+        /// The gradient is transformed by the current transform when it is passed to NvgRenderStyle.FillPaint() or NvgRenderStyle.StrokePaint().
+        /// </summary>
+        /// <param name="centerX">The centre x.</param>
+        /// <param name="centerY">The centre y.</param>
+        /// <param name="innerRadius">Specifies the inner radius of the gradient.</param>
+        /// <param name="outerRadius">Specifies the outer radius of the gradient.</param>
+        /// <param name="innerColor">Specifies the start color.</param>
+        /// <param name="outerColor">Specifies the end color.</param>
+        /// <returns></returns>
         public static Paint RadialGradient(float centerX, float centerY, float innerRadius, float outerRadius, Color innerColor, Color outerColor)
         {
             return RadialGradient(new Vector2(centerX, centerY), innerRadius, outerRadius, innerColor, outerColor);
         }
 
+        /// <summary>
+        /// Creates and returns a radial gradient.
+        /// The gradient is transformed by the current transform when it is passed to NvgRenderStyle.FillPaint() or NvgRenderStyle.StrokePaint().
+        /// </summary>
+        /// <param name="center">The centre.</param>
+        /// <param name="innerRadius">Specifies the inner radius of the gradient.</param>
+        /// <param name="outerRadius">Specifies the outer radius of the gradient.</param>
+        /// <param name="innerColor">Specifies the start color.</param>
+        /// <param name="outerColor">Specifies the end color.</param>
+        /// <returns></returns>
         public static Paint RadialGradient(Vector2 center, float innerRadius, float outerRadius, Color innerColor, Color outerColor)
         {
             float r = (innerRadius + outerRadius) * 0.5f;
@@ -186,20 +283,52 @@ namespace NanoUI.Common
 
         #region ImagePattern
 
-        // note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
-        // nvgImagePattern
+        /// <summary>
+        /// Creates and returns an image pattern.
+        /// The gradient is transformed by the current transform when it is passed to Nvg.FillPaint() or Nvg.StrokePaint().
+        /// Note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="angleInRadians">Specified rotation around the top-left corner</param>
+        /// <param name="texture">Is handle to the texture to render</param>
+        /// <param name="tintColor"></param>
+        /// <returns>An image pattern.</returns>
         public static Paint ImagePattern(float x, float y, float width, float height, float angleInRadians, int texture, Color tintColor)
         {
             return ImagePattern(new Vector2(x, y), new Vector2(width, height), angleInRadians, texture, tintColor);
         }
 
-        // note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
+        /// <summary>
+        /// Creates and returns an image pattern.
+        /// The gradient is transformed by the current transform when it is passed to Nvg.FillPaint() or Nvg.StrokePaint().
+        /// Note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
+        /// </summary>
+        /// <param name="topLeft"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="angleInRadians">Specified rotation around the top-left corner</param>
+        /// <param name="texture">Is handle to the texture to render</param>
+        /// <param name="tintColor"></param>
+        /// <returns>An image pattern.</returns>
         public static Paint ImagePattern(Vector2 topLeft, float width, float height, float angleInRadians, int texture, Color tintColor)
         {
             return ImagePattern(topLeft, new Vector2(width, height), angleInRadians, texture, tintColor);
         }
 
-        // note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
+        /// <summary>
+        /// Creates and returns an image pattern.
+        /// The gradient is transformed by the current transform when it is passed to Nvg.FillPaint() or Nvg.StrokePaint().
+        /// Note: if tint color is not spesified (= Color.Transparent), fragment shader neglects tint
+        /// </summary>
+        /// <param name="topLeft"></param>
+        /// <param name="size"></param>
+        /// <param name="angleInRadians">Specified rotation around the top-left corner</param>
+        /// <param name="texture">Is handle to the texture to render</param>
+        /// <param name="tintColor"></param>
+        /// <returns>An image pattern.</returns>
         public static Paint ImagePattern(Vector2 topLeft, Vector2 size, float angleInRadians, int texture, Color tintColor)
         {
             Matrix3x2 transform = Matrix3x2.CreateRotation(angleInRadians);
