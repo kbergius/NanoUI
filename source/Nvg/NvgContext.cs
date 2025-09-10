@@ -714,12 +714,11 @@ namespace NanoUI.Nvg
 
         #region Images
 
-        // note: this is just a helper method and params are passed as-is to renderer.
-        // so you can set in path param whatever file identication you like or
-        // call your renderer directly
-
         /// <summary>
         /// Creates texture by loading it from the disk from specified file name.
+        /// Note: this is just a helper method and params are passed as-is to renderer.
+        /// so you can set in path param whatever file identication you like or
+        /// call your renderer directly.
         /// </summary>
         /// <returns>Handle to the texture.</returns>
         public int CreateTexture(string path, TextureFlags textureFlags = 0)

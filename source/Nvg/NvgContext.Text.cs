@@ -12,29 +12,42 @@ namespace NanoUI.Nvg
     {
         #region Atlas
 
+        /// <summary>
+        /// Returns font atlas texture id.
+        /// </summary>
         public int GetAtlasTextureId()
         {
             return Fontstash.GetAtlasTextureId();
         }
 
-        // Returns current font atlas size.
+        /// <summary>
+        /// Returns current font atlas texture size.
+        /// </summary>
         public void GetAtlasSize(out int width, out int height)
         {
             Fontstash.GetAtlasSize(out width, out height);
         }
 
+        /// <summary>
+        /// Returns current font atlas texture data.
+        /// Note: Data is in 8-bit format.
+        /// </summary>
         public ReadOnlySpan<byte> GetAtlasData(out int width, out int height)
         {
             return Fontstash.GetTextureData(out width, out height);
         }
 
-        // Expands the atlas size
+        /// <summary>
+        /// Expands the font atlas texture size.
+        /// </summary>
         public bool AtlasExpand(uint width, uint height)
         {
             return Fontstash.ExpandAtlas((int)width, (int)height);
         }
 
-        // Resets the whole stash
+        /// <summary>
+        /// Resets (clears) the whole font atlas data.
+        /// </summary>
         public bool AtlasReset(uint width, uint height)
         {
             return Fontstash.ResetAtlas((int)width, (int)height);
@@ -114,15 +127,6 @@ namespace NanoUI.Nvg
             GetState().TextLineHeight = lineHeight;
         }
 
-        public float TextHeight(float x, float y, ReadOnlySpan<char> text)
-        {
-            // todo: current alignment?
-            TextAlign(TextAlignment.Left | TextAlignment.Top);
-            TextBounds(x, y, text, out var bounds);
-
-            return bounds.Height;
-        }
-
         /// <summary>
         /// Sets the text align of current text style.
         /// </summary>
@@ -164,8 +168,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Sets the text's inner and outer color of current text style.
-        /// This could be used with text effect outline (outer color = outline color).
+        /// Resets the text's inner and outer color of current text style.
         /// </summary>
         public void TextColor(in Color innerColor, in Color outerColor)
         {
@@ -180,6 +183,10 @@ namespace NanoUI.Nvg
             GetState().TextBlur = Math.Clamp(val, 0, 20);
         }
 
+        /// <summary>
+        /// Sets the text outer color's dimension (outer color = outline color).
+        /// Note: When you want to set normal text fill color, reset dilate value to 0.
+        /// </summary>
         public void TextNormalDilate(int val)
         {
             GetState().TextDilate = Math.Clamp(val, 0, 20);
