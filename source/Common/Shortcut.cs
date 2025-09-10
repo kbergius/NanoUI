@@ -2,12 +2,19 @@
 
 namespace NanoUI.Common
 {
+    /// <summary>
+    /// Shortcut for menus.
+    /// </summary>
     public struct Shortcut
     {
-        // default "Unknown"
+        /// <summary>
+        /// Key. Default Key.Unknown.
+        /// </summary>
         public Key Key;
 
-        // default "None"
+        /// <summary>
+        /// KeyModifiers. Default KeyModifiers.None.
+        /// </summary>
         public KeyModifiers Modifiers;
 
         public Shortcut(Key key)
@@ -21,6 +28,9 @@ namespace NanoUI.Common
             Modifiers = modifiers;
         }
 
+        /// <summary>
+        /// Check if Key + KeyModifiers match shortcut.
+        /// </summary>
         public bool Match(Key key, KeyModifiers modifiers)
         {
             return key == Key && Modifiers == modifiers;

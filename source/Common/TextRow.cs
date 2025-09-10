@@ -1,5 +1,8 @@
 ﻿namespace NanoUI.Common
 {
+    /// <summary>
+    /// TextRow.
+    /// </summary>
     public struct TextRow
     {
         /// <summary>

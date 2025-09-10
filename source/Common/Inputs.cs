@@ -2,66 +2,83 @@
 
 namespace NanoUI.Common
 {
-    // note:
-    // - left is "click"
-    // - right - opens context menu
-    // - other - not used
+    /// <summary>
+    /// PointerButton / MouseButton.
+    /// - left is "click"
+    /// - right - opens context menu
+    /// - other - not used by now
+    /// </summary>
     public enum PointerButton
-    {
-        //
-        // Summary:
-        //     The left pointer button.
+    {   
+        /// <summary>
+        /// The left pointer button.
+        /// </summary>
         Left = 0,
-        //
-        // Summary:
-        //     The middle pointer button.
+        
+        /// <summary>
+        /// The middle pointer button.
+        /// </summary>
         Middle = 1,
-        //
-        // Summary:
-        //     The right pointer button.
+
+        /// <summary>
+        /// The right pointer button.
+        /// </summary>
         Right = 2,
-        //
-        // Summary:
-        //     The first extra pointer button.
+        
+        /// <summary>
+        /// The first extra pointer button.
+        /// </summary>
         Button4 = 3,
-        //
-        // Summary:
-        //     The second extra pointer button.
+
+        /// <summary>
+        /// The second extra pointer button.
+        /// </summary>
         Button5 = 4,
-        //
-        // Summary:
-        //     The third extra pointer button.
+
+        /// <summary>
+        /// The third extra pointer button.
+        /// </summary>
         Button6 = 5,
-        //
-        // Summary:
-        //     The fourth extra pointer button.
+
+        /// <summary>
+        /// The furth extra pointer button.
+        /// </summary>
         Button7 = 6,
-        //
-        // Summary:
-        //     The fifth extra pointer button.
+
+        /// <summary>
+        /// The fifth extra pointer button.
+        /// </summary>
         Button8 = 7,
-        //
-        // Summary:
-        //     The sixth extra pointer button.
+
+        /// <summary>
+        /// The sixth extra pointer button.
+        /// </summary>
         Button9 = 8,
-        //
-        // Summary:
-        //     The seventh extra pointer button.
+
+        /// <summary>
+        /// The seventh extra pointer button.
+        /// </summary>
         Button10 = 9,
-        //
-        // Summary:
-        //     The eight extra pointer button.
+
+        /// <summary>
+        /// The eight extra pointer button.
+        /// </summary>
         Button11 = 10,
-        //
-        // Summary:
-        //     The nineth extra pointer button.
+
+        /// <summary>
+        /// The nineth extra pointer button.
+        /// </summary>
         Button12 = 11,
-        //
-        // Summary:
-        //     Indicates the last available pointer button.
+
+        /// <summary>
+        /// The last available extra pointer button.
+        /// </summary>
         LastButton = 12
     }
 
+    /// <summary>
+    /// KeyModifiers (Control, Shift, Alt).
+    /// </summary>
     [Flags]
     public enum KeyModifiers
     {
@@ -73,7 +90,9 @@ namespace NanoUI.Common
         //Super = 8
     }
 
-    // taken from Silk.NET.Input.Key
+    /// <summary>
+    /// Key. Same as Silk.NET.Input.Key
+    /// </summary>
     public enum Key
     {
         /// <summary>
