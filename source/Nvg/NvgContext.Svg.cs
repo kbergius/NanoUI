@@ -15,9 +15,9 @@ namespace NanoUI.Nvg
         ArrayBuffer<SvgShape> _svgShapes = new();
 
         /// <summary>
-        // Returns shape id or -1 if couldn't create svg shape.
-        // Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
-        // If you use some other filesystem solution, pass byte array.
+        /// Returns shape id or -1, if couldn't create svg shape.
+        /// Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        /// If you use some other filesystem solution, pass byte array.
         /// </summary>
         public int CreateSvg(string path)
         {
@@ -37,7 +37,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        // Returns shape id or -1 if couldn't create svg shape.
+        /// Returns shape id or -1 if couldn't create svg shape.
         /// </summary>
         public int CreateSvg(byte[] data)
         {
@@ -56,7 +56,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        // Returns the size of the svg. You can do this as layouting hint.
+        /// Returns the size of the svg. You can do this as layouting hint.
         /// </summary>
         public bool TryGetSvgSize(int svgId, out Vector2 size)
         {
@@ -74,7 +74,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        // Draws the SVG. if returns false, shape was not found.
+        /// Draws the SVG. If returns false, shape was not found.
         /// </summary>
         public bool DrawSvg(int shapeId)
         {

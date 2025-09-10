@@ -1,13 +1,23 @@
 ﻿namespace NanoUI.Common
 {
-    // this is used in category panel (property grid) to combine properties to categories
+    /// <summary>
+    /// Used in property grid to combine properties to categories
+    /// </summary>
     public struct Category
     {
-        // this is for objects to refer in Catergory attribute
+        /// <summary>
+        /// Category id.
+        /// </summary>
         public string Id;
+
+        /// <summary>
+        /// DisplayText.
+        /// </summary>
         public string DisplayText;
 
-        // used for sorting
+        /// <summary>
+        /// SortKey. Used in sorting.
+        /// </summary>
         public int SortKey;
     }
 }
