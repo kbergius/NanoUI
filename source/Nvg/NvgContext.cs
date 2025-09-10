@@ -228,8 +228,6 @@ namespace NanoUI.Nvg
 
         #region Transforms
 
-        // note: you can easily use any transformation method that Matrix3x2 provides
-
         /// <summary>
         /// Translates with the specified X and Y components
         /// </summary>
@@ -246,53 +244,64 @@ namespace NanoUI.Nvg
             GetState().Transform = Matrix3x2.CreateTranslation(position) * GetState().Transform;
         }
 
-        // Rotate current transform with angle in radians.
-        // nvgRotate
+        /// <summary>
+        /// Rotates current transform with angle in radians.
+        /// </summary>
         public void Rotate(float radians)
         {
             GetState().Transform = Matrix3x2.CreateRotation(radians) * GetState().Transform;
         }
 
-        // Rotate current transform with angle in radians around centerPoint
+        /// <summary>
+        /// Rotates current transform with angle in radians around centerPoint.
+        /// </summary>
         public void Rotate(float radians, Vector2 centerPoint)
         {
             GetState().Transform = Matrix3x2.CreateRotation(radians, centerPoint) * GetState().Transform;
         }
 
-        // Scale uniformly with the given scale.
-        // nvgScale
+        /// <summary>
+        /// Scales uniformly with the given scale.
+        /// </summary>
         public void Scale(float scale)
         {
             GetState().Transform = Matrix3x2.CreateScale(scale) * GetState().Transform;
         }
 
-        // Scale with the specified vector scale (x & y)
+        /// <summary>
+        /// Scales with the specified vector scale (x & y).
+        /// </summary>
         public void Scale(Vector2 scales)
         {
             GetState().Transform = Matrix3x2.CreateScale(scales) * GetState().Transform;
         }
 
-        // Scalw with the specified vector scale with an offset from the specified center point.
+        /// <summary>
+        /// Scales with the specified vector scale with an offset from the specified center point.
+        /// </summary>
         public void Scale(Vector2 scales, Vector2 centerPoint)
         {
             GetState().Transform = Matrix3x2.CreateScale(scales, centerPoint) * GetState().Transform;
         }
 
-        // Skew with the specified angles in radians
-        // nvgSkewX, nvgSkewY
+        /// <summary>
+        /// Skews with the specified angles in radians.
+        /// </summary>
         public void Skew(float radiansX, float radiansY)
         {
             GetState().Transform = Matrix3x2.CreateSkew(radiansX, radiansY) * GetState().Transform;
         }
 
-        // Skew with the specified angles in radians and a center point
+        /// <summary>
+        /// Skews with the specified angles in radians and a center point.
+        /// </summary>
         public void Skew(float radiansX, float radiansY, Vector2 centerPoint)
         {
             GetState().Transform = Matrix3x2.CreateSkew(radiansX, radiansY, centerPoint) * GetState().Transform;
         }
 
         /// <summary>
-        /// Premultiplies current transform by specified matrix.
+        /// Multiplies current transform by specified matrix.
         /// </summary>
         public void Transform(Matrix3x2 transform)
         {
@@ -307,7 +316,9 @@ namespace NanoUI.Nvg
             GetState().Transform = Matrix3x2.Identity;
         }
 
-        // nvgCurrentTransform
+        /// <summary>
+        /// Returns current transform matrix.
+        /// </summary>
         public ref Matrix3x2 CurrentTransform()
         {
             return ref GetState().Transform;
