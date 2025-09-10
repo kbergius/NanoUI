@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Rendering
 {
+    /// <summary>
+    /// Static cache to collect all information needed in rendering phase.
+    /// </summary>
     public static partial class DrawCache
     {
         static UnsafeBuffer<FillStrokeInfo> _fillStrokes = new(100);        
@@ -13,11 +16,22 @@ namespace NanoUI.Rendering
         static UnsafeBuffer<FragmentUniform> _uniforms = new(100);
 
         internal static int VerticesCount => _vertices.Count;
+
+        /// <summary>
+        /// Collected vertices since last BeginFrame() command.
+        /// </summary>
         public static ReadOnlySpan<Vertex> Vertices => _vertices.AsReadOnlySpan();
+
+        /// <summary>
+        /// Collected fragment uniforms since last BeginFrame() command.
+        /// </summary>
         public static ReadOnlySpan<FragmentUniform> Uniforms => _uniforms.AsReadOnlySpan();
 
         static DrawCall _call;
 
+        /// <summary>
+        /// Clear all buffers in DrawCache.
+        /// </summary>
         public static void Clear()
         {
             _vertices.Clear();

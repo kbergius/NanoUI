@@ -1,7 +1,9 @@
 ﻿namespace NanoUI.Rendering
 {
-    // this is enum spesifing internal draw call, that is used to create user facing draw command(s)
-    // it can also be used in rendering, if some special operation is needed (optional)
+    /// <summary>
+    /// DrawCallType can be used in rendering,
+    /// if some special operation is needed (optional),
+    /// </summary>
     public enum DrawCallType
     {
         Fill,
@@ -10,6 +12,10 @@
         Text
     }
 
+    /// <summary>
+    /// DrawCommandType should be used in rendering,
+    /// when settings correct pipeline settings.
+    /// </summary>
     public enum DrawCommandType
     {
         // TriangleFan --> TriangleList - indexed
@@ -23,8 +29,10 @@
         Triangles
     }
 
-    // this is used in shader to determine the draw action (stored in fragment uniform)
-    // note: this could be public & set directly to uniform, because it converts into int in the fragment shader
+    /// <summary>
+    /// DrawActionType is used in fragment/pixel shader to determine
+    /// the correct action.
+    /// </summary>
     public enum DrawActionType : int
     {
         FillGradient = 0,

@@ -12,6 +12,10 @@ namespace NanoUI.Rendering
         static ushort[] _quadIndices = Array.Empty<ushort>();
 
         static UnsafeBuffer<ushort> _indexes = new(1024);
+
+        /// <summary>
+        /// Collected indices since last BeginFrame() command.
+        /// </summary>
         public static ReadOnlySpan<ushort> Indexes => _indexes.AsReadOnlySpan();
 
         // TriangleFan
