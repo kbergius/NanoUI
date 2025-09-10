@@ -50,7 +50,6 @@ namespace NanoUI.Nvg
         /// If you use some other filesystem solution, pass byte array.
         /// </summary>
         /// <returns>Handle to the font.</returns>
-        /// 
         public int CreateFont(ReadOnlySpan<char> name, string path, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             if (!File.Exists(path))
@@ -156,13 +155,18 @@ namespace NanoUI.Nvg
 
         // Bitmaps
 
-        // this is same as FillColor
+        /// <summary>
+        /// Sets the text color of current text style.
+        /// </summary>
         public void TextColor(in Color color)
         {
             GetState().Fill.Reset(color);
         }
 
-        // this is used with text effect outline (outer color = outline color)
+        /// <summary>
+        /// Sets the text's inner and outer color of current text style.
+        /// This could be used with text effect outline (outer color = outline color).
+        /// </summary>
         public void TextColor(in Color innerColor, in Color outerColor)
         {
             GetState().Fill.Reset(innerColor, outerColor);
@@ -188,8 +192,13 @@ namespace NanoUI.Nvg
 
         // Shapes baking
 
-        // note: if you don't want outline, set color to null or outlineWidth <= 0.
-        // Default value is no outline color
+        /// <summary>
+        /// Sets the text shape's inner and outer color.
+        /// This could be used with text effect outline (outer color = outline color) with
+        /// text shapes.
+        /// Note: if you don't want outline, set color to null or outlineWidth <= 0.
+        /// Default value is no outline color.
+        /// </summary>
         public void TextShapeOutline(in Color? color, float outlineWidth = 1)
         {
             ref NvgState state = ref GetState();
@@ -198,7 +207,10 @@ namespace NanoUI.Nvg
             state.TextShapeOutlineWidth = outlineWidth;
         }
 
-        // note: if you don't want fill, set paint to null. Default value is no fill
+        /// <summary>
+        /// Sets the text shape's fiil paint.
+        /// If you don't want fill, set paint to null. Default value is no fill.
+        /// </summary>
         public void TextShapeFill(Paint? paint)
         {
             GetState().TextShapeFill = paint;

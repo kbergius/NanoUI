@@ -21,11 +21,17 @@ namespace NanoUI.Common
             _packedValue = packedValue;
         }
 
+        /// <summary>
+        /// Constructs color from red, green, blue values. Alpha will be (by default) set to 255 (1.0f).
+        /// </summary>
         public Color(byte r, byte g, byte b, byte alpha = 255)
         {
             _packedValue = (uint)alpha << 24 | (uint)b << 16 | (uint)g << 8 | r;
         }
 
+        /// <summary>
+        /// Constructs color from red, green, blue and alpha values.
+        /// </summary>
         public Color(float r, float g, float b, float a)
             :this((byte)(r * 255), (byte)(g * 255), (byte)(b * 255), (byte)(a * 255)) { }
 
@@ -96,10 +102,12 @@ namespace NanoUI.Common
             return new Vector4(R / 255.0f, G / 255.0f, B / 255.0f, A / 255.0f);
         }
 
-        // Computes the luminance as ``l = 0.299r + 0.587g + 0.144b + 0.0a``.  If
-        // the luminance is less than 0.5, white is returned.  If the luminance is
-        // greater than or equal to 0.5, black is returned.  Both returns will have
-        // an alpha component of 1.0.
+        /// <summary>
+        /// Computes the luminance as ``l = 0.299r + 0.587g + 0.144b + 0.0a``.  If
+        /// the luminance is less than 0.5, white is returned.  If the luminance is
+        /// greater than or equal to 0.5, black is returned.  Both returns will have
+        /// an alpha component of 1.0.
+        /// </summary>
         public Color ContrastingColor()
         {
             //float luminance = (dot(this, new Color(0.299f, 0.587f, 0.144f, 0.0f))) / (255f * 255f);
@@ -139,7 +147,9 @@ namespace NanoUI.Common
             return new Color(R, G, B, (byte)(A * alpha));
         }
 
-        // Performs linear interpolation
+        /// <summary>
+        /// Performs linear interpolation.
+        /// </summary>
         public static Color Lerp(in Color value1, in Color value2, float amount)
         {
             return new Color(Vector4.Lerp(value1.ToVector4(), value2.ToVector4(), amount));
@@ -160,6 +170,10 @@ namespace NanoUI.Common
             return new Color(Vector4.Max(left.ToVector4(), right.ToVector4()));
         }
 
+        /// <summary>
+        /// Returns color specified by hue, saturation and lightness.
+        /// HSL values are all in range [0..1], alpha will be in range [0..255].
+        /// </summary>
         public static Color HSLA(float h, float s, float l, byte a)
         {
             h = h % 1.0f;

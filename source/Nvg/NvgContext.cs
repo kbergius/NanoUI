@@ -34,13 +34,22 @@ namespace NanoUI.Nvg
 
         INvgRenderer _nvgRenderer;
 
-        // note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the FontManager
-        // (unmanaged uses pointers)
+        /// <summary>
+        /// NvgContext is the real engine of the NanoUI. You should create it at
+        /// your application's startup.
+        /// Note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the font manager
+        /// (unmanaged uses pointers)
+        /// </summary>
         public NvgContext(INvgRenderer nvgRenderer, bool useSafeFontManager = false, float devicePixelRatio = 1.0f)
             :this(nvgRenderer, useSafeFontManager? new SafeStbTrueTypeManager() : new StbTrueTypeManager(), devicePixelRatio)
         {
         }
 
+        /// <summary>
+        /// NvgContext is the real engine of the NanoUI. You should create it at
+        /// your application's startup.
+        /// Note: You can set NanoUI to use your own font manager.
+        /// </summary>
         public NvgContext(INvgRenderer nvgRenderer, IFontManager fontManager, float devicePixelRatio = 1.0f)
         {
             // some widgets may want to get NvgContext
@@ -366,11 +375,6 @@ namespace NanoUI.Nvg
             _pathLineTo(GetState(), p);
         }
         
-        /*public void BezierTo(float c1x, float c1y, float c2x, float c2y, float x, float y, float kw, float kh)
-        {
-            BezierTo(c1x * kw, c1y * kh, c2x * kw, c2y * kh, x * kw, y * kh);
-        }*/
-
         /// <summary>
         /// Adds cubic bezier segment from last point in the path via two control points to the specified point.
         /// </summary>
@@ -419,12 +423,11 @@ namespace NanoUI.Nvg
         public void PathWinding(Solidity sol)
             => PathWinding((Winding)sol);
 
-        // Normally you should use Winding.CounterClockwise (solid) or Winding.Clockwise (hole)
-        // note: if you have issues with fills, you could also try setting Winding.Manual, which
-        // bypasses automatic winding check & points conversion
-
         /// <summary>
         /// Sets the current sub-path winding.
+        /// Note: Normally you should use Winding.CounterClockwise (solid) or Winding.Clockwise (hole)
+        /// If you have issues with fills, you could also try setting Winding.Manual, which
+        /// bypasses automatic winding check & points conversion.
         /// </summary>
         public void PathWinding(Winding dir)
         {
