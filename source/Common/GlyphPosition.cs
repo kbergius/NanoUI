@@ -1,5 +1,8 @@
 ﻿namespace NanoUI.Common
 {
+    /// <summary>
+    /// GlyphPosition.
+    /// </summary>
     public struct GlyphPosition
     {
         /// <summary>

@@ -2,6 +2,9 @@
 
 namespace NanoUI.Common
 {
+    /// <summary>
+    /// BrushType.
+    /// </summary>
     public enum BrushType
     {
         /// <summary>
@@ -40,7 +43,10 @@ namespace NanoUI.Common
         Svg
     }
 
-    // Flags to specify the button behavior (can be combined)
+    /// <summary>
+    /// ButtonFlags.
+    /// Flags to specify button widget behavior (can be combined).
+    /// </summary>
     [Flags]
     public enum ButtonFlags
     {
@@ -60,8 +66,12 @@ namespace NanoUI.Common
         ToggleButton = 1 << 2,
     }
 
-    // Currently only Window uses
     // todo: Body not implemented
+
+    /// <summary>
+    /// DragMode.
+    /// Currently only Window widget uses.
+    /// </summary>
     public enum DragMode
     {
         /// <summary>
@@ -100,6 +110,9 @@ namespace NanoUI.Common
         NONE,
     }
 
+    /// <summary>
+    /// FileDialogType.
+    /// </summary>
     public enum FileDialogType
     {
         /// <summary>
@@ -118,6 +131,9 @@ namespace NanoUI.Common
         SaveAs,
     }
 
+    /// <summary>
+    /// FileFolderType.
+    /// </summary>
     public enum FileFolderType
     {
         /// <summary>
@@ -136,6 +152,9 @@ namespace NanoUI.Common
         File
     }
 
+    /// <summary>
+    /// GlyphBaking. Determines which way glyphs are stored and rendered.
+    /// </summary>
     public enum GlyphBaking : int
     {
         /// <summary>
@@ -154,6 +173,9 @@ namespace NanoUI.Common
         Shapes
     }
 
+    /// <summary>
+    /// IconAlign.
+    /// </summary>
     public enum IconAlign
     {
         /// <summary>
@@ -177,8 +199,11 @@ namespace NanoUI.Common
         Right = 3
     }
 
-    // The available icon positions.
     // todo: same as IconAlign
+
+    /// <summary>
+    /// IconPosition.
+    /// </summary>
     public enum IconPosition
     {
         /// <summary>
@@ -202,6 +227,9 @@ namespace NanoUI.Common
         Right
     }
 
+    /// <summary>
+    /// LayoutAlignment. Used in layouts.
+    /// </summary>
     public enum LayoutAlignment : byte
     {
         /// <summary>
@@ -225,6 +253,9 @@ namespace NanoUI.Common
         Fill
     }
 
+    /// <summary>
+    /// LineCap.
+    /// </summary>
     public enum LineCap
     {
         /// <summary>
@@ -253,6 +284,9 @@ namespace NanoUI.Common
         Miter
     }
 
+    /// <summary>
+    /// MessageDialogType. Determines icon.
+    /// </summary>
     public enum MessageDialogType
     {
         /// <summary>
@@ -276,6 +310,9 @@ namespace NanoUI.Common
         Error
     }
 
+    /// <summary>
+    /// NumericFormat. Determines how many decimals are shown.
+    /// </summary>
     public enum NumericFormat
     {
         /// <summary>
@@ -319,8 +356,11 @@ namespace NanoUI.Common
         Decimal6,
     }
 
-    // these are default pointer types used internally, but type is stored as int so user can set any int value
-    // value is passed to screen & user app
+    /// <summary>
+    /// PointerType. These are default pointer types used internally,
+    /// but type is stored as int so you can set any int value.
+    /// Value is passed to screen & user application.
+    /// </summary>
     public enum PointerType
     {
         /// <summary>
@@ -384,7 +424,9 @@ namespace NanoUI.Common
         WaitArrow,
     }
 
-    // The direction of data flow for a layout
+    /// <summary>
+    /// Orientation. Primarily used to determine the direction of data flow layouts.
+    /// </summary>
     public enum Orientation
     {
         /// <summary>
@@ -398,7 +440,9 @@ namespace NanoUI.Common
         Vertical,
     }
 
-    // this is popup's position relative to its parent (UIPopupButton)
+    /// <summary>
+    /// PopupPosition. Popup's position relative to its parent (mostly UIPopupButton).
+    /// </summary>
     public enum PopupPosition
     {
         /// <summary>
@@ -427,6 +471,9 @@ namespace NanoUI.Common
         Bottom
     }
 
+    /// <summary>
+    /// SeparatorDrawFlag.
+    /// </summary>
     [Flags]
     public enum SeparatorDrawFlag
     {
@@ -471,6 +518,9 @@ namespace NanoUI.Common
         CenterV = 1 << 7
     }
 
+    /// <summary>
+    /// ScrollableDragMode.
+    /// </summary>
     public enum ScrollableDragMode
     {
         /// <summary>
@@ -489,6 +539,9 @@ namespace NanoUI.Common
         Horizontal,
     }
 
+    /// <summary>
+    /// ScrollbarType.
+    /// </summary>
     public enum ScrollbarType
     {
         /// <summary>
@@ -512,6 +565,9 @@ namespace NanoUI.Common
         Both
     }
 
+    /// <summary>
+    /// Solidity. Determines how shape is interpreteted.
+    /// </summary>
     public enum Solidity
     {
         /// <summary>
@@ -525,8 +581,10 @@ namespace NanoUI.Common
         Hole = Winding.Clockwise
     }
 
-    
-    // this is a shortcut to both horizontal & vertical aligment
+
+    /// <summary>
+    /// TextAlignment. Shortcut to both horizontal & vertical aligment.
+    /// </summary>
     [Flags]
     public enum TextAlignment : int
     {
@@ -566,7 +624,10 @@ namespace NanoUI.Common
         Baseline = 1 << 6
     }
 
-    // note : some widgets have fixed alignment - ie changing property has no effect
+    /// <summary>
+    /// TextHorizontalAlign.
+    /// Note: some widgets have fixed alignment - ie changing property has no effect.
+    /// </summary>
     public enum TextHorizontalAlign
     {
         /// <summary>
@@ -585,7 +646,10 @@ namespace NanoUI.Common
         Right
     }
 
-    // note : some widgets have fixed alignment - ie changing property has no effect
+    /// <summary>
+    /// TextVerticalAlign.
+    /// Note: some widgets have fixed alignment - ie changing property has no effect.
+    /// </summary>
     public enum TextVerticalAlign
     {
         /// <summary>
@@ -604,7 +668,9 @@ namespace NanoUI.Common
         Bottom
     }
 
-    // todo: add to all property enums Theme =0 (this is default) => uses theme spesified value
+    /// <summary>
+    /// TextureFlags. To deteremine extra texture handling.
+    /// </summary>
     [Flags]
     public enum TextureFlags
     {
@@ -639,6 +705,9 @@ namespace NanoUI.Common
         Nearest = 1 << 5
     }
 
+    /// <summary>
+    /// TextureFormat. You should map these values to your graphics engine PixelFormats.
+    /// </summary>
     public enum TextureFormat
     {
         /// <summary>
@@ -655,7 +724,9 @@ namespace NanoUI.Common
         RGBA
     }
 
-    // used in views
+    /// <summary>
+    /// ViewSelectionMode. Used in view widgets.
+    /// </summary>
     public enum ViewSelectionMode
     {
         /// <summary>
@@ -669,8 +740,10 @@ namespace NanoUI.Common
         Cell
     }
 
-    // used basically to get correct background brush
-    // note: hovered (MouseFocus) is combined with these
+    /// <summary>
+    /// WidgetState. Used basically to get correct widget's background brush.
+    /// Note: Hovered/MouseFocus (with tint color) is combined with these
+    /// </summary>
     public enum WidgetState
     {
         /// <summary>
