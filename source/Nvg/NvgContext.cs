@@ -34,13 +34,22 @@ namespace NanoUI.Nvg
 
         INvgRenderer _nvgRenderer;
 
-        // note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the FontManager
-        // (unmanaged uses pointers)
+        /// <summary>
+        /// NvgContext is the real engine of the NanoUI. You should create it at
+        /// your application's startup.
+        /// Note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the font manager
+        /// (unmanaged uses pointers)
+        /// </summary>
         public NvgContext(INvgRenderer nvgRenderer, bool useSafeFontManager = false, float devicePixelRatio = 1.0f)
             :this(nvgRenderer, useSafeFontManager? new SafeStbTrueTypeManager() : new StbTrueTypeManager(), devicePixelRatio)
         {
         }
 
+        /// <summary>
+        /// NvgContext is the real engine of the NanoUI. You should create it at
+        /// your application's startup.
+        /// Note: You can set NanoUI to use your own font manager.
+        /// </summary>
         public NvgContext(INvgRenderer nvgRenderer, IFontManager fontManager, float devicePixelRatio = 1.0f)
         {
             // some widgets may want to get NvgContext
