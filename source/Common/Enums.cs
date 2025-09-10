@@ -699,8 +699,11 @@ namespace NanoUI.Common
         Invalid // todo: should we handle it here or in widget level?
     }
 
-    // Normally you should use Winding.CounterClockwise (solid) or Winding.Clockwise (hole)
-    // note: if you have issues with fills, you could also try setting Winding.Manual
+    /// <summary>
+    /// Winding for solid shapes (CounterClockwise) & holes (Clockwise).
+    /// Note: Normally you should use Winding.CounterClockwise (solid) or Winding.Clockwise (hole).
+    /// If you have issues with fills, you could also try setting Winding.Manual.
+    /// </summary>
     public enum Winding
     {
         /// <summary>
