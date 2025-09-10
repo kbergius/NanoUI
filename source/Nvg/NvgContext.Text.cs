@@ -127,15 +127,6 @@ namespace NanoUI.Nvg
             GetState().TextLineHeight = lineHeight;
         }
 
-        public float TextHeight(float x, float y, ReadOnlySpan<char> text)
-        {
-            // todo: current alignment?
-            TextAlign(TextAlignment.Left | TextAlignment.Top);
-            TextBounds(x, y, text, out var bounds);
-
-            return bounds.Height;
-        }
-
         /// <summary>
         /// Sets the text align of current text style.
         /// </summary>
@@ -177,8 +168,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Sets the text's inner and outer color of current text style.
-        /// This could be used with text effect outline (outer color = outline color).
+        /// Resets the text's inner and outer color of current text style.
         /// </summary>
         public void TextColor(in Color innerColor, in Color outerColor)
         {
@@ -193,6 +183,10 @@ namespace NanoUI.Nvg
             GetState().TextBlur = Math.Clamp(val, 0, 20);
         }
 
+        /// <summary>
+        /// Sets the text outer color's dimension (outer color = outline color).
+        /// Note: When you want to set normal text fill color, reset dilate value to 0.
+        /// </summary>
         public void TextNormalDilate(int val)
         {
             GetState().TextDilate = Math.Clamp(val, 0, 20);
