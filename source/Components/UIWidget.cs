@@ -862,7 +862,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnPointerUpDown handles pointer button events (up & down).
-        /// Default implementation: propagate to children.
+        /// Default action: propagate to children.
         /// Note: UIContextMenu (PointerButton.Right) is handled in UIScreen.
         /// </summary>
         public virtual bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
@@ -899,7 +899,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnPointerDoubleClick.
-        /// Default implementation: propagate to children.
+        /// Default action: propagate to children.
         /// </summary>
         public virtual bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
@@ -977,7 +977,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnPointerEnter handles pointer enter/leave event.
-        /// Default implementation: record this fact, but do nothing.
+        /// Default action: record this fact, but do nothing.
         /// This is mainly called from UIScreen after screen pointer focus widget has changed.
         /// Note: you don't need to extent this unless your widget manages its children pointer focuses (like views) OR
         /// your widget sets some other status flags (like cursor type).
@@ -989,7 +989,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnPointerDrag handles pointer drag event.
-        /// Default implementation: do nothing.
+        /// Default action: do nothing.
         /// </summary>
         public virtual bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
@@ -1023,7 +1023,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnFocusChanged handles focus change event.
-        /// Default implementation: record the focus status, but do nothing.
+        /// Default action: record the focus status, but do nothing.
         /// </summary>
         public virtual bool OnFocusChanged(bool focused)
         {
@@ -1034,7 +1034,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnKeyUpDown handles keyboard event.
-        /// Default implementation: do nothing.
+        /// Default action: do nothing.
         /// Note: OnKeyUpDown event is restricted only to widgets in UIScreen's focuspath.
         /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
         /// Note3: there is an exception in UIPopup (handles shortcut keys in menus).
@@ -1046,7 +1046,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnKeyChar handle text input.
-        /// Default implementation: do nothing.
+        /// Default action: do nothing.
         /// Note: OnKeyChar event is restricted only to widgets in UIScreen's focuspath.
         /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
         /// </summary>
@@ -1058,7 +1058,7 @@ namespace NanoUI.Components
         /// <summary>
         /// OnScreenResize is an event that UIScreen passes only to its direct children.
         /// They can then decide, if they do something and if they want to pass event to their children.
-        /// The default action is do nothing.
+        /// Default action: do nothing.
         /// Note: if widget resizes itself, it should then call PerformLayout or RequestLayoutUpdate.
         /// </summary>
         public virtual void OnScreenResize(Vector2 size, NvgContext ctx)
@@ -1068,7 +1068,7 @@ namespace NanoUI.Components
 
         /// <summary>
         /// OnFileDrop handles file drop event.
-        /// Default implementation: do nothing.
+        /// Default action: do nothing.
         /// </summary>
         public virtual bool OnFileDrop(string filename)
         {
@@ -1102,11 +1102,10 @@ namespace NanoUI.Components
 
         #region Layout
 
-        // Compute the preferred size of the widget
-        // if layout specified, use layout to calculate. Else calculate from size values
-
         /// <summary>
-        /// PreferredSize.
+        /// Computes the preferred size of the widget.
+        /// If layout specified, use layout to calculate.
+        /// Else calculates from size values.
         /// </summary>
         public virtual Vector2 PreferredSize(NvgContext ctx)
         {
@@ -1131,10 +1130,9 @@ namespace NanoUI.Components
             }
         }
 
-        // Invoke the associated layout generator to properly place child widgets, if any
-
         /// <summary>
-        /// PerformLayout.
+        /// PerformLayout invokes the associated layout to properly place child widgets, if any.
+        /// Note: layouts neglect invisible widgets (Visible property = false).
         /// </summary>
         public virtual void PerformLayout(NvgContext ctx)
         {
@@ -1163,10 +1161,10 @@ namespace NanoUI.Components
 
         #region Drawing
 
-        // note: we are inside scissor
-
         /// <summary>
-        /// Draw.
+        /// Draw is a method that is executed every frame. So avoid placing here
+        /// any expensive operations.
+        /// Note: widget is "inside" scissor, that it's parent has set.
         /// </summary>
         public virtual void Draw(NvgContext ctx)
         {
@@ -1201,13 +1199,11 @@ namespace NanoUI.Components
             }
         }
 
-        // this is called from screen after all widgets have been drawn.
-        // this gives a possiblity to draw "overlay" over all widgets (widget must be put in screen's
-        // post draw list to invoke this)
-        // todo: screen passes pointer absolute position, so you must convert it to local position
-
         /// <summary>
-        /// PostDraw.
+        /// PostDraw is called from UIScreen after all widgets have been drawn.
+        /// This gives a possiblity to draw overlay over all widgets.
+        /// Note: widget must be in screen's post draw list to get this call.
+        /// UIScreen passes pointer's absolute position.
         /// </summary>
         public virtual void PostDraw(NvgContext ctx, Vector2 pointerPosition)
         {
