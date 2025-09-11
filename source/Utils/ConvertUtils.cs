@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace NanoUI.Utils
 {
+    /// <summary>
+    /// ConvertUtils.
+    /// </summary>
     public static class ConvertUtils
     {
         // icon strings (we convert int to string)

@@ -4,6 +4,10 @@ using System.Numerics;
 namespace NanoUI.Utils
 {
     // this is a class to handle all formatting (basically strings)
+
+    /// <summary>
+    /// FormatUtils.
+    /// </summary>
     public static class FormatUtils
     {
         public static string GetNumberFormat<T>(T value, NumericFormat numericFormat) where T : INumber<T>

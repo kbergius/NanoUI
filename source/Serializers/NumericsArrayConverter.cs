@@ -4,6 +4,10 @@ using System.Numerics;
 namespace NanoUI.Serializers
 {
     // this is used when serializing JSON
+
+    /// <summary>
+    /// NumericsArrayConverter.
+    /// </summary>
     public static class NumericsArrayConverter
     {
         // Vector2

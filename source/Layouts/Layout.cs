@@ -5,6 +5,10 @@ using System.Numerics;
 namespace NanoUI.Layouts
 {
     // this is a base layout that all layout implementations should extend
+
+    /// <summary>
+    /// Layout.
+    /// </summary>
     public abstract class Layout
     {
         // note: layout spacing may use only 1 dimension

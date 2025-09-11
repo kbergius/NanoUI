@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace NanoUI.Utils
 {
+    /// <summary>
+    /// MathUtils.
+    /// </summary>
     public static class MathUtils
     {
         public static bool IsPointInsideTriangle(Vector2 point, Vector2 a, Vector2 b, Vector2 c)

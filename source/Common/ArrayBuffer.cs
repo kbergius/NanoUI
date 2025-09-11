@@ -6,6 +6,10 @@ using System.Runtime.CompilerServices;
 namespace NanoUI.Common
 {
     // todo : add methods from C# ArrayList (not generics)
+
+    /// <summary>
+    /// ArrayBuffer<T>.
+    /// </summary>
     public class ArrayBuffer<T>
     {
         T[] _items;

@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
+    /// <summary>
+    /// GroupLayout.
+    /// </summary>
     public class GroupLayout : Layout
     {
         // The spacing between groups

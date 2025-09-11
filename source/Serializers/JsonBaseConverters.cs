@@ -10,6 +10,9 @@ namespace NanoUI.Serializers
 {
     #region IntArray
 
+    /// <summary>
+    /// IntArraySerializer.
+    /// </summary>
     internal static class IntArraySerializer
     {
         public static int[] Read(ref Utf8JsonReader reader, JsonSerializerOptions options)
@@ -43,6 +46,9 @@ namespace NanoUI.Serializers
 
     #region StringArray
 
+    /// <summary>
+    /// StringArraySerializer.
+    /// </summary>
     internal static class StringArraySerializer
     {
         public static string[] Read(ref Utf8JsonReader reader, JsonSerializerOptions options)
@@ -88,6 +94,9 @@ namespace NanoUI.Serializers
 
     #region Range
 
+    /// <summary>
+    /// JsonRangeConverter.
+    /// </summary>
     public class JsonRangeConverter : JsonConverter<MinMax>
     {
         public override MinMax Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -121,6 +130,9 @@ namespace NanoUI.Serializers
 
     #region Color
 
+    /// <summary>
+    /// JsonColorConverter.
+    /// </summary>
     public class JsonColorConverter : JsonConverter<Color>
     {
         public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -161,6 +173,9 @@ namespace NanoUI.Serializers
 
     #region Thickness
 
+    /// <summary>
+    /// JsonPaddingConverter.
+    /// </summary>
     public class JsonPaddingConverter : JsonConverter<Thickness>
     {
         public override Thickness Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -197,6 +212,9 @@ namespace NanoUI.Serializers
 
     #region CornerRadius
 
+    /// <summary>
+    /// JsonCornerRadiusConverter.
+    /// </summary>
     public class JsonCornerRadiusConverter : JsonConverter<CornerRadius>
     {
         public override CornerRadius Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

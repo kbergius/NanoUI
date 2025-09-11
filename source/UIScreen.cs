@@ -18,6 +18,10 @@ namespace NanoUI
     // todo: tab key press -. focus next widget that can get focus
     // note: you can put any widget directly under screen, but only Windows (& their extensions) support
     // automatic "layering".
+
+    /// <summary>
+    /// UIScreen.
+    /// </summary>
     public partial class UIScreen : UIWidget
     {
         ArrayBuffer<UIWidget> _focusPath = new();

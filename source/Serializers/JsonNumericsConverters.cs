@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Serializers
 {
+    /// <summary>
+    /// FloatArraySerializer.
+    /// </summary>
     internal static class FloatArraySerializer
     {
         public static float[] Read(ref Utf8JsonReader reader, JsonSerializerOptions options)

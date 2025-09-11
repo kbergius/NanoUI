@@ -4,6 +4,10 @@ namespace NanoUI.Svg
 {
     // Convert an arc to a sequence of cubic bézier curves
     // Credit: https://github.com/fontello/svgpath/blob/master/lib/a2c.js
+
+    /// <summary>
+    /// SvgArcUtils.
+    /// </summary>
     internal static class SvgArcUtils
     {
         const float Tau = MathF.PI * 2;

@@ -6,6 +6,10 @@ using NanoUI.Utils;
 namespace NanoUI.Common
 {
     // this is only used in drawing "layer"
+
+    /// <summary>
+    /// UnsafeBuffer<T>.
+    /// </summary>
     internal unsafe struct UnsafeBuffer<T> where T : unmanaged
     {
         const int DefaultCapacity = 4;

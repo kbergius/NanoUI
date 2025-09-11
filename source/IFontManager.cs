@@ -5,6 +5,9 @@ using System;
 
 namespace NanoUI
 {
+    /// <summary>
+    /// IFontManager.
+    /// </summary>
     public interface IFontManager
     {
         // fontmanager implementation may not support all FontGlyphBaking methods

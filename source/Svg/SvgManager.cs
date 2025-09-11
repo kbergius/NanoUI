@@ -10,6 +10,9 @@ using System.Xml;
 
 namespace NanoUI.Svg
 {
+    /// <summary>
+    /// SvgManager.
+    /// </summary>
     internal static partial class SvgManager
     {
         // todo: <svg> & <g> can have nested main elements and have also common attributes

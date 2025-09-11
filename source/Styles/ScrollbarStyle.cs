@@ -4,6 +4,10 @@ namespace NanoUI.Styles
 {
     // scrollbars + scrollbar sliders
     // note: UIScrollbar is not themable widget, so we must have global decorator
+
+    /// <summary>
+    /// ScrollbarStyle.
+    /// </summary>
     public struct ScrollbarStyle
     {
         public uint ScrollbarDimension { get; set; }

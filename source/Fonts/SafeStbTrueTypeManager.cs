@@ -11,6 +11,10 @@ namespace NanoUI.Fonts
     // SafeStbTrueTypeSharp is a safe (managed) version of StbTrueTypeSharp 1.24
     // https://github.com/StbSharp/StbTrueTypeSharp
     // https://github.com/StbSharp/SafeStbTrueTypeSharp
+
+    /// <summary>
+    /// SafeStbTrueTypeManager.
+    /// </summary>
     internal class SafeStbTrueTypeManager : IFontManager
     {
         // these affects sharpness & brightness when using FontBaking.SDF

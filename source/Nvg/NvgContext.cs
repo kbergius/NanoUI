@@ -8,6 +8,9 @@ using System.Numerics;
 
 namespace NanoUI.Nvg
 {
+    /// <summary>
+    /// NvgContext.
+    /// </summary>
     public partial class NvgContext : IDisposable
     {
         // ratios

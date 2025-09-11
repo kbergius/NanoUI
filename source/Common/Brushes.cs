@@ -6,6 +6,9 @@ namespace NanoUI.Common
 {
     #region BrushBase
 
+    /// <summary>
+    /// BrushBase.
+    /// </summary>
     // Json serializer types needed to get right inherited type
     [JsonDerivedType(typeof(BrushBase), typeDiscriminator: "BrushBase")]
     [JsonDerivedType(typeof(BoxGradient), typeDiscriminator: "BoxGradient")]
