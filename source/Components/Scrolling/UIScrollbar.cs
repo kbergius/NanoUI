@@ -100,6 +100,7 @@ namespace NanoUI.Components.Scrolling
         #region Layout
 
         // after parent has set it size, call this to position scrollbar
+        /// <inheritdoc />
         public void PerformLayout(NvgContext ctx, bool overflowX, bool overflowY)
         {
             var dimension = Dimension;

@@ -44,6 +44,7 @@ namespace NanoUI.Components.Simple
         #region Drawing
 
         // todo: does this handle case when width != height
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (Texture <= Globals.INVALID)

@@ -29,6 +29,7 @@ namespace NanoUI.Components.Simple
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // set icon & icon color

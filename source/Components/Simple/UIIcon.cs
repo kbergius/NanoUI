@@ -63,6 +63,7 @@ namespace NanoUI.Components.Simple
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (Icon <= 0)

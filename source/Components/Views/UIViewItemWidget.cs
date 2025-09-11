@@ -55,6 +55,7 @@ namespace NanoUI.Components.Views
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);

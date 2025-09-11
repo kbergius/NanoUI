@@ -39,6 +39,7 @@ namespace NanoUI.Components.Views
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             base.Draw(ctx);
@@ -231,6 +232,7 @@ namespace NanoUI.Components.Views
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnSelectedChanged(UIViewItemWidget<T> widget)
         {
             // we must handle expand/collapse (change visibility of widgets)

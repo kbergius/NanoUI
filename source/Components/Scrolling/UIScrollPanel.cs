@@ -71,6 +71,7 @@ namespace NanoUI.Components.Scrolling
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             if (GetScrollContent() == null)
@@ -79,6 +80,7 @@ namespace NanoUI.Components.Scrolling
             return base.PreferredSize(ctx);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             if (GetScrollContent() == null)
@@ -193,6 +195,7 @@ namespace NanoUI.Components.Scrolling
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (Disabled)
@@ -260,6 +263,7 @@ namespace NanoUI.Components.Scrolling
             return base.OnPointerUpDown(p, button, down);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             // check if we are dragging
@@ -287,6 +291,7 @@ namespace NanoUI.Components.Scrolling
             return base.OnPointerDrag(p, rel);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerScroll(Vector2 p, Vector2 scroll)
         {
             if (Disabled)
@@ -328,6 +333,7 @@ namespace NanoUI.Components.Scrolling
             return base.OnPointerScroll(p, scroll);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             if (VerticalScrollbar != null)
@@ -358,6 +364,7 @@ namespace NanoUI.Components.Scrolling
             return base.OnPointerMove(p, rel);
         }
 
+        /// <inheritdoc />
         public override void OnPointerEnter(bool enter)
         {
             base.OnPointerEnter(enter);
@@ -372,6 +379,7 @@ namespace NanoUI.Components.Scrolling
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (GetScrollContent() == null)

@@ -53,6 +53,7 @@ namespace NanoUI.Components.Menus
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             Popup.FixedSize = new Vector2(PopupWidth, 0);
@@ -68,6 +69,7 @@ namespace NanoUI.Components.Menus
         // - this must be focused (in focusbar) OR
         // - parent must be menubar, that is directly in window children list & window is focused/active OR
         // - parent must be menubar, that is directly in screen children list
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             // forward to popup (shortcuts)
@@ -83,6 +85,7 @@ namespace NanoUI.Components.Menus
             MenuItemSelected?.Invoke(menuItemId);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             return base.OnPointerUpDown(p, button, down);
