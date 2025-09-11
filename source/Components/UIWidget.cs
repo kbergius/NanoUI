@@ -82,9 +82,15 @@ namespace NanoUI.Components
 
         #region Objects
 
+        /// <summary>
+        /// Children.
+        /// </summary>
         [JsonIgnore]
         public WidgetList Children => _children;
 
+        /// <summary>
+        /// Screen.
+        /// </summary>
         [JsonIgnore]
         public virtual UIScreen? Screen
         {
@@ -106,6 +112,9 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// Parent.
+        /// </summary>
         [JsonIgnore]
         public virtual UIWidget? Parent
         {
@@ -146,6 +155,9 @@ namespace NanoUI.Components
         }
 
         // todo:
+        /// <summary>
+        /// ContextMenu.
+        /// </summary>
         [JsonIgnore]
         public UIContextMenu? ContextMenu
         {
@@ -159,6 +171,9 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// ChildrenLayout.
+        /// </summary>
         [JsonIgnore]
         public virtual Layout? ChildrenLayout
         {
@@ -175,6 +190,10 @@ namespace NanoUI.Components
         // note2: it is not recommended to use interfaces, since then you have to provide all themeable
         // property getters & setters in your interface
         Type? _themeType;
+
+        /// <summary>
+        /// ThemeType.
+        /// </summary>
         [JsonIgnore]
         public Type ThemeType
         {
@@ -196,45 +215,81 @@ namespace NanoUI.Components
         #region Basic
 
         // mostly internal to support widget identification & loading/saving in file
+
+        /// <summary>
+        /// Id.
+        /// </summary>
         [Browsable(false)]
         public Guid Id { get; set; }
 
         // for searching, user identifiction
         // todo: nullable?
+
+        /// <summary>
+        /// Name.
+        /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public string? Name { get; set; }
-        
+
         // sorting helper (default sort operator)
+
+        /// <summary>
+        /// SortKey.
+        /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public int SortKey { get; set; }
-        
+
         // todo: nullable?
+
+        /// <summary>
+        /// Tooltip.
+        /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public virtual string? Tooltip { get; set; }
-        
+
         #endregion
 
         #region Layout
 
         // this is widget's top left position in parent space
+
+        /// <summary>
+        /// Position.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 Position { get; set; }
 
         // note: The layouting code calculates this based on Size, MinSize & FixedSize values,
         // if widget is inside layout & layouting is performed. If not this value is used as-is.
         // So you can manually reset this value after layouting has been done.
+
+        /// <summary>
+        /// Size.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 Size { get; set; }
-        
+
         // note: this is mainly used in layouting. The X & Y values are only used if their values are > 0.
+
+        /// <summary>
+        /// FixedSize.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 FixedSize { get; set; }
 
         // note: this is mainly used in layouting. We calculate the "real" size with Vector2.Max(Size, MinSize)
+
+        /// <summary>
+        /// MinSize.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 MinSize { get; set; }
 
         // note: this is just a helper property, that is same as Soze.X
+
+        /// <summary>
+        /// Width.
+        /// </summary>
         [JsonIgnore]
         [Browsable(false)]
         public virtual float Width
@@ -244,6 +299,10 @@ namespace NanoUI.Components
         }
 
         // note: this is just a helper property, that is same as Soze.Y
+
+        /// <summary>
+        /// Height.
+        /// </summary>
         [JsonIgnore]
         [Browsable(false)]
         public virtual float Height
@@ -253,6 +312,10 @@ namespace NanoUI.Components
         }
 
         // note: this is just a helper property, that is same as FixedSize.X
+
+        /// <summary>
+        /// FixedWidth.
+        /// </summary>
         [JsonIgnore]
         [Browsable(false)]
         public virtual float FixedWidth
@@ -262,6 +325,10 @@ namespace NanoUI.Components
         }
 
         // note: this is just a helper property, that is same as FixedSize.Y
+
+        /// <summary>
+        /// FixedHeight.
+        /// </summary>
         [JsonIgnore]
         [Browsable(false)]
         public virtual float FixedHeight
@@ -277,6 +344,10 @@ namespace NanoUI.Components
         // note: widgets can also have their own padding property for the content (text, icon, image etc),
         // so please don't use this property in these situations
         Thickness? _margin;
+
+        /// <summary>
+        /// Margin.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public Thickness Margin
         {
@@ -292,22 +363,42 @@ namespace NanoUI.Components
 
         // note : Changing visible property does NOT trigger layout update in parent
         // If layout update is needed, use also function RequestLayoutUpdate(Widget widget)
+
+        /// <summary>
+        /// Visible.
+        /// </summary>
         public virtual bool Visible { get; set; } = true;
+
+        /// <summary>
+        /// Disabled.
+        /// </summary>
         public virtual bool Disabled { get; set; }
-        
+
         // Is in screen's focus path?
         // todo : should be limited to widget extensions
+
+        /// <summary>
+        /// Focused.
+        /// </summary>
         [Browsable(false)]
         public virtual bool Focused { get; set; }
-        
+
         // some widgets may not want to have pointer focus
         // means also that HoverTint is not drawn
+
+        /// <summary>
+        /// DisablePointerFocus.
+        /// </summary>
         public bool DisablePointerFocus { get; set; }
 
         // is pointer "inside" widget?
         // note: you should not normally set pointer focus manually, instead you should let NanoUI
         // handle it automatically (the exception is if your widget handles its children hovering - like views)
         bool _pointerFocus;
+
+        /// <summary>
+        /// PointerFocus.
+        /// </summary>
         [Browsable(false)]
         public virtual bool PointerFocus
         {
@@ -323,6 +414,10 @@ namespace NanoUI.Components
         }
 
         // this is bsically used by Button by now
+
+        /// <summary>
+        /// Pushed.
+        /// </summary>
         [Browsable(false)]
         [JsonIgnore]
         public virtual bool Pushed { get; set; }
@@ -335,6 +430,10 @@ namespace NanoUI.Components
         // => must override DrawBackgroundBrush methods
 
         BrushBase? _backgroundFocused;
+
+        /// <summary>
+        /// BackgroundFocused.
+        /// </summary>
         public virtual BrushBase? BackgroundFocused
         {
             get => _backgroundFocused ?? GetTheme().Get(ThemeType).BackgroundFocused;
@@ -342,6 +441,10 @@ namespace NanoUI.Components
         }
 
         BrushBase? _backgroundUnfocused;
+
+        /// <summary>
+        /// BackgroundUnfocused.
+        /// </summary>
         public virtual BrushBase? BackgroundUnfocused
         {
             get => _backgroundUnfocused ?? GetTheme().Get(ThemeType).BackgroundUnfocused;
@@ -349,6 +452,10 @@ namespace NanoUI.Components
         }
 
         BrushBase? _backgroundPushed;
+
+        /// <summary>
+        /// BackgroundPushed.
+        /// </summary>
         public virtual BrushBase? BackgroundPushed
         {
             get => _backgroundPushed ?? GetTheme().Get(ThemeType).BackgroundPushed;
@@ -356,6 +463,10 @@ namespace NanoUI.Components
         }
 
         bool? _border;
+
+        /// <summary>
+        /// Border.
+        /// </summary>
         [Category(Globals.CATEGORY_APPEARANCE)]
         public virtual bool Border
         {
@@ -364,6 +475,10 @@ namespace NanoUI.Components
         }
 
         CornerRadius? _cornerRadius;
+
+        /// <summary>
+        /// CornerRadius.
+        /// </summary>
         [Category(Globals.CATEGORY_APPEARANCE)]
         public virtual CornerRadius CornerRadius
         {
@@ -378,6 +493,10 @@ namespace NanoUI.Components
         // note: this is used as save, load from json & get right font face id
         // note2: if font type is invalid we get default font from FontDecorator (font with id = 0)
         string? _fontType;
+
+        /// <summary>
+        /// FontType.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public string FontType
         {
@@ -387,6 +506,10 @@ namespace NanoUI.Components
 
         // note: if font type is invalid we get default font from FontDecorator (font with id = 0)
         int? _fontFaceId;
+
+        /// <summary>
+        /// FontFaceId.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         [JsonIgnore]
         [Browsable(false)]
@@ -412,6 +535,10 @@ namespace NanoUI.Components
         // note: this is normally same in all widgets, so we don't get theme widget FontSize
         // so user must set value to every widget instance
         float? _fontSize;
+
+        /// <summary>
+        /// FontSize.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual float FontSize
         {
@@ -422,6 +549,10 @@ namespace NanoUI.Components
         // note: this is normally same in all widgets, so we don't get theme widget FontIconsId
         // so user must set value to every widget instance
         int? _fontIconsId;
+
+        /// <summary>
+        /// FontIconsId.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         [JsonIgnore]
         public virtual int FontIconsId
@@ -430,10 +561,17 @@ namespace NanoUI.Components
             set => _fontIconsId = value;
         }
 
+        /// <summary>
+        /// IconScale.
+        /// </summary>
         [JsonIgnore]
         public virtual float IconScale => IconExtraScale > 0? GetTheme().Fonts.IconBaseScale * IconExtraScale : GetTheme().Fonts.IconBaseScale;
 
         float? _iconExtraScale;
+
+        /// <summary>
+        /// IconExtraScale.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual float IconExtraScale
         {
@@ -444,6 +582,10 @@ namespace NanoUI.Components
         // note: this is normally same in all widgets, so we don't get theme widget TextHorizontalAlignment
         // so user must set value to every widget instance
         TextHorizontalAlign? _textHorizontalAlignment;
+
+        /// <summary>
+        /// TextHorizontalAlignment.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual TextHorizontalAlign TextHorizontalAlignment
         {
@@ -454,6 +596,10 @@ namespace NanoUI.Components
         // note: this is normally same in all widgets, so we don't get theme widget TextVerticalAlignment
         // so user must set value to every widget instance
         TextVerticalAlign? _textVerticalAlignment;
+
+        /// <summary>
+        /// TextVerticalAlignment.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual TextVerticalAlign TextVerticalAlignment
         {
@@ -464,6 +610,10 @@ namespace NanoUI.Components
         // note: this is normally same in all widgets, so we don't get theme widget TextColor
         // so user must set value to every widget instance
         Color? _textColor;
+
+        /// <summary>
+        /// TextColor.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual Color TextColor
         {
@@ -472,6 +622,10 @@ namespace NanoUI.Components
         }
 
         Color? _textDisabledColor;
+
+        /// <summary>
+        /// TextDisabledColor.
+        /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public virtual Color TextDisabledColor
         {
@@ -486,6 +640,10 @@ namespace NanoUI.Components
         #region Methods
 
         // todo: should this be public?
+
+        /// <summary>
+        /// CreateParented.
+        /// </summary>
         internal bool CreateParented(UIWidget parent)
         {
             if (parent == null)
@@ -522,6 +680,10 @@ namespace NanoUI.Components
         // PreferredSize function
         // note3: Layouts calvulate positions in top down order, so offset indicates where layout
         // begins calculations (any content after layout should we set omitted in size)
+
+        /// <summary>
+        /// GetLayoutArea.
+        /// </summary>
         public virtual Rect GetLayoutArea()
         {
             return new Rect(
@@ -534,6 +696,10 @@ namespace NanoUI.Components
         }
 
         // note: this function is normally called in widget's OnPointerMove or OnPointerEnter events
+
+        /// <summary>
+        /// SetPointerType.
+        /// </summary>
         public virtual void SetPointerType(int pointerType)
         {
             Screen?.SetPointerType(pointerType);
@@ -541,9 +707,17 @@ namespace NanoUI.Components
 
         // get the theme from screen
         // todo: me should use fallback theme in case these is no Screen (where to store it?)
+
+        /// <summary>
+        /// GetTheme.
+        /// </summary>
         public UITheme GetTheme() => Screen?.Theme ?? new UITheme();
 
         // Request the focus to be moved to this widget
+
+        /// <summary>
+        /// RequestFocus.
+        /// </summary>
         public virtual void RequestFocus()
         {
             if (_isParentPopup)
@@ -564,6 +738,10 @@ namespace NanoUI.Components
         }
 
         // This triggers layout update before next Draw call
+
+        /// <summary>
+        /// RequestLayoutUpdate.
+        /// </summary>
         public virtual void RequestLayoutUpdate(UIWidget? widget)
         {
             if(widget == null)
@@ -574,10 +752,18 @@ namespace NanoUI.Components
         }
 
         // Check if the widget contains a certain position
+
+        /// <summary>
+        /// Contains.
+        /// </summary>
         public virtual bool Contains(float x, float y)
         {
             return Contains(new Vector2(x, y));
         }
+
+        /// <summary>
+        /// Contains.
+        /// </summary>
         public virtual bool Contains(Vector2 position)
         {
             var d = position - Position;
@@ -587,6 +773,10 @@ namespace NanoUI.Components
         }
 
         // this is basic operation, override to add some additional logic
+
+        /// <summary>
+        /// Close.
+        /// </summary>
         public virtual void Close()
         {
             Dispose();
@@ -597,23 +787,36 @@ namespace NanoUI.Components
         #region BackgroundBrush
 
         // METHODS
+
+        /// <summary>
+        /// DrawBackgroundBrush.
+        /// </summary>
         public virtual void DrawBackgroundBrush(NvgContext ctx)
         {
             DrawBackgroundBrush(ctx, Position, Size);
         }
 
+        /// <summary>
+        /// DrawBackgroundBrush.
+        /// </summary>
         public virtual void DrawBackgroundBrush(NvgContext ctx, Vector2 topLeft, Vector2 size)
         {
             // we draw tint when enabled &pointer mocus (hovered "action")
             GetBackgroundBrush()?.Draw(ctx, topLeft, size, !Disabled && PointerFocus ? GetTheme().Common.BackgroundHoverTint : null);
         }
 
+        /// <summary>
+        /// DrawBackgroundBrush.
+        /// </summary>
         public virtual void DrawBackgroundBrush(NvgContext ctx, Vector2 topLeft, Vector2 size,
             BrushBase? brush, Color? tint)
         {
             brush?.Draw(ctx, topLeft, size, tint);
         }
 
+        /// <summary>
+        /// GetBackgroundBrush.
+        /// </summary>
         protected BrushBase? GetBackgroundBrush()
         {
             if (Disabled)
@@ -632,6 +835,9 @@ namespace NanoUI.Components
             return BackgroundUnfocused;
         }
 
+        /// <summary>
+        /// GetDrawMode.
+        /// </summary>
         protected WidgetState GetDrawMode()
         {
             if (Disabled)
@@ -657,6 +863,10 @@ namespace NanoUI.Components
         // Handle a pointer button event (default implementation: propagate to children)
 
         // note: context menu (PointerButton.Right) is handled in screen
+
+        /// <summary>
+        /// OnPointerUpDown.
+        /// </summary>
         public virtual bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (Children.Count > 0)
@@ -689,6 +899,9 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <summary>
+        /// OnPointerDoubleClick.
+        /// </summary>
         public virtual bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
             if (Children.Count > 0)
@@ -715,6 +928,10 @@ namespace NanoUI.Components
         // Handle a pointer motion event
         // note: we reset pointer type here. so if your widget wants to set pointer type, you must call
         // first base.OnPointerMove & then set the pointer type (if needed) in your widget
+
+        /// <summary>
+        /// OnPointerMove.
+        /// </summary>
         public virtual bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             if (Children.Count > 0)
@@ -765,12 +982,20 @@ namespace NanoUI.Components
         // this is mainly called from screen after screen pointer focus widget has changed
         // note: you don't need to extent this unless your widget manages its children pointer focuses
         // (like views) OR your widget sets some other status flags (like cursor type)
+
+        /// <summary>
+        /// OnPointerEnter.
+        /// </summary>
         public virtual void OnPointerEnter(bool enter)
         {
             PointerFocus = enter;
         }
 
         // Handle a pointer drag event (default implementation: do nothing)
+
+        /// <summary>
+        /// OnPointerDrag.
+        /// </summary>
         public virtual bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             return false;
@@ -778,6 +1003,10 @@ namespace NanoUI.Components
 
         // Scroll is Vector2 in order to support trackballs
         // note: hardly any core widget uses scroll.X value
+
+        /// <summary>
+        /// OnPointerScroll.
+        /// </summary>
         public virtual bool OnPointerScroll(Vector2 p, Vector2 scroll)
         {
             if(Children.Count > 0)
@@ -799,6 +1028,10 @@ namespace NanoUI.Components
         }
 
         // Handle a focus change event (default implementation: record the focus status, but do nothing)
+
+        /// <summary>
+        /// OnFocusChanged.
+        /// </summary>
         public virtual bool OnFocusChanged(bool focused)
         {
             Focused = focused;
@@ -812,6 +1045,10 @@ namespace NanoUI.Components
         // so in order to widget get this event, widget must be in focuspath
         // (RequestFocus() called)
         // note: there is an exception in Popup (handles shortcut keys in menus)
+
+        /// <summary>
+        /// OnKeyUpDown.
+        /// </summary>
         public virtual bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             return false;
@@ -822,6 +1059,10 @@ namespace NanoUI.Components
         // note: OnKeyChar event is restricted only to widgets in focuspath
         // so in order to widget get this event, widget must be in focuspath
         // (RequestFocus() called)
+
+        /// <summary>
+        /// OnKeyChar.
+        /// </summary>
         public virtual bool OnKeyChar(char c)
         {
             return false;
@@ -832,6 +1073,10 @@ namespace NanoUI.Components
         // the default action is do nothing.
 
         // note: if widget resizes itself, it should then call PerformLayout or RequestLayoutUpdate
+
+        /// <summary>
+        /// OnScreenResize.
+        /// </summary>
         public virtual void OnScreenResize(Vector2 size, NvgContext ctx)
         {
         
@@ -839,6 +1084,10 @@ namespace NanoUI.Components
 
         // Handle a file drop event (default : do nothing)
         // Active only when in focus path?
+
+        /// <summary>
+        /// OnFileDrop.
+        /// </summary>
         public virtual bool OnFileDrop(string filename)
         {
             return false; // To be overridden
@@ -848,6 +1097,10 @@ namespace NanoUI.Components
         // it is by now used in docking, when dragging/reordering dock components
         // part of drag & drop process
         // the default answer to this request is firm "No!".
+
+        /// <summary>
+        /// OnDetach.
+        /// </summary>
         public virtual bool OnDetach(UIWidget child)
         {
             return false;
@@ -857,6 +1110,10 @@ namespace NanoUI.Components
         // this is used by now in docking. position is relative pointer position
         // part of drag & drop process
         // if you want to use this, extend this function, otherwise this does nothing
+
+        /// <summary>
+        /// OnAttach.
+        /// </summary>
         public virtual bool OnAttach(UIWidget widget, Vector2 position)
         {
             return false;
@@ -868,6 +1125,10 @@ namespace NanoUI.Components
 
         // Compute the preferred size of the widget
         // if layout specified, use layout to calculate. Else calculate from size values
+
+        /// <summary>
+        /// PreferredSize.
+        /// </summary>
         public virtual Vector2 PreferredSize(NvgContext ctx)
         {
             if (_childrenLayout != null)
@@ -892,6 +1153,10 @@ namespace NanoUI.Components
         }
 
         // Invoke the associated layout generator to properly place child widgets, if any
+
+        /// <summary>
+        /// PerformLayout.
+        /// </summary>
         public virtual void PerformLayout(NvgContext ctx)
         {
             if (_childrenLayout != null)
@@ -920,6 +1185,10 @@ namespace NanoUI.Components
         #region Drawing
 
         // note: we are inside scissor
+
+        /// <summary>
+        /// Draw.
+        /// </summary>
         public virtual void Draw(NvgContext ctx)
         {
             // Draw children?
@@ -957,6 +1226,10 @@ namespace NanoUI.Components
         // this gives a possiblity to draw "overlay" over all widgets (widget must be put in screen's
         // post draw list to invoke this)
         // todo: screen passes pointer absolute position, so you must convert it to local position
+
+        /// <summary>
+        /// PostDraw.
+        /// </summary>
         public virtual void PostDraw(NvgContext ctx, Vector2 pointerPosition)
         {
         
@@ -967,6 +1240,10 @@ namespace NanoUI.Components
         #region Dispose
 
         // Handles disposing & set focus to caller
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public void Dispose(UIWidget caller)
         {
             Dispose();
@@ -977,6 +1254,10 @@ namespace NanoUI.Components
         // this could be overriden if additional dispose mechancis needed
         // this handles only screen update
         bool _disposing;
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public virtual void Dispose()
         {
             if (!_disposing)
