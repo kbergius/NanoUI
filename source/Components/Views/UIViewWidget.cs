@@ -49,8 +49,14 @@ namespace NanoUI.Components.Views
 
         UIViewPanel<T> _viewPanel;
 
+        /// <summary>
+        /// ViewPanel.
+        /// </summary>
         public UIViewPanel<T> ViewPanel => _viewPanel;
-        
+
+        /// <summary>
+        /// SelectedIndex.
+        /// </summary>
         [JsonIgnore]
         public int SelectedIndex
         {
@@ -62,11 +68,17 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
+        /// <summary>
+        /// ResetIndexes.
+        /// </summary>
         public virtual void ResetIndexes()
         {
             _viewPanel.ResetIndexes();
         }
 
+        /// <summary>
+        /// ClearChildren.
+        /// </summary>
         public virtual void ClearChildren()
         {
             _viewPanel.Children.Clear();
@@ -77,12 +89,19 @@ namespace NanoUI.Components.Views
         #region Events
 
         // these could be overridden
+
+        /// <summary>
+        /// OnCellSelectedChanged.
+        /// </summary>
         public virtual void OnCellSelectedChanged(
             UIViewItemWidget<T> widget, int columnIndex)
         {
             CellSelectedChanged?.Invoke(widget, columnIndex);
         }
 
+        /// <summary>
+        /// OnSelectedChanged.
+        /// </summary>
         public virtual void OnSelectedChanged(UIViewItemWidget<T> widget)
         {
             if(widget.EventData != null)
@@ -91,6 +110,9 @@ namespace NanoUI.Components.Views
             }
         }
 
+        /// <summary>
+        /// OnSelectedChanged.
+        /// </summary>
         public virtual void OnSelectedChanged(T data)
         {
             SelectedChanged?.Invoke(data);
