@@ -182,6 +182,7 @@ namespace NanoUI.Components.Dialogs
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (!_inited)

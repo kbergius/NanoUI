@@ -70,6 +70,7 @@ namespace NanoUI.Components.Simple
         #region Drawing
 
         // todo : calculate correct alignment
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (string.IsNullOrEmpty(Text))

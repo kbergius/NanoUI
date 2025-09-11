@@ -36,6 +36,7 @@ namespace NanoUI.Components.Menus
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             Icon = GetTheme().Fonts.IconCaretRight;

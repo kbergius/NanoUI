@@ -14,6 +14,7 @@ namespace NanoUI.Components.Bars
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             DrawBackgroundBrush(ctx);

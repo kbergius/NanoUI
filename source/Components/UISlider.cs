@@ -57,6 +57,7 @@ namespace NanoUI.Components
         #region Events
 
         // todo : same calculation as in pointer down
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             if (Disabled)
@@ -77,6 +78,7 @@ namespace NanoUI.Components
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (Disabled)
@@ -110,6 +112,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // todo: magical numbers

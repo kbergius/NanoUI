@@ -155,6 +155,7 @@ namespace NanoUI.Components.Views
         #region Layout
 
         // todo: _viewpanel perform layout?
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // calculate total columns width
@@ -193,6 +194,7 @@ namespace NanoUI.Components.Views
         #region Drawing
 
         // note: we currently don't use popup button draw methods (rather we draw button manually here)
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // todo?: we could also just call base.Draw, where is Popup.Show logic

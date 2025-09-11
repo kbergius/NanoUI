@@ -39,6 +39,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // background

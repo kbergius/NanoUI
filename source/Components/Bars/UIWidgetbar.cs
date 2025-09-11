@@ -30,6 +30,7 @@ namespace NanoUI.Components.Bars
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -43,6 +44,7 @@ namespace NanoUI.Components.Bars
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnScreenResize(Vector2 size, NvgContext ctx)
         {
             // note: this should be unnecessary, since other parents should not call this function

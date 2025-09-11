@@ -163,6 +163,7 @@ namespace NanoUI.Components
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             if (!Focused)
@@ -220,6 +221,7 @@ namespace NanoUI.Components
             return base.OnKeyUpDown(key, down, modifiers);
         }
 
+        /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {
             switch (c)
@@ -275,6 +277,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (down)
@@ -286,6 +289,7 @@ namespace NanoUI.Components
             return base.OnPointerUpDown(p, button, down);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             if (!FixedOffset)
@@ -297,6 +301,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerScroll(Vector2 p, Vector2 scroll)
         {
             if (FixedScale)
@@ -316,6 +321,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             if (Texture != Globals.INVALID)
@@ -327,6 +333,7 @@ namespace NanoUI.Components
             return Vector2.Max(MinSize, _textureSize);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -337,6 +344,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (_needUpdate)

@@ -152,6 +152,7 @@ namespace NanoUI.Components.Files
         #region Events
 
         // var change folder dropdown (with new parent folder)
+        /// <inheritdoc />
         public override void OnSelectedChanged(UIViewItemWidget<FileFolderInfo> widget)
         {
             base.OnSelectedChanged(widget);
@@ -200,6 +201,7 @@ namespace NanoUI.Components.Files
         #region Drawing
 
         // we must override Draw parts in case there is "..."
+        /// <inheritdoc />
         protected override void DrawSelected(NvgContext ctx)
         {
             if (_drives)

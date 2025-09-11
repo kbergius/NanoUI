@@ -84,6 +84,7 @@ namespace NanoUI.Components.Bars
         #region Events
 
         // we come here before parent widget
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (button == PointerButton.Left && down && !Focused)
@@ -122,6 +123,7 @@ namespace NanoUI.Components.Bars
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             if (!Visible)
@@ -135,6 +137,7 @@ namespace NanoUI.Components.Bars
             return Vector2.Max(MinSize, new Vector2(titleSize.X + ButtonSize.X, MathF.Max(titleSize.Y, ButtonSize.Y) + Margin.Vertical * 2));
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             if(Parent == null || ChildrenLayout == null)
@@ -176,6 +179,7 @@ namespace NanoUI.Components.Bars
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (!Visible)

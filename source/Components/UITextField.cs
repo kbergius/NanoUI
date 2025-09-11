@@ -186,6 +186,7 @@ namespace NanoUI.Components
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnPointerEnter(bool enter)
         {
             base.OnPointerEnter(enter);
@@ -196,6 +197,7 @@ namespace NanoUI.Components
             }
         }
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (button == PointerButton.Left && down && !Focused)
@@ -224,6 +226,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
             if (!Disabled && Editable && Focused)
@@ -240,6 +243,7 @@ namespace NanoUI.Components
         }
 
         // used for the selection
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             _pointerDragPos = p;
@@ -252,6 +256,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {
             base.OnFocusChanged(focused);
@@ -293,6 +298,7 @@ namespace NanoUI.Components
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             if (!Focused)
@@ -422,6 +428,7 @@ namespace NanoUI.Components
         }
 
         // todo : ahould we chacek valid format before?
+        /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {
             if (Editable && Focused)
@@ -443,6 +450,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             ctx.FontFaceId(FontFaceId);
@@ -478,6 +486,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // Background

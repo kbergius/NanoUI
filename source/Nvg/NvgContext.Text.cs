@@ -21,7 +21,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Returns current font atlas texture size.
+        /// Returns font atlas texture size.
         /// </summary>
         public void GetAtlasSize(out int width, out int height)
         {
@@ -29,7 +29,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Returns current font atlas texture data.
+        /// Returns font atlas texture data.
         /// Note: Data is in 8-bit format.
         /// </summary>
         public ReadOnlySpan<byte> GetAtlasData(out int width, out int height)
@@ -38,7 +38,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Expands the font atlas texture size.
+        /// Expands font atlas texture size.
         /// </summary>
         public bool AtlasExpand(uint width, uint height)
         {
@@ -59,7 +59,7 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Creates font by loading it from the disk from specified filename.
-        /// Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        /// Note: this checks, that your path is in normal filesystem (System.IO.File.Exists).
         /// If you use some other filesystem solution, pass byte array.
         /// </summary>
         /// <returns>Handle to the font.</returns>
@@ -184,7 +184,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Sets the text outer color's dimension (outer color = outline color).
+        /// Sets the text outer color's dimension (outer color = outline color). Only with GlypBaking.Normal.
         /// Note: When you want to set normal text fill color, reset dilate value to 0.
         /// </summary>
         public void TextNormalDilate(int val)
@@ -242,14 +242,14 @@ namespace NanoUI.Nvg
             => Text(pos, ConvertUtils.GetIconString(icon));
 
         /// <summary>
-        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Draws text string at specified location.
         /// Note: Returns x position after text drawn.
         /// </summary>
         public float Text(float x, float y, ReadOnlySpan<char> text)
             => Text(new Vector2(x, y), text);
 
         /// <summary>
-        /// Draws text string at specified location. Only the sub-string up to the end is drawn.
+        /// Draws text string at specified location.
         /// Note: Returns x position after text drawn.
         /// </summary>
         public float Text(Vector2 pos, ReadOnlySpan<char> text)
@@ -306,9 +306,9 @@ namespace NanoUI.Nvg
         #region TextBox
 
         /// <summary>
-        /// Draws multi-line text string at specified location wrapped at the specified width. Only the sub-string up to the end is drawn.
+        /// Draws multi-line text string at specified location wrapped at the specified width.
         /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
-        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// Words longer than the max width are split at nearest character (i.e. no hyphenation).
         /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
         /// instead use TextBreakLines and cache TextRows.
         /// </summary>
@@ -318,9 +318,9 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Draws multi-line text string at specified location wrapped at the specified width. Only the sub-string up to the end is drawn.
+        /// Draws multi-line text string at specified location wrapped at the specified width.
         /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
-        /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
+        /// Words longer than the max width are split at nearest character (i.e. no hyphenation).
         /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
         /// instead use TextBreakLines and cache TextRows.
         /// </summary>
@@ -376,7 +376,7 @@ namespace NanoUI.Nvg
         #region TextGlyphPositions
 
         /// <summary>
-        /// Calculates the glyph x positions of the specified text. Only the sub-string will be used.<br/>
+        /// Calculates the glyph x positions of the specified text.<br/>
         /// Measures values are returned in local coordinate space.
         /// </summary>
         public void TextGlyphPositions(float x, float y, ReadOnlySpan<char> text, int maxGlyphs,
@@ -384,7 +384,7 @@ namespace NanoUI.Nvg
            => TextGlyphPositions(new Vector2(x, y), text, maxGlyphs, out positions);
 
         /// <summary>
-        /// Calculates the glyph x positions of the specified text. Only the sub-string will be used.<br/>
+        /// Calculates the glyph x positions of the specified text.<br/>
         /// Measures values are returned in local coordinate space.
         /// </summary>
         public void TextGlyphPositions(Vector2 pos, ReadOnlySpan<char> text, int maxGlyphs,
@@ -411,7 +411,7 @@ namespace NanoUI.Nvg
         #region TextBreakLines
 
         /// <summary>
-        /// Breaks the specified text into lines. Only the sub-string will be used.<br/>
+        /// Breaks the specified text into lines.<br/>
         /// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.<br/>
         /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
         /// </summary>
@@ -421,7 +421,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Breaks the specified text into lines. Only the sub-string will be used.<br/>
+        /// Breaks the specified text into lines.<br/>
         /// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.<br/>
         /// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
         /// </summary>

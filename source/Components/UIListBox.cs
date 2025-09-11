@@ -31,6 +31,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // there is only 1 column (list item text)

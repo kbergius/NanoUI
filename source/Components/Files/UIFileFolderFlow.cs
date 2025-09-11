@@ -135,6 +135,7 @@ namespace NanoUI.Components.Files
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnCellSelectedChanged(UIViewItemWidget<FileFolderInfo> widget, int columnIndex)
         {
             base.OnCellSelectedChanged(widget, columnIndex);

@@ -75,6 +75,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // do nothing - when drawn position & size is dynamically calculated from the widget

@@ -232,6 +232,7 @@ namespace NanoUI.Components.Views
         // - loop view item widgets & set parts positions & sizes
 
         // todo: this does not calculate parts positions/sizes totally right!!!
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // layout widgets
@@ -311,6 +312,7 @@ namespace NanoUI.Components.Views
         #region Events
 
         // todo: should this be in base ViewPanel?
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             // get hover indexes (do not fire selected actions)
@@ -330,6 +332,7 @@ namespace NanoUI.Components.Views
             return true;
         }
 
+        /// <inheritdoc />
         public override void OnPointerEnter(bool enter)
         {
             if (!enter)
@@ -343,6 +346,7 @@ namespace NanoUI.Components.Views
         }
 
         // todo: should this be in base ViewPanel?
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (down && button == PointerButton.Left)
@@ -415,6 +419,7 @@ namespace NanoUI.Components.Views
         #region Drawing
 
         // todo: should we use standard widget drawing - so drawing functions are in viewItemWidget
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // draw hovered or selected index widget background

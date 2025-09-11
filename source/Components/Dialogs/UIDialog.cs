@@ -59,6 +59,7 @@ namespace NanoUI.Components.Dialogs
         }
 
         // note: we override base since it disposes widget
+        /// <inheritdoc />
         public override void Close()
         {
             if (_caller != null)

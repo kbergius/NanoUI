@@ -117,6 +117,7 @@ namespace NanoUI.Components.Colors
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             base.OnPointerUpDown(p, button, down);
@@ -141,6 +142,7 @@ namespace NanoUI.Components.Colors
         }
 
         // Handles pointer drag events
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             return AdjustPosition(p, _dragRegion) != Region.None;
@@ -150,6 +152,7 @@ namespace NanoUI.Components.Colors
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // todo : not needed?

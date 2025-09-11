@@ -93,6 +93,7 @@ namespace NanoUI.Components
         #region Events
 
         // Pointer button event processing for this check box
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (down && button == PointerButton.Left)
@@ -104,6 +105,7 @@ namespace NanoUI.Components
             return base.OnPointerUpDown(p, button, down);
         }
 
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             if (!Focused)
@@ -126,6 +128,7 @@ namespace NanoUI.Components
         #region Layout
 
         // The preferred size of this CheckBox.
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             ctx.FontSize(FontSize);
@@ -142,6 +145,7 @@ namespace NanoUI.Components
             return Vector2.Max(MinSize, prefSize);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -155,6 +159,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             base.Draw(ctx);

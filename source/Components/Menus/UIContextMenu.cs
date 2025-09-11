@@ -40,6 +40,7 @@ namespace NanoUI.Components.Menus
 
         // this is fired from scene
         // this could be in base Popup?
+        /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {
             if (!Disabled)
