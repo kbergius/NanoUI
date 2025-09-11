@@ -50,6 +50,7 @@ namespace NanoUI.Components.Colors
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (down)
@@ -63,17 +64,19 @@ namespace NanoUI.Components.Colors
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             SetAlphaValue(p);
 
             return true;
-        }        
+        }
 
         #endregion
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // background

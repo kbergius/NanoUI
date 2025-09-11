@@ -99,6 +99,7 @@ namespace NanoUI.Components.Buttons
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // todo: _upDownButton height (dimension) is not same as numeric text box height

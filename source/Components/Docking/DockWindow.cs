@@ -93,6 +93,7 @@ namespace NanoUI.Components.Docking
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             // note: this happens before real attaching / docking
@@ -109,6 +110,7 @@ namespace NanoUI.Components.Docking
         }
 
         // this is here to check if we are beginning attaching proscess
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             // get the result from underlying Window

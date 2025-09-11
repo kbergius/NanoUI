@@ -114,6 +114,7 @@ namespace NanoUI.Components.Colors
         #region Layout
 
         // todo : should we limit colorWheel size & popup height, if width exceeds some value
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             var buttonHeight = _pickButton.PreferredSize(ctx).Y;

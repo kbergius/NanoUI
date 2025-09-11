@@ -31,6 +31,7 @@ namespace NanoUI.Components.Docking
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             // check first if titlebar button handle event
@@ -50,6 +51,7 @@ namespace NanoUI.Components.Docking
         }
 
         // check if this is dragged outside title area
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             if (!Contains(p))

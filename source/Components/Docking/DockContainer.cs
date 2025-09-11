@@ -87,6 +87,7 @@ namespace NanoUI.Components.Docking
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnScreenResize(Vector2 size, NvgContext ctx)
         {
             Size = size;
@@ -98,6 +99,7 @@ namespace NanoUI.Components.Docking
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // set root node to fill all area
@@ -111,6 +113,7 @@ namespace NanoUI.Components.Docking
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             base.Draw(ctx);

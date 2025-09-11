@@ -22,6 +22,7 @@ namespace NanoUI.Components.Bars
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             foreach (var child in Children.AsReadOnlySpan())
@@ -42,6 +43,7 @@ namespace NanoUI.Components.Bars
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             DrawBackgroundBrush(ctx);

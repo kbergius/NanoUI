@@ -147,6 +147,7 @@ namespace NanoUI.Components.Files
 
         #region Events
 
+        /// <inheritdoc />
         public override void OnSelectedChanged(FileFolderInfo data)
         {
             base.OnSelectedChanged(data);
