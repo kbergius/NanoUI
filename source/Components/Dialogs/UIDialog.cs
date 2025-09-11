@@ -35,6 +35,10 @@ namespace NanoUI.Components.Dialogs
         #region Properties
 
         Thickness? _buttonPanelMargin;
+
+        /// <summary>
+        /// ButtonPanelMargin.
+        /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public Thickness ButtonPanelMargin
         {
@@ -46,6 +50,9 @@ namespace NanoUI.Components.Dialogs
 
         #region Methods
 
+        /// <summary>
+        /// ReInit.
+        /// </summary>
         protected void ReInit(NvgContext ctx)
         {
             // center
@@ -57,6 +64,10 @@ namespace NanoUI.Components.Dialogs
 
         // note: we use normally same dialogs that are stored in Screen.
         // when you get dialog from screen, screen calls Reset, so you can have clean state
+
+        /// <summary>
+        /// Reset.
+        /// </summary>
         public virtual void Reset()
         {
         

@@ -41,6 +41,10 @@ namespace NanoUI.Components.Views
         #region Properties
 
         Thickness? _padding;
+
+        /// <summary>
+        /// Padding.
+        /// </summary>
         public virtual Thickness Padding
         {
             get => _padding?? GetTheme().ViewPanel.Padding;
@@ -52,6 +56,10 @@ namespace NanoUI.Components.Views
         // note: this is not in theme by now since if changed, all view items should be recreated
         // this could also be dynamically calculated from default font size
         int? _rowHeight;
+
+        /// <summary>
+        /// RowHeight.
+        /// </summary>
         public int RowHeight
         {
             get => _rowHeight?? GetTheme().ViewPanel.RowHeight;
@@ -59,6 +67,10 @@ namespace NanoUI.Components.Views
         }
 
         ColumnDefinition[] _columns = Array.Empty<ColumnDefinition>();
+
+        /// <summary>
+        /// Columns.
+        /// </summary>
         [JsonIgnore]
         public virtual ColumnDefinition[] Columns
         {
@@ -78,10 +90,18 @@ namespace NanoUI.Components.Views
         }
 
         // select item/cell
+
+        /// <summary>
+        /// ViewSelectionMode.
+        /// </summary>
         public ViewSelectionMode ViewSelectionMode { get; set; } = ViewSelectionMode.Item;
 
         // note: this color is needed, when item/cell content hides totally background
         Color? _hoverBorderColor;
+
+        /// <summary>
+        /// HoverBorderColor.
+        /// </summary>
         public Color HoverBorderColor
         {
             get => _hoverBorderColor ?? GetTheme().ViewPanel.HoverBorderColor;
@@ -90,6 +110,10 @@ namespace NanoUI.Components.Views
 
         // note: this color is needed, when item/cell content hides totally background
         Color? _selectedBorderColor;
+
+        /// <summary>
+        /// SelectedBorderColor.
+        /// </summary>
         public Color SelectedBorderColor
         {
             get => _selectedBorderColor ?? GetTheme().ViewPanel.SelectedBorderColor;
@@ -97,6 +121,10 @@ namespace NanoUI.Components.Views
         }
 
         int? _itemBorderWidth;
+
+        /// <summary>
+        /// ItemBorderWidth.
+        /// </summary>
         public int ItemBorderWidth
         {
             get => _itemBorderWidth ?? GetTheme().ViewPanel.ItemBorderWidth;
@@ -104,6 +132,10 @@ namespace NanoUI.Components.Views
         }
 
         BrushBase? _itemSelectedBackgroundBrush;
+
+        /// <summary>
+        /// ItemSelectedBackgroundBrush.
+        /// </summary>
         public BrushBase ItemSelectedBackgroundBrush
         {
             get => _itemSelectedBackgroundBrush?? GetTheme().ViewPanel.ItemSelectedBackgroundBrush;
@@ -111,6 +143,10 @@ namespace NanoUI.Components.Views
         }
 
         BrushBase? _itemHoverBackgroundBrush;
+
+        /// <summary>
+        /// ItemHoverBackgroundBrush.
+        /// </summary>
         public BrushBase ItemHoverBackgroundBrush
         {
             get => _itemHoverBackgroundBrush?? GetTheme().ViewPanel.ItemHoverBackgroundBrush;
@@ -121,6 +157,9 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
+        /// <summary>
+        /// GetColumnsWidth.
+        /// </summary>
         public int GetColumnsWidth()
         {
             // calculate total columns width
@@ -183,10 +222,18 @@ namespace NanoUI.Components.Views
 
         // this is needed for menuview to open submenus (OnPointerUpDown doesn't call base.OnPointerUpDown)
         // todo : is there a better way?
+
+        /// <summary>
+        /// HasSubPopups.
+        /// </summary>
         protected bool HasSubPopups { get; set; } = false;       
 
         // note : only 1 can be hovered/focused at time
         int _selectedIndex;
+
+        /// <summary>
+        /// SelectedIndex.
+        /// </summary>
         public int SelectedIndex
         {
             get => _selectedIndex;
@@ -209,6 +256,10 @@ namespace NanoUI.Components.Views
         }
 
         int _hoveredIndex;
+
+        /// <summary>
+        /// HoveredIndex.
+        /// </summary>
         [JsonIgnore]
         public int HoveredIndex => _hoveredIndex;
 
@@ -217,11 +268,18 @@ namespace NanoUI.Components.Views
         #region Methods
 
         // returns selected index or 0, if there is childs
+
+        /// <summary>
+        /// GetSelectedIndexOrDefault.
+        /// </summary>
         public int GetSelectedIndexOrDefault()
         {
             return _selectedIndex >= 0 ? _selectedIndex : Children.Count > 0 ? 0 : -1;
         }
 
+        /// <summary>
+        /// ResetIndexes.
+        /// </summary>
         public void ResetIndexes()
         {
             _selectedIndex = -1;
@@ -240,6 +298,7 @@ namespace NanoUI.Components.Views
         // - loop view item widgets & set parts positions & sizes
 
         // todo: this does not calculate parts positions/sizes totally right!!!
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
@@ -320,6 +379,7 @@ namespace NanoUI.Components.Views
         #region Events
 
         // todo: should this be in base ViewPanel?
+
         /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
@@ -354,6 +414,7 @@ namespace NanoUI.Components.Views
         }
 
         // todo: should this be in base ViewPanel?
+
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {

@@ -43,13 +43,29 @@ namespace NanoUI.Components.Views
 
         // this determines if we sync width width parent width
         // note: only flow & menu view currently doesn't use parent strech
+
+        /// <summary>
+        /// StretchWidth.
+        /// </summary>
         public bool StretchWidth { get; set; } = false;
 
         // needed to place correctly into hierarcial structure
+
+        /// <summary>
+        /// ParentId.
+        /// </summary>
         public string ParentId { get; }
+
+        /// <summary>
+        /// EventData.
+        /// </summary>
         public T? EventData { get; set; }
-        
+
         // there is special handling for separator (do not pointer click/focus etc)
+
+        /// <summary>
+        /// IsSeparator.
+        /// </summary>
         public bool IsSeparator
         {
             get => Children.Count == 1 && Children[0] is UISeparator;
