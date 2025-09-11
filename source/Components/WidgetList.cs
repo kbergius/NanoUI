@@ -15,6 +15,10 @@ namespace NanoUI.Components
     // note: all positions here are treated as display positions & converted to widget positions
 
     // todo: find functions - do not take Widgets with Visible = false (checkVisibility flag)?
+
+    /// <summary>
+    /// WidgetList.
+    /// </summary>
     public class WidgetList : ArrayBuffer<UIWidget>
     {
         internal static SortKeyComparer sortKeyComparer = new();

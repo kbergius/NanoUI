@@ -20,6 +20,10 @@ namespace NanoUI.Components.Files
     // todo : CREATE ROOT WITH CORRECT COLUMNS & make its properties editable (caption, visibility)
     // todo : CHANGE ICON (Folder collapsed/expanded)
     // todo : SHOULD WE HAVE BASE PATH?
+
+    /// <summary>
+    /// UIFileFolderTree.
+    /// </summary>
     public class UIFileFolderTree : UITreeView<FileFolderInfo>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

@@ -5,6 +5,10 @@ using System;
 namespace NanoUI.Components.Menus
 {
     // todo: context menu holds menubuttons, but these can't have shortcuts(?)
+
+    /// <summary>
+    /// UIContextMenu.
+    /// </summary>
     public class UIContextMenu : UIPopup
     {
         // this is called from the child menu item buttons, if they have ItemId specified

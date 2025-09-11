@@ -11,6 +11,10 @@ namespace NanoUI.Components.Dialogs
     // todo : Filter by filetype
     // todo : tree in left side?
     // todo: calculate dynamically layout & widgets
+
+    /// <summary>
+    /// UIFileDialog.
+    /// </summary>
     public class UIFileDialog : UIDialog
     {
         Action<UIWidget, FileFolderInfo>? _selected;

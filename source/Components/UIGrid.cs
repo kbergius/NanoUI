@@ -11,6 +11,10 @@ namespace NanoUI.Components
 
     // todo: Column/Row header(s), sorting?, Scrollable
     // todo: paddings, margin?
+
+    /// <summary>
+    /// UIGrid.
+    /// </summary>
     public class UIGrid : UIWidget
     {
         GridLayout _gridLayout;

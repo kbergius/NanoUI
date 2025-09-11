@@ -9,6 +9,10 @@ using Color = NanoUI.Common.Color;
 namespace NanoUI.Components
 {
     // todo : units could also be BEFORE number (or shall we let user do this?)
+
+    /// <summary>
+    /// UITextField.
+    /// </summary>
     public class UITextField : UIWidget
     {
         // todo : in theme / globals?

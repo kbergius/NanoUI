@@ -2,6 +2,9 @@
 
 namespace NanoUI.Components.Views
 {
+    /// <summary>
+    /// UIListView<T>.
+    /// </summary>
     public class UIListView<T> : UIViewWidget<T>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

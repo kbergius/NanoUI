@@ -7,6 +7,10 @@ namespace NanoUI.Components
 {
     // todo : Orientation
     // todo : draw progress text value into the center of widget
+
+    /// <summary>
+    /// UIProgressbar.
+    /// </summary>
     public class UIProgressbar : UIWidget
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

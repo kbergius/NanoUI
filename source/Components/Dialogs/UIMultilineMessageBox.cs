@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Dialogs
 {
+    /// <summary>
+    /// UIMultilineMessageBox.
+    /// </summary>
     public class UIMultilineMessageBox : UIDialog
     {
         bool _inited;

@@ -8,6 +8,10 @@ namespace NanoUI.Components.Docking
     // note: hit & overlays operate in screen coordinates, since DrawDockAreas call comes directly from screen
     // with pointer position
     // todo: title + close action (in close, we must rearrange parent subnodes etc)
+
+    /// <summary>
+    /// DockNode.
+    /// </summary>
     public partial class DockNode : UIWidget
     {
         // todo: configueable?

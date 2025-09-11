@@ -17,6 +17,10 @@ namespace NanoUI.Components
     // now sets tooltip always below widget
     // todo: cleanup code
     // todo: adjust size - when maxrows limits
+
+    /// <summary>
+    /// UITooltip.
+    /// </summary>
     public class UITooltip : UIWidget
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

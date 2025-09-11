@@ -3,6 +3,9 @@ using NanoUI.Nvg;
 
 namespace NanoUI.Components.Simple
 {
+    /// <summary>
+    /// UIShortcut.
+    /// </summary>
     public class UIShortcut : UIWidget
     {
         public UIShortcut()

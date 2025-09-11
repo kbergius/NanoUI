@@ -5,6 +5,10 @@
     // right ctor params & with correct view
     // todo: struct?
     // todo: use guid's as id
+
+    /// <summary>
+    /// FlowItem<T>.
+    /// </summary>
     public class FlowItem<T> : IViewItem<T>
     {
         // this is obligatory in "flat" but mabdatory in hierarcial structures

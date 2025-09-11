@@ -5,6 +5,10 @@ using System.Numerics;
 namespace NanoUI.Components.Docking
 {
     // todo: there should be easy mechanics to set title etc (probably context menu)
+
+    /// <summary>
+    /// DockTitlebar.
+    /// </summary>
     public class DockTitlebar : UITitlebar
     {
         // support theming

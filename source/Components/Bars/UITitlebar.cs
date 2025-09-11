@@ -8,6 +8,10 @@ using System.Text.Json.Serialization;
 namespace NanoUI.Components.Bars
 {
     // todo: layouting works somehow, but there could be better algorithm
+
+    /// <summary>
+    /// UITitlebar.
+    /// </summary>
     public class UITitlebar : UIWidgetbar
     {
         UILabel _title;

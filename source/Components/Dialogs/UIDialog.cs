@@ -5,6 +5,10 @@ using System.ComponentModel;
 namespace NanoUI.Components.Dialogs
 {
     // this is base class that is registered & stored in screen, so user can call Screen.GetDialog<T>
+
+    /// <summary>
+    /// UIDialog.
+    /// </summary>
     public class UIDialog : UIWindow
     {
         // caller is used to set focus back to caller when dialog closes

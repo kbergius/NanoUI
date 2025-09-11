@@ -6,6 +6,10 @@ using System.Numerics;
 namespace NanoUI.Components
 {
     // This is very simple widget that wraps label with vertical scrollbar
+
+    /// <summary>
+    /// UIScrollableLabel.
+    /// </summary>
     public class UIScrollableLabel : UIWidget
     {
         UIScrollPanel _scroll;

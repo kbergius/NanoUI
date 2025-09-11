@@ -8,6 +8,10 @@ namespace NanoUI.Components.Buttons
 {
     // todo: we should dynamically calculate UpDownButton height based on NumericTextBox height
     // possible we perform layout & set flag need recalculate & set in draw real positions & sizes
+
+    /// <summary>
+    /// UINumericUpDown<T>.
+    /// </summary>
     public class UINumericUpDown<T> : UIWidget where T : INumber<T>
     {
         const int MINIMUM_TEXT_BOX_WIDTH = 50;

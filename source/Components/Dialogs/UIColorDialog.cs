@@ -10,6 +10,10 @@ namespace NanoUI.Components.Dialogs
     // todo: show current color (alpha maybe < 255)
     // todo : Named colors dropdown
     // todo : display theme based common colors
+
+    /// <summary>
+    /// UIColorDialog.
+    /// </summary>
     public class UIColorDialog : UIDialog
     {
         Color _currentColor;

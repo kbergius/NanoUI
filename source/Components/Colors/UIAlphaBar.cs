@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Colors
 {
+    /// <summary>
+    /// UIAlphaBar.
+    /// </summary>
     public class UIAlphaBar : UIWidget
     {
         const float MARKER_HEIGHT = 5;

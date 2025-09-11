@@ -7,6 +7,10 @@ namespace NanoUI.Components.Simple
     // note: supports dynamic theming
     // note2: if dynamic theming is not needed, use IconPart with fixed Icon & IconColor
     // (better performance)
+
+    /// <summary>
+    /// UIFileIcon.
+    /// </summary>
     public class UIFileIcon : UIIcon
     {
         public UIFileIcon(FileFolderInfo fileFolderInfo)

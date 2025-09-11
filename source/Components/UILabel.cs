@@ -5,6 +5,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UILabel.
+    /// </summary>
     public class UILabel : UIWidget
     {
         // when caption or layout changes, we must recalculate lines

@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Docking
 {
+    /// <summary>
+    /// DockHit.
+    /// </summary>
     public struct DockHit
     {
         // hit areas (used also to check hit)

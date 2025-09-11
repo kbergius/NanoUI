@@ -7,6 +7,10 @@ using System.Numerics;
 namespace NanoUI.Components.Menus
 {
     // todo: somehow dosn't use hover color change
+
+    /// <summary>
+    /// UIMenu.
+    /// </summary>
     public class UIMenu : UIPopupButton
     {
         // this is called from the child menu item buttons, if they have ItemId specified

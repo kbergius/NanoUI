@@ -5,6 +5,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UINumericTextBox<T>.
+    /// </summary>
     public class UINumericTextBox<T> : UITextField where T : INumber<T>
     {
         // needed when we parse failed --> reset

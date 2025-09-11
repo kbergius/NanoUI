@@ -12,6 +12,10 @@ namespace NanoUI.Components.Dialogs
     // todo: should inhert from abstract Dialog widget
     // todo: calculate dynmically layout & widgets
     // todo: should there be differnt lables for path & selected folder name?
+
+    /// <summary>
+    /// UIFolderDialog.
+    /// </summary>
     public class UIFolderDialog : UIDialog
     {
         const int COMPONENTS_WIDTH = 400;

@@ -9,6 +9,10 @@ namespace NanoUI.Components.Files
     // note: supports dynamic theming
     // note2: if dynamic theming is not needed, use IconPart instead of FileIconPart with fixed Icon & IconColor
     // (better performance)
+
+    /// <summary>
+    /// UIFileFolderDetails.
+    /// </summary>
     public class UIFileFolderDetails : UITableView<FileFolderInfo>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

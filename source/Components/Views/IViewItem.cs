@@ -2,6 +2,10 @@
 namespace NanoUI.Components.Views
 {
     // todo: use guid's as id
+
+    /// <summary>
+    /// IViewItem<T>.
+    /// </summary>
     public interface IViewItem<T>
     {
         // this is obligatory in "flat" but mandatory in hierarcial structures

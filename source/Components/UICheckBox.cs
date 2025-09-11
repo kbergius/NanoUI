@@ -7,6 +7,10 @@ using System.Numerics;
 namespace NanoUI.Components
 {
     // todo : should we have configurable corner radius?
+
+    /// <summary>
+    /// UICheckBox.
+    /// </summary>
     public class UICheckBox : UIWidget
     {
         public Action<bool>? CheckedChanged;

@@ -8,6 +8,10 @@ namespace NanoUI.Components
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         // note : this handles also all widgets that extend this (MenuView<T>, PopupButton<T>) 
+
+        /// <summary>
+        /// UIPopupButton.
+        /// </summary>
         public UIPopupButton()
         {
             // set defaults to theme impl - prevents circular reference

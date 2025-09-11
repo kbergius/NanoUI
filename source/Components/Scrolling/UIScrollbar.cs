@@ -7,6 +7,10 @@ namespace NanoUI.Components.Scrolling
 {
     // note: we operate in same coordinate system as the owner (widget that created this and holds reference)
     // todo: could also extend Widget?
+
+    /// <summary>
+    /// UIScrollbar.
+    /// </summary>
     public class UIScrollbar
     {
         // owner widget

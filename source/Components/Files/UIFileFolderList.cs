@@ -16,6 +16,9 @@ namespace NanoUI.Components.Files
 
     // by now both actions are combined into one
 
+    /// <summary>
+    /// UIFileFolderList.
+    /// </summary>
     public class UIFileFolderList : UIListView<FileFolderInfo>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

@@ -13,6 +13,10 @@ namespace NanoUI.Components.Files
     // todo2: this works with invisible _textPart. better solution could we add into FileFonderInfo
     // display text & switch with ".." & display text (SelectedText function) OR collect selected text
     // and ser it into part when necessary
+
+    /// <summary>
+    /// UIFileFolderDropdown.
+    /// </summary>
     public class UIFileFolderDropdown : UIDropDownView<FileFolderInfo>
     {
         const int TEXT_PART_INDEX = 1;
