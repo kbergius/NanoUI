@@ -98,6 +98,7 @@ namespace NanoUI.Components
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (!Disabled && down)
@@ -119,6 +120,7 @@ namespace NanoUI.Components
             return base.OnPointerUpDown(p, button, down);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             // we must first call base, since it resets pointer type
@@ -136,6 +138,7 @@ namespace NanoUI.Components
             return res;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             if(Parent == null)
@@ -193,6 +196,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // splitter background

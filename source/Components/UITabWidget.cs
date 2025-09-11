@@ -39,6 +39,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // todo: check - we should have StrechLayout by default
@@ -271,6 +272,7 @@ namespace NanoUI.Components
         #region Layout
 
         // we must recalculate tab offsets & content position & size
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             _tabOffsets.Clear();
@@ -328,6 +330,7 @@ namespace NanoUI.Components
             UpdateVisibility();
         }
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             // calculate icon first
@@ -377,6 +380,7 @@ namespace NanoUI.Components
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             bool handled = false;
@@ -460,6 +464,7 @@ namespace NanoUI.Components
         }
 
         // we check if tab dragged outside
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             if (!Contains(p))
@@ -484,6 +489,7 @@ namespace NanoUI.Components
             return base.OnPointerDrag(p, rel);
         }
 
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             (int index, bool close) = GetTabAtPosition(p, false);
@@ -534,6 +540,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // if there is no tabs, we don't draw anything

@@ -90,11 +90,12 @@ namespace NanoUI.Components
         }
         
         public virtual ButtonFlags Flags { get; set; } = ButtonFlags.NormalButton;
-        
+
         #endregion
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             base.OnPointerUpDown(p, button, down);
@@ -166,6 +167,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             ctx.FontSize(FontSize);
@@ -195,6 +197,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // Background

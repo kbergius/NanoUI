@@ -84,6 +84,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -97,6 +98,7 @@ namespace NanoUI.Components
 
         double _elapsed;
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // todo: better way, clear elapsed?

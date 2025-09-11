@@ -123,6 +123,7 @@ namespace NanoUI.Components
         // we override window implementation in order to keep popup open while no widget is responding to
         // OnPointerUpDown + RequestFocus
         // note: widgets in popup has special handling of RequestFocus (Screen.UpdateFocus is not called)
+        /// <inheritdoc />
         public override void RequestFocus()
         {
             // we got new focus - update in screen
@@ -143,6 +144,7 @@ namespace NanoUI.Components
         // doesn't work since clicking menu item closes popup that removes menu item from focuspath
         // todo: this works now with menus. are there any downsides?
         // todo2: we could still restrict checking that _parentButton is MenuButton
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             if(_parentButton != null)
@@ -169,6 +171,7 @@ namespace NanoUI.Components
         #region Layout
 
         // Invoke the associated layout generator to properly place child widgets, if any
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             if (ChildrenLayout != null || Children.Count != 1)
@@ -188,6 +191,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (!Visible)

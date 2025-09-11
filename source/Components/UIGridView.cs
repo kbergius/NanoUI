@@ -148,6 +148,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             // Compute minimum row / column sizes
@@ -162,6 +163,7 @@ namespace NanoUI.Components
             return size + extra;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // Compute minimum row / column sizes

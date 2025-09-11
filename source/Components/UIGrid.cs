@@ -99,11 +99,13 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             return _gridLayout.PreferredSize(ctx, this);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             _gridLayout.PerformLayout(ctx, this);

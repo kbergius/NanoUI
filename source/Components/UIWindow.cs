@@ -238,6 +238,7 @@ namespace NanoUI.Components
         // note: everytime we send pointer event to children (base.<OnPointerEvent>), we must recalculate
         // pointer position taking into account scrolling offset (GetChildrenPointerPos)
         // todo: if we are going to drag - we must clear possible previous pointer hovering (pointer focus)
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             Vector2 localPos = p - Position;
@@ -321,13 +322,14 @@ namespace NanoUI.Components
             // todo: should we make a restriction also in screen level?
             return true;
         }
-        
+
         // Handle pointer events recursively and bring the current window to the top
         // Phases:
         // 0. check scrollbars
         // 1. check window drag resizing
         // 2. check window drag moving (header)
         // 3. forward to children
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             _isWindowDragging = false;
@@ -489,6 +491,7 @@ namespace NanoUI.Components
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             // check scrollbars first
@@ -593,6 +596,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerScroll(Vector2 p, Vector2 scroll)
         {
             // todo: should we handle scrollbar scrolling like in UIScrollPanel?
@@ -604,6 +608,7 @@ namespace NanoUI.Components
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
             return base.OnPointerDoubleClick(GetChildrenPointerPos(p), button);
@@ -612,6 +617,7 @@ namespace NanoUI.Components
         // check also key events - shall we response to them
         // note: there is special case for menubar, we pass event to it if found. else passes event to base,
         // that by default returns false
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             foreach (var child in Children.AsReadOnlySpan())
@@ -631,11 +637,13 @@ namespace NanoUI.Components
             return base.OnKeyUpDown(key, down, modifiers);
         }
 
+        /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {
             return base.OnKeyChar(c);
         }
 
+        /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {
             ResetScrollbarFocuses();
@@ -648,6 +656,7 @@ namespace NanoUI.Components
         #region Layout
 
         // todo: this could be optimized?
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             // calculate offset area Y (all bars)
@@ -760,6 +769,7 @@ namespace NanoUI.Components
         #region Drawing
 
         // todo: this could b simplified?
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // Check if we need perform layout (this originates from resizing event - OnPointerDrag)

@@ -51,6 +51,7 @@ namespace NanoUI.Components
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (!Disabled && down)
@@ -68,6 +69,7 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {
             if (!focused)
@@ -80,11 +82,12 @@ namespace NanoUI.Components
 
             return base.OnFocusChanged(focused);
         }
-        
+
         #endregion
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             if (Disabled && Pushed)
@@ -103,6 +106,7 @@ namespace NanoUI.Components
 
         // we want to override default, since we want also dispose Popup, which is in
         // different parent (Screen)
+        /// <inheritdoc />
         public override void Dispose()
         {
             base.Dispose();

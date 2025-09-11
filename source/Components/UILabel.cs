@@ -112,6 +112,7 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {  
             if (string.IsNullOrEmpty(_caption))
@@ -150,6 +151,7 @@ namespace NanoUI.Components
         }
 
         // todo: we could check if size really changed & set _needRecalculate flag accordingly
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -161,6 +163,7 @@ namespace NanoUI.Components
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // background

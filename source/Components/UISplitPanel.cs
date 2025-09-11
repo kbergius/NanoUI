@@ -66,11 +66,13 @@ namespace NanoUI.Components
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             return Vector2.Max(MinSize, _splitterLayout.PreferredSize(ctx, this));
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             _splitterLayout.PerformLayout(ctx, this);
