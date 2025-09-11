@@ -18,6 +18,9 @@ namespace NanoUI.Components
 
     #region UITabItem
 
+    /// <summary>
+    /// UITabItem.
+    /// </summary>
     public class UITabItem : UIWidget
     {
         public UITabItem(UITabWidget parent)
@@ -58,6 +61,9 @@ namespace NanoUI.Components
 
     #endregion
 
+    /// <summary>
+    /// UITabWidget.
+    /// </summary>
     public class UITabWidget : UIWidget
     {
         // this is indicator that index is invalid

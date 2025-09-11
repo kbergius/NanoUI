@@ -8,6 +8,10 @@ namespace NanoUI.Components
     // setting its size fixed based on splitter position, then request layout change
     // in parent
     // note: needs SplitLayout in parent to work
+
+    /// <summary>
+    /// UISplitter.
+    /// </summary>
     public class UISplitter : UIWidget
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

@@ -15,6 +15,10 @@ namespace NanoUI.Components
     // there are no layouting), the widget should respect that and not do its own size calculations with
     // Size, MinSize & FixedSize.
     // todo: tab navigation? (in screen?), MaxSize?
+
+    /// <summary>
+    /// UIWidget.
+    /// </summary>
     public partial class UIWidget : IDisposable
     {
         WidgetList _children;

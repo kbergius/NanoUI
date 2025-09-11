@@ -7,6 +7,10 @@ namespace NanoUI.Components
 {
     // If you use this, don't set any child widgets on this. Instead set child widgets to Panel1 & Panel2
     // todo: should we check that there is exactly 3 child widgets (Panel 1 & 2, Splitter)
+
+    /// <summary>
+    /// UISplitPanel.
+    /// </summary>
     public class UISplitPanel : UIWidget
     {
         // we use splitter layout to handle all layouting work

@@ -7,6 +7,10 @@ using System.Numerics;
 namespace NanoUI.Components
 {
     // todo : there is alternate way (set texture inside scroll panel)
+
+    /// <summary>
+    /// UIImageViewer.
+    /// </summary>
     public class UIImageViewer : UIWidget
     {
         Vector2 _textureSize;

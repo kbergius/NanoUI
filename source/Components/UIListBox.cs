@@ -7,6 +7,10 @@ using NanoUI.Nvg;
 namespace NanoUI.Components
 {
     // this is simple listbox that displays strings & returns T when item selected
+
+    /// <summary>
+    /// UIListBox<T>.
+    /// </summary>
     public class UIListBox<T> : UIListView<T>
     {
         public UIListBox(UIWidget parent)

@@ -10,6 +10,10 @@ namespace NanoUI.Components
     // (all scrolling - when needed - should be handled in UIScrollPanel that is set as first & only
     // child of the popup)
     // todo: use UIWindow scrolling (& bars) and remove UIScrollPanel as a child where scrolling is needed
+
+    /// <summary>
+    /// UIPopup.
+    /// </summary>
     public class UIPopup : UIWindow
     {
         // these are to check if parent has moved and/or size changed

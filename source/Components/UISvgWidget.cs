@@ -3,6 +3,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UISvgWidget.
+    /// </summary>
     public class UISvgWidget : UIWidget
     {
         public UISvgWidget()

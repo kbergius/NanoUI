@@ -10,6 +10,10 @@ namespace NanoUI.Components
     #region UICollapsablePanelContent
 
     // this is real content - show/hide
+
+    /// <summary>
+    /// UICollapsablePanelContent.
+    /// </summary>
     public class UICollapsablePanelContent : UIWidget
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
@@ -63,6 +67,10 @@ namespace NanoUI.Components
     #region UICollapsablePanelHeader
 
     // todo: should this extend titlebar?
+
+    /// <summary>
+    /// UICollapsablePanelHeader.
+    /// </summary>
     public class UICollapsablePanelHeader : UIButton
     {
         // this is for title text padding (added to icon padding)
@@ -180,6 +188,10 @@ namespace NanoUI.Components
     #endregion
 
     // note: this is just container; set all properties to header & content widgets
+
+    /// <summary>
+    /// UICollapsablePanel.
+    /// </summary>
     public class UICollapsablePanel : UIWidget
     {
         UICollapsablePanelHeader _header;

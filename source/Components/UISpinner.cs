@@ -5,6 +5,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UISpinner.
+    /// </summary>
     public class UISpinner : UIWidget
     {
         // todo?

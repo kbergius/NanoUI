@@ -7,6 +7,10 @@ using System;
 namespace NanoUI.Components
 {
     // this consists some helper functions for widgets, but not all widgets need them
+
+    /// <summary>
+    /// UIWidgetEXT.
+    /// </summary>
     public static class UIWidgetEXT
     {
         #region Order childs

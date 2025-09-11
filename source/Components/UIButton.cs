@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UIButton.
+    /// </summary>
     public class UIButton : UIWidget
     {
         // this makes pushed button text dimmer

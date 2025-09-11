@@ -14,6 +14,10 @@ namespace NanoUI.Components
     // todo: Column/Row header(s), Scrollable, use paddings (instead or margin), spacing inside cells
     // (determined in row & column definitions) - cell has not alignment (they are specified
     // in row & column definitions)
+
+    /// <summary>
+    /// UIGridView.
+    /// </summary>
     public class UIGridView : UIWidget
     {
         #region Cell

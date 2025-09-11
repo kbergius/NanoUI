@@ -10,6 +10,10 @@ namespace NanoUI.Components
 {
     // note: in events we check scrolling first and after that window dragging
     // todo: statusbar (placement bottom)
+
+    /// <summary>
+    /// UIWindow.
+    /// </summary>
     public class UIWindow : UIWidget, IScrollable
     {
         // private state params

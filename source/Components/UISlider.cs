@@ -4,11 +4,14 @@ using System;
 using System.ComponentModel;
 using System.Numerics;
 
-
 namespace NanoUI.Components
 {
     // note : no normal background/border drawing
     // todo: vertical
+
+    /// <summary>
+    /// UISlider.
+    /// </summary>
     public class UISlider : UIWidget
     {
         public Action<float>? ValueChanged;
