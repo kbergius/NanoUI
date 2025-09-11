@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace NanoUI.Serializers
 {
+    /// <summary>
+    /// ThemeSerializer.
+    /// </summary>
     public class ThemeSerializer
     {
         JsonSerializerOptions _jsonOptions;

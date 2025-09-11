@@ -15,6 +15,10 @@ namespace NanoUI.Layouts
     // todo: make Dictionary<Widget, stretch> -based stretching functionality
     // todo?: _alignments -> for columns & rows: Dictionary<row/colIndex, LayoutAlignment>
     // it would be easier to SetRowAlignment(rowIndex, LayoutAlignment) - NOW MUST SET ALL AT ONCE
+
+    /// <summary>
+    /// GridLayout.
+    /// </summary>
     public class GridLayout : Layout
     {
         // The default alignments

@@ -9,6 +9,10 @@ namespace NanoUI.Common
     // A       B       G       R
 
     // todo? : make R,G,B,A readonly - if user must modify -> create new
+
+    /// <summary>
+    /// Color.
+    /// </summary>
     public struct Color : IEquatable<Color>
     {
         uint _packedValue;

@@ -25,6 +25,10 @@ namespace NanoUI
     // todo: remove all generics & replace them with non-generic variant
     // todo: when we don't set any widget properties - then the properties are not saved in JSON theme &
     // we can have default values there!!!
+
+    /// <summary>
+    /// UITheme.
+    /// </summary>
     public class UITheme
     {
         // this is real place for all theme widgets

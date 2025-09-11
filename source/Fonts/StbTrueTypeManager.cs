@@ -9,6 +9,10 @@ namespace NanoUI.Fonts
 {
     // StbTrueTypeSharp is an auto-generated C# port of the stb_truetype.h
     // https://github.com/StbSharp/StbTrueTypeSharp
+
+    /// <summary>
+    /// StbTrueTypeManager.
+    /// </summary>
     internal unsafe class StbTrueTypeManager : IFontManager
     {
         // these affects sharpness & brightness when using FontBaking.SDF

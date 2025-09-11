@@ -1,6 +1,10 @@
 ﻿namespace NanoUI.Common
 {
     // todo : check Min < Max
+
+    /// <summary>
+    /// MinMax.
+    /// </summary>
     public struct MinMax
     {
         public float Min { get; set; }

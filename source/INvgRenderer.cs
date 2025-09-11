@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI
 {
+    /// <summary>
+    /// INvgRenderer.
+    /// </summary>
     public interface INvgRenderer
     {
         /// <summary>

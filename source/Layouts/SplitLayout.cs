@@ -11,6 +11,10 @@ namespace NanoUI.Layouts
 
     // There is a widget (SplitPanel), that provides 2-panel functionality & is easier to use
     // todo: does not use margin by now
+
+    /// <summary>
+    /// SplitLayout.
+    /// </summary>
     public class SplitLayout : Layout
     {
         public SplitLayout(Orientation orientation)  

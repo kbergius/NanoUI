@@ -9,6 +9,10 @@ namespace NanoUI.Layouts
 {
     // this is an extension of the grid layout, that dynamically calculates column count and
     // lets then grid layout do the real work
+
+    /// <summary>
+    /// FlowLayout.
+    /// </summary>
     public class FlowLayout : GridLayout
     {
         // we support only horizontal orientation by now (layout based on columns)

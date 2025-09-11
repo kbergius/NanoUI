@@ -9,6 +9,10 @@ using System.Text;
 namespace NanoUI.Utils
 {
     // note: parse methods assumes that your have first "sanitized" your string (no control chars & trimmed)
+
+    /// <summary>
+    /// StringUtils.
+    /// </summary>
     public static class StringUtils
     {
         static StringBuilder _stringBuilder = new();

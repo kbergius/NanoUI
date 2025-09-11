@@ -2,6 +2,9 @@
 
 namespace NanoUI.Common
 {
+    /// <summary>
+    /// Rect.
+    /// </summary>
     public struct Rect
     {
         public Vector2 Position { get; set; }

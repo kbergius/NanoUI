@@ -2,6 +2,9 @@
 
 namespace NanoUI
 {
+    /// <summary>
+    /// Globals.
+    /// </summary>
     public class Globals
     {
         // this is used to indicate that int value (that points to struct/class) is not defined/incorrect.

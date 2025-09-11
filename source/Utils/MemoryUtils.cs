@@ -4,6 +4,9 @@ using System.Runtime.InteropServices;
 
 namespace NanoUI.Utils
 {
+    /// <summary>
+    /// MemoryUtils.
+    /// </summary>
     public unsafe static class MemoryUtils
     {
         /// <summary>Tries to allocate a chunk of unmanaged memory.</summary>
