@@ -10,6 +10,9 @@ namespace NanoUI.Components.Views
 {
     #region UITreeItemWidget
 
+    /// <summary>
+    /// UITreeItemWidget<T>.
+    /// </summary>
     public class UITreeItemWidget<T> : UIViewItemWidget<T>
     {
         // todo: configurable?
@@ -88,6 +91,10 @@ namespace NanoUI.Components.Views
     // dynamically adding/removing after tree is initially created
     // todo: refactor to use hierarcial system like other widgets, so it is easier to implement
     // all modifying
+
+    /// <summary>
+    /// UITreeView<T>.
+    /// </summary>
     public class UITreeView<T> : UIViewWidget<T>
     {
         // we use root id as parent id if not found else

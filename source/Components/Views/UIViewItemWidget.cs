@@ -6,6 +6,10 @@ namespace NanoUI.Components.Views
 {
     // most of the views / view panels use this as is
     // extensions: MenuItemWidget, UITreeItemWidget
+
+    /// <summary>
+    /// UIViewItemWidget<T>.
+    /// </summary>
     public class UIViewItemWidget<T> : UIWidget
     {
         public UIViewItemWidget(UIWidget parent, IViewItem<T> viewRow)

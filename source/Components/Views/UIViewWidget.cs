@@ -11,6 +11,10 @@ namespace NanoUI.Components.Views
     // this is used by all views except dropdown & menu since they inherit from popup button
     // this provides all basic functionality for views
     // todo : could use scroll panel as to have both vertical & horizontal scrollbars?
+
+    /// <summary>
+    /// UIViewWidget<T>.
+    /// </summary>
     public abstract class UIViewWidget<T> : UIWidget
     {
         // when selection mode = item

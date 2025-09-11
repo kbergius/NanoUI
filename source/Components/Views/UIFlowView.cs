@@ -7,6 +7,10 @@ namespace NanoUI.Components.Views
 {
     // todo : Show name under Texture/Icon (truncated/wrapped if not fits to thumbsize) - CUSTOM CELL?
     // todo : Show tooltip (description) under Texture/Icon if spesified?
+
+    /// <summary>
+    /// UIFlowView<T>.
+    /// </summary>
     public class UIFlowView<T> : UIViewWidget<T>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

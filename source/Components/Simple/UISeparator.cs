@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Simple
 {
+    /// <summary>
+    /// UISeparator.
+    /// </summary>
     public class UISeparator : UIWidget
     {
         public UISeparator(int height)

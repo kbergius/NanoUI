@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Menus
 {
+    /// <summary>
+    /// UIMenuSeparator.
+    /// </summary>
     public class UIMenuSeparator : UISeparator
     {
         public UIMenuSeparator(UIWidget parent)

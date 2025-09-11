@@ -12,6 +12,10 @@ namespace NanoUI.Components.Views
     // sets popup height to panel children total height?
     // todo: this should not be used for theming!!
     // note: if you change items in popup, you must call RequestLayoutUpdate(Popup)
+
+    /// <summary>
+    /// UIDropDownView<T>.
+    /// </summary>
     public class UIDropDownView<T> : UIPopupButton
     {
         UIViewPanel<T> _viewPanel;

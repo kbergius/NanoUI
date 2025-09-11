@@ -8,6 +8,10 @@ namespace NanoUI.Components.Simple
     // note: this is used by now in FileFolderFlow
     // todo : make more generic, this uses some magical numbers & works only with values Vector2(100, 90);
     // note: this is a combination of icon & text part for flow
+
+    /// <summary>
+    /// UIIconText.
+    /// </summary>
     public class UIIconText : UIWidget
     {
         public UIIconText()

@@ -4,6 +4,10 @@
     // right ctor params & with correct view
     // todo: struct?
     // todo: use guid's as id
+
+    /// <summary>
+    /// TreeItem<T>.
+    /// </summary>
     public class TreeItem<T> : IViewItem<T>
     {
         // this is obligatory in "flat" but mandatory in hierarcial structures

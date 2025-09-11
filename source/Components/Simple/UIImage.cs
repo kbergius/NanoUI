@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Simple
 {
+    /// <summary>
+    /// UIImage.
+    /// </summary>
     public class UIImage : UIWidget
     {
         // calculated texture size

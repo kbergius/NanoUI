@@ -12,6 +12,10 @@ namespace NanoUI.Components.Views
 
     // this is for supporting theming
     // todo: we must override all properties that are themable
+
+    /// <summary>
+    /// UIViewPanel.
+    /// </summary>
     public class UIViewPanel : UIWidget
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
@@ -138,6 +142,10 @@ namespace NanoUI.Components.Views
     // Provides most common operations for all view panels (extensions can override)
     // todo: keyboard navigation (up/down) fron selected index
     // todo: if RowHeight (or Columns) changes, we must update all ViewItemWidgets & perform layout
+
+    /// <summary>
+    /// UIViewPanel<T>.
+    /// </summary>
     public class UIViewPanel<T> : UIViewPanel
     {
         // ViewSelectionMode = item

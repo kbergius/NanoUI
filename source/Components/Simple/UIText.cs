@@ -5,6 +5,10 @@ using System.Numerics;
 namespace NanoUI.Components.Simple
 {
     // todo: remove this - use UIlabel
+
+    /// <summary>
+    /// UIText.
+    /// </summary>
     public class UIText : UIWidget
     {
         public UIText()

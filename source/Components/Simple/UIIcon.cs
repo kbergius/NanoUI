@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 
 namespace NanoUI.Components.Simple
 {
+    /// <summary>
+    /// UIIcon.
+    /// </summary>
     public class UIIcon : UIWidget
     {
         public UIIcon()

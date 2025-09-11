@@ -4,6 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Menus
 {
+    /// <summary>
+    /// UIMenuItem.
+    /// </summary>
     public class UIMenuItem : UIButton
     {
         public UIMenuItem()

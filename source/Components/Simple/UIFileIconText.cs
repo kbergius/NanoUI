@@ -7,6 +7,10 @@ namespace NanoUI.Components.Simple
     // note: supports dynamic theming
     // note2: if dynamic theming is not needed, use IconTextPart with fixed Icon & IconColor
     // (better performance)
+
+    /// <summary>
+    /// UIFileIconText.
+    /// </summary>
     public class UIFileIconText : UIIconText
     {
         public UIFileIconText(FileFolderInfo fileFolderInfo, string displayName)

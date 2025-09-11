@@ -5,6 +5,10 @@ namespace NanoUI.Components.Views
 {
     // this is generic table view using cells
     // todo : draw column headers & provide sort by clicked column
+
+    /// <summary>
+    /// UITableView<T>.
+    /// </summary>
     public class UITableView<T> : UIViewWidget<T>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

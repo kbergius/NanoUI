@@ -3,6 +3,10 @@
 namespace NanoUI.Components.Files
 {
     // todo: here could be logic to create display text
+
+    /// <summary>
+    /// FileFolderInfo.
+    /// </summary>
     public struct FileFolderInfo
     {
         public string Path;

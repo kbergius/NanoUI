@@ -9,6 +9,10 @@ namespace NanoUI.Components.Files
     // note: supports dynamic theming
     // note2: if dynamic theming is not needed, use IconTextPart instead of FileIconTextPart with fixed Icon & IconColor
     // (better performance)
+
+    /// <summary>
+    /// UIFileFolderFlow.
+    /// </summary>
     public class UIFileFolderFlow : UIFlowView<FileFolderInfo>
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

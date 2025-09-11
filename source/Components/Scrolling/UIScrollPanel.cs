@@ -8,6 +8,10 @@ namespace NanoUI.Components.Scrolling
 {
     // todo: handle Content == null
     // todo: make this behave like UIWindow scrolling & implement IScrollable
+
+    /// <summary>
+    /// UIScrollPanel.
+    /// </summary>
     public class UIScrollPanel : UIWidget
     {
         // todo: margin for container <--> scrollbar
