@@ -1,6 +1,10 @@
 ﻿namespace NanoUI.Components.Docking
 {
     // note: we use int values as array indexes
+
+    /// <summary>
+    /// DockArea.
+    /// </summary>
     public enum DockArea : int
     {
         Left = 0,

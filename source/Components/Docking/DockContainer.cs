@@ -6,6 +6,10 @@ namespace NanoUI.Components.Docking
 {
     // note: screen can consist only 1 dock container
     // todo: load docking specification from file & create docking hierarchy
+
+    /// <summary>
+    /// DockContainer.
+    /// </summary>
     public class DockContainer : UIWidget
     {
         DockNode _root;

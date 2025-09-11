@@ -10,7 +10,11 @@ namespace NanoUI.Components.Bars
 
     // note: parent should do the psoitioning, since it knows what bars there exist
     // todo: statusbar (needs positioning info: top / bottom)
-    // yodo2: if also Scrollbar extends this, there should be also "right" (needs to refactor scrollbar logic!)
+    // todo2: if also Scrollbar extends this, there should be also "right" (needs to refactor scrollbar logic!)
+
+    /// <summary>
+    /// UIWidgetbar.
+    /// </summary>
     public abstract class UIWidgetbar : UIWidget
     {
         public UIWidgetbar()

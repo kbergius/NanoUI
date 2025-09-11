@@ -10,6 +10,10 @@ namespace NanoUI.Components.Bars
     // note: this means you can have multiple windows with menubars, but only the active/focused
     // window gets event and passes it to this widget
     // note2: this doesn't pass OnKeyChar event to children, because widget needs to be in focuspath
+
+    /// <summary>
+    /// UIMenubar.
+    /// </summary>
     public class UIMenubar : UIWidgetbar
     {
         public UIMenubar() { }

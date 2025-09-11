@@ -7,6 +7,10 @@ using NanoUI.Layouts;
 namespace NanoUI.Components.Colors
 {
     // note: this returns RGB values, A is always "full" (255)
+
+    /// <summary>
+    /// UIColorPicker.
+    /// </summary>
     public class UIColorPicker : UIPopupButton
     {
         Color _currentColor;

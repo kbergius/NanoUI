@@ -7,6 +7,10 @@ namespace NanoUI.Components.Colors
 {
     // handles selection of color RGB values; A value should be handled separately
     // (this returns "full" alpha 255)
+
+    /// <summary>
+    /// UIColorWheel.
+    /// </summary>
     public class UIColorWheel : UIWidget
     {
         // marker (circle rect & triangle circle) color

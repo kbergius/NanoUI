@@ -5,6 +5,10 @@ using System.Numerics;
 namespace NanoUI.Components.Docking
 {
     // this is Window implementation that supports docking in dock container / node
+
+    /// <summary>
+    /// DockWindow.
+    /// </summary>
     public class DockWindow : UIWindow
     {
         // flag indicating if this is docked or floating

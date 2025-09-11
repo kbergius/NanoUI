@@ -8,6 +8,10 @@ namespace NanoUI.Components.Dialogs
 {
     // todo : set size based on message text length + font size
     // todo2: we could calculate automatically if text is single/multiline & set properties based on this
+
+    /// <summary>
+    /// UIMessageBox.
+    /// </summary>
     public class UIMessageBox : UIDialog
     {
         bool _inited;

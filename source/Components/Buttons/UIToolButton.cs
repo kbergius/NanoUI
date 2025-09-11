@@ -6,6 +6,10 @@ namespace NanoUI.Components.Buttons
 {
     // Tool button that can be combined with button flags.RadioButton & ToggleButton;
     // note: there is no text by default
+
+    /// <summary>
+    /// UIToolButton.
+    /// </summary>
     public class UIToolButton : UIButton
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)

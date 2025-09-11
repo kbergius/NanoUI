@@ -9,6 +9,10 @@ namespace NanoUI.Components.Buttons
     #region Base
 
     // note: there is really only dimension property used. Other properties comes from button
+
+    /// <summary>
+    /// UIUpDownButton.
+    /// </summary>
     public class UIUpDownButton : UIWidget
     {
         public UIUpDownButton()
@@ -37,6 +41,9 @@ namespace NanoUI.Components.Buttons
 
     #endregion
 
+    /// <summary>
+    /// UpDownButton<T>.
+    /// </summary>
     public class UpDownButton<T> : UIUpDownButton where T : INumber<T>
     {
         int _lastState = 0;

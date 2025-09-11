@@ -2,6 +2,9 @@
 
 namespace NanoUI.Components.Bars
 {
+    /// <summary>
+    /// UIToolbar.
+    /// </summary>
     public class UIToolbar : UIWidgetbar
     {
         public UIToolbar() { }
