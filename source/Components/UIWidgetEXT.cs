@@ -6,17 +6,21 @@ using System;
 
 namespace NanoUI.Components
 {
-    // this consists some helper functions for widgets, but not all widgets need them
-
     /// <summary>
-    /// UIWidgetEXT.
+    /// UIWidgetEXT consists some helper functions for ui widgets.
     /// </summary>
     public static class UIWidgetEXT
     {
-        #region Order childs
+        #region Reorder parent's widget list
 
-        // these are just helper method to deal with draw order & order which widget gets event first
+        /// <summary>
+        /// Sets widget as a first widget in parent's widget list. Same as MoveToFirst.
+        /// </summary>
         public static bool SendToBack(this UIWidget w) => MoveToFirst(w);
+
+        /// <summary>
+        /// Sets widget as a first widget in parent's widget list. 
+        /// </summary>
         public static bool MoveToFirst(this UIWidget w)
         {
             if (w.Parent != null)
@@ -25,7 +29,14 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <summary>
+        /// Sets widget as a last widget in parent's widget list. Same as MoveToLast.
+        /// </summary>
         public static bool BringToFront(this UIWidget w) => MoveToLast(w);
+
+        /// <summary>
+        /// Sets widget as a last widget in parent's widget list.
+        /// </summary>
         public static bool MoveToLast(this UIWidget w)
         {
             if (w.Parent != null)
@@ -38,21 +49,22 @@ namespace NanoUI.Components
 
         #region Autoellipsis
 
-        // get text with ellpsis ("..."), if text not fits in (fixed) witdh
         // todo : this should be implemented in all widgets drawing text
-        // note : you should call RequestLayoutUpdate when you are using this
-        // method, since this possibly stores display value in private variable
         // todo: better to have DidplayText property?
+
+        /// <summary>
+        /// Gets text with ellpsis ("..."), if text doesn't fit in available width.
+        /// Note: you should probably call PerformLayout or RequestLayoutUpdate, when you are using this.
+        /// </summary>
         public static string GetText(this UIWidget w, NvgContext ctx, ReadOnlySpan<char> text)
         {
             return GetText(w, ctx, text, w.FixedSize.X > 0 ? w.FixedSize.X : w.Size.X);
         }
 
-        // get text with ellpsis ("..."), if text not fits in given max width
-        // todo : this should be implemented in all widgets drawing text
-        // note : you should call RequestLayoutUpdate when you are using this
-        // method, since this possibly stores display value in private variable
-        // todo: better to have DidplayText property?
+        /// <summary>
+        /// Gets text with ellpsis ("..."), if text doesn't fit in available width.
+        /// Note: you should probably call PerformLayout or RequestLayoutUpdate, when you are using this.
+        /// </summary>
         public static string GetText(this UIWidget w, NvgContext ctx, ReadOnlySpan<char> textSpan, float maxWidth)
         {
             ctx.FontSize(w.FontSize);
@@ -83,9 +95,11 @@ namespace NanoUI.Components
 
         #region Misc methods
 
-        // find window where the widget is or null
-        // note: ContextMenu & Popup needs this - when they want to keep their owner's window focused
-        // (their own parent is Screen)
+        /// <summary>
+        /// Findparent UIWindow widget if any.
+        /// Note: used in UIContextMenu & UIPopup when they want to keep their owner's window widget focused
+        /// (their own parent is Screen).
+        /// </summary>
         public static UIWindow? FindParentWindow(this UIWidget w)
         {
             if(w is UIWindow window)
@@ -96,7 +110,9 @@ namespace NanoUI.Components
             return FindParent<UIWindow>(w);
         }
 
-        // find parent of type T
+        /// <summary>
+        /// Finds parent widget of type T if any.
+        /// </summary>
         public static T? FindParent<T>(this UIWidget w) where T : UIWidget
         {
             if (w.Parent is T res)
@@ -123,16 +139,21 @@ namespace NanoUI.Components
             }
         }
 
-        // Returns widget's absolute position in widget tree
-        // note: use GetDisplayPosition when you want to get widget's position in display
+        /// <summary>
+        /// Gets widget's widget tree position.
+        /// Returns widget's absolute position in widget tree.
+        /// Note: use GetDisplayPosition, when you want to get widget's position in display.
+        /// </summary>
         public static Vector2 GetWidgetTreePosition(this UIWidget w)
         {
             return w.Parent != null ? (w.Parent.GetWidgetTreePosition() + w.Position) : w.Position;
         }
 
-        // Returns widget's position in display.
-        // This handles also cases when widget is inside IScrollables & there is some scrolling happening.
-        // note: use this allways when you are dealing with pointer position
+        /// <summary>
+        /// Gets widget's display position. Returns widget's position in display.
+        /// This handles also cases when widget is inside IScrollables & there is some scrolling happening.
+        /// Note: use this allways when you are dealing with pointer position
+        /// </summary>
         public static Vector2 GetDisplayPosition(this UIWidget w)
         {
             if (w.Parent == null)
@@ -148,7 +169,10 @@ namespace NanoUI.Components
             return w.Parent.GetDisplayPosition() + w.Position;
         }
 
-        // Check if this widget is currently visible, taking parent widgets into account
+        /// <summary>
+        /// Gets visible property recursively.
+        /// Takes parent widgets into account.
+        /// </summary>
         public static bool GetVisibleRecursive(this UIWidget w)
         {
             bool visible = true;
@@ -167,14 +191,21 @@ namespace NanoUI.Components
 
         #region Draw border
 
-        // this function draws (rounded) rectangle borders
-        // note : this should be called last in Draw - since this draws in widget area that cound be
-        // possibly drawn before
+       /// <summary>
+        /// Draws (rounded) rectangle borders.
+        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
+        /// possibly drawn before.
+        /// </summary>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, bool sunken)
         {
             DrawBorder(w, ctx, w.Position, w.Size, sunken);
         }
 
+        /// <summary>
+        /// Draws (rounded) rectangle borders.
+        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
+        /// possibly drawn before.
+        /// </summary>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, Vector2 position, Vector2 size,
             bool sunken)
         {
@@ -203,13 +234,21 @@ namespace NanoUI.Components
             }
         }
 
-        // note : this should be called last in Draw - since this draws in widget area that cound be
-        // possibly drawn before
+        /// <summary>
+        /// Draws (rounded) rectangle borders.
+        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
+        /// possibly drawn before.
+        /// </summary>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, float borderSize, Color borderColor)
         {
             DrawBorder(w, ctx, w.Position, w.Size, borderSize, borderColor);
         }
 
+        /// <summary>
+        /// Draws (rounded) rectangle borders.
+        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
+        /// possibly drawn before.
+        /// </summary>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, Vector2 position, Vector2 size,
             float borderSize, Color borderColor)
         {
@@ -232,6 +271,9 @@ namespace NanoUI.Components
 
         #region Draw debug
 
+        /// <summary>
+        /// Draws red rectangle around widget.
+        /// </summary>
         public static void DrawDebug(this UIWidget w, NvgContext ctx)
         {
             // we are inside scissor - so we must reset in order to draw outside scissor
