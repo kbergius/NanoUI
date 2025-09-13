@@ -94,7 +94,7 @@ ctx.Fill();
 
 **NvgContext** can draw shapes, images, texts, text shapes and SVGs with different colors & brushes and it can handle transforms (translate, rotate, scale, skew) & scissoring.
 
-The **NvgContext** API is modelled loosely after the HTML5 canvas API. So if you have web dev experience, you're up to speed with NanoUI in no time.
+The **NvgContext** API is modeled loosely after the HTML5 canvas API. So if you have web dev experience, you're up to speed with NanoUI in no time.
 
 The limitation of the immediate mode drawing is, that it is purely drawing; so no built-in actions/callbacks, dynamic layouting & styling etc.
 
