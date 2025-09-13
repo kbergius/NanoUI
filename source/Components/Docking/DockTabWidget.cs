@@ -8,12 +8,14 @@
     /// </summary>
     public class DockTabWidget : UITabWidget
     {
+        /// <inheritdoc />
         public DockTabWidget()
             : base()
         {
 
         }
 
+        /// <inheritdoc />
         public DockTabWidget(DockNode parent)
             : base(parent)
         {

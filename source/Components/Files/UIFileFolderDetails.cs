@@ -15,12 +15,13 @@ namespace NanoUI.Components.Files
     /// </summary>
     public class UIFileFolderDetails : UITableView<FileFolderInfo>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileFolderDetails()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFileFolderDetails(UIWidget parent)
             : base(parent)
         {

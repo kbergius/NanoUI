@@ -44,6 +44,7 @@ namespace NanoUI.Components.Docking
 
         StackLayout _stackLayout;
 
+        /// <inheritdoc />
         public DockNode(UIWidget parent)
             : base(parent)
         {
@@ -97,6 +98,8 @@ namespace NanoUI.Components.Docking
         #region Methods
 
         // this is mainly called from titlebar (if there is close action mapped)
+
+        /// <inheritdoc />
         public override void Close()
         {
             // first we must rearrange parent dock node structure
@@ -141,6 +144,8 @@ namespace NanoUI.Components.Docking
 
         // - tabwidget calls this when tab item is dragged outside tabwidget's area &
         // - docktitlebar when dragged outside its area
+
+        /// <inheritdoc />
         public override bool OnDetach(UIWidget child)
         {
             if(child is UITabItem tabItem)
@@ -165,6 +170,8 @@ namespace NanoUI.Components.Docking
 
         // this is by now called from screen, when attaching is in process
         // note: position is relative pointer position
+
+        /// <inheritdoc />
         public override bool OnAttach(UIWidget widget, Vector2 position)
         {
             // we supoort by now only DockWindows
@@ -253,6 +260,7 @@ namespace NanoUI.Components.Docking
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             bool hasSubnodes = HasSubnodes;
@@ -308,6 +316,7 @@ namespace NanoUI.Components.Docking
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             // we check if this has subnodes (since all subnodes overdraws everything here)

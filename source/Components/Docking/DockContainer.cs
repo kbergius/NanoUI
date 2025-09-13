@@ -19,6 +19,7 @@ namespace NanoUI.Components.Docking
         // note: we modify here screen's post draw list
         DockNode? _lastActiveNode;
 
+        /// <inheritdoc />
         public DockContainer(UIScreen screen, Orientation orientation = Orientation.Horizontal)
             : base(screen)
         {

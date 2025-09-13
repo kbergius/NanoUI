@@ -15,12 +15,13 @@ namespace NanoUI.Components.Files
     /// </summary>
     public class UIFileFolderFlow : UIFlowView<FileFolderInfo>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileFolderFlow()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFileFolderFlow(UIWidget parent)
             : base(parent)
         {

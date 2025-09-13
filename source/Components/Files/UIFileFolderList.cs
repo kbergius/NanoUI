@@ -21,12 +21,13 @@ namespace NanoUI.Components.Files
     /// </summary>
     public class UIFileFolderList : UIListView<FileFolderInfo>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileFolderList()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFileFolderList(UIWidget parent)
             : base(parent)
         {
