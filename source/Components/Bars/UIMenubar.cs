@@ -16,8 +16,10 @@ namespace NanoUI.Components.Bars
     /// </summary>
     public class UIMenubar : UIWidgetbar
     {
+        /// <inheritdoc />
         public UIMenubar() { }
 
+        /// <inheritdoc />
         public UIMenubar(UIWidget parent)
             : base(parent)
         {

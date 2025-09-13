@@ -16,12 +16,13 @@ namespace NanoUI.Components
     /// </summary>
     public class UICollapsablePanelContent : UIWidget
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UICollapsablePanelContent()
         {
             // set defaults to theme impl - prevents circular reference
         }
 
+        /// <inheritdoc />
         public UICollapsablePanelContent(UIWidget parent)
                 : base(parent)
         {
@@ -79,7 +80,7 @@ namespace NanoUI.Components
 
         public Action<bool>? CollapsedChanged;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UICollapsablePanelHeader()
         {
             // set defaults to theme impl - prevents circular reference
@@ -91,6 +92,7 @@ namespace NanoUI.Components
             ExpandIcon = default;
         }
 
+        /// <inheritdoc />
         public UICollapsablePanelHeader(UIWidget parent)
                 : base(parent)
         {
@@ -113,6 +115,8 @@ namespace NanoUI.Components
         #region Properties
 
         Thickness? _padding;
+
+        /// <inheritdoc />
         public override Thickness Padding
         {
             get => _padding?? GetTheme().UICollapsablePanelHeader.Padding;
@@ -154,6 +158,8 @@ namespace NanoUI.Components
 
         // we override button background
         BrushBase? _backgroundFocused;
+
+        /// <inheritdoc />
         public override BrushBase? BackgroundFocused
         {
             get => _backgroundFocused != null ? _backgroundFocused : GetTheme().UICollapsablePanelHeader.BackgroundFocused;
@@ -161,6 +167,8 @@ namespace NanoUI.Components
         }
 
         BrushBase? _backgroundUnfocused;
+
+        /// <inheritdoc />
         public override BrushBase? BackgroundUnfocused
         {
             get => _backgroundUnfocused != null ? _backgroundUnfocused : GetTheme().UICollapsablePanelHeader.BackgroundUnfocused;
@@ -197,6 +205,7 @@ namespace NanoUI.Components
         UICollapsablePanelHeader _header;
         UICollapsablePanelContent _content;
 
+        /// <inheritdoc />
         public UICollapsablePanel(UIWidget parent)
             : base(parent)
         {

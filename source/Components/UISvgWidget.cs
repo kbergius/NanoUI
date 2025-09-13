@@ -8,11 +8,13 @@ namespace NanoUI.Components
     /// </summary>
     public class UISvgWidget : UIWidget
     {
+        /// <inheritdoc />
         public UISvgWidget()
         {
         
         }
-        
+
+        /// <inheritdoc />
         public UISvgWidget(UIWidget parent)
             : base(parent)
         {

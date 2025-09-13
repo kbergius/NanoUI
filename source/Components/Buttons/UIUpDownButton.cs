@@ -15,12 +15,14 @@ namespace NanoUI.Components.Buttons
     /// </summary>
     public class UIUpDownButton : UIWidget
     {
+        /// <inheritdoc />
         public UIUpDownButton()
         {
             // set defaults to theme impl - prevents circular reference
             Dimension = default;
         }
 
+        /// <inheritdoc />
         protected UIUpDownButton(UIWidget parent)
             : base(parent)
         {
@@ -55,7 +57,7 @@ namespace NanoUI.Components.Buttons
         // informs pushed numeric step value (+Step / -Step)
         public Action<T>? ButtonPushed;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UpDownButton()
         {
             // set defaults to theme impl - prevents circular reference
@@ -68,6 +70,7 @@ namespace NanoUI.Components.Buttons
             Border = false;
         }
 
+        /// <inheritdoc />
         public UpDownButton(UIWidget parent, Orientation orientation = Orientation.Horizontal)
             : base(parent)
         {
@@ -119,12 +122,13 @@ namespace NanoUI.Components.Buttons
         }
 
         // value to increase every push/repeat event
-        public T Step { get; set; } = T.One;        
+        public T Step { get; set; } = T.One;
 
         #endregion
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             FixedSize = new Vector2(0, Dimension);
@@ -167,6 +171,8 @@ namespace NanoUI.Components.Buttons
         #region Drawing
 
         // todo: we can clear _lastDelta when pointer up?
+
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             base.Draw(ctx);

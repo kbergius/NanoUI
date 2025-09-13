@@ -9,6 +9,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UIEnumDropDown<T> : UIComboBox<T> where T : struct, Enum
     {
+        /// <inheritdoc />
         public UIEnumDropDown(UIWidget parent)
             : base(parent)
         {
@@ -20,6 +21,7 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <inheritdoc />
         public override void SetSelected(T @enum)
         {
             int index = 0;

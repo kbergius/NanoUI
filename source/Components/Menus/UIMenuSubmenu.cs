@@ -11,11 +11,13 @@ namespace NanoUI.Components.Menus
     /// </summary>
     public class UIMenuSubmenu : UIMenu
     {
+        /// <inheritdoc />
         public UIMenuSubmenu()
         {
             
         }
 
+        /// <inheritdoc />
         public UIMenuSubmenu(UIWidget parent, string caption)
             : base(parent, caption)
         {
@@ -30,6 +32,8 @@ namespace NanoUI.Components.Menus
         #region Properties
 
         Thickness? _padding;
+
+        /// <inheritdoc />
         public override Thickness Padding
         {
             get => _padding ?? GetTheme().MenuItem.Padding;

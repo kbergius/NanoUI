@@ -48,7 +48,7 @@ namespace NanoUI.Components
         bool _showCaret = true;
         float _accumulatedTime = 0;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UITextField()
         {
             // set defaults to theme impl - prevents circular reference
@@ -59,12 +59,14 @@ namespace NanoUI.Components
             _text = string.Empty;
         }
 
+        /// <inheritdoc />
         public UITextField(UIWidget parent)
             :this(parent, string.Empty)
         {
         
         }
 
+        /// <inheritdoc />
         public UITextField(UIWidget parent, string text)
             : base(parent)
         {
@@ -247,6 +249,7 @@ namespace NanoUI.Components
         }
 
         // used for the selection
+
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
@@ -432,6 +435,7 @@ namespace NanoUI.Components
         }
 
         // todo : ahould we chacek valid format before?
+
         /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {

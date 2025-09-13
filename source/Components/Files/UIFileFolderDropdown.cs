@@ -26,12 +26,13 @@ namespace NanoUI.Components.Files
         // this is to handle display text, when part has "..."
         UIText? _textPart;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileFolderDropdown()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFileFolderDropdown(UIWidget parent)
             : base(parent)
         {
@@ -156,6 +157,7 @@ namespace NanoUI.Components.Files
         #region Events
 
         // var change folder dropdown (with new parent folder)
+
         /// <inheritdoc />
         public override void OnSelectedChanged(UIViewItemWidget<FileFolderInfo> widget)
         {
@@ -205,6 +207,7 @@ namespace NanoUI.Components.Files
         #region Drawing
 
         // we must override Draw parts in case there is "..."
+
         /// <inheritdoc />
         protected override void DrawSelected(NvgContext ctx)
         {

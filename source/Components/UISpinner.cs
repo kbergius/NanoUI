@@ -14,7 +14,7 @@ namespace NanoUI.Components
         const double FACTOR = 6;
         Vector2 _center;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UISpinner()
         {
             // set defaults to theme impl - prevents circular reference
@@ -29,6 +29,7 @@ namespace NanoUI.Components
             Border = false;
         }
 
+        /// <inheritdoc />
         public UISpinner(UIWidget parent)
             : base(parent)
         {

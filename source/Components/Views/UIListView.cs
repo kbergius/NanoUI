@@ -7,12 +7,13 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UIListView<T> : UIViewWidget<T>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIListView()
         {
             // set defaults to theme impl - prevents circular reference
         }
 
+        /// <inheritdoc />
         public UIListView(UIWidget parent)
             :base(parent)
         {

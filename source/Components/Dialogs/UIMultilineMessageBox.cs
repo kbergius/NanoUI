@@ -16,7 +16,7 @@ namespace NanoUI.Components.Dialogs
 
         Action<UIWidget, int>? _buttonClicked;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIMultilineMessageBox()
         {
 
@@ -24,6 +24,8 @@ namespace NanoUI.Components.Dialogs
 
         // note: it is not recommended to call in your code. Instead call Screen.GetDialog<MultilineMessageBox>.
         // if you still want to call this, you are responsible to handle dispose new instance manually
+
+        /// <inheritdoc />
         public UIMultilineMessageBox(UIScreen screen)
             : base(screen)
         {

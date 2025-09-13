@@ -42,7 +42,7 @@ namespace NanoUI.Components
         UIScrollbar? _verticalScrollbar = null;
         UIScrollbar? _horizontalScrollbar = null;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIWindow()
         {
             // set defaults to theme impl - prevents circular reference
@@ -53,6 +53,8 @@ namespace NanoUI.Components
         }
 
         // if title is null, we don't create titlebar
+
+        /// <inheritdoc />
         public UIWindow(UIWidget? parent, string? title, ScrollbarType scrollbars = ScrollbarType.Both)
             : base(parent)
         {
@@ -211,6 +213,8 @@ namespace NanoUI.Components
         }
 
         // we get layout area for layout impementation (no bars)
+
+        /// <inheritdoc />
         public override Rect GetLayoutArea()
         {
             // we set offset for titlebar
@@ -242,6 +246,7 @@ namespace NanoUI.Components
         // note: everytime we send pointer event to children (base.<OnPointerEvent>), we must recalculate
         // pointer position taking into account scrolling offset (GetChildrenPointerPos)
         // todo: if we are going to drag - we must clear possible previous pointer hovering (pointer focus)
+
         /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
@@ -333,6 +338,7 @@ namespace NanoUI.Components
         // 1. check window drag resizing
         // 2. check window drag moving (header)
         // 3. forward to children
+
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
@@ -621,6 +627,7 @@ namespace NanoUI.Components
         // check also key events - shall we response to them
         // note: there is special case for menubar, we pass event to it if found. else passes event to base,
         // that by default returns false
+
         /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
@@ -660,6 +667,7 @@ namespace NanoUI.Components
         #region Layout
 
         // todo: this could be optimized?
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
@@ -773,6 +781,7 @@ namespace NanoUI.Components
         #region Drawing
 
         // todo: this could b simplified?
+
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {

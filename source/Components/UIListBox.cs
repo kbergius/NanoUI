@@ -13,6 +13,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UIListBox<T> : UIListView<T>
     {
+        /// <inheritdoc />
         public UIListBox(UIWidget parent)
             : base(parent)
         {

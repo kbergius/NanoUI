@@ -11,12 +11,13 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UITableView<T> : UIViewWidget<T>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UITableView()
         {
             // set defaults to theme impl - prevents circular reference
         }
 
+        /// <inheritdoc />
         public UITableView(UIWidget parent)
             :base(parent)
         {

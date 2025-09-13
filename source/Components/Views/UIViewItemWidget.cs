@@ -12,6 +12,7 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UIViewItemWidget<T> : UIWidget
     {
+        /// <inheritdoc />
         public UIViewItemWidget(UIWidget parent, IViewItem<T> viewRow)
             : base(parent)
         {

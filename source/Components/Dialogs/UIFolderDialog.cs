@@ -27,12 +27,13 @@ namespace NanoUI.Components.Dialogs
 
         Action<UIWidget, string>? _folderSelected;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFolderDialog()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFolderDialog(UIScreen screen)
             : base(screen)
         {

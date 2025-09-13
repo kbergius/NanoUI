@@ -26,17 +26,19 @@ namespace NanoUI.Components.Files
     /// </summary>
     public class UIFileFolderTree : UITreeView<FileFolderInfo>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileFolderTree()
         {
 
         }
 
+        /// <inheritdoc />
         public UIFileFolderTree(UIWidget parent)
             : this(parent, AppDomain.CurrentDomain.BaseDirectory)
         {
         }
 
+        /// <inheritdoc />
         public UIFileFolderTree(UIWidget parent, string rootFolder)
             : base(parent, new FileFolderInfo(rootFolder, FileFolderType.Folder))
         {

@@ -21,9 +21,11 @@ namespace NanoUI.Components.Colors
 
         StackLayout _popupLayout;
 
+        /// <inheritdoc />
         public UIColorPicker(UIWidget parent)
             : this(parent, Color.Orange) { }
 
+        /// <inheritdoc />
         public UIColorPicker(UIWidget parent, Color color)
             : base(parent, string.Empty)
         {
@@ -118,6 +120,7 @@ namespace NanoUI.Components.Colors
         #region Layout
 
         // todo : should we limit colorWheel size & popup height, if width exceeds some value
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {

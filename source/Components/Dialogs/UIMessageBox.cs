@@ -24,7 +24,7 @@ namespace NanoUI.Components.Dialogs
         // note we don't want to have reference => could be disposed (no need to create new)!!!
         Action<UIWidget, int>? _buttonClicked;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIMessageBox()
         {
             // set defaults to theme impl - prevents circular reference
@@ -37,6 +37,8 @@ namespace NanoUI.Components.Dialogs
 
         // note: it is not recommended to call in your code. Instead call Screen.GetDialog<MessageBox>.
         // if you still want to call this, you are responsible to handle dispose new instance manually
+
+        /// <inheritdoc />
         public UIMessageBox(UIScreen screen)
             : base(screen)
         {

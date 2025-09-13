@@ -15,6 +15,8 @@ namespace NanoUI.Components.Docking
         bool _docked = false;
 
         // this parent is normally either TabItem in Tabwidget (docked) OR Screen (floating)
+
+        /// <inheritdoc />
         public DockWindow(UIWidget parent)
             : base(parent, string.Empty, ScrollbarType.Both)
         {
@@ -114,6 +116,7 @@ namespace NanoUI.Components.Docking
         }
 
         // this is here to check if we are beginning attaching proscess
+
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {

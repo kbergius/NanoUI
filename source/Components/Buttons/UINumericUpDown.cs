@@ -23,6 +23,7 @@ namespace NanoUI.Components.Buttons
         public Action<T>? ValueChanged;
         public Action? InvalidFormat;
 
+        /// <inheritdoc />
         public UINumericUpDown(UIWidget parent, T value, NumericFormat numericFormat = NumericFormat.NONE)
             :base(parent)
         {
@@ -59,6 +60,7 @@ namespace NanoUI.Components.Buttons
             get => _numericTextBox.Min?? T.Zero;
             set => _numericTextBox.Min = value;
         }
+
         public T Max
         {
             get => _numericTextBox.Max ?? T.One;

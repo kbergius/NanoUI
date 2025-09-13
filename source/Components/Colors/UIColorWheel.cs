@@ -41,12 +41,13 @@ namespace NanoUI.Components.Colors
 
         public Action<Color>? ColorChanged;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIColorWheel()
         {
 
         }
 
+        /// <inheritdoc />
         public UIColorWheel(UIWidget parent)
             : this(parent, Color.Red)
         {
@@ -54,6 +55,7 @@ namespace NanoUI.Components.Colors
             // note: no color wheel extra properties - so nothing here
         }
 
+        /// <inheritdoc />
         public UIColorWheel(UIWidget parent, Color color)
             : base(parent)
         {
@@ -145,7 +147,6 @@ namespace NanoUI.Components.Colors
             }
         }
 
-        // Handles pointer drag events
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {

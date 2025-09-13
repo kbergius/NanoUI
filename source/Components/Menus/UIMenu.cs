@@ -17,16 +17,19 @@ namespace NanoUI.Components.Menus
         // handles clicks & shortcut matches.
         public Action<int>? MenuItemSelected;
 
+        /// <inheritdoc />
         public UIMenu()
         {
             _popupWidth = 0;
         }
 
+        /// <inheritdoc />
         public UIMenu(UIWidget parent)
             : base(parent)
         {
         }
 
+        /// <inheritdoc />
         public UIMenu(UIWidget parent, string caption)
             : base(parent, caption)
         {
@@ -73,6 +76,7 @@ namespace NanoUI.Components.Menus
         // - this must be focused (in focusbar) OR
         // - parent must be menubar, that is directly in window children list & window is focused/active OR
         // - parent must be menubar, that is directly in screen children list
+
         /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {

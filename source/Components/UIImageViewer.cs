@@ -18,7 +18,7 @@ namespace NanoUI.Components
         // texture changed must update params
         bool _needUpdate = false;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIImageViewer()
         {
             // set defaults to theme impl - prevents circular reference
@@ -26,6 +26,7 @@ namespace NanoUI.Components
             _texture = 0;
         }
 
+        /// <inheritdoc />
         public UIImageViewer(UIWidget parent)
             : base(parent)
         {

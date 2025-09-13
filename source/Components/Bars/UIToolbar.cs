@@ -7,8 +7,10 @@ namespace NanoUI.Components.Bars
     /// </summary>
     public class UIToolbar : UIWidgetbar
     {
+        /// <inheritdoc />
         public UIToolbar() { }
 
+        /// <inheritdoc />
         public UIToolbar(UIWidget parent)
             : base(parent)
         {

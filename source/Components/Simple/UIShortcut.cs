@@ -8,6 +8,7 @@ namespace NanoUI.Components.Simple
     /// </summary>
     public class UIShortcut : UIWidget
     {
+        /// <inheritdoc />
         public UIShortcut()
         {
 
@@ -19,6 +20,7 @@ namespace NanoUI.Components.Simple
             Shortcut = shortcut;
         }
 
+        /// <inheritdoc />
         public UIShortcut(UIWidget parent)
             : base(parent)
         {
@@ -28,6 +30,8 @@ namespace NanoUI.Components.Simple
         #region Properties
 
         float? _fontSize;
+
+        /// <inheritdoc />
         public override float FontSize
         {
             get => _fontSize ?? GetTheme().Widget.FontSize;

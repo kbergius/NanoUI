@@ -13,7 +13,7 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UIFlowView<T> : UIViewWidget<T>
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFlowView()
         {
             // set defaults to theme impl - prevents circular reference
@@ -21,6 +21,7 @@ namespace NanoUI.Components.Views
             // PartSize = new Vector2(100, 100);
         }
 
+        /// <inheritdoc />
         public UIFlowView(UIWidget parent)
             : base(parent)
         {

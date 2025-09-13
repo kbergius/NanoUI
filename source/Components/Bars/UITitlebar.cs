@@ -23,6 +23,7 @@ namespace NanoUI.Components.Bars
         // widget is Titlebar instance & int is icon id
         public static Action<UIWidget, int>? ButtonClicked;
 
+        /// <inheritdoc />
         public UITitlebar()
         {
             // set defaults to theme impl - prevents circular reference
@@ -33,6 +34,7 @@ namespace NanoUI.Components.Bars
             FontSize = default;
         }
 
+        /// <inheritdoc />
         public UITitlebar(UIWidget parent, string title = "")
             : base(parent)
         {
@@ -88,6 +90,7 @@ namespace NanoUI.Components.Bars
         #region Events
 
         // we come here before parent widget
+
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {

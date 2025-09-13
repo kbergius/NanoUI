@@ -15,14 +15,14 @@ namespace NanoUI.Components
         UIScrollPanel _scroll;
         UILabel _label;
 
-
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIScrollableLabel()
         {
             _scroll = new();
             _label = new();
         }
 
+        /// <inheritdoc />
         public UIScrollableLabel(UIWidget parent)
             : base(parent)
         {
@@ -40,6 +40,8 @@ namespace NanoUI.Components
         #region Properties
 
         // we must override some properties, so we can pass them to Label
+
+        /// <inheritdoc />
         public override bool Disabled
         {
             get => _label.Disabled;
@@ -51,6 +53,8 @@ namespace NanoUI.Components
         }
 
         // todo: there could be other theme properties that should be synced!
+
+        /// <inheritdoc />
         public override bool Border
         {
             get => base.Border;
@@ -62,12 +66,14 @@ namespace NanoUI.Components
             }
         }
 
+        /// <inheritdoc />
         public override int FontFaceId
         {
             get => _label.FontFaceId;
             set => _label.FontFaceId = value;
         }
 
+        /// <inheritdoc />
         public override float FontSize
         {
             get => _label.FontSize;
@@ -80,18 +86,21 @@ namespace NanoUI.Components
             }
         }
 
+        /// <inheritdoc />
         public override TextHorizontalAlign TextHorizontalAlignment
         {
             get => _label.TextHorizontalAlignment;
             set => _label.TextHorizontalAlignment = value;
         }
 
+        /// <inheritdoc />
         public override TextVerticalAlign TextVerticalAlignment
         {
             get => _label.TextVerticalAlignment;
             set => _label.TextVerticalAlignment = value;
         }
 
+        /// <inheritdoc />
         public override Color TextColor
         {
             get => _label.TextColor;

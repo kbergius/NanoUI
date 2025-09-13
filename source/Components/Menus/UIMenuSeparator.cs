@@ -9,6 +9,7 @@ namespace NanoUI.Components.Menus
     /// </summary>
     public class UIMenuSeparator : UISeparator
     {
+        /// <inheritdoc />
         public UIMenuSeparator(UIWidget parent)
             :base(parent)
         {

@@ -12,7 +12,7 @@ namespace NanoUI.Components.Buttons
     /// </summary>
     public class UIToolButton : UIButton
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIToolButton()
         {
             // set defaults to theme impl - prevents circular reference
@@ -22,11 +22,13 @@ namespace NanoUI.Components.Buttons
             // no text!
         }
 
+        /// <inheritdoc />
         public UIToolButton(UIWidget parent)
             : this(parent, -1)
         {
         }
 
+        /// <inheritdoc />
         public UIToolButton(UIWidget parent, int icon)
            : base(parent, string.Empty, icon)
         {
@@ -44,6 +46,8 @@ namespace NanoUI.Components.Buttons
         }
 
         ButtonFlags? _flags;
+
+        /// <inheritdoc />
         public override ButtonFlags Flags
         {
             get => _flags?? GetTheme().ToolButton.Flags;
@@ -54,6 +58,7 @@ namespace NanoUI.Components.Buttons
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {
             return Vector2.Max(MinSize, new Vector2(Dimension));

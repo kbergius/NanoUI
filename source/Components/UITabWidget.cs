@@ -23,6 +23,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UITabItem : UIWidget
     {
+        /// <inheritdoc />
         public UITabItem(UITabWidget parent)
             : base(parent)
         {
@@ -83,7 +84,7 @@ namespace NanoUI.Components
                 
         public Action<UITabItem>? TabChanged;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UITabWidget()
         {
             // set defaults to theme impl - prevents circular reference
@@ -99,6 +100,7 @@ namespace NanoUI.Components
             CloseIcon = default;
         }
 
+        /// <inheritdoc />
         public UITabWidget(UIWidget parent)
             : base(parent)
         {
@@ -199,6 +201,7 @@ namespace NanoUI.Components
             get => _tabInactiveTop?? GetTheme().TabWidget.TabInactiveTop;
             set => _tabInactiveTop = value;
         }
+
         Color? _tabInactiveBottom;
         public Color TabInactiveBottom
         {
@@ -278,6 +281,7 @@ namespace NanoUI.Components
         #region Layout
 
         // we must recalculate tab offsets & content position & size
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
@@ -470,6 +474,7 @@ namespace NanoUI.Components
         }
 
         // we check if tab dragged outside
+
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {

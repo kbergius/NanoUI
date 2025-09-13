@@ -14,11 +14,13 @@ namespace NanoUI.Components.Simple
     /// </summary>
     public class UIIconText : UIWidget
     {
+        /// <inheritdoc />
         public UIIconText()
         {
 
         }
 
+        /// <inheritdoc />
         public UIIconText(UIWidget parent)
             : base(parent)
         {
@@ -31,6 +33,8 @@ namespace NanoUI.Components.Simple
         
         // todo: in base Widget
         int? _fontIconsId;
+
+        /// <inheritdoc />
         [JsonIgnore]
         public override int FontIconsId
         {
@@ -55,6 +59,8 @@ namespace NanoUI.Components.Simple
         public string? Text { get; set; }
 
         float? _fontSize;
+
+        /// <inheritdoc />
         public override float FontSize
         {
             get => _fontSize?? GetTheme().Widget.FontSize;
@@ -69,6 +75,8 @@ namespace NanoUI.Components.Simple
         }
 
         Color? _textColor;
+
+        /// <inheritdoc />
         public override Color TextColor
         {
             get => _textColor?? GetTheme().Widget.TextColor;

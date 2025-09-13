@@ -19,6 +19,7 @@ namespace NanoUI.Components.Colors
 
         public Action<byte>? AlphaChanged;
 
+        /// <inheritdoc />
         public UIAlphaBar(UIWidget parent)
             : base(parent)
         {

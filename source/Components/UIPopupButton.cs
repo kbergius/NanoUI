@@ -4,14 +4,15 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
+    /// <summary>
+    /// UIPopupButton.
+    /// </summary>
     public class UIPopupButton : UIButton
     {
         // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
         // note : this handles also all widgets that extend this (MenuView<T>, PopupButton<T>) 
 
-        /// <summary>
-        /// UIPopupButton.
-        /// </summary>
+        /// <inheritdoc />
         public UIPopupButton()
         {
             // set defaults to theme impl - prevents circular reference
@@ -19,13 +20,16 @@ namespace NanoUI.Components
             _popup = new();
         }
 
+        /// <inheritdoc />
         public UIPopupButton(UIWidget parent)
             :this(parent, string.Empty)
         {
         
         }
-        
+
         // note: Check if not extended, use MaxPopupHeight????
+
+        /// <inheritdoc />
         public UIPopupButton(UIWidget parent, string caption)
             : base(parent, caption) // no icon by default
         {

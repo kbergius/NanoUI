@@ -27,7 +27,7 @@ namespace NanoUI.Components.Views
         // when popup closes OnSelectionChanged event, we must get focus back
         bool _requestFocus;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIDropDownView()
         {
             // set defaults to theme impl - prevents circular reference
@@ -37,6 +37,7 @@ namespace NanoUI.Components.Views
             _viewPanel = new();
         }
 
+        /// <inheritdoc />
         public UIDropDownView(UIWidget parent)
             :base(parent)
         {
@@ -159,6 +160,7 @@ namespace NanoUI.Components.Views
         #region Layout
 
         // todo: _viewpanel perform layout?
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
@@ -198,6 +200,7 @@ namespace NanoUI.Components.Views
         #region Drawing
 
         // note: we currently don't use popup button draw methods (rather we draw button manually here)
+
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {

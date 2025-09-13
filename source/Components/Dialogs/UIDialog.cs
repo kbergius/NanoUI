@@ -14,7 +14,7 @@ namespace NanoUI.Components.Dialogs
         // caller is used to set focus back to caller when dialog closes
         protected UIWidget? _caller;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIDialog()
         {
             // set defaults to theme impl - prevents circular reference
@@ -22,6 +22,8 @@ namespace NanoUI.Components.Dialogs
         }
 
         // init in screen creation, create titlebar with empty string
+
+        /// <inheritdoc />
         protected UIDialog(UIScreen screen)
             : base(screen, string.Empty, ScrollbarType.NONE)
         {
@@ -74,6 +76,7 @@ namespace NanoUI.Components.Dialogs
         }
 
         // note: we override base since it disposes widget
+
         /// <inheritdoc />
         public override void Close()
         {

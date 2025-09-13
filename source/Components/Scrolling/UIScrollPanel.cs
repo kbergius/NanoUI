@@ -28,12 +28,13 @@ namespace NanoUI.Components.Scrolling
         // should we update scroll content?
         bool _updateLayout;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIScrollPanel()
         {
 
         }
 
+        /// <inheritdoc />
         public UIScrollPanel(UIWidget parent, ScrollbarType scrollbars = ScrollbarType.Both)
             : base(parent)
         {
@@ -55,6 +56,7 @@ namespace NanoUI.Components.Scrolling
         public UIScrollbar? HorizontalScrollbar => _horizontalScrollbar;
         public UIScrollbar? VerticalScrollbar => _verticalScrollbar;
 
+        /// <inheritdoc />
         public override Layout? ChildrenLayout
         {
             get => GetScrollContent().ChildrenLayout;

@@ -11,11 +11,13 @@ namespace NanoUI.Components.Docking
     /// </summary>
     public class DockTitlebar : UITitlebar
     {
-        // support theming
+        /// <inheritdoc />
         public DockTitlebar() { }
 
         // support only for dock nodes
         // todo: dock node name
+
+        /// <inheritdoc />
         public DockTitlebar(DockNode parent)
             :base(parent, "DockNode")
         {
@@ -55,6 +57,7 @@ namespace NanoUI.Components.Docking
         }
 
         // check if this is dragged outside title area
+
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {

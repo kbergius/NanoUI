@@ -19,12 +19,14 @@ namespace NanoUI.Components
         public Action<T>? ValueChanged;
         public Action? InvalidFormat;
 
+        /// <inheritdoc />
         public UINumericTextBox(UIWidget parent)
             : this(parent, T.Zero)
         {
 
         }
 
+        /// <inheritdoc />
         public UINumericTextBox(UIWidget parent, T value, NumericFormat numericFormat = NumericFormat.NONE)
             : base(parent)
         {

@@ -23,7 +23,7 @@ namespace NanoUI.Components
 
         UIPopupButton? _parentButton;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIPopup()
         {
             // set defaults to theme impl - prevents circular reference
@@ -44,6 +44,8 @@ namespace NanoUI.Components
 
         // this is for individual popups (no popupbutton - like context menu)
         // do not create titlebar
+
+        /// <inheritdoc />
         public UIPopup(UIScreen? screen)
             : base(screen, null, ScrollbarType.NONE)
         {            
@@ -127,6 +129,7 @@ namespace NanoUI.Components
         // we override window implementation in order to keep popup open while no widget is responding to
         // OnPointerUpDown + RequestFocus
         // note: widgets in popup has special handling of RequestFocus (Screen.UpdateFocus is not called)
+
         /// <inheritdoc />
         public override void RequestFocus()
         {
@@ -148,6 +151,7 @@ namespace NanoUI.Components
         // doesn't work since clicking menu item closes popup that removes menu item from focuspath
         // todo: this works now with menus. are there any downsides?
         // todo2: we could still restrict checking that _parentButton is MenuButton
+
         /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
@@ -175,6 +179,7 @@ namespace NanoUI.Components
         #region Layout
 
         // Invoke the associated layout generator to properly place child widgets, if any
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {

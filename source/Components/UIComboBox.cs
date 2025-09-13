@@ -19,6 +19,7 @@ namespace NanoUI.Components
 
         string _longestCaption = string.Empty;
 
+        /// <inheritdoc />
         public UIComboBox(UIWidget parent)
             : base(parent)
         {
