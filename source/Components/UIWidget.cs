@@ -218,35 +218,26 @@ namespace NanoUI.Components
 
         #region Basic
 
-        // mostly internal to support widget identification & loading/saving in file
-
         /// <summary>
-        /// Id.
+        /// Id. Mostly used internally to support widget identification & loading/saving from/to file.
         /// </summary>
         [Browsable(false)]
         public Guid Id { get; set; }
 
-        // for searching, user identifiction
-        // todo: nullable?
-
         /// <summary>
-        /// Name.
+        /// Name can be used for searching, identifiction.
         /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public string? Name { get; set; }
 
-        // sorting helper (default sort operator)
-
         /// <summary>
-        /// SortKey.
+        /// Sort key is sorting helper. Default sorter use this directly and solely.
         /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public int SortKey { get; set; }
 
-        // todo: nullable?
-
         /// <summary>
-        /// Tooltip.
+        /// Tooltip text.
         /// </summary>
         [Category(Globals.CATEGORY_BASIC)]
         public virtual string? Tooltip { get; set; }
@@ -274,6 +265,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Widget's fixed size.
         /// Note: this is mainly used in layouting. The X & Y values are only used, if their values are > 0.
+        /// Core widgtets use mainly Size property in drawing phase.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 FixedSize { get; set; }
@@ -281,6 +273,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Widget's minimum size.
         /// Note: this is mainly used in layouting; calculates the "real" size with Vector2.Max(Size, MinSize).
+        /// Core widgtets use mainly Size property in drawing phase.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 MinSize { get; set; }
@@ -307,10 +300,8 @@ namespace NanoUI.Components
             set => Size = new Vector2(Size.X, value);
         }
 
-        // note: this is just a helper property, that is same as FixedSize.X
-
         /// <summary>
-        /// FixedWidth.
+        /// Fixed width is just a helper property, that is same as FixedSize.X.
         /// </summary>
         [JsonIgnore]
         [Browsable(false)]
@@ -320,10 +311,8 @@ namespace NanoUI.Components
             set => FixedSize = new Vector2(value, FixedSize.Y);
         }
 
-        // note: this is just a helper property, that is same as FixedSize.Y
-
         /// <summary>
-        /// FixedHeight.
+        /// Fixed height is just a helper property, that is same as FixedSize.Y.
         /// </summary>
         [JsonIgnore]
         [Browsable(false)]
@@ -333,16 +322,14 @@ namespace NanoUI.Components
             set => FixedSize = new Vector2(FixedSize.X, value);
         }
 
-        // "Hard" margin for all contents (children etc) in widget
-        // this is mostly used in children layouts, but you can use it also when manually
-        // positioning any other content in widget. Layouts use this & GetLayoutArea function.
-
-        // note: widgets can also have their own padding property for the content (text, icon, image etc),
-        // so please don't use this property in these situations
         Thickness? _margin;
 
         /// <summary>
-        /// Margin.
+        /// Sets/gets "hard" margin for all contents (children etc) in widget.
+        /// This is mostly used in layouts, but you can use it also when manually
+        /// positioning any other content in widget.
+        /// Note: widgets can also have their own padding property for the content,
+        /// so don't use this property in these situations.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public Thickness Margin
