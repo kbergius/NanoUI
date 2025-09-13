@@ -11,11 +11,13 @@ namespace NanoUI.Components.Simple
     /// </summary>
     public class UIText : UIWidget
     {
+        /// <inheritdoc />
         public UIText()
         {
 
         }
 
+        /// <inheritdoc />
         public UIText(string text)
             : this()
         {
@@ -33,6 +35,8 @@ namespace NanoUI.Components.Simple
         public string? Text { get; set; }
         
         float? _fontSize;
+
+        /// <inheritdoc />
         public override float FontSize
         {
             get => _fontSize?? GetTheme().Widget.FontSize;
@@ -63,6 +67,8 @@ namespace NanoUI.Components.Simple
         }
 
         Color? _textColor;
+
+        /// <inheritdoc />
         public override Color TextColor
         {
             get => _textColor?? GetTheme().Widget.TextColor;
@@ -74,6 +80,7 @@ namespace NanoUI.Components.Simple
         #region Drawing
 
         // todo : calculate correct alignment
+
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {

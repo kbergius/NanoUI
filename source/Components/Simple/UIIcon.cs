@@ -10,6 +10,7 @@ namespace NanoUI.Components.Simple
     /// </summary>
     public class UIIcon : UIWidget
     {
+        /// <inheritdoc />
         public UIIcon()
         {
 
@@ -20,6 +21,7 @@ namespace NanoUI.Components.Simple
             Icon = icon;
         }
 
+        /// <inheritdoc />
         public UIIcon(UIWidget parent)
             : base(parent)
         {
@@ -40,6 +42,8 @@ namespace NanoUI.Components.Simple
 
         // todo: in base Widget
         int? _fontIconsId;
+
+        /// <inheritdoc />
         [JsonIgnore]
         public override int FontIconsId
         {

@@ -17,8 +17,10 @@ namespace NanoUI.Components.Menus
 
         UIWidget? _owner;
 
+        /// <inheritdoc />
         public UIContextMenu() { }
 
+        /// <inheritdoc />
         public UIContextMenu(UIWidget owner)
             : base(owner.Screen)
         {
@@ -44,6 +46,7 @@ namespace NanoUI.Components.Menus
 
         // this is fired from scene
         // this could be in base Popup?
+
         /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {

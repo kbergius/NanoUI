@@ -19,6 +19,7 @@ namespace NanoUI.Components.Simple
             Text = displayName;
         }
 
+        /// <inheritdoc />
         public UIFileIconText(UIWidget parent)
             : base(parent)
         {

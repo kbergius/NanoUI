@@ -9,11 +9,13 @@ namespace NanoUI.Components.Menus
     /// </summary>
     public class UIMenuItem : UIButton
     {
+        /// <inheritdoc />
         public UIMenuItem()
         {
             _padding = new();
         }
 
+        /// <inheritdoc />
         public UIMenuItem(UIWidget parent, string caption = "Untitled", int icon = -1, int itemId = -1)
             : base(parent, caption, icon)
         {
@@ -38,6 +40,8 @@ namespace NanoUI.Components.Menus
         public int ItemId { get; set; } = -1;
 
         Thickness? _padding;
+
+        /// <inheritdoc />
         public override Thickness Padding
         {
             get => _padding ?? GetTheme().MenuItem.Padding;
@@ -50,6 +54,7 @@ namespace NanoUI.Components.Menus
 
         #region Layout
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
             base.PerformLayout(ctx);
@@ -62,6 +67,7 @@ namespace NanoUI.Components.Menus
 
         #region Events
 
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if(ItemId >= 0 && button == PointerButton.Left && !down)
@@ -74,6 +80,7 @@ namespace NanoUI.Components.Menus
             return base.OnPointerUpDown(p, button, down);
         }
 
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             if (down && ItemId >= 0 && Shortcut.HasValue && Shortcut.Value.Match(key, modifiers))
@@ -92,6 +99,7 @@ namespace NanoUI.Components.Menus
 
         #region Drawing
 
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
             base.Draw(ctx);

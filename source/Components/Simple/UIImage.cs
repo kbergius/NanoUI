@@ -17,6 +17,7 @@ namespace NanoUI.Components.Simple
             Texture = texture;
         }
 
+        /// <inheritdoc />
         public UIImage(UIWidget parent)
             : base(parent)
         {
@@ -47,6 +48,7 @@ namespace NanoUI.Components.Simple
         #region Drawing
 
         // todo: does this handle case when width != height
+
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {

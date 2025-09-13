@@ -18,6 +18,7 @@ namespace NanoUI.Components.Simple
             FileFolderInfo = fileFolderInfo;
         }
 
+        /// <inheritdoc />
         public UIFileIcon(UIWidget parent)
             : base(parent)
         {

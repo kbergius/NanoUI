@@ -14,6 +14,7 @@ namespace NanoUI.Components.Simple
             Height = height;
         }
 
+        /// <inheritdoc />
         public UISeparator(UIWidget parent)
             : base(parent)
         {
@@ -24,6 +25,7 @@ namespace NanoUI.Components.Simple
 
         // todo: also orientation vertical & Height => Dimension?
         float? _height;
+
         public override float Height
         {
             get => _height?? 1f;
