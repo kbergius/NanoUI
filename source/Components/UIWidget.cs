@@ -66,6 +66,10 @@ namespace NanoUI.Components
             Size = size;
         }
 
+        /// <summary>
+        /// Basic constructor where widget is created and added to parent widget's
+        /// WidgetList. Derived widgets can have additional params.
+        /// </summary>
         public UIWidget(UIWidget? parent)
         {
             _parent = parent;
@@ -251,44 +255,38 @@ namespace NanoUI.Components
 
         #region Layout
 
-        // this is widget's top left position in parent space
-
         /// <summary>
-        /// Position.
+        /// Widget's top left position in parent space.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 Position { get; set; }
 
-        // note: The layouting code calculates this based on Size, MinSize & FixedSize values,
-        // if widget is inside layout & layouting is performed. If not this value is used as-is.
-        // So you can manually reset this value after layouting has been done.
-
         /// <summary>
-        /// Size.
+        /// Widget's size.
+        /// Note: Layouting code calculates this based on Size, MinSize & FixedSize values,
+        /// if widget is inside layout and visible. If not this value is used as-is.
+        /// Note: You can manually reset this value after layouting has calculated this in order
+        /// tweak/correct size.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 Size { get; set; }
 
-        // note: this is mainly used in layouting. The X & Y values are only used if their values are > 0.
-
         /// <summary>
-        /// FixedSize.
+        /// Widget's fixed size.
+        /// Note: this is mainly used in layouting. The X & Y values are only used, if their values are > 0.
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 FixedSize { get; set; }
 
-        // note: this is mainly used in layouting. We calculate the "real" size with Vector2.Max(Size, MinSize)
-
         /// <summary>
-        /// MinSize.
+        /// Widget's minimum size.
+        /// Note: this is mainly used in layouting; calculates the "real" size with Vector2.Max(Size, MinSize).
         /// </summary>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 MinSize { get; set; }
 
-        // note: this is just a helper property, that is same as Soze.X
-
         /// <summary>
-        /// Width.
+        /// Width is just a helper property, that is same as Size.X.
         /// </summary>
         [JsonIgnore]
         [Browsable(false)]
@@ -298,10 +296,8 @@ namespace NanoUI.Components
             set => Size = new Vector2(value, Size.Y);
         }
 
-        // note: this is just a helper property, that is same as Soze.Y
-
         /// <summary>
-        /// Height.
+        /// Height is just a helper property, that is same as Size.Y.
         /// </summary>
         [JsonIgnore]
         [Browsable(false)]
@@ -359,13 +355,13 @@ namespace NanoUI.Components
 
         #region State
 
-        // these goes to Widget type category (first)
-
-        // note : Changing visible property does NOT trigger layout update in parent
-        // If layout update is needed, use also function RequestLayoutUpdate(Widget widget)
-
         /// <summary>
-        /// Visible.
+        /// Sets widget's visibility. If widget is not visible, it can't get any
+        /// events and it is also neglected in Draw phase.
+        /// Note: Changing visible property does NOT automatically trigger layout update in parent widget.
+        /// If layout update is needed, call PerformLayout or RequestLayoutUpdate with parent widget.
+        /// There are still few widgets that does this automatically in order to preserve
+        /// UIScreen's consitency.
         /// </summary>
         public virtual bool Visible { get; set; } = true;
 
@@ -374,30 +370,26 @@ namespace NanoUI.Components
         /// </summary>
         public virtual bool Disabled { get; set; }
 
-        // Is in screen's focus path?
-        // todo : should be limited to widget extensions
-
+        // todo: Is in screen's focus path?
+        
         /// <summary>
-        /// Focused.
+        /// Tells if widget is focused.
         /// </summary>
         [Browsable(false)]
         public virtual bool Focused { get; set; }
 
-        // some widgets may not want to have pointer focus
-        // means also that HoverTint is not drawn
-
         /// <summary>
-        /// DisablePointerFocus.
+        /// If set to true, widget is not set as pointer focus widget.
+        /// Normally this means also, that HoverTint is not drawn.
         /// </summary>
         public bool DisablePointerFocus { get; set; }
 
-        // is pointer "inside" widget?
-        // note: you should not normally set pointer focus manually, instead you should let NanoUI
-        // handle it automatically (the exception is if your widget handles its children hovering - like views)
         bool _pointerFocus;
 
         /// <summary>
-        /// PointerFocus.
+        /// Tells if pointer is "inside" widget.
+        /// Note: you should not normally set pointer focus manually, instead you should let NanoUI
+        /// handle it automatically (the exception is, if your widget handles its children hovering - like views).
         /// </summary>
         [Browsable(false)]
         public virtual bool PointerFocus
@@ -412,8 +404,6 @@ namespace NanoUI.Components
                     _pointerFocus = false;
             }
         }
-
-        // this is bsically used by Button by now
 
         /// <summary>
         /// Pushed.
