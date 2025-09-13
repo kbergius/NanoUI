@@ -18,7 +18,7 @@ namespace NanoUI.Components
         // this is used if not wrapping caption
         string _displayCaption = string.Empty;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UICheckBox()
         {
             // set defaults to theme impl - prevents circular reference
@@ -26,12 +26,14 @@ namespace NanoUI.Components
             _boxBackgroundBrush = new();
         }
 
+        /// <inheritdoc />
         public UICheckBox(UIWidget parent)
             :this(parent, string.Empty, false)
         {
             
         }
 
+        /// <inheritdoc />
         public UICheckBox(UIWidget parent, string caption, bool @checked = false)
             : base(parent)
         {
@@ -96,7 +98,6 @@ namespace NanoUI.Components
 
         #region Events
 
-        // Pointer button event processing for this check box
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
@@ -131,7 +132,6 @@ namespace NanoUI.Components
 
         #region Layout
 
-        // The preferred size of this CheckBox.
         /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx)
         {

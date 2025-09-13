@@ -19,12 +19,14 @@ namespace NanoUI.Components
     {
         GridLayout _gridLayout;
 
+        /// <inheritdoc />
         public UIGrid()
         {
             // Create a 2-column grid layout by default
             _gridLayout = new GridLayout(Orientation.Horizontal, 2, LayoutAlignment.Minimum);
         }
 
+        /// <inheritdoc />
         public UIGrid(UIWidget parent)
             : base(parent)
         {
@@ -34,6 +36,7 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <inheritdoc />
         public override Layout? ChildrenLayout
         {
             get => _gridLayout;

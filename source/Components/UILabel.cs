@@ -20,7 +20,7 @@ namespace NanoUI.Components
 
         TextAlignment _verticalAlign = TextAlignment.Middle;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UILabel()
         {
             // set defaults to theme impl - prevents circular reference
@@ -33,12 +33,14 @@ namespace NanoUI.Components
             Border = false;
         }
 
+        /// <inheritdoc />
         public UILabel(UIWidget parent)
             : this(parent, string.Empty)
         {
         
         }
 
+        /// <inheritdoc />
         public UILabel(UIWidget parent, string caption)
             : base(parent)
         {
@@ -154,6 +156,7 @@ namespace NanoUI.Components
         }
 
         // todo: we could check if size really changed & set _needRecalculate flag accordingly
+
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {

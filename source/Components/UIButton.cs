@@ -19,7 +19,7 @@ namespace NanoUI.Components
         // The callback issued for toggle & radio buttons.
         public Action<UIButton, bool>? StateChanged;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIButton()
         {
             // set defaults to theme impl - prevents circular reference
@@ -29,11 +29,13 @@ namespace NanoUI.Components
             Caption = string.Empty;
         }
 
+        /// <inheritdoc />
         public UIButton(UIWidget parent)
             :this(parent, "Untitled", -1)
         {
         }
 
+        /// <inheritdoc />
         public UIButton(UIWidget parent, string caption = "Untitled", int icon = -1)
             : base(parent)
         {
@@ -56,6 +58,7 @@ namespace NanoUI.Components
             set => _padding = value;
         }
 
+        /// <inheritdoc />
         public override bool Pushed
         {
             get => base.Pushed;

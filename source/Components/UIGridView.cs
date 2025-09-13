@@ -65,6 +65,7 @@ namespace NanoUI.Components
         // note: widgets are stored in widget list (this is just a mapping)
         Dictionary<Guid, Cell> _widgetAnchors = new();
 
+        /// <inheritdoc />
         public UIGridView()
         {
             _columns = new();
@@ -73,11 +74,13 @@ namespace NanoUI.Components
             _rowStreches = Array.Empty<float>();
         }
 
+        /// <inheritdoc />
         public UIGridView(UIWidget parent)
             : this(parent, new List<int>(), new List<int>())
         {
         }
 
+        /// <inheritdoc />
         public UIGridView(UIWidget parent, List<int> columns, List<int> rows, int gridPadding = 0)
             : base(parent)
         {

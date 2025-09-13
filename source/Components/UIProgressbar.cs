@@ -13,13 +13,14 @@ namespace NanoUI.Components
     /// </summary>
     public class UIProgressbar : UIWidget
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIProgressbar()
         {
             // set defaults to theme impl - prevents circular reference
             ValueColor = default;
         }
 
+        /// <inheritdoc />
         public UIProgressbar(UIWidget parent)
            : base(parent)
         {
