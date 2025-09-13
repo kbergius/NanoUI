@@ -14,7 +14,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UISplitter : UIWidget
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UISplitter()
         {
             // set defaults to theme impl - prevents circular reference
@@ -28,6 +28,8 @@ namespace NanoUI.Components
         }
 
         // must get orientation since we wnt to set fixed size & pointer type
+
+        /// <inheritdoc />
         public UISplitter(UIWidget parent)
             :this(parent, Orientation.Horizontal)
         {
@@ -35,6 +37,7 @@ namespace NanoUI.Components
             Border = false;
         }
 
+        /// <inheritdoc />
         public UISplitter(UIWidget parent, Orientation dir = Orientation.Horizontal)
             : base(parent)
         {

@@ -15,12 +15,14 @@ namespace NanoUI.Components
     {
         // we use splitter layout to handle all layouting work
         SplitLayout _splitterLayout;
-        
+
+        /// <inheritdoc />
         public UISplitPanel()
         {
             _splitterLayout = new SplitLayout(Orientation.Horizontal);
         }
 
+        /// <inheritdoc />
         public UISplitPanel(UIWidget parent)
             :base(parent)
         {
@@ -34,6 +36,7 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <inheritdoc />
         public override Layout? ChildrenLayout
         {
             get => _splitterLayout;

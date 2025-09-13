@@ -23,7 +23,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UITooltip : UIWidget
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UITooltip()
         {
             // set defaults to theme impl - prevents circular reference
@@ -37,6 +37,7 @@ namespace NanoUI.Components
             Border = false;
         }
 
+        /// <inheritdoc />
         public UITooltip(UIWidget parent)
             : base(parent)
         {

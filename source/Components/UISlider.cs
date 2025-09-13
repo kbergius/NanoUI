@@ -17,13 +17,14 @@ namespace NanoUI.Components
         public Action<float>? ValueChanged;
         public Action<float>? FinalValue;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UISlider()
         {
             // set defaults to theme impl - prevents circular reference
             ValueColor = default;
         }
 
+        /// <inheritdoc />
         public UISlider(UIWidget parent)
             : base(parent)
         {
@@ -60,6 +61,7 @@ namespace NanoUI.Components
         #region Events
 
         // todo : same calculation as in pointer down
+
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
