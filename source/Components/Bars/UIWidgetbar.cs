@@ -17,11 +17,13 @@ namespace NanoUI.Components.Bars
     /// </summary>
     public abstract class UIWidgetbar : UIWidget
     {
+        /// <inheritdoc />
         public UIWidgetbar()
         {
         
         }
 
+        /// <inheritdoc />
         public UIWidgetbar(UIWidget parent)
             :base(parent)
         {
