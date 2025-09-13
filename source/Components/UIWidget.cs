@@ -87,13 +87,14 @@ namespace NanoUI.Components
         #region Objects
 
         /// <summary>
-        /// Children.
+        /// Children list.
+        /// Note: All widgets have this; so they can act as a container oy layer.
         /// </summary>
         [JsonIgnore]
         public WidgetList Children => _children;
 
         /// <summary>
-        /// Screen.
+        /// Tells the root widget (UIScreen) of the widget tree.
         /// </summary>
         [JsonIgnore]
         public virtual UIScreen? Screen
@@ -117,7 +118,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Parent.
+        /// Parent widget.
         /// </summary>
         [JsonIgnore]
         public virtual UIWidget? Parent
@@ -158,9 +159,8 @@ namespace NanoUI.Components
             }
         }
 
-        // todo:
         /// <summary>
-        /// ContextMenu.
+        /// Context menu if any.
         /// </summary>
         [JsonIgnore]
         public UIContextMenu? ContextMenu
@@ -176,7 +176,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// ChildrenLayout.
+        /// Determines which layout implementation calculates child widhets' positions and sizes.
         /// </summary>
         [JsonIgnore]
         public virtual Layout? ChildrenLayout
@@ -185,18 +185,13 @@ namespace NanoUI.Components
             set => _childrenLayout = value;
         }
 
-        // this is a type that determines whivh theme widget we use when getting theneable property.
-        // if extended widget doesn't set this, we use base Widget theme properties.
-        // type must be for widget that is extended from base widget
-
-        // note: setting this overrides all base widget themeable properties, so you must configure
-        // them at your theme widget, which type is this ThemeType
-        // note2: it is not recommended to use interfaces, since then you have to provide all themeable
-        // property getters & setters in your interface
         Type? _themeType;
 
         /// <summary>
-        /// ThemeType.
+        /// Theme type is a type that determines which widget in theme we use when getting theneable property.
+        /// If extended widget doesn't set this, uses base Widget theme properties.
+        /// Note: setting this overrides all base widget themeable properties.
+        /// So you must configure all of them at your specified theme widget.
         /// </summary>
         [JsonIgnore]
         public Type ThemeType
