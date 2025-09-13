@@ -17,7 +17,10 @@ namespace NanoUI.Components
     // todo: tab navigation? (in screen?), MaxSize?
 
     /// <summary>
-    /// UIWidget.
+    /// UIWidget is the base class in UI layer.
+    /// It provides most common properties and methods.
+    /// Note: all widgets in UILayer should be derived from this, if they are going to be
+    /// added into the widget tree.
     /// </summary>
     public partial class UIWidget : IDisposable
     {
@@ -30,8 +33,12 @@ namespace NanoUI.Components
 
         bool _isParentPopup = false;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
-        // note: all widgets that are used as theme widget in theme should have paramless ctor
+        /// <summary>
+        /// Constructor for theme prototype widgets.
+        /// Normally use ctor new UIWidget(UIWidget? parent, <params>), when attaching widgets into the widget tree.
+        /// Note: if you create your own theme widget prototype, be careful to set all themable
+        /// properties in order to avoid circular reference.
+        /// </summary>
         public UIWidget()
         {
             // todo: should we set all these to theme?
