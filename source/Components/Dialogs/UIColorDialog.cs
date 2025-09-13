@@ -34,7 +34,7 @@ namespace NanoUI.Components.Dialogs
         // flag to prevent circular event firing
         bool _textChanging;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIColorDialog()
         {
 
@@ -42,6 +42,8 @@ namespace NanoUI.Components.Dialogs
 
         // note: it is not recommended to call in your code. Instead call Screen.GetDialog<ColorDialog>.
         // if you still want to call this, you are responsible to handle disposing new instance manually
+
+        /// <inheritdoc />
         public UIColorDialog(UIScreen screen)
             : base(screen)
         {

@@ -28,7 +28,7 @@ namespace NanoUI.Components.Dialogs
         // Open - not editable, Save as editable
         UITextField? _selectionFilename;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIFileDialog()
         {
 
@@ -36,6 +36,8 @@ namespace NanoUI.Components.Dialogs
 
         // note: it is not recommended to call in your code. Instead call Screen.GetDialog<FileDialog>.
         // if you still want to call this, you are responsible to handle dispose new instance manually
+
+        /// <inheritdoc />
         public UIFileDialog(UIScreen screen)
             : base(screen)
         {
