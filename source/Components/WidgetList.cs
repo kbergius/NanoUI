@@ -7,17 +7,13 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // List to hold all widget's children & some helper functions
-
     // todo : There could be Actions invoked when adding, removing, inserting etc
     // todo: there could be restrictions that only certain type of widgets are allowed
-    // note: user is responsible to call RequestLayoutUpdate when list has changed
-    // note: all positions here are treated as display positions & converted to widget positions
-
     // todo: find functions - do not take Widgets with Visible = false (checkVisibility flag)?
 
     /// <summary>
-    /// WidgetList.
+    /// WidgetList is a list to hold all widget's children. It provides also some helper functions.
+    /// Note: you are responsible to call PerformLayout/RequestLayoutUpdate when list has changed.
     /// </summary>
     public class WidgetList : ArrayBuffer<UIWidget>
     {
@@ -31,9 +27,16 @@ namespace NanoUI.Components
             _parent = parent;
         }
 
+        /// <summary>
+        /// Parent.
+        /// </summary>
         public UIWidget Parent => _parent;
 
         // override base implementation to set parent & theme
+
+        /// <summary>
+        /// Add.
+        /// </summary>
         public override void Add(UIWidget widget)
         {
             // remove from last parent?
@@ -46,6 +49,10 @@ namespace NanoUI.Components
         }
 
         // override base implementation to set parent & theme
+
+        /// <summary>
+        /// Add.
+        /// </summary>
         public override void Add(ref UIWidget widget)
         {
             // remove from last parent?
@@ -59,6 +66,10 @@ namespace NanoUI.Components
 
         // try get widget in index & convert it to desired type if possible
         // note: if conversion is not needed, use Childen[index]
+
+        /// <summary>
+        /// TryGet<T>.
+        /// </summary>
         public bool TryGet<T>(int index, out T? widget) where T : UIWidget
         {
             if(index >= 0 && index < Count)
@@ -75,6 +86,9 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <summary>
+        /// FindById.
+        /// </summary>
         public UIWidget? FindById(Guid id, bool recursive = true)
         {
             if (_parent.Id == id)
@@ -100,6 +114,10 @@ namespace NanoUI.Components
         }
 
         // name is Widget's Name
+
+        /// <summary>
+        /// FindByName.
+        /// </summary>
         public UIWidget? FindByName(string name, bool recursive = true) 
         {
             if (_parent.Name == name)
@@ -125,6 +143,10 @@ namespace NanoUI.Components
         }
 
         // name is Widget's Name
+
+        /// <summary>
+        /// FindByName<T>.
+        /// </summary>
         public T? FindByName<T>(string name) where T : UIWidget
         {
             if (_parent.Name == name && _parent is T res)
@@ -144,6 +166,9 @@ namespace NanoUI.Components
             return null;
         }
 
+        /// <summary>
+        /// FindFirst<T>.
+        /// </summary>
         public T? FindFirst<T>(bool recursive = true) where T : UIWidget
         {
             if (_parent is T parentType)
@@ -169,6 +194,9 @@ namespace NanoUI.Components
             return found;
         }
 
+        /// <summary>
+        /// FindLast<T>.
+        /// </summary>
         public T? FindLast<T>(bool recursive = true) where T : UIWidget 
         {
             T? found = null;
@@ -196,6 +224,9 @@ namespace NanoUI.Components
             return found;
         }
 
+        /// <summary>
+        /// Find<T>.
+        /// </summary>
         public T? Find<T>(Vector2 displayPosition, bool recursive = true) where T : UIWidget
         {
             var position = ConvertPosition(displayPosition);
@@ -221,6 +252,10 @@ namespace NanoUI.Components
         }
 
         // we search only current children (this doesn't support hierarcial structures)
+
+        /// <summary>
+        /// Find.
+        /// </summary>
         public UIWidget? Find(Vector2 displayPosition, out int index)
         {
             if (Count > 0)
@@ -246,6 +281,10 @@ namespace NanoUI.Components
 
         // Determine the topmost widget located at the given position value (recursive)
         // Check childs first
+
+        /// <summary>
+        /// FindTopmost.
+        /// </summary>
         public UIWidget? FindTopmost(Vector2 displayPosition)
         {
             if(Count > 0)
@@ -273,6 +312,9 @@ namespace NanoUI.Components
             return null;
         }
 
+        /// <summary>
+        /// Find.
+        /// </summary>
         public UIWidget? Find(Predicate<UIWidget> condition, bool inchildren = true)
         {
             if (Count > 0)
@@ -300,6 +342,10 @@ namespace NanoUI.Components
 
         // this is called from screen, when it has dragwidget & pointer button is up
         // it calls widget's OnAttach event and if widget want to handle event, this stops looping further
+
+        /// <summary>
+        /// TryAttachWidget.
+        /// </summary>
         public bool TryAttachWidget(UIWidget widget, Vector2 displayPosition)
         {
             if (Count > 0)
@@ -326,6 +372,9 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <summary>
+        /// Remove.
+        /// </summary>
         public void Remove(string name)
         {
             var w = FindByName(name, false);
@@ -336,11 +385,18 @@ namespace NanoUI.Components
 
         // Default sort with widgets SortKey
         // sort with spesified comparer is in base class
+
+        /// <summary>
+        /// Sort.
+        /// </summary>
         public void Sort()
         {
             Sort(sortKeyComparer);
         }
 
+        /// <summary>
+        /// MoveToFirst.
+        /// </summary>
         public bool MoveToFirst(UIWidget child)
         {
             if (IndexOf(child) == 0)
@@ -355,6 +411,9 @@ namespace NanoUI.Components
             return true;
         }
 
+        /// <summary>
+        /// MoveToLast.
+        /// </summary>
         public bool MoveToLast(UIWidget widget)
         {
             if (Contains(widget))
@@ -369,6 +428,10 @@ namespace NanoUI.Components
         }
 
         // swap childs
+
+        /// <summary>
+        /// Swap.
+        /// </summary>
         public bool Swap(int index1, int index2)
         {
             if (index1 < 0 || index2 < 0 || index1 >= Count || index2 >= Count)
@@ -381,6 +444,10 @@ namespace NanoUI.Components
 
         // when dealing with pointer pos (display coordinates) we have to convert position to
         // widget position (widget tree coordinates)
+
+        /// <summary>
+        /// ConvertPosition.
+        /// </summary>
         Vector2 ConvertPosition(Vector2 pointerPos)
         {
             if (_parent is IScrollable scrollable)
@@ -394,6 +461,10 @@ namespace NanoUI.Components
     }
 
     // default comparer that uses sort key
+
+    /// <summary>
+    /// SortKeyComparer.
+    /// </summary>
     internal class SortKeyComparer : IComparer<UIWidget>
     {
         public int Compare(UIWidget? x, UIWidget? y)
