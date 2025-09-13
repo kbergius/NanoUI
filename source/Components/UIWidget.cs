@@ -490,12 +490,11 @@ namespace NanoUI.Components
 
         #region Text
 
-        // note: this is used as save, load from json & get right font face id
-        // note2: if font type is invalid we get default font from FontDecorator (font with id = 0)
         string? _fontType;
 
         /// <summary>
-        /// FontType.
+        /// FontType. This is used in load/save from/to json & get right font face id.
+        /// If font type is invalid, gets default font (font with id = 0).
         /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         public string FontType
@@ -504,11 +503,10 @@ namespace NanoUI.Components
             set => _fontType = value;
         }
 
-        // note: if font type is invalid we get default font from FontDecorator (font with id = 0)
         int? _fontFaceId;
 
         /// <summary>
-        /// FontFaceId.
+        /// FontFaceId. If font type is invalid. gets default font (font with id = 0).
         /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         [JsonIgnore]
@@ -532,8 +530,6 @@ namespace NanoUI.Components
             }
         }
 
-        // note: this is normally same in all widgets, so we don't get theme widget FontSize
-        // so user must set value to every widget instance
         float? _fontSize;
 
         /// <summary>
@@ -546,12 +542,10 @@ namespace NanoUI.Components
             set => _fontSize = value;
         }
 
-        // note: this is normally same in all widgets, so we don't get theme widget FontIconsId
-        // so user must set value to every widget instance
         int? _fontIconsId;
 
         /// <summary>
-        /// FontIconsId.
+        /// FontIconsId is normally same in all widgets.
         /// </summary>
         [Category(Globals.CATEGORY_TEXT)]
         [JsonIgnore]
@@ -579,8 +573,6 @@ namespace NanoUI.Components
             set => _iconExtraScale = value;
         }
 
-        // note: this is normally same in all widgets, so we don't get theme widget TextHorizontalAlignment
-        // so user must set value to every widget instance
         TextHorizontalAlign? _textHorizontalAlignment;
 
         /// <summary>
@@ -593,8 +585,6 @@ namespace NanoUI.Components
             set => _textHorizontalAlignment = value;
         }
 
-        // note: this is normally same in all widgets, so we don't get theme widget TextVerticalAlignment
-        // so user must set value to every widget instance
         TextVerticalAlign? _textVerticalAlignment;
 
         /// <summary>
@@ -607,8 +597,6 @@ namespace NanoUI.Components
             set => _textVerticalAlignment = value;
         }
 
-        // note: this is normally same in all widgets, so we don't get theme widget TextColor
-        // so user must set value to every widget instance
         Color? _textColor;
 
         /// <summary>
@@ -668,21 +656,15 @@ namespace NanoUI.Components
             return true;
         }
 
-        // Relative children layout area (not taking into account widget's position & margins);
-        // children positions are relative
-        // This is mainly used in layouts when performing layouting (positioning & sizing child widgets)
-
-        // note: the position element of the rect is children's offset/topLeft (for example in window this consists
-        // titlebar y offset); size property tells children area size that can be smaller than widgets own size
-        // (you can have content "below" children - like statusbar)
-
-        // note2: if offset is not (0, 0) then you have to take it into account when calculating size in
-        // PreferredSize function
-        // note3: Layouts calvulate positions in top down order, so offset indicates where layout
-        // begins calculations (any content after layout should we set omitted in size)
-
         /// <summary>
-        /// GetLayoutArea.
+        /// Relative children layout area (not taking into account widget's relative position & margins).
+        /// This is mainly used in layouts when performing layouting (positioning & sizing child widgets).
+        /// Note: the position element of the rect is children's offset/topLeft
+        /// (for example in window this consists titlebar y offset).
+        /// Size property tells children area size, that can be smaller than widgets own size
+        /// (you can have content "below" children - like statusbar).
+        /// Layouts calculate positions in top down order, so offset indicates where layout
+        /// begins calculations (any content after layout should we set omitted in size).
         /// </summary>
         public virtual Rect GetLayoutArea()
         {
@@ -695,28 +677,25 @@ namespace NanoUI.Components
                 });
         }
 
-        // note: this function is normally called in widget's OnPointerMove or OnPointerEnter events
-
         /// <summary>
-        /// SetPointerType.
+        /// Sets the pointer type, that is propgated to UIScreen and user application.
+        /// Note: this function is normally called in widget's OnPointerMove or OnPointerEnter events.
         /// </summary>
         public virtual void SetPointerType(int pointerType)
         {
             Screen?.SetPointerType(pointerType);
         }
 
-        // get the theme from screen
         // todo: me should use fallback theme in case these is no Screen (where to store it?)
 
         /// <summary>
-        /// GetTheme.
+        /// Gets the theme from UIScreen.
         /// </summary>
         public UITheme GetTheme() => Screen?.Theme ?? new UITheme();
 
-        // Request the focus to be moved to this widget
-
         /// <summary>
-        /// RequestFocus.
+        /// Requests the focus to be moved to this widget and removes focus
+        /// from the previously focused widget if any.
         /// </summary>
         public virtual void RequestFocus()
         {
@@ -737,10 +716,9 @@ namespace NanoUI.Components
             }
         }
 
-        // This triggers layout update before next Draw call
-
         /// <summary>
-        /// RequestLayoutUpdate.
+        /// Queues layout update (PerfomLayout), that is
+        /// executed before next Draw call.
         /// </summary>
         public virtual void RequestLayoutUpdate(UIWidget? widget)
         {
@@ -751,10 +729,8 @@ namespace NanoUI.Components
             Screen?.RequestLayoutUpdate(widget);
         }
 
-        // Check if the widget contains a certain position
-
         /// <summary>
-        /// Contains.
+        /// Checks if widget contains position (tests in local space).
         /// </summary>
         public virtual bool Contains(float x, float y)
         {
@@ -762,7 +738,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Contains.
+        /// Checks if widget contains position (tests in local space).
         /// </summary>
         public virtual bool Contains(Vector2 position)
         {
@@ -772,10 +748,9 @@ namespace NanoUI.Components
                    d.X < Size.X && d.Y < Size.Y;
         }
 
-        // this is basic operation, override to add some additional logic
-
         /// <summary>
-        /// Close.
+        /// Calls Dispose() method. If you don't this override and
+        /// add some other logic.
         /// </summary>
         public virtual void Close()
         {
@@ -785,8 +760,6 @@ namespace NanoUI.Components
         #endregion
 
         #region BackgroundBrush
-
-        // METHODS
 
         /// <summary>
         /// DrawBackgroundBrush.
@@ -1214,10 +1187,8 @@ namespace NanoUI.Components
 
         #region Dispose
 
-        // Handles disposing & set focus to caller
-
         /// <summary>
-        /// Dispose.
+        /// Handles disposing and sets focus to caller.
         /// </summary>
         public void Dispose(UIWidget caller)
         {
@@ -1231,7 +1202,7 @@ namespace NanoUI.Components
         bool _disposing;
 
         /// <summary>
-        /// Dispose.
+        /// Disposes and removes widget from UIScreen.
         /// </summary>
         public virtual void Dispose()
         {
