@@ -18,6 +18,7 @@ namespace NanoUI.Components.Views
         // todo: configurable?
         const int LEVEL_INDENT = 24;
 
+        /// <inheritdoc />
         public UITreeItemWidget(UIWidget parent, TreeItem<T> treeItem)
             : base(parent, treeItem)
         {
@@ -100,18 +101,13 @@ namespace NanoUI.Components.Views
         // we use root id as parent id if not found else
         const string ROOT_ID = "#Root";
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UITreeView()
         {
             // set defaults to theme impl - prevents circular reference
         }
 
-        /*public UITreeView(UIWidget parent)
-            :this(parent, default)
-        {
-        
-        }*/
-
+        /// <inheritdoc />
         public UITreeView(UIWidget parent, T rootData)
             : base(parent)
         {
@@ -126,6 +122,8 @@ namespace NanoUI.Components.Views
         #region Methods
 
         // we clear previous tree & set root back
+
+        /// <inheritdoc />
         public override void ClearChildren()
         {
             // Get root

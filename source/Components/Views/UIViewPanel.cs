@@ -18,7 +18,7 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UIViewPanel : UIWidget
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIViewPanel()
         {
             // set defaults to theme impl - prevents circular reference
@@ -32,6 +32,7 @@ namespace NanoUI.Components.Views
             _padding = new();
         }
 
+        /// <inheritdoc />
         protected UIViewPanel(UIWidget parent)
             : base(parent)
         {
@@ -201,13 +202,15 @@ namespace NanoUI.Components.Views
         int _cellSelectedIndex;
         int _cellHoveredIndex;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIViewPanel()
         {
            
         }
 
         // must be public, since some implementaion does not have own view panel implementation
+
+        /// <inheritdoc />
         public UIViewPanel(UIWidget parent)
             : base(parent)
         {
@@ -488,6 +491,7 @@ namespace NanoUI.Components.Views
         #region Drawing
 
         // todo: should we use standard widget drawing - so drawing functions are in viewItemWidget
+
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {

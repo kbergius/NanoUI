@@ -23,7 +23,7 @@ namespace NanoUI.Components.Views
         // when selection mode = cell - int is column index
         public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
+        /// <inheritdoc />
         public UIViewWidget()
         {
             // set defaults to theme impl - prevents circular reference
@@ -31,6 +31,7 @@ namespace NanoUI.Components.Views
             _viewPanel = new UIViewPanel<T>();
         }
 
+        /// <inheritdoc />
         public UIViewWidget(UIWidget parent)
             : base(parent)
         {
