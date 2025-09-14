@@ -184,7 +184,7 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         /// <summary>
-        /// Use caller as an identifier.
+        /// Use caller as an owner.
         /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, FileFolderInfo> action)
         {

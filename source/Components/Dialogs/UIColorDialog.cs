@@ -164,7 +164,7 @@ namespace NanoUI.Components.Dialogs
 
         /// <summary>
         /// Since this is mostly used as a singleton (called UIScreen.GetDialog<ColorDialog>()),
-        /// you must set correct callback when using this (use caller as identifier).
+        /// you must set correct callback when using this (use caller as an owner).
         /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, Color> colorSelected)
         {
