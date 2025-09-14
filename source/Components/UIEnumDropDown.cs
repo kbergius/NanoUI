@@ -2,10 +2,8 @@
 
 namespace NanoUI.Components
 {
-    // this is just simple enum combo box with only 1 column (enum text)
-
     /// <summary>
-    /// UIEnumDropDown<T>.
+    /// UIEnumDropDown<T> is just simple enum combo box with only 1 column (enum text).
     /// </summary>
     public class UIEnumDropDown<T> : UIComboBox<T> where T : struct, Enum
     {

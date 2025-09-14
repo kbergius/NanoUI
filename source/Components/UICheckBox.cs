@@ -47,6 +47,7 @@ namespace NanoUI.Components
         #region Properties
 
         string _caption = string.Empty;
+
         public string Caption
         {
             get => _caption;
@@ -59,6 +60,7 @@ namespace NanoUI.Components
         }
 
         Thickness? _padding;
+
         public virtual Thickness Padding
         {
             get => _padding?? GetTheme().CheckBox.Padding;
@@ -66,6 +68,7 @@ namespace NanoUI.Components
         }
 
         bool _checked;
+
         public bool Checked
         {
             get => _checked;
@@ -81,6 +84,7 @@ namespace NanoUI.Components
 
         // todo : uint O means no icon
         int? _checkedIcon;
+
         public int CheckedIcon
         {
             get => _checkedIcon?? GetTheme().Fonts.IconChecked;
