@@ -91,7 +91,9 @@ namespace NanoUI.Components
 
         #region Properties
 
-        // IScrollable support
+        /// <summary>
+        /// IScrollable support.
+        /// </summary>
         public Vector2 ScrollOffset => _contentRect.Position;
 
         uint? _borderSize;
@@ -159,8 +161,12 @@ namespace NanoUI.Components
             set => _dragResizable = value;
         }
 
-        // flag to indicate is this is attachable; meaning that after dragging is finished (pointer up), screen
-        // calls TryAttach. this is currently only used in docking / dock window.
+        /// <summary>
+        /// Flag to indicate if this is attachable;
+        /// meaning that after dragging is finished (pointer up),
+        /// screen calls TryAttach.
+        /// Note: this is currently only used in docking / dock window.
+        /// </summary>
         public bool Attachable { get; set; } = false;
                 
         protected DragMode WindowDragMode => _windowDragMode;
@@ -229,7 +235,9 @@ namespace NanoUI.Components
                     } - offset);
         }
 
-        // Center the window in the current Screen
+        /// <summary>
+        /// Centers the window in the screen.
+        /// </summary>
         public void Center()
         {
             if (Screen == null || Size == Vector2.Zero)
@@ -332,16 +340,16 @@ namespace NanoUI.Components
             return true;
         }
 
-        // Handle pointer events recursively and bring the current window to the top
-        // Phases:
-        // 0. check scrollbars
-        // 1. check window drag resizing
-        // 2. check window drag moving (header)
-        // 3. forward to children
-
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
+            // Handle pointer events recursively and bring the current window to the top
+            // Phases:
+            // 0. check scrollbars
+            // 1. check window drag resizing
+            // 2. check window drag moving (header)
+            // 3. forward to children
+
             _isWindowDragging = false;
             // reset scroll dragging
             _scrollableDragMode = ScrollableDragMode.None;
@@ -624,13 +632,13 @@ namespace NanoUI.Components
             return base.OnPointerDoubleClick(GetChildrenPointerPos(p), button);
         }
 
-        // check also key events - shall we response to them
-        // note: there is special case for menubar, we pass event to it if found. else passes event to base,
-        // that by default returns false
-
         /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
+            // check also key events - shall we response to them
+            // note: there is special case for menubar, we pass event to it if found. else passes event to base,
+            // that by default returns false
+
             foreach (var child in Children.AsReadOnlySpan())
             {
                 if (!child.Visible || child.Disabled)
@@ -666,11 +674,11 @@ namespace NanoUI.Components
 
         #region Layout
 
-        // todo: this could be optimized?
-
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
+            // todo: this could be optimized?
+
             // calculate offset area Y (all bars)
             _layoutVerticalOffset = 0;
             _titlebarHeight = 0;
@@ -780,11 +788,11 @@ namespace NanoUI.Components
 
         #region Drawing
 
-        // todo: this could b simplified?
-
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
+            // todo: this could be simplified?
+
             // Check if we need perform layout (this originates from resizing event - OnPointerDrag)
             // or scrolling
             if (_layoutDirty)

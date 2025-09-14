@@ -6,11 +6,6 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // this is simple text tooltip. In order to use custom tooltip:
-    // - extend this
-    // - override draw method
-    // - set your customeized tooltip into screen
-
     // note : this is not visible by default, so that this doesn't effect any layout method
     // todo : should this derive from label - have label as child
     // todo : make anchor position / size / side & text paddings configurable (like in popup button/popup)
@@ -19,7 +14,11 @@ namespace NanoUI.Components
     // todo: adjust size - when maxrows limits
 
     /// <summary>
-    /// UITooltip.
+    /// UITooltip is a simple text tooltip.
+    /// In order to use custom tooltip:
+    /// - extend this
+    /// - override draw method
+    /// - set your customized tooltip into screen
     /// </summary>
     public class UITooltip : UIWidget
     {
@@ -52,8 +51,11 @@ namespace NanoUI.Components
 
         #region Properties
 
-        // note: we use this to draw both tooltip & anchor background color
         Color? _backgroundColor;
+
+        /// <summary>
+        /// Used to draw both tooltip & anchor background color.
+        /// </summary>
         [Category(Globals.CATEGORY_APPEARANCE)]
         public virtual Color BackgroundColor
         {
@@ -61,8 +63,11 @@ namespace NanoUI.Components
             set => _backgroundColor = value;
         }
 
-        // this is used if text wraps many lines
         int? _maxWidth;
+
+        /// <summary>
+        /// Used if text wraps many lines.
+        /// </summary>
         public int MaxWidth
         {
             get => _maxWidth?? GetTheme().Tooltip.MaxWidth;
@@ -95,8 +100,10 @@ namespace NanoUI.Components
         string[] _lines = Array.Empty<string>();
         bool _needRecalculate;
 
-        // this is called every frame if show tooltips flag is true
-        // so this should handle if this draws anything or not
+        /// <summary>
+        /// Called every frame if show tooltips flag is true.
+        /// So this should handle if this draws anything or not.
+        /// </summary>
         public virtual void Draw(NvgContext ctx, UIWidget widget)
         {
             // check shall we draw or not
