@@ -5,11 +5,12 @@ using System.Numerics;
 
 namespace NanoUI.Components.Scrolling
 {
-    // note: we operate in same coordinate system as the owner (widget that created this and holds reference)
     // todo: could also extend Widget?
 
     /// <summary>
     /// UIScrollbar.
+    /// Note: UIScrollbar operates in the same coordinate system as the owner
+    /// (widget that created this and holds reference).
     /// </summary>
     public class UIScrollbar
     {
@@ -24,7 +25,8 @@ namespace NanoUI.Components.Scrolling
 
         #region Properties
 
-        // todo: these are like in Widget
+        // todo: these are like in Widget!
+
         public bool Visible { get; set; }
         public bool PointerFocus { get; set; }
         public Vector2 Position { get; set; }
@@ -42,8 +44,11 @@ namespace NanoUI.Components.Scrolling
             }
         }
 
-        // current scroll values (0 - 1)
         float _scroll;
+
+        /// <summary>
+        /// Scroll value is in range [0..1].
+        /// </summary>
         public float Scroll
         {
             get => _scroll;
@@ -103,8 +108,9 @@ namespace NanoUI.Components.Scrolling
 
         #region Layout
 
-        // after parent has set it size, call this to position scrollbar
-        /// <inheritdoc />
+        /// <summary>
+        /// After parent has set it size, call this to position scrollbar.
+        /// </summary>
         public void PerformLayout(NvgContext ctx, bool overflowX, bool overflowY)
         {
             var dimension = Dimension;

@@ -2,10 +2,9 @@
 
 namespace NanoUI.Components.Scrolling
 {
-    // UIWindow & UIScrollpanel could be scrolled & popup does need to if its UIPopupButton is scrolled
-
     /// <summary>
     /// IScrollable.
+    /// Note: UIWindow & UIScrollpanel could be scrolled & popup does need to if its UIPopupButton is scrolled.
     /// </summary>
     public interface IScrollable
     {
