@@ -3,11 +3,10 @@ using NanoUI.Components.Views.Items;
 
 namespace NanoUI.Components.Views
 {
-    // this is generic table view using cells
     // todo : draw column headers & provide sort by clicked column
 
     /// <summary>
-    /// UITableView<T>.
+    /// UITableView<T> is a generic table view using cells.
     /// </summary>
     public class UITableView<T> : UIViewWidget<T>
     {

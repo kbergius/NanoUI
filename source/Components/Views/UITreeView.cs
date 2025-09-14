@@ -84,9 +84,6 @@ namespace NanoUI.Components.Views
 
     #endregion
 
-    // treeview is just a list of widgets that has special padding/indent based on level &
-    // expand/collapse actions changes Visible property
-
     // todo : combine methods AddGroup & AddItem -. Add?
     // todo: there should be methods for moving items &
     // dynamically adding/removing after tree is initially created
@@ -94,7 +91,8 @@ namespace NanoUI.Components.Views
     // all modifying
 
     /// <summary>
-    /// UITreeView<T>.
+    /// UITreeView<T> is just a list of widgets that has special padding/indent based on level &
+    /// expand/collapse actions changes Visible property.
     /// </summary>
     public class UITreeView<T> : UIViewWidget<T>
     {
@@ -121,9 +119,9 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
-        // we clear previous tree & set root back
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Clears previous tree & sets root back.
+        /// </summary>
         public override void ClearChildren()
         {
             // Get root
@@ -136,7 +134,7 @@ namespace NanoUI.Components.Views
             ViewPanel.Children.Add(root);
         }
 
-        // todo : should we return widget so taht user can add directly to its children
+        // todo : should we return widget so that user can add directly to its children
         // Actions AddGroup/AddItem should then be in TreeViewItem self
         // (No need to find parent & mess with parent ids!)
         public void AddGroup(TreeItem<T> treeItem)

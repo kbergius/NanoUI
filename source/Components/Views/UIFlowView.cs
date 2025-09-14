@@ -34,12 +34,14 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
-        // note: this is just a helper
         // todo: If user changes this, we must update panel widgets Fixed size & panel layout
-
-        // note: since Columns (ViewColumn[]) is not stored with theme (has owner widget)
         // todo: we don't store param here, since it produces sync problem, if user changes columns/rowheight directly
         Vector2 _partSize;
+
+        /// <summary>
+        /// PartSize is just a helper.
+        /// Note: since Columns (ViewColumn[]) is not stored with theme (has owner widget).
+        /// </summary>
         public Vector2 PartSize
         {
             get => _partSize;
@@ -54,12 +56,14 @@ namespace NanoUI.Components.Views
                 // (must sync also vscrollpanel)
             }
         }
-        
+
         #endregion
 
         #region Methods
 
-        // this is for forcing to use flow item
+        /// <summary>
+        /// Forces to use flow item.
+        /// </summary>
         public UIViewItemWidget<T> Add(FlowItem<T> flowItem)
         {
             return new UIViewItemWidget<T>(ViewPanel, flowItem)
