@@ -30,7 +30,9 @@ namespace NanoUI.Components.Simple
 
         #region Properties
 
-        // -1 means no icon
+        /// <summary>
+        /// -1 means no icon.
+        /// </summary>
         public virtual int Icon { get; set; }
 
         float? _iconSize;

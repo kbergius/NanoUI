@@ -32,15 +32,22 @@ namespace NanoUI.Components.Simple
             set => _height = value;
         }
 
-        // note: if not set make dimmer - configurable?
+        // todo: configurable?
+
         Color? _color;
+
+        /// <summary>
+        /// If not set makes this dimmer(currently TextColor * 0.7f).
+        /// </summary>
         public Color Color
         {
             get => _color?? GetTheme().Widget.TextColor * 0.7f;
             set => _color = value;
         }
 
-        // this is set in view panel - when drawing
+        /// <summary>
+        /// This is set in view panel - when drawing.
+        /// </summary>
         internal int Padding { get; set; }
 
         #endregion

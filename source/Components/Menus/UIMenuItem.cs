@@ -31,12 +31,13 @@ namespace NanoUI.Components.Menus
 
         #region Properties
 
-        // if this is non-negative, thi will try to find its parent menu button & invoke clicked
-        // event there. otherwise it will pass input event to base class.
-        // note: if you use item ids, you can just wrap the main menu button action & you need not wrap
-        // all menuitem clicked events individually
-        // note2: works same way with shortcuts
-        // note3: it would be easier to deal with ids, if you determine them with some custom enum
+        /// <summary>
+        /// If this is non-negative, this will try to find its parent menu button & invoke clicked
+        /// event there. Otherwise it will pass input event to base class.
+        /// Note: if you use item ids, you can just wrap the main menu button action & you need not wrap
+        /// all menuitem clicked events individually. Works same way with shortcuts.
+        /// Hint: it would be easier to deal with ids, if you determine them with some custom enum.
+        /// </summary>
         public int ItemId { get; set; } = -1;
 
         Thickness? _padding;

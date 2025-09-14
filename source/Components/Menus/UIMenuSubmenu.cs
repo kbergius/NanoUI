@@ -4,10 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Menus
 {
-    // note: functions/actions are inherited from UIMenu, but theme from UIMenuItem
-
     /// <summary>
     /// UIMenuSubmenu.
+    /// Note: functions/actions are inherited from UIMenu, but theme from UIMenuItem.
     /// </summary>
     public class UIMenuSubmenu : UIMenu
     {

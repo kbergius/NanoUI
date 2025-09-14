@@ -5,12 +5,11 @@ using System.Text.Json.Serialization;
 
 namespace NanoUI.Components.Simple
 {
-    // note: this is used by now in FileFolderFlow
     // todo : make more generic, this uses some magical numbers & works only with values Vector2(100, 90);
-    // note: this is a combination of icon & text part for flow
-
+    
     /// <summary>
-    /// UIIconText.
+    /// UIIconText is a combination of icon & text.
+    /// Note: this is used by now in FileFolderFlow.
     /// </summary>
     public class UIIconText : UIWidget
     {

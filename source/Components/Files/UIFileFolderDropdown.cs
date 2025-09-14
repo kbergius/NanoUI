@@ -14,7 +14,7 @@ namespace NanoUI.Components.Files
     /// <summary>
     /// UIFileFolderDropdown.
     /// Note: supports dynamic theming. If dynamic theming is not needed,
-    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
+    /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderDropdown : UIDropDownView<FileFolderInfo>
     {

@@ -11,8 +11,10 @@ namespace NanoUI.Components.Menus
     /// </summary>
     public class UIContextMenu : UIPopup
     {
-        // this is called from the child menu item buttons, if they have ItemId specified
-        // handles clicks & shortcut matches.
+        /// <summary>
+        /// Handles clicks & shortcut matches. This is called from the child menu item buttons,
+        /// if they have ItemId specified.
+        /// </summary>
         public Action<int>? MenuItemSelected;
 
         UIWidget? _owner;
@@ -35,7 +37,10 @@ namespace NanoUI.Components.Menus
 
         #region Events
 
-        // this is called from menu items when they are clicked or shortcut matches
+        /// <summary>
+        /// This is called from menu items,
+        /// when they are clicked or shortcut matches.
+        /// </summary>
         public virtual void OnMenuItemSelected(int menuItemId)
         {
             // closes this
@@ -44,12 +49,11 @@ namespace NanoUI.Components.Menus
             MenuItemSelected?.Invoke(menuItemId);
         }
 
-        // this is fired from scene
-        // this could be in base Popup?
-
         /// <inheritdoc />
         public override bool OnFocusChanged(bool focused)
         {
+            // todo: this could be in base Popup?
+
             if (!Disabled)
             {
                 // set values

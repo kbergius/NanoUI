@@ -9,7 +9,7 @@ namespace NanoUI.Components.Files
     /// <summary>
     /// UIFileFolderFlow.
     /// Note: supports dynamic theming. If dynamic theming is not needed,
-    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
+    /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderFlow : UIFlowView<FileFolderInfo>
     {

@@ -13,8 +13,10 @@ namespace NanoUI.Components.Menus
     /// </summary>
     public class UIMenu : UIPopupButton
     {
-        // this is called from the child menu item buttons, if they have ItemId specified
-        // handles clicks & shortcut matches.
+        /// <summary>
+        /// Handles clicks & shortcut matches. This is called from the child menu item buttons,
+        /// if they have ItemId specified.
+        /// </summary>
         public Action<int>? MenuItemSelected;
 
         /// <inheritdoc />
@@ -72,19 +74,22 @@ namespace NanoUI.Components.Menus
 
         #region Events
 
-        // to get (shortcut) event:
-        // - this must be focused (in focusbar) OR
-        // - parent must be menubar, that is directly in window children list & window is focused/active OR
-        // - parent must be menubar, that is directly in screen children list
-
-        /// <inheritdoc />
+        /// <summary>
+        /// To get (shortcut) event:
+        /// - this must be focused (in focusbar) OR
+        /// - parent must be menubar, that is directly in window children list & window is focused/active OR
+        /// - parent must be menubar, that is directly in screen children list
+        /// </summary>
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             // forward to popup (shortcuts)
             return Popup.OnKeyUpDown(key, down, modifiers);
         }
 
-        // this is called from menu items when they are clicked or shortcut matches
+        /// <summary>
+        /// This is called from menu items,
+        /// when they are clicked or shortcut matches.
+        /// </summary>
         public virtual void OnMenuItemSelected(int menuItemId)
         {
             // this closes popups

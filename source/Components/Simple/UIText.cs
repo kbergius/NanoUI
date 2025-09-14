@@ -43,15 +43,20 @@ namespace NanoUI.Components.Simple
             set => _fontSize = value;
         }
 
-        // note: this is additional spacing (default is 0)
         float? _charSpacing;
+
+        /// <summary>
+        /// Additional spacing (default is 0).
+        /// </summary>
         public float CharSpacing
         {
             get => _charSpacing?? 0;
             set => _charSpacing = value;
         }
 
-        // note: this is proportional line height (default is 1)
+        /// <summary>
+        /// Proportional line height (default is 1).
+        /// </summary>
         float? _lineHeight;
         public float LineHeight
         {
