@@ -10,11 +10,10 @@ namespace NanoUI.Components.Views
 {
     #region Base
 
-    // this is for supporting theming
     // todo: we must override all properties that are themable
 
     /// <summary>
-    /// UIViewPanel.
+    /// UIViewPanel supports theming.
     /// </summary>
     public class UIViewPanel : UIWidget
     {
@@ -52,14 +51,16 @@ namespace NanoUI.Components.Views
             set => _padding = value;
         }
 
-        // this is default value for all view rows. It is used in view item widget when creating,
-        // if IViewItem implementation doesn't define spesific row height
-        // note: this is not in theme by now since if changed, all view items should be recreated
-        // this could also be dynamically calculated from default font size
+        
+        // todo: this could also be dynamically calculated from default font size?
+
         int? _rowHeight;
 
         /// <summary>
-        /// RowHeight.
+        /// RowHeight is default value for all view rows.
+        /// It is used in view item widget when creating,
+        /// if IViewItem implementation doesn't define spesific row height.
+        /// Note: this is not in theme by now since if it changes, all view items should be recreated.
         /// </summary>
         public int RowHeight
         {
@@ -90,18 +91,15 @@ namespace NanoUI.Components.Views
             }
         }
 
-        // select item/cell
-
         /// <summary>
-        /// ViewSelectionMode.
+        /// ViewSelectionMode (item/cell).
         /// </summary>
         public ViewSelectionMode ViewSelectionMode { get; set; } = ViewSelectionMode.Item;
 
-        // note: this color is needed, when item/cell content hides totally background
         Color? _hoverBorderColor;
 
         /// <summary>
-        /// HoverBorderColor.
+        /// HoverBorderColor is needed, when item/cell content hides totally background.
         /// </summary>
         public Color HoverBorderColor
         {
@@ -109,11 +107,10 @@ namespace NanoUI.Components.Views
             set => _hoverBorderColor = value;
         }
 
-        // note: this color is needed, when item/cell content hides totally background
         Color? _selectedBorderColor;
 
         /// <summary>
-        /// SelectedBorderColor.
+        /// SelectedBorderColor is needed, when item/cell content hides totally background.
         /// </summary>
         public Color SelectedBorderColor
         {
@@ -159,7 +156,7 @@ namespace NanoUI.Components.Views
         #region Methods
 
         /// <summary>
-        /// GetColumnsWidth.
+        /// Returns sum of the columns widths.
         /// </summary>
         public int GetColumnsWidth()
         {
@@ -179,23 +176,26 @@ namespace NanoUI.Components.Views
 
     #endregion
 
-    // Provides most common operations for all view panels (extensions can override)
     // todo: keyboard navigation (up/down) fron selected index
     // todo: if RowHeight (or Columns) changes, we must update all ViewItemWidgets & perform layout
 
     /// <summary>
-    /// UIViewPanel<T>.
+    /// UIViewPanel<T> provides most common operations for all view panels
+    /// (extensions can override).
     /// </summary>
     public class UIViewPanel<T> : UIViewPanel
     {
         // ViewSelectionMode = item
         public Action<UIViewItemWidget<T>>? SelectedChanged;
 
-        // ViewSelectionMode = part - ViewItemWidget is row, int is column index
-        // note: this provides also possibility to edit parts dynamically. however there are
+        // ViewSelectionMode = item - ViewItemWidget is row, int is column index
+        // note: this provides also possibility to edit items dynamically. However there are
         // no helpers to do editing (needs cells to provide editing functionality - possibly use same
         // kind of editing as in propertygrid!)
-        // note: this is fired only when selection mode is Cell
+        
+        /// <summary>
+        /// Fired only when selection mode is Cell.
+        /// </summary>
         public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
         // cell indexes
@@ -223,19 +223,18 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
-        // this is needed for menuview to open submenus (OnPointerUpDown doesn't call base.OnPointerUpDown)
-        // todo : is there a better way?
+        // todo : OnPointerUpDown doesn't call base.OnPointerUpDown.
+        // Is there a better way?
 
         /// <summary>
-        /// HasSubPopups.
+        /// HasSubPopups is needed in menus to open submenus.
         /// </summary>
         protected bool HasSubPopups { get; set; } = false;       
 
-        // note : only 1 can be hovered/focused at time
         int _selectedIndex;
 
         /// <summary>
-        /// SelectedIndex.
+        /// SelectedIndex. Only 1 can be selected at time.
         /// </summary>
         public int SelectedIndex
         {
@@ -261,7 +260,7 @@ namespace NanoUI.Components.Views
         int _hoveredIndex;
 
         /// <summary>
-        /// HoveredIndex.
+        /// HoveredIndex. Only 1 can be hovered at time.
         /// </summary>
         [JsonIgnore]
         public int HoveredIndex => _hoveredIndex;
@@ -270,10 +269,8 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
-        // returns selected index or 0, if there is childs
-
         /// <summary>
-        /// GetSelectedIndexOrDefault.
+        /// Returns selected index or 0 (if there are childs). Otherwise returns -1.
         /// </summary>
         public int GetSelectedIndexOrDefault()
         {
@@ -296,15 +293,15 @@ namespace NanoUI.Components.Views
 
         #region Layout
 
-        // Phases: 
-        // - let the current layout system set widget psoitions & sizes
-        // - loop view item widgets & set parts positions & sizes
-
         // todo: this does not calculate parts positions/sizes totally right!!!
 
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
+            // Phases: 
+            // - let the current layout system set widget positions & sizes
+            // - loop view item widgets & set items positions & sizes
+
             // layout widgets
             base.PerformLayout(ctx);
 
@@ -341,7 +338,7 @@ namespace NanoUI.Components.Views
                     {
                         float xOffset = Padding.Horizontal;
 
-                        // Todo: ViewItemWidget has indent?
+                        // todo: ViewItemWidget has indent?
                         if (itemWidget is UITreeItemWidget<T> treeItem)
                         {
                             const int LEVEL_INDENT = 24;
@@ -381,11 +378,11 @@ namespace NanoUI.Components.Views
 
         #region Events
 
-        // todo: should this be in base ViewPanel?
-
         /// <inheritdoc />
         public override bool OnPointerMove(Vector2 p, Vector2 rel)
         {
+            // todo: should this be in base ViewPanel?
+
             // get hover indexes (do not fire selected actions)
             GetIndexes(p, false, out _hoveredIndex, out _cellHoveredIndex);
 
@@ -416,11 +413,11 @@ namespace NanoUI.Components.Views
             }
         }
 
-        // todo: should this be in base ViewPanel?
-
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
+            // todo: should this be in base ViewPanel?
+
             if (down && button == PointerButton.Left)
             {
                 // get selected indexes & fire correct action if found

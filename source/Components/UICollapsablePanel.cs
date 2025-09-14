@@ -7,12 +7,11 @@ using System.Numerics;
 namespace NanoUI.Components
 {
     // todo: should there be vscroll in content?
+
     #region UICollapsablePanelContent
 
-    // this is real content - show/hide
-
     /// <summary>
-    /// UICollapsablePanelContent.
+    /// UICollapsablePanelContent consists the real content. Could be shown/hided.
     /// </summary>
     public class UICollapsablePanelContent : UIWidget
     {
@@ -195,10 +194,9 @@ namespace NanoUI.Components
 
     #endregion
 
-    // note: this is just container; set all properties to header & content widgets
-
     /// <summary>
-    /// UICollapsablePanel.
+    /// UICollapsablePanel is just a container;
+    /// set all properties to header & content widgets.
     /// </summary>
     public class UICollapsablePanel : UIWidget
     {
@@ -219,10 +217,14 @@ namespace NanoUI.Components
 
         #region Properties
 
-        // all other properties should be set to header / content
+        /// <summary>
+        /// Properties should be set to header widget.
+        /// </summary>
         public UICollapsablePanelHeader Header => _header;
 
-        // note: doesn't have any special properties
+        /// <summary>
+        /// Content doesn't have any special properties.
+        /// </summary>
         public UICollapsablePanelContent Content => _content;
 
         #endregion

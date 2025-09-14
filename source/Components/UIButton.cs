@@ -16,7 +16,9 @@ namespace NanoUI.Components
 
         public Action? Clicked;
 
-        // The callback issued for toggle & radio buttons.
+        /// <summary>
+        /// Fired for toggle & radio buttons.
+        /// </summary>
         public Action<UIButton, bool>? StateChanged;
 
         /// <inheritdoc />
@@ -77,7 +79,9 @@ namespace NanoUI.Components
             }
         }
 
-        // -1 means no icon
+        /// <summary>
+        /// -1 means no icon.
+        /// </summary>
         public virtual int Icon { get; set; }
 
         IconAlign? _iconAlign;
@@ -87,8 +91,11 @@ namespace NanoUI.Components
             set => _iconAlign = value;
         }
         
-        // The button group for radio buttons
         List<UIButton>? _buttonGroup;
+
+        /// <summary>
+        /// The button group for radio buttons.
+        /// </summary>
         public List<UIButton>? ButtonGroup
         {
             get => _buttonGroup;

@@ -132,7 +132,7 @@ var screen = new UIScreen(theme, <your windowSize>);
 // and it will handle rest.
 ```
 
-After this you can add/remove/modify any widget in the **UIScreen's** widget tree both in the initializing and running mode.
+After this you can **add/remove/modify** any widget in the **UIScreen's** widget tree both in the initializing and running mode.
 
 You can also modify dynamically at runtime layouts and theme properties (for example you can change the theme in the **UIScreen** and all the widgets then use this new theme). You can also have many predefined **UIScreens** (with their own widget sets) and change them whenever you want.
 

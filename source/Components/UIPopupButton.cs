@@ -5,13 +5,10 @@ using System.Numerics;
 namespace NanoUI.Components
 {
     /// <summary>
-    /// UIPopupButton.
+    /// UIPopupButton handles also all widgets that extend it (MenuView<T>, PopupButton<T>).
     /// </summary>
     public class UIPopupButton : UIButton
     {
-        // this is ctor for theme/layout generation (if you use this otherwise, set parent before using widget)
-        // note : this handles also all widgets that extend this (MenuView<T>, PopupButton<T>) 
-
         /// <inheritdoc />
         public UIPopupButton()
         {
@@ -27,7 +24,7 @@ namespace NanoUI.Components
         
         }
 
-        // note: Check if not extended, use MaxPopupHeight????
+        // todo: Check if not extended, use MaxPopupHeight????
 
         /// <inheritdoc />
         public UIPopupButton(UIWidget parent, string caption)
@@ -48,6 +45,7 @@ namespace NanoUI.Components
         public UIPopup Popup => _popup;
         
         // todo: when changed -. we must update layout?
+
         uint? _maxPopupHeight;
         public uint MaxPopupHeight
         {
@@ -112,13 +110,12 @@ namespace NanoUI.Components
 
         #region Dispose
 
-        // we want to override default, since we want also dispose Popup, which is in
-        // different parent (Screen)
         /// <inheritdoc />
         public override void Dispose()
         {
             base.Dispose();
 
+            // dispose also popup that is in different parent (Screen)
             _popup?.Dispose();
         }
 

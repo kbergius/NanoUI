@@ -96,7 +96,7 @@ namespace NanoUI.Components
         #region Misc methods
 
         /// <summary>
-        /// Findparent UIWindow widget if any.
+        /// Finds parent UIWindow widget if any.
         /// Note: used in UIContextMenu & UIPopup when they want to keep their owner's window widget focused
         /// (their own parent is Screen).
         /// </summary>

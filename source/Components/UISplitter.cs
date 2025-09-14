@@ -4,13 +4,11 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // works by finding previous widget of this splitter ("left", "top") and
-    // setting its size fixed based on splitter position, then request layout change
-    // in parent
-    // note: needs SplitLayout in parent to work
-
     /// <summary>
-    /// UISplitter.
+    /// UISplitter works by finding previous widget of this splitter ("left", "top") and
+    /// setting its size fixed based on splitter position, then request layout change
+    /// in parent.
+    /// Note: needs SplitLayout in parent to work.
     /// </summary>
     public class UISplitter : UIWidget
     {
@@ -59,6 +57,7 @@ namespace NanoUI.Components
         }
 
         // todo: should we calculate this dynamically from dimension?
+
         float? _dotsRadius;
         public float DotsRadius
         {
@@ -66,9 +65,13 @@ namespace NanoUI.Components
             set => _dotsRadius = value;
         }
 
-        // spacing between dots
         // todo: should we calculate this dynamically from dimension / dots radius?
+
         float? _dotsSpacing;
+
+        /// <summary>
+        /// Spacing between dots.
+        /// </summary>
         public float DotsSpacing
         {
             get => _dotsSpacing ?? GetTheme().Splitter.DotsSpacing;

@@ -101,7 +101,7 @@ namespace NanoUI.Components
         public WidgetList Children => _children;
 
         /// <summary>
-        /// Tells the root widget (UIScreen) of the widget tree.
+        /// UIScreen is the root widget of the widget tree.
         /// </summary>
         [JsonIgnore]
         public virtual UIScreen? Screen
@@ -813,7 +813,7 @@ namespace NanoUI.Components
         #region Events
 
         /// <summary>
-        /// OnPointerUpDown handles pointer button events (up & down).
+        /// Handles pointer button events (up & down).
         /// Default action: propagate to children.
         /// Note: UIContextMenu (PointerButton.Right) is handled in UIScreen.
         /// </summary>
@@ -850,7 +850,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnPointerDoubleClick.
+        /// Handles pointer double click.
         /// Default action: propagate to children.
         /// </summary>
         public virtual bool OnPointerDoubleClick(Vector2 p, PointerButton button)
@@ -877,7 +877,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnPointerMove handles pointer motion event.
+        /// Handles pointer motion event.
         /// Note: we reset pointer type here. So if your widget wants to set pointer type,
         /// you must call first base.OnPointerMove & then set the pointer type (if needed) in your widget.
         /// </summary>
@@ -928,7 +928,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnPointerEnter handles pointer enter/leave event.
+        /// Handles pointer enter/leave event.
         /// Default action: record this fact, but do nothing.
         /// This is mainly called from UIScreen after screen pointer focus widget has changed.
         /// Note: you don't need to extent this unless your widget manages its children pointer focuses (like views) OR
@@ -940,8 +940,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnPointerDrag handles pointer drag event.
-        /// Default action: do nothing.
+        /// Handles pointer drag event. Default action: do nothing.
         /// </summary>
         public virtual bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
@@ -949,7 +948,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnPointerScroll handles pointer scroll/wheel event.
+        /// Handles pointer scroll/wheel event.
         /// Scroll is Vector2 in order to support trackballs.
         /// Note: hardly any core widget uses scroll.X value.
         /// </summary>
@@ -974,7 +973,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnFocusChanged handles focus change event.
+        /// Handles focus change event.
         /// Default action: record the focus status, but do nothing.
         /// </summary>
         public virtual bool OnFocusChanged(bool focused)
@@ -985,8 +984,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnKeyUpDown handles keyboard event.
-        /// Default action: do nothing.
+        /// Handles keyboard event. Default action: do nothing.
         /// Note: OnKeyUpDown event is restricted only to widgets in UIScreen's focuspath.
         /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
         /// Note3: there is an exception in UIPopup (handles shortcut keys in menus).
@@ -997,8 +995,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnKeyChar handle text input.
-        /// Default action: do nothing.
+        /// Handles text input. Default action: do nothing.
         /// Note: OnKeyChar event is restricted only to widgets in UIScreen's focuspath.
         /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
         /// </summary>
@@ -1019,8 +1016,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnFileDrop handles file drop event.
-        /// Default action: do nothing.
+        /// Handles file drop event. Default action: do nothing.
         /// </summary>
         public virtual bool OnFileDrop(string filename)
         {
@@ -1040,7 +1036,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// OnAttach. UIScreen calls this when dragging ends (dragwidget != null && pointer button up).
+        /// UIScreen calls OnAttach when dragging ends (dragwidget != null && pointer button up).
         /// This is only used by now in docking as a part of drag & drop process.
         /// Note: position is relative pointer position.
         /// If you want to use this, extend this function, otherwise this does nothing.

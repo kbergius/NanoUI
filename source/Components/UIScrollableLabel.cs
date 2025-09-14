@@ -5,10 +5,9 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // This is very simple widget that wraps label with vertical scrollbar
-
     /// <summary>
-    /// UIScrollableLabel.
+    /// UIScrollableLabel is very simple widget,
+    /// that wraps label with vertical scrollbar.
     /// </summary>
     public class UIScrollableLabel : UIWidget
     {
@@ -111,7 +110,9 @@ namespace NanoUI.Components
 
         #region Methods
 
-        // every time we set (new) text, we must update layout
+        /// <summary>
+        /// Updates layout after text set.
+        /// </summary>
         public void SetText(string text)
         {
             _label.Caption = text;

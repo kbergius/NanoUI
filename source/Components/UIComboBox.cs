@@ -7,10 +7,8 @@ using System;
 
 namespace NanoUI.Components
 {
-    // this is just simple combo box with only 1 column (item text)
-
     /// <summary>
-    /// UIComboBox<T>.
+    /// UIComboBox<T> is just simple combo box with only 1 column (item text).
     /// </summary>
     public class UIComboBox<T> : UIDropDownView<T>
     {

@@ -4,11 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Views
 {
-    // most of the views / view panels use this as is
-    // extensions: MenuItemWidget, UITreeItemWidget
-
     /// <summary>
-    /// UIViewItemWidget<T>.
+    /// UIViewItemWidget<T>. Most of the views / view panels use this as is
+    /// (exception: UITreeItemWidget).
     /// </summary>
     public class UIViewItemWidget<T> : UIWidget
     {
@@ -42,18 +40,14 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
-        // this determines if we sync width width parent width
-        // note: only flow & menu view currently doesn't use parent strech
-
         /// <summary>
-        /// StretchWidth.
+        /// StretchWidth determines if we sync width with parent width.
+        /// Note: only flow & menu view currently doesn't use parent strech.
         /// </summary>
         public bool StretchWidth { get; set; } = false;
 
-        // needed to place correctly into hierarcial structure
-
         /// <summary>
-        /// ParentId.
+        /// ParentId is needed to place correctly into hierarcial structure.
         /// </summary>
         public string ParentId { get; }
 
@@ -62,10 +56,9 @@ namespace NanoUI.Components.Views
         /// </summary>
         public T? EventData { get; set; }
 
-        // there is special handling for separator (do not pointer click/focus etc)
-
         /// <summary>
         /// IsSeparator.
+        /// Note: there is special handling for separator (do not pointer click/focus etc).
         /// </summary>
         public bool IsSeparator
         {

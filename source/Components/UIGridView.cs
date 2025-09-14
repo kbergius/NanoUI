@@ -7,16 +7,15 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // note: all widgets in grid view should normally have their cell set (or invisible), because
-    // base drawing function draws all visible children in widget list at their specified position & size
-    // and this has no override draw function.
-
     // todo: Column/Row header(s), Scrollable, use paddings (instead or margin), spacing inside cells
     // (determined in row & column definitions) - cell has not alignment (they are specified
     // in row & column definitions)
 
     /// <summary>
     /// UIGridView.
+    /// Note: all widgets in grid view should normally have their cell set (or invisible), because
+    /// base drawing function draws all visible children in widget list at their specified position & size
+    /// and this has no override draw function.
     /// </summary>
     public class UIGridView : UIWidget
     {
@@ -140,7 +139,9 @@ namespace NanoUI.Components
             _widgetAnchors[widget.Id] = anchor;
         }
 
-        // note: this returns a copy of cell. So if you modify it, you should call SetCell.
+        /// <summary>
+        /// Returns a copy of the cell. So if you modify it, you should call SetCell.
+        /// </summary>
         public bool TryGetCell(UIWidget widget, out Cell cell)
         {
             if (_widgetAnchors.TryGetValue(widget.Id, out cell))

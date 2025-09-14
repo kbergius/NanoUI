@@ -79,7 +79,9 @@ namespace NanoUI.Components
 
         #region Methods
 
-        // Calculates the texture coordinates of the given pixel position on the widget.
+        /// <summary>
+        /// Calculates the texture coordinates of the given pixel position on the widget.
+        /// </summary>
         public Vector2 TextureCoordinateAt(Vector2 position)
         {
             return (position - Offset) / Scale;
@@ -92,7 +94,9 @@ namespace NanoUI.Components
             return Vector2.Clamp(textureCoordinate, Vector2.Zero, _textureSize);
         }
 
-        // Calculates the position inside the widget for the given texture coordinate.
+        /// <summary>
+        /// Calculates the position inside the widget for the given texture coordinate.
+        /// </summary>
         public Vector2 PositionForCoordinate(Vector2 textureCoordinate)
         {
             return Scale * textureCoordinate + Offset;
@@ -108,13 +112,17 @@ namespace NanoUI.Components
             Offset = Vector2.Max(Vector2.Min(Offset, Size), -ScaledTextureSize);
         }
 
-        // Centers the texture without affecting the scaling factor.
+        /// <summary>
+        /// Centers the texture without affecting the scaling factor.
+        /// </summary>
         public void Center()
         {
             Offset = (Size - ScaledTextureSize) / 2;
         }
 
-        // Centers and scales the texture so that it fits inside the widgets.
+        /// <summary>
+        /// Centers and scales the texture so that it fits inside the widgets.
+        /// </summary>
         public void Fit()
         {
             // Calculate the appropriate scaling factor.
@@ -123,7 +131,9 @@ namespace NanoUI.Components
             Center();
         }
 
-        // Set the scale while keeping the texture centered
+        /// <summary>
+        /// Set the scale while keeping the texture centered.
+        /// </summary>
         public void SetScaleCentered(float scale)
         {
             var centerPosition = Size / 2;
@@ -133,7 +143,9 @@ namespace NanoUI.Components
             SetTextureCoordinateAt(centerPosition, p);
         }
 
-        // Moves the offset by the specified amount. Does bound checking.
+        /// <summary>
+        /// Moves the offset by the specified amount. Does bound checking.
+        /// </summary>
         public void MoveOffset(Vector2 delta)
         {
             // Apply the delta to the offset.

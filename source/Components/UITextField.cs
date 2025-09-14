@@ -103,8 +103,11 @@ namespace NanoUI.Components
         public string DefaultText {  get; set; } = string.Empty;
         public string Units { get; set; } = string.Empty;
 
-        // note: this is proportional line height (default is 1)
         float? _lineHeight;
+
+        /// <summary>
+        /// Proportional line height (default is 1).
+        /// </summary>
         public float LineHeight
         {
             get => _lineHeight ?? GetTheme().TextField.LineHeight;
@@ -139,13 +142,17 @@ namespace NanoUI.Components
             set => _placeHolderColor = value;
         }
 
-        // this should be set in extended widget, where is logic to determine validity
-        // default for plain text box is true (any chars / text length are allowed)
+        /// <summary>
+        /// This should be set in extended widget, where is logic to determine validity.
+        /// Default for plain text field is true (any chars / text length are allowed).
+        /// </summary>
         protected bool IsValidFormat {  get; set; } = true;
 
-        // this is used as a hint for user what value textbox expects
-        // (shown only if value = empty)
         string _placeholderText = string.Empty;
+
+        /// <summary>
+        /// Hint for user what kind of value are expected. Shown only if value = empty.
+        /// </summary>
         public string PlaceholderText
         {
             get => _placeholderText;
@@ -161,7 +168,9 @@ namespace NanoUI.Components
 
         #region Methods
 
-        // note : we don't change this text box status (committed / focus)
+        /// <summary>
+        /// Resets text, but doesn't change status (committed / focused).
+        /// </summary>
         public void ResetText(string text)
         {
             // prevent circular - needed?
@@ -248,11 +257,11 @@ namespace NanoUI.Components
             return false;
         }
 
-        // used for the selection
-
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            // used for the selection
+
             _pointerDragPos = p;
 
             if (Editable && Focused)

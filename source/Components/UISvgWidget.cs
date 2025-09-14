@@ -30,7 +30,9 @@ namespace NanoUI.Components
             set => svgId = value;
         }
 
-        // shall we scale svg so it fits into widgets area
+        /// <summary>
+        /// Shall we scale svg so it fits into widgets area. Default: true;
+        /// </summary>
         public bool FitSvg { get; set; } = true;
 
         #endregion

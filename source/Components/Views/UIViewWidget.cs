@@ -6,21 +6,22 @@ using System.Text.Json.Serialization;
 
 namespace NanoUI.Components.Views
 {
-    // This is kind of container (almost all functionality is is ViewPanel)
-
-    // this is used by all views except dropdown & menu since they inherit from popup button
-    // this provides all basic functionality for views
     // todo : could use scroll panel as to have both vertical & horizontal scrollbars?
 
     /// <summary>
-    /// UIViewWidget<T>.
+    /// UIViewWidget<T> provides all basic functionality for views and
+    /// is used in all views except dropdown & menu since they inherit from popup button.
     /// </summary>
     public abstract class UIViewWidget<T> : UIWidget
     {
-        // when selection mode = item
+        /// <summary>
+        /// Fired when selection mode = item.
+        /// </summary>
         public Action<T>? SelectedChanged;
 
-        // when selection mode = cell - int is column index
+        /// <summary>
+        /// Fired when selection mode = cell. Int is column index.
+        /// </summary>
         public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
         /// <inheritdoc />
@@ -89,10 +90,8 @@ namespace NanoUI.Components.Views
 
         #region Events
 
-        // these could be overridden
-
         /// <summary>
-        /// OnCellSelectedChanged.
+        /// Virtual OnCellSelectedChanged.
         /// </summary>
         public virtual void OnCellSelectedChanged(
             UIViewItemWidget<T> widget, int columnIndex)
@@ -101,7 +100,7 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// OnSelectedChanged.
+        /// Virtual OnSelectedChanged.
         /// </summary>
         public virtual void OnSelectedChanged(UIViewItemWidget<T> widget)
         {
@@ -112,7 +111,7 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// OnSelectedChanged.
+        /// Virtual OnSelectedChanged.
         /// </summary>
         public virtual void OnSelectedChanged(T data)
         {

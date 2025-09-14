@@ -47,8 +47,14 @@ namespace NanoUI.Components
 
         public T CurrentValue => _currentValue;
 
-        // minimum & maximum allowed values
+        /// <summary>
+        /// Minimum allowed value.
+        /// </summary>
         public T? Min { get; set; }
+
+        /// <summary>
+        /// Maximum allowed value.
+        /// </summary>
         public T? Max { get; set; }
 
         #endregion

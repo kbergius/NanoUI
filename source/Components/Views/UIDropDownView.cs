@@ -11,17 +11,19 @@ namespace NanoUI.Components.Views
     // todo : should we have a flag where overrides max popup height &
     // sets popup height to panel children total height?
     // todo: this should not be used for theming!!
-    // note: if you change items in popup, you must call RequestLayoutUpdate(Popup)
 
     /// <summary>
     /// UIDropDownView<T>.
+    /// Note: if you change items in popup, you must call RequestLayoutUpdate(Popup).
     /// </summary>
     public class UIDropDownView<T> : UIPopupButton
     {
         UIViewPanel<T> _viewPanel;
         UIScrollPanel? _scroll;
 
-        // must be here (panel calls - popup button no)
+        /// <summary>
+        /// Panel calls - popup button no.
+        /// </summary>
         public Action<T>? SelectedChanged;
 
         // when popup closes OnSelectionChanged event, we must get focus back
@@ -60,13 +62,15 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
-        // note : view panel has global look in all derived widgets!
+        /// <summary>
+        /// View panel has global look in all derived widgets!
+        /// Mote: Passes (almost) every property to panel.
+        /// </summary>
         [JsonIgnore]
         public UIViewPanel<T> ViewPanel => _viewPanel;
 
-        // Pass (almost) everything to panel
+        
         // todo: should we just force to use view pnel property?
-
         // todo: must call RequestLayoutUpdate if something changes?
         // todo: needed?
         // note: we don't need to save these since they are in view panel
@@ -104,7 +108,9 @@ namespace NanoUI.Components.Views
             }
         }
 
-        // file folder drowpdown needs
+        /// <summary>
+        /// Currently file folder drowpdown needs this method.
+        /// </summary>
         public void ClearSelection()
         {
             _viewPanel.SelectedIndex = -1;
@@ -129,9 +135,11 @@ namespace NanoUI.Components.Views
             RequestLayoutUpdate(this);
         }
 
-        // cells can have their own data OR row can have common data
-        // WE search first cell data & if it is null . row data
-        // We return widget so user can set common properties
+        /// <summary>
+        /// Cells can have their own data OR row can have common data.
+        /// Search order: first cell data & if it is null then row data.
+        /// Note: returns widget so you can set common properties.
+        /// </summary>
         public UIViewItemWidget<T> Add(RowItem<T> listItem)
         {
             return new UIViewItemWidget<T>(_viewPanel, listItem) { StretchWidth = true };
@@ -159,11 +167,11 @@ namespace NanoUI.Components.Views
 
         #region Layout
 
-        // todo: _viewpanel perform layout?
-
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
+            // todo: _viewpanel perform layout?
+
             // calculate total columns width
             // todo: read from view panel columns width
             int columnsWidth = 0;
@@ -199,9 +207,9 @@ namespace NanoUI.Components.Views
 
         #region Drawing
 
-        // note: we currently don't use popup button draw methods (rather we draw button manually here)
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Doesn't use popup button's draw methods; draws button manually here.
+        /// </summary>
         public override void Draw(NvgContext ctx)
         {
             // todo?: we could also just call base.Draw, where is Popup.Show logic
@@ -249,7 +257,9 @@ namespace NanoUI.Components.Views
             this.DrawBorder(ctx, false);
         }
 
-        // some extensions may override this
+        /// <summary>
+        /// Virtual because some extensions may override DrawSelected.
+        /// </summary>
         protected virtual void DrawSelected(NvgContext ctx)
         {
             // we get selected index (if no item is selected we use first, if there are childs)
