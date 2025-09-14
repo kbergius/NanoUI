@@ -10,7 +10,7 @@ namespace NanoUI.Components.Buttons
     // possible we perform layout & set flag need recalculate & set in draw real positions & sizes
 
     /// <summary>
-    /// UINumericUpDown<T>.
+    /// UINumericUpDown<T>. The T is System.Numerics.INumber<T>.
     /// </summary>
     public class UINumericUpDown<T> : UIWidget where T : INumber<T>
     {
@@ -53,14 +53,18 @@ namespace NanoUI.Components.Buttons
 
         internal UINumericTextBox<T> TextBox => _numericTextBox;
 
-        // minimum & maximum allowed values
-        // note: we set defaults (0 - 1) if not specified
+        /// <summary>
+        /// Minimum allowed value. Default is 0.
+        /// </summary>
         public T Min
         {
             get => _numericTextBox.Min?? T.Zero;
             set => _numericTextBox.Min = value;
         }
 
+        /// <summary>
+        /// Maximum allowed value. Default is 1.
+        /// </summary>
         public T Max
         {
             get => _numericTextBox.Max ?? T.One;
@@ -73,7 +77,9 @@ namespace NanoUI.Components.Buttons
             set => _numericTextBox.Units = value;
         }
 
-        // updown step
+        /// <summary>
+        /// Updown step.
+        /// </summary>
         public T Step
         {
             get => _upDownButton.Step;
@@ -89,13 +95,17 @@ namespace NanoUI.Components.Buttons
             return _numericTextBox.GetFormatted();
         }
 
-        // sets value as text to underlyieng textbox that triggers value changed
+        /// <summary>
+        /// Sets value as a text to underlyieng text field, that triggers value changed.
+        /// </summary>
         public void SetValue(T value)
         {
             _numericTextBox.Text = $"{value}";
         }
 
-        // This is here to support nested & custom settings
+        /// <summary>
+        /// Support for nested and custom settings.
+        /// </summary>
         public virtual void SetTextBoxWidth(int width)
         {
             _numericTextBox.FixedSize = new Vector2(width, 0);

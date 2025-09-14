@@ -14,6 +14,8 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIFileDialog.
+    /// Note: it is not recommended to craete this in your code. Instead call screen GetDialog<FileDialog>.
+    /// If you still want to create this manually, you are responsible to handle dispose new instance.
     /// </summary>
     public class UIFileDialog : UIDialog
     {
@@ -33,9 +35,6 @@ namespace NanoUI.Components.Dialogs
         {
 
         }
-
-        // note: it is not recommended to call in your code. Instead call Screen.GetDialog<FileDialog>.
-        // if you still want to call this, you are responsible to handle dispose new instance manually
 
         /// <inheritdoc />
         public UIFileDialog(UIScreen screen)
@@ -158,6 +157,7 @@ namespace NanoUI.Components.Dialogs
 
         // default path
         string _startPath = Globals.DEFAULT_FOLDER_PATH;
+
         public string StartPath
         {
             get => _startPath;
@@ -178,12 +178,14 @@ namespace NanoUI.Components.Dialogs
         
         UIButton? _cancelButton;
         public UIButton? CancelButton => _cancelButton;
-        
+
         #endregion
 
         #region Methods
 
-        // we use caller as identifier
+        /// <summary>
+        /// Use caller as an owner.
+        /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, FileFolderInfo> action)
         {
             _caller = caller;

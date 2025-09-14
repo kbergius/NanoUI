@@ -4,22 +4,21 @@ using System.Numerics;
 
 namespace NanoUI.Components.Docking
 {
-    // this is Window implementation that supports docking in dock container / node
-
     /// <summary>
-    /// DockWindow.
+    /// DockWindow is a window implementation,
+    /// that supports docking in dock container / node.
     /// </summary>
     public class DockWindow : UIWindow
     {
         // flag indicating if this is docked or floating
         bool _docked = false;
-
-        // this parent is normally either TabItem in Tabwidget (docked) OR Screen (floating)
-
+                
         /// <inheritdoc />
         public DockWindow(UIWidget parent)
             : base(parent, string.Empty, ScrollbarType.Both)
         {
+            // note: parent is normally either TabItem in Tabwidget (docked) OR Screen (floating)
+
             Attachable = true;
         }
 
@@ -32,22 +31,26 @@ namespace NanoUI.Components.Docking
             set => _tabCaption = value;
         }
 
-        // we have different attaching style if is dock node or not
+        /// <summary>
+        /// Uses different attaching style if was dock node or not.
+        /// </summary>
         public bool WasDockNode {  get; private set; }
 
         #endregion
 
         #region Methods
 
-        // we must store some window properties so we can use them when detaching (undocking)
-
         // todo: there is possibility that user changes these properties when docked, whick means
         // these values are out of sync (could be special flag "docked" in window that prevents changing
         // these values)?
         // todo2: more values/properties?
+
         CornerRadius _savedCornerRadius;
         internal uint _savedBorderSize;
 
+        /// <summary>
+        /// Stores some window properties so we can use them when detaching (undocking).
+        /// </summary>
         public virtual void SetState(bool docked, bool wasDockNode)
         {
             if(Screen == null)
@@ -115,11 +118,11 @@ namespace NanoUI.Components.Docking
             return base.OnPointerUpDown(p, button, down);
         }
 
-        // this is here to check if we are beginning attaching proscess
-
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            // this is here to check if we are beginning attaching proscess.
+
             // get the result from underlying Window
             var res = base.OnPointerDrag(p, rel);
 

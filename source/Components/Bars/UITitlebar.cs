@@ -18,9 +18,11 @@ namespace NanoUI.Components.Bars
 
         bool _recreateButtons = true;
 
-        // note: this is static since you probably want all titlebars do the same with button clicked &
-        // this way you can only wrap action once
-        // widget is Titlebar instance & int is icon id
+        /// <summary>
+        /// This is static since you probably want all titlebars do the same with button clicked &
+        /// this way you can only wrap action once.
+        /// Widget is UITitlebar instance & int is icon id.
+        /// </summary>
         public static Action<UIWidget, int>? ButtonClicked;
 
         /// <inheritdoc />
@@ -88,8 +90,6 @@ namespace NanoUI.Components.Bars
         #endregion
 
         #region Events
-
-        // we come here before parent widget
 
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)

@@ -1,10 +1,10 @@
 ﻿namespace NanoUI.Components.Docking
 {
-    // this is extension of tabwidget so user can have different styling for dock tabs & normal tabwidget
     // todo: we could have here also some spesific methods (remove from DockNode)
 
     /// <summary>
-    /// DockTabWidget.
+    /// DockTabWidget is an extension of normal tabwidget.
+    /// So you can have different styling for dock tabs & normal tabwidget.
     /// </summary>
     public class DockTabWidget : UITabWidget
     {

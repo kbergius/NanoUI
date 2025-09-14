@@ -7,15 +7,14 @@ using System.IO;
 
 namespace NanoUI.Components.Files
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconPart instead of FileIconPart with fixed Icon & IconColor
-    // (better performance)
     // todo2: this works with invisible _textPart. better solution could we add into FileFonderInfo
     // display text & switch with ".." & display text (SelectedText function) OR collect selected text
     // and ser it into part when necessary
 
     /// <summary>
     /// UIFileFolderDropdown.
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderDropdown : UIDropDownView<FileFolderInfo>
     {
@@ -49,7 +48,8 @@ namespace NanoUI.Components.Files
 
         #region Properties
 
-        // should we automatically change parent folder if selected changes
+        // todo: should we automatically change parent folder if selected changes?
+
         bool? _autoFolderSelectedChange;
         public bool AutoFolderSelectedChange
         {
@@ -68,7 +68,9 @@ namespace NanoUI.Components.Files
 
         #region Methods
 
-        // Drives
+        /// <summary>
+        /// Drives.
+        /// </summary>
         public void CreateDriveDropDown()
         {
             _drives = true;
@@ -82,7 +84,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // Folders
+        /// <summary>
+        /// Folders.
+        /// </summary>
         public void CreateFolderDropDown(string parentFolder)
         {
             // Check is valid directory
@@ -143,7 +147,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // note: this is protected to leave room user customize columns & their content
+        /// <summary>
+        /// Protected virtual method to leave room user customize columns & their content.
+        /// </summary>
         protected virtual RowItem<FileFolderInfo> CreateFileItem(string displayName, in FileFolderInfo eventData, bool isDrive = false)
         {
             return new RowItem<FileFolderInfo>(eventData)
@@ -156,9 +162,9 @@ namespace NanoUI.Components.Files
 
         #region Events
 
-        // var change folder dropdown (with new parent folder)
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Change folder dropdown (with new parent folder).
+        /// </summary>
         public override void OnSelectedChanged(UIViewItemWidget<FileFolderInfo> widget)
         {
             base.OnSelectedChanged(widget);
@@ -206,11 +212,11 @@ namespace NanoUI.Components.Files
 
         #region Drawing
 
-        // we must override Draw parts in case there is "..."
-
         /// <inheritdoc />
         protected override void DrawSelected(NvgContext ctx)
         {
+            // we must override Draw parts in case there is "..."
+
             if (_drives)
             {
                 base.DrawSelected(ctx);

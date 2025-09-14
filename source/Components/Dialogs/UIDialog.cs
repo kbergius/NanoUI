@@ -4,14 +4,15 @@ using System.ComponentModel;
 
 namespace NanoUI.Components.Dialogs
 {
-    // this is base class that is registered & stored in screen, so user can call Screen.GetDialog<T>
-
     /// <summary>
-    /// UIDialog.
+    /// UIDialog is a base class, that is registered & stored in UIScreen.
+    /// Use Screen.GetDialog<T>.
     /// </summary>
     public class UIDialog : UIWindow
     {
-        // caller is used to set focus back to caller when dialog closes
+        /// <summary>
+        /// Caller is used to set focus back to caller widget when dialog closes.
+        /// </summary>
         protected UIWidget? _caller;
 
         /// <inheritdoc />
@@ -21,12 +22,12 @@ namespace NanoUI.Components.Dialogs
             _buttonPanelMargin = new();
         }
 
-        // init in screen creation, create titlebar with empty string
-
         /// <inheritdoc />
         protected UIDialog(UIScreen screen)
             : base(screen, string.Empty, ScrollbarType.NONE)
         {
+            // init in screen creation, create titlebar with empty string
+
             Visible = false;
             Modal = true;
             //TitleAlign = TextHorizontalAlign.Center;
@@ -64,22 +65,21 @@ namespace NanoUI.Components.Dialogs
             RequestFocus();
         }
 
-        // note: we use normally same dialogs that are stored in Screen.
-        // when you get dialog from screen, screen calls Reset, so you can have clean state
-
         /// <summary>
         /// Reset.
+        /// Note: we use normally same dialog instances, that are stored in UIScreen.
+        /// When you get dialog from screen, screen calls Reset(), so you can have clean state.
         /// </summary>
         public virtual void Reset()
         {
         
         }
 
-        // note: we override base since it disposes widget
-
         /// <inheritdoc />
         public override void Close()
         {
+            // note: we override base since it disposes widget
+
             if (_caller != null)
             {
                 _caller.RequestFocus();

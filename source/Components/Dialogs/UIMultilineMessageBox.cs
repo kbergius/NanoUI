@@ -8,6 +8,9 @@ namespace NanoUI.Components.Dialogs
 {
     /// <summary>
     /// UIMultilineMessageBox.
+    /// Note: it is not recommended to create this in your code.
+    /// Instead use screen's GetDialog<UIMultilineMessageBox>().
+    /// If you still want to create this manually, you are responsible to handle disposing new instance.
     /// </summary>
     public class UIMultilineMessageBox : UIDialog
     {
@@ -21,9 +24,6 @@ namespace NanoUI.Components.Dialogs
         {
 
         }
-
-        // note: it is not recommended to call in your code. Instead call Screen.GetDialog<MultilineMessageBox>.
-        // if you still want to call this, you are responsible to handle dispose new instance manually
 
         /// <inheritdoc />
         public UIMultilineMessageBox(UIScreen screen)
@@ -78,12 +78,14 @@ namespace NanoUI.Components.Dialogs
         
         UIButton? _altButton;
         public UIButton? AltButton => _altButton;
-        
+
         #endregion
 
         #region Methods
 
-        // we use caller as identifier
+        /// <summary>
+        /// Use caller as an owner.
+        /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, int> action)
         {
             _caller = caller;
