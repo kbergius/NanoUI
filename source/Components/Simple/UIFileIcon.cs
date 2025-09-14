@@ -4,12 +4,10 @@ using NanoUI.Nvg;
 
 namespace NanoUI.Components.Simple
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconPart with fixed Icon & IconColor
-    // (better performance)
-
     /// <summary>
     /// UIFileIcon.
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileIcon : UIIcon
     {
