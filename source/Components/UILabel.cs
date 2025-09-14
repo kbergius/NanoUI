@@ -97,16 +97,22 @@ namespace NanoUI.Components
             set => _padding = value;
         }
 
-        // note: this is additional spacing (default is 0)
         float? _charSpacing;
+
+        /// <summary>
+        /// Additional spacing (default is 0).
+        /// </summary>
         public float CharSpacing
         {
             get => _charSpacing ?? GetTheme().Label.CharSpacing;
             set => _charSpacing = value;
         }
 
-        // note: this is proportional line height (default is 1)
         float? _lineHeight;
+
+        /// <summary>
+        /// Proportional line height (default is 1).
+        /// </summary>
         public float LineHeight
         {
             get => _lineHeight ?? GetTheme().Label.LineHeight;

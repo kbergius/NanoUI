@@ -4,15 +4,14 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // popup class that can be used as triggered from PopupButton ot manually
-    // note : there is special handling for RequestFocus
-    // note2: popup extends UIWindow that is IScrollable, but popup currently doesn't support scrolling directly
-    // (all scrolling - when needed - should be handled in UIScrollPanel that is set as first & only
-    // child of the popup)
     // todo: use UIWindow scrolling (& bars) and remove UIScrollPanel as a child where scrolling is needed
 
     /// <summary>
-    /// UIPopup.
+    /// UIPopup can be used as triggered from PopupButton or manually.
+    /// Popup extends UIWindow that is IScrollable, but popup currently doesn't support scrolling directly
+    /// (all scrolling - when needed - should be handled in UIScrollPanel that is set as first & only
+    /// child of the popup).
+    /// Note: there is special handling for RequestFocus & OnKeyUpDown.
     /// </summary>
     public class UIPopup : UIWindow
     {
@@ -126,11 +125,12 @@ namespace NanoUI.Components
 
         #region Events
 
-        // we override window implementation in order to keep popup open while no widget is responding to
-        // OnPointerUpDown + RequestFocus
-        // note: widgets in popup has special handling of RequestFocus (Screen.UpdateFocus is not called)
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Overrides window implementation in order to keep popup open
+        /// while no widget is responding to OnPointerUpDown + RequestFocus.
+        /// Note: widgets in popup has special handling of RequestFocus
+        /// (Screen.UpdateFocus is not called).
+        /// </summary>
         public override void RequestFocus()
         {
             // we got new focus - update in screen
@@ -145,17 +145,20 @@ namespace NanoUI.Components
             }
         }
 
-        // this is a special case when popup button forwards event here (support for shortcuts in menus etc)
-        // note: normally widget must be in focus path to receive OnKeyUpDown event
-        // note2: OnKeyChar event still needs menu item to be in focuspath, so editing menu item (button) values in popup
-        // doesn't work since clicking menu item closes popup that removes menu item from focuspath
-        // todo: this works now with menus. are there any downsides?
-        // todo2: we could still restrict checking that _parentButton is MenuButton
-
-        /// <inheritdoc />
+        /// <summary>
+        /// Has special handling when popup button forwards event here
+        /// (support for shortcuts in menus etc).
+        /// Normally widget must be in focus path to receive OnKeyUpDown event.
+        /// Note: OnKeyChar event still needs menu item to be in focuspath,
+        /// so editing menu item (button) values in popup doesn't work
+        /// since clicking menu item closes popup that removes menu item from focuspath.
+        /// </summary>
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
-            if(_parentButton != null)
+            // todo: this works now with menus. Are there any downsides?
+            // todo2: we could still restrict checking that _parentButton is MenuButton
+
+            if (_parentButton != null)
             {
                 foreach (var child in Children.AsReadOnlySpan())
                 {
@@ -177,8 +180,6 @@ namespace NanoUI.Components
         #endregion
 
         #region Layout
-
-        // Invoke the associated layout generator to properly place child widgets, if any
 
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
