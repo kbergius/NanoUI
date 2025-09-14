@@ -109,6 +109,7 @@ namespace NanoUI.Components.Dialogs
 
         // default path
         string _startPath = Globals.DEFAULT_FOLDER_PATH;
+
         public string StartPath
         {
             get => _startPath;
@@ -127,12 +128,14 @@ namespace NanoUI.Components.Dialogs
         
         UIButton? _cancelButton;
         public UIButton? CancelButton => _cancelButton;
-        
+
         #endregion
 
         #region Methods
 
-        // we use caller as identifier
+        /// <summary>
+        /// Use caller as an identifier.
+        /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, string> action)
         {
             _caller = caller;

@@ -13,6 +13,9 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIColorDialog.
+    /// Note: it is not recommended to create this in your code.
+    /// Instead use screen's GetDialog<ColorDialog>().
+    /// If you still want to create this manually, you are responsible to handle disposing new instance.
     /// </summary>
     public class UIColorDialog : UIDialog
     {
@@ -39,9 +42,6 @@ namespace NanoUI.Components.Dialogs
         {
 
         }
-
-        // note: it is not recommended to call in your code. Instead call Screen.GetDialog<ColorDialog>.
-        // if you still want to call this, you are responsible to handle disposing new instance manually
 
         /// <inheritdoc />
         public UIColorDialog(UIScreen screen)
@@ -162,8 +162,10 @@ namespace NanoUI.Components.Dialogs
 
         #region Methods
 
-        // since this is mostly used as a singleton, user must set correct callback when using this
-        // we use caller as identifier
+        /// <summary>
+        /// Since this is mostly used as a singleton (called UIScreen.GetDialog<ColorDialog>()),
+        /// you must set correct callback when using this (use caller as identifier).
+        /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, Color> colorSelected)
         {
             _caller = caller;

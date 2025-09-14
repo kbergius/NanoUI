@@ -11,6 +11,9 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIMessageBox.
+    /// Note: it is not recommended to create this in your code.
+    /// Instead use screen's GetDialog<UIMessageBox>().
+    /// If you still want to create this manually, you are responsible to handle disposing new instance.
     /// </summary>
     public class UIMessageBox : UIDialog
     {
@@ -34,9 +37,6 @@ namespace NanoUI.Components.Dialogs
             DisablePointerFocus = true;
             //Draggable = false;
         }
-
-        // note: it is not recommended to call in your code. Instead call Screen.GetDialog<MessageBox>.
-        // if you still want to call this, you are responsible to handle dispose new instance manually
 
         /// <inheritdoc />
         public UIMessageBox(UIScreen screen)
@@ -170,12 +170,14 @@ namespace NanoUI.Components.Dialogs
         
         UIButton? _altButton;
         public UIButton? AltButton => _altButton;
-        
+
         #endregion
 
         #region Methods
 
-        // we use caller as identifier
+        /// <summary>
+        /// Use caller as an identifier.
+        /// </summary>
         public void SetCallback(UIWidget caller, Action<UIWidget, int>? action)
         {
             _caller = caller;
