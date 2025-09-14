@@ -6,17 +6,21 @@ using NanoUI.Layouts;
 
 namespace NanoUI.Components.Colors
 {
-    // note: this returns RGB values, A is always "full" (255)
-
     /// <summary>
-    /// UIColorPicker.
+    /// UIColorPicker returns RGB values, A is always "full" (255).
     /// </summary>
     public class UIColorPicker : UIPopupButton
     {
         Color _currentColor;
 
-        // this is not used anywhere here (its just if user want to watch colorwheel changes)
+        /// <summary>
+        /// Changed can be used to get dynamic changes.
+        /// </summary>
         public Action<Color>? Changed;
+
+        /// <summary>
+        /// FinalColor.
+        /// </summary>
         public Action<Color>? FinalColor;
 
         StackLayout _popupLayout;
@@ -89,7 +93,9 @@ namespace NanoUI.Components.Colors
 
         #region Properties
 
-        // Get the current color
+        /// <summary>
+        /// Gets/ sets the current color.
+        /// </summary>
         public virtual Color Color
         {
             get => _currentColor;
@@ -119,11 +125,11 @@ namespace NanoUI.Components.Colors
 
         #region Layout
 
-        // todo : should we limit colorWheel size & popup height, if width exceeds some value
-
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
+            // todo : should we limit colorWheel size & popup height, if width exceeds some value?
+
             var buttonHeight = _pickButton.PreferredSize(ctx).Y;
 
             Popup.FixedSize = new Vector2(Size.X, Size.X + 2 * buttonHeight);

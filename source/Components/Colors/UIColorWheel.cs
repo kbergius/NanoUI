@@ -5,11 +5,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Colors
 {
-    // handles selection of color RGB values; A value should be handled separately
-    // (this returns "full" alpha 255)
-
     /// <summary>
-    /// UIColorWheel.
+    /// UIColorWheel handles selection of color RGB values; A value should be handled separately.
+    /// This returns "full" alpha (255).
     /// </summary>
     public class UIColorWheel : UIWidget
     {
@@ -66,7 +64,9 @@ namespace NanoUI.Components.Colors
 
         #region Methods
 
-        // The current Color this ColorWheel has selected (RGB; A is "full" - 255)
+        /// <summary>
+        /// Returns rhe current Color this UIColorWheel has selected (RGB; A is "full" - 255).
+        /// </summary>
         public Color GetColor()
         {
             Color rgb = Hue2Rgb(_hue);
@@ -77,7 +77,9 @@ namespace NanoUI.Components.Colors
             return rgb * (1 - _white - _black) + black * _black + white * _white;
         }
 
-        // Sets the current Color (RGB - doesn't use A)
+        /// <summary>
+        /// Sets the current Color (RGB); doesn't use A).
+        /// </summary>
         public void SetColor(in Color rgb)
         {
             float r = rgb.R;
