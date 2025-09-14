@@ -6,12 +6,10 @@ using System.IO;
 
 namespace NanoUI.Components.Files
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconTextPart instead of FileIconTextPart with fixed Icon & IconColor
-    // (better performance)
-
     /// <summary>
     /// UIFileFolderFlow.
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderFlow : UIFlowView<FileFolderInfo>
     {
@@ -38,7 +36,8 @@ namespace NanoUI.Components.Files
 
         public bool ShowFiles = true;
 
-        // should we automatically change parent folder if selected changes
+        // todo: should we automatically change parent folder if selected changes?
+
         bool? _autoFolderSelectedChange;
         public bool AutoFolderSelectedChange
         {
@@ -127,7 +126,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // this is prorected to leave room for user to customize columns & their content
+        /// <summary>
+        /// Protected virtual method to leave room user customize columns & their content.
+        /// </summary>
         protected virtual FlowItem<FileFolderInfo> CreateFlowItem(string displayName, in FileFolderInfo eventData)
         {
             return new FlowItem<FileFolderInfo>(eventData)

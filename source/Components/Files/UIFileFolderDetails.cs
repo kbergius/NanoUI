@@ -6,12 +6,10 @@ using System.IO;
 
 namespace NanoUI.Components.Files
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconPart instead of FileIconPart with fixed Icon & IconColor
-    // (better performance)
-
     /// <summary>
     /// UIFileFolderDetails.
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderDetails : UITableView<FileFolderInfo>
     {
@@ -37,10 +35,13 @@ namespace NanoUI.Components.Files
 
         #region Properties
 
-        // open dialog = true, save as = false
+        /// <summary>
+        /// Open dialog = true, Save>s = false.
+        /// </summary>
         public bool ShowFiles = true;
 
-        // should we automatically change parent folder if selected changes
+        // todo: should we automatically change parent folder if selected changes?
+
         bool? _autoFolderSelectedChange;
         public bool AutoFolderSelectedChange
         {
@@ -136,7 +137,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // note: this is virtual since user may want to cutomize columns % their contents
+        /// <summary>
+        /// Virtual method since user may want to customize columns & their contents.
+        /// </summary>
         protected virtual RowItem<FileFolderInfo> CreateDetailsItem(string displayName, System.DateTime lastWrite, in FileFolderInfo eventData)
         {
             return new RowItem<FileFolderInfo>(eventData)

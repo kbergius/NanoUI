@@ -6,18 +6,15 @@ using System.IO;
 
 namespace NanoUI.Components.Files
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconPart instead of FileIconPart with fixed Icon & IconColor
-    // (better performance)
-
     // todo : should we have 2-way selection changed process
     // 1. set selected
     // 2. fire selection changed
-
     // by now both actions are combined into one
 
     /// <summary>
     /// UIFileFolderList.
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderList : UIListView<FileFolderInfo>
     {
@@ -42,7 +39,8 @@ namespace NanoUI.Components.Files
 
         public bool ShowFiles = true;
 
-        // should we automatically change parent folder if selected changes
+        // todo: should we automatically change parent folder if selected changes?
+
         bool? _autoFolderSelectedChange;
         public bool AutoFolderSelectedChange
         {
@@ -133,7 +131,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // note: this is protected to support user customize columns & their contents
+        /// <summary>
+        /// Protected virtual method to leave room user customize columns & their content.
+        /// </summary>
         protected virtual RowItem<FileFolderInfo> CreateFileItem(string displayName, in FileFolderInfo eventData, bool isDrive = false)
         {
             return new RowItem<FileFolderInfo>(eventData)

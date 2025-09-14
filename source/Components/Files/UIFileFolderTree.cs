@@ -7,12 +7,6 @@ using System.IO;
 
 namespace NanoUI.Components.Files
 {
-    // note: supports dynamic theming
-    // note2: if dynamic theming is not needed, use IconPart instead of FileIconPart with fixed Icon & IconColor
-    // (better performance)
-
-    // Shows folders (and possibly files)
-
     // todo : CHECK ABOSULUTE PATH
     // todo : FileIcon by file type
     // todo : hide hidden/system files/folders
@@ -22,7 +16,9 @@ namespace NanoUI.Components.Files
     // todo : SHOULD WE HAVE BASE PATH?
 
     /// <summary>
-    /// UIFileFolderTree.
+    /// UIFileFolderTree shows folders (and possibly files).
+    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// use IconPart instead of FileIconPart with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderTree : UITreeView<FileFolderInfo>
     {
@@ -51,14 +47,18 @@ namespace NanoUI.Components.Files
 
         #region Properties
 
-        // show files
+        /// <summary>
+        /// Show files. Default: true.
+        /// </summary>
         public bool ShowFiles = true;
 
         #endregion
 
         #region Methods
 
-        // we must clear previous tree if any
+        /// <summary>
+        /// Clears previous tree if any.
+        /// </summary>
         public void CreateTree(string parentFolder, int maximumLevels)
         {
             // clear previous
@@ -120,7 +120,9 @@ namespace NanoUI.Components.Files
             }
         }
 
-        // for hierarcial structures (treeview) - id & parentId are mandatory
+        /// <summary>
+        /// For hierarcial structures (treeview) - id & parentId are mandatory.
+        /// </summary>
         protected virtual TreeItem<FileFolderInfo> CreateTreeItem(string displayName, in FileFolderInfo eventData, string id, string parentId)
         {
             return new TreeItem<FileFolderInfo>(eventData, id, parentId)
