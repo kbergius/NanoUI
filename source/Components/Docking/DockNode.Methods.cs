@@ -7,6 +7,8 @@ using System.Numerics;
 namespace NanoUI.Components.Docking
 {
     // todo: attach
+    // todo: only TryAttach method is public
+
     public partial class DockNode
     {
         #region Detach
@@ -78,8 +80,10 @@ namespace NanoUI.Components.Docking
 
         #region Attach
 
-        // if this has subnodes, we can't attach since we don't know in which subnode tabs
-        // should be attached
+        /// <summary>
+        /// If dock node has subnodes, we can't attach,
+        /// since we don't know in which subnode tabs should be attached.
+        /// </summary>
         public bool TryAttach(DockWindow dockWindow, out UITabItem? tabItem)
         {
             if (HasSubnodes)

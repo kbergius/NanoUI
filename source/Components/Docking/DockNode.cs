@@ -5,12 +5,12 @@ using System.Numerics;
 
 namespace NanoUI.Components.Docking
 {
-    // note: hit & overlays operate in screen coordinates, since DrawDockAreas call comes directly from screen
-    // with pointer position
     // todo: title + close action (in close, we must rearrange parent subnodes etc)
 
     /// <summary>
     /// DockNode.
+    /// Hote: hit & overlays operate in screen coordinates,
+    /// since DrawDockAreas call comes directly from the screen with pointer position.
     /// </summary>
     public partial class DockNode : UIWidget
     {
@@ -18,8 +18,10 @@ namespace NanoUI.Components.Docking
 
         // proportion of hit area fill vs hit area size (must be < 1)
         const float HITAREA_FILL_PROPORTION = 0.3f;
+
         // default padding between hit areas
         const float HITAREA_PADDING = 5f;
+
         // hit area size
         const float DOCK_HITAREA_SIZE = 35f;
 
@@ -72,8 +74,11 @@ namespace NanoUI.Components.Docking
             set => _titlebar.Title = value;
         }
 
-        // this affects only if Children consists DockNodes & Splitter
         Orientation _orientation;
+
+        /// <summary>
+        /// This has an effect only if Children consist DockNodes & Splitter.
+        /// </summary>
         public Orientation Orientation
         {
             get => _orientation;
@@ -97,13 +102,13 @@ namespace NanoUI.Components.Docking
 
         #region Methods
 
-        // this is mainly called from titlebar (if there is close action mapped)
-
         /// <inheritdoc />
         public override void Close()
         {
+            // this is mainly called from titlebar (if there is close action mapped)
+
             // first we must rearrange parent dock node structure
-            
+
             // check if have right parent type
             if (Parent is DockNode parent)
             {
@@ -117,11 +122,14 @@ namespace NanoUI.Components.Docking
             // invokes dispose
             base.Close();
         }
-
-        // if subnodes already exist - no need to recreate
-        // todo: should we inform user that this has already subnodes - so they are not created?
+                
+        /// <summary>
+        /// If subnodes already exist - no need to recreate.
+        /// </summary>
         public void CreateSubNodes(Orientation orientation)
         {
+            // todo: should we inform user that this has already subnodes - so they are not created?
+
             // set orientation - RequestLayoutUpdate there
             Orientation = orientation;
 
@@ -142,13 +150,13 @@ namespace NanoUI.Components.Docking
 
         #region Events
 
-        // - tabwidget calls this when tab item is dragged outside tabwidget's area &
-        // - docktitlebar when dragged outside its area
-
         /// <inheritdoc />
         public override bool OnDetach(UIWidget child)
         {
-            if(child is UITabItem tabItem)
+            // - tabwidget calls this when tab item is dragged outside tabwidget's area &
+            // - docktitlebar when dragged outside its area
+
+            if (child is UITabItem tabItem)
             {
                 Detach(tabItem);
 
@@ -168,12 +176,12 @@ namespace NanoUI.Components.Docking
             return false;
         }
 
-        // this is by now called from screen, when attaching is in process
-        // note: position is relative pointer position
-
         /// <inheritdoc />
         public override bool OnAttach(UIWidget widget, Vector2 position)
         {
+            // this is by now called from screen, when attaching is in process
+            // note: position is relative pointer position
+
             // we supoort by now only DockWindows
             if (widget is not DockWindow dockWindow)
                 return false;

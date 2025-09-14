@@ -7,14 +7,13 @@ namespace NanoUI.Components.Docking
     // todo: there should be easy mechanics to set title etc (probably context menu)
 
     /// <summary>
-    /// DockTitlebar.
+    /// DockTitlebar supports only dock nodes.
     /// </summary>
     public class DockTitlebar : UITitlebar
     {
         /// <inheritdoc />
         public DockTitlebar() { }
 
-        // support only for dock nodes
         // todo: dock node name
 
         /// <inheritdoc />
@@ -56,11 +55,11 @@ namespace NanoUI.Components.Docking
             return true;
         }
 
-        // check if this is dragged outside title area
-
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            // check if this is dragged outside title area
+
             if (!Contains(p))
             {
                 // remove drag widget, so we can start detach process

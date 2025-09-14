@@ -4,11 +4,11 @@ using System.Numerics;
 
 namespace NanoUI.Components.Docking
 {
-    // note: screen can consist only 1 dock container
     // todo: load docking specification from file & create docking hierarchy
 
     /// <summary>
     /// DockContainer.
+    /// Note: screen can consist only 1 dock container.
     /// </summary>
     public class DockContainer : UIWidget
     {
@@ -48,11 +48,14 @@ namespace NanoUI.Components.Docking
 
         #region Methods
 
-        // dock window informs that it is dragging and wants to be attached
-        // todo: could be internal?
+        /// <summary>
+        /// Dock window informs that it is dragging mode and wants to be attached.
+        /// </summary>
         public void BeginDocking()
         {
-            if(Screen == null)
+            // todo: could be internal?
+
+            if (Screen == null)
                 return;
 
             // now we must find DockNode where the pointer is & inform screen of this DockNode
@@ -74,11 +77,14 @@ namespace NanoUI.Components.Docking
             }
         }
 
-        // this is called from dock window, when pointer up event happens (it doesn't care if window
-        // is reaaly docked or not)
-        // todo: could be internal?
+        /// <summary>
+        /// This is called from dock window, when pointer up event happens
+        /// (it doesn't care if window is really docked or not).
+        /// </summary>
         public void EndDocking()
         {
+            // todo: could be internal?
+
             if (_lastActiveNode != null)
             {
                 // remove from screen's post draw list

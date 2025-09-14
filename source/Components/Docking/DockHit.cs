@@ -9,11 +9,19 @@ namespace NanoUI.Components.Docking
     /// </summary>
     public struct DockHit
     {
-        // hit areas (used also to check hit)
+        /// <summary>
+        /// Hit areas (used also to check hit).
+        /// </summary>
         public Rect Area;
-        // hit areas fills - visual clue where docking is happening
+        
+        /// <summary>
+        /// Hit areas' fills - visual clue where docking is happening.
+        /// </summary>
         public Rect Fill;
-        // overlay areas - visual clue where docking is happening
+
+        /// <summary>
+        /// Overlay areas - visual clue where docking is happening.
+        /// </summary>
         public Rect Overlay;
 
         public bool Contains(Vector2 position) => Area.Contains(position);
