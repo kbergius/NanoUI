@@ -11,7 +11,7 @@ namespace NanoUI.Components.Buttons
     // note: there is really only dimension property used. Other properties comes from button
 
     /// <summary>
-    /// UIUpDownButton.
+    /// UIUpDownButton base widget.
     /// </summary>
     public class UIUpDownButton : UIWidget
     {
@@ -44,7 +44,7 @@ namespace NanoUI.Components.Buttons
     #endregion
 
     /// <summary>
-    /// UpDownButton<T>.
+    /// UpDownButton<T>. The T is System.Numerics.INumber<T>.
     /// </summary>
     public class UpDownButton<T> : UIUpDownButton where T : INumber<T>
     {
@@ -54,7 +54,9 @@ namespace NanoUI.Components.Buttons
         UIButton? _up;
         UIButton? _down;
 
-        // informs pushed numeric step value (+Step / -Step)
+        /// <summary>
+        /// Informs pushed numeric step value (+Step / -Step).
+        /// </summary>
         public Action<T>? ButtonPushed;
 
         /// <inheritdoc />
@@ -83,8 +85,11 @@ namespace NanoUI.Components.Buttons
 
         #region Properties
 
-        // supports dynamically changing orientation
         Orientation _orientation;
+
+        /// <summary>
+        /// Orientation. Supports dynamically changing orientation.
+        /// </summary>
         public Orientation Orientation
         {
             get => _orientation;
@@ -121,7 +126,9 @@ namespace NanoUI.Components.Buttons
             }
         }
 
-        // value to increase every push/repeat event
+        /// <summary>
+        /// Value to increase/decrease every push/repeat event.
+        /// </summary>
         public T Step { get; set; } = T.One;
 
         #endregion
@@ -170,8 +177,6 @@ namespace NanoUI.Components.Buttons
 
         #region Drawing
 
-        // todo: we can clear _lastDelta when pointer up?
-
         /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
@@ -179,6 +184,8 @@ namespace NanoUI.Components.Buttons
 
             // set action
             int curState = _down != null && _down.Pushed ? -1 : _up != null && _up.Pushed ? 1 : 0;
+
+            // todo: we can clear _lastDelta when pointer up?
 
             if (Screen != null && curState != 0 && _lastState == curState)
             {

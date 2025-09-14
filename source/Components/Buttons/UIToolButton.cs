@@ -4,11 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Components.Buttons
 {
-    // Tool button that can be combined with button flags.RadioButton & ToggleButton;
-    // note: there is no text by default
-
     /// <summary>
-    /// UIToolButton.
+    /// UIToolButton can be combined with button flags RadioButton & ToggleButton.
+    /// Note: there is no text by default.
     /// </summary>
     public class UIToolButton : UIButton
     {
