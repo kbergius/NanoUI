@@ -165,14 +165,18 @@ namespace NanoUI.Components
         // todo: GetLayoutArea()
         public Rect ContentArea { get; private set; }
 
-        // Return the total number of tabs
+        /// <summary>
+        /// Returns the total number of tabs.
+        /// </summary>
         [JsonIgnore]
         public int TabsCount => Children.Count;
 
         // todo : needed in docking solution by now
         public int TabHeight { get; private set; }
-                
-        // Return the index of the currently active tab
+
+        /// <summary>
+        /// Returns the index of the currently active tab.
+        /// </summary>
         public int SelectedIndex
         {
             get => _activeTab;
@@ -213,7 +217,9 @@ namespace NanoUI.Components
 
         #region Methods
 
-        // Add a new tab
+        /// <summary>
+        /// Add a new tab.
+        /// </summary>
         public UITabItem AddTab(string caption)
         {
             var res = new UITabItem(this) { Caption = caption };
@@ -242,13 +248,17 @@ namespace NanoUI.Components
             return res;
         }
 
-        // Remove a tab
+        /// <summary>
+        /// Remove a tab.
+        /// </summary>
         public void RemoveTab(UITabItem tab)
         {
             RemoveTab(Children.IndexOf(tab));
         }
 
-        // Removes a tab with the specified index
+        /// <summary>
+        /// Removes a tab with the specified index.
+        /// </summary>
         public void RemoveTab(int index)
         {
             if (Children.TryGet(index, out UITabItem? tab))
@@ -280,11 +290,11 @@ namespace NanoUI.Components
 
         #region Layout
 
-        // we must recalculate tab offsets & content position & size
-
         /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx)
         {
+            // we must recalculate tab offsets & content position & size
+
             _tabOffsets.Clear();
 
             ctx.FontFaceId(FontFaceId);
@@ -473,11 +483,11 @@ namespace NanoUI.Components
             return handled;
         }
 
-        // we check if tab dragged outside
-
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            // we check if tab dragged outside
+
             if (!Contains(p))
             {
                 if(_tabDragIndex >= 0)

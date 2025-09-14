@@ -46,24 +46,33 @@ namespace NanoUI.Components
         // determines if we draw whole/half circle (default = true)
         public bool HalfCircle { get; set; }
         
-        // note: when speed set negative rotates counter clockwise
         float? _speed;
+
+        /// <summary>
+        /// When speed is negative rotates counter clockwise; otherwise clockwise.
+        /// </summary>
         public float Speed
         {
             get => _speed?? GetTheme().Spinner.Speed;
             set => _speed = value;
         }
 
-        // this is relative to spinner size
         float? _radius;
+
+        /// <summary>
+        /// Relative to spinner size.
+        /// </summary>
         public float Radius
         {
             get => _radius?? GetTheme().Spinner.Radius;
             set => _radius = value;
         }
 
-        // this is relative to calculated radius (determines spinner "width")
         float? _innerRadius;
+
+        /// <summary>
+        /// Relative to calculated radius (determines spinner "width").
+        /// </summary>
         public float InnerRadius
         {
             get => _innerRadius ?? GetTheme().Spinner.InnerRadius;

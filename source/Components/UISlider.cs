@@ -6,11 +6,11 @@ using System.Numerics;
 
 namespace NanoUI.Components
 {
-    // note : no normal background/border drawing
     // todo: vertical
 
     /// <summary>
     /// UISlider.
+    /// Note: slider has not normal background/border drawing.
     /// </summary>
     public class UISlider : UIWidget
     {
@@ -48,7 +48,6 @@ namespace NanoUI.Components
         // property grid
         public MinMax Range { get; set; } = new MinMax(0.0f, 1.0f);
 
-        // note: we use accent color as default
         Color? _valueColor;
         public Color ValueColor
         {
@@ -60,11 +59,11 @@ namespace NanoUI.Components
 
         #region Events
 
-        // todo : same calculation as in pointer down
-
         /// <inheritdoc />
         public override bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
+            // todo : same calculation as in pointer down
+
             if (Disabled)
                 return false;
 

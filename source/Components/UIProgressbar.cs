@@ -32,7 +32,6 @@ namespace NanoUI.Components
         [Browsable(false)]
         public virtual float Value { get; set; }
        
-        // note: we use accent color as default
         Color? _valueColor;
         public Color ValueColor
         {
