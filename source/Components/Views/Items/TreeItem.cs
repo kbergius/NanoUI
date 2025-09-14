@@ -10,19 +10,27 @@
     /// </summary>
     public class TreeItem<T> : IViewItem<T>
     {
-        // this is obligatory in "flat" but mandatory in hierarcial structures
+        /// <summary>
+        /// Obligatory in flat but mabdatory in hierarcial structures.
+        /// </summary>
         public string? Id { get; internal set; }
 
-        // needed to place correctly into hierarcial structure
+        /// <summary>
+        /// Needed to place correctly into hierarcial structure.
+        /// </summary>
         public string? ParentId { get; internal set; }
 
         public UIWidget[]? Widgets { get; set; }
         public T? EventData { get; set; }
 
-        // if this is not defined view item widget uses default row height from theme
+        /// <summary>
+        /// If row height is not defined, view item widget uses default row height from theme.
+        /// </summary>
         public int? RowHeight { get; set; }
 
-        // for hierarcial structures (treeview) - id & parentId are mandatory
+        /// <summary>
+        /// For hierarcial structures (treeview) - id & parentId are mandatory.
+        /// </summary>
         public TreeItem(T eventData, string? id, string? parentId)
         {
             EventData = eventData;
@@ -30,6 +38,9 @@
             ParentId = parentId;
         }
 
+        /// <summary>
+        /// For hierarcial structures (treeview) - id & parentId are mandatory.
+        /// </summary>
         public TreeItem(UIWidget[] widgets, T eventData, string? id, string? parentId)
         {
             Widgets = widgets;

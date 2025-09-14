@@ -8,16 +8,22 @@ namespace NanoUI.Components.Views
     /// </summary>
     public interface IViewItem<T>
     {
-        // this is obligatory in "flat" but mandatory in hierarcial structures
+        /// <summary>
+        /// Obligatory in flat but mabdatory in hierarcial structures.
+        /// </summary>
         string? Id { get; }
 
-        // needed to place correctly into hierarcial structure
+        /// <summary>
+        /// Needed to place correctly into hierarcial structure.
+        /// </summary>
         string? ParentId { get; }
 
         UIWidget[]? Widgets { get; set; }
         T? EventData { get; set; }
-        
-        // if this is not defined view item widget uses default row height from theme
+
+        /// <summary>
+        /// If row height is not defined, view item widget uses default row height from theme.
+        /// </summary>
         int? RowHeight { get; set; }
     }
 }

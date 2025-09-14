@@ -11,15 +11,21 @@
     /// </summary>
     public class FlowItem<T> : IViewItem<T>
     {
-        // this is obligatory in "flat" but mabdatory in hierarcial structures
+        /// <summary>
+        /// Obligatory in flat but mabdatory in hierarcial structures.
+        /// </summary>
         public string? Id { get; }
 
-        // needed to place correctly into hierarcial structure
+        /// <summary>
+        /// Needed to place correctly into hierarcial structure.
+        /// </summary>
         public string? ParentId { get; }
         public UIWidget[]? Widgets { get; set; }
         public T? EventData { get; set; }
 
-        // if this is not defined view item widget uses default row height from theme
+        /// <summary>
+        /// If row height is not defined, view item widget uses default row height from theme.
+        /// </summary>
         public int? RowHeight { get; set; }
 
         public FlowItem(T eventData)
