@@ -16,11 +16,16 @@ namespace NanoUI
     // con for above: allocates more!
 
     // todo: tab key press -. focus next widget that can get focus
-    
+
     /// <summary>
-    /// UIScreen.
+    /// UIScreen is the root widget in the widget tree.
+    /// Its main purpose is to orchestrate all the widgets in the widget tree.
+    /// UIScreen is also derived from the UIWidget, but it has no parent widget and
+    /// its methods differ quite a lot from the other widgets.
+    /// When you want to send user input events and execute Update & Draw commands,
+    /// you use UIScreen.
     /// Note: you can put any widget directly under screen,
-    /// but only UIWindows (& their extensions) support automatic "layering".
+    /// but only UIWindows (& its extensions) support automatic "layering".
     /// </summary>
     public partial class UIScreen : UIWidget
     {
@@ -46,19 +51,15 @@ namespace NanoUI
         // note: this also disallows to use many dialogs of same type at the same time
         Dictionary<Type, UIDialog> _dialogs = new();
 
-        // note: screen is only widget that has no parent
-        // we inherit from widget so that we can use widget's event handling mechanics &
-        // having screen as parent
-        // however most widget properties are not used in screen
-
         /// <summary>
-        /// UIScreen.
+        /// Craetes screen with given theme and size (normally your window size).
         /// </summary>
         public UIScreen(UITheme theme, Vector2 size)
             : base(null, size)
         {
             Theme = theme;
 
+            // create default, simple tooltip
             _tooltip = new UITooltip(this);
 
             // no hover tint
@@ -78,23 +79,20 @@ namespace NanoUI
 
         #region Properties
 
-        // this is only point where theme is stored (should not be null)
-
         /// <summary>
-        /// Theme.
+        /// This is only place where theme is stored (should not be null).
         /// </summary>
         public UITheme Theme { get; set; }
 
-        // ctor creates default, simple tooltip
-        // if you want to use customized tooltip, set it here
-        // note : use can use same tooltip widget in many screens, since widget's parent property is not used /
-        // should not be used
-        // note2: be sure that tooltip's visibility is set to false, so it doesn't effect any layout code &
-        // is not drawn in normal draw
         UITooltip _tooltip;
 
         /// <summary>
-        /// Tooltip.
+        /// Gets/sets tooltip.
+        /// If you don't spesify this, NanoUI uses its own simple tooltip widget.
+        /// You can use same tooltip widget in many screens,
+        /// since widget's parent property is not used / should not be used.
+        /// Note: be sure that tooltip's visibility is set to false,
+        /// so it doesn't affect any layout code & is not drawn in normal draw.
         /// </summary>
         public new UITooltip Tooltip
         {
@@ -115,38 +113,31 @@ namespace NanoUI
             }
         }
 
-        // this is a list that holds all widgets that are "post-drawn" after real draw process
-        // you can add widget to this list if you want to draw overlay over whole screen
-        // note: your widget must override PostDraw(NvgContext ctx, Vector2 pointerPosition) function
-
         /// <summary>
-        /// PostDrawList.
+        /// PostDrawList is a list of widgets, that are post-drawn after normal draw process.
+        /// You can add any widget to this list and it will be drawn as an overlay over whole screen.
+        /// Note: your widget must override and implement widget's PostDraw method.
         /// </summary>
         public ArrayBuffer<UIWidget> PostDrawList => _postDrawList;
 
-        // these are stored in case some widget needs to access these outside the events
-
         /// <summary>
-        /// KeyModifiers.
+        /// KeyModifiers are stored in case some widgets need to access to these outside the events.
         /// </summary>
         public KeyModifiers KeyModifiers { get; private set; }
 
         /// <summary>
-        /// PointerPosition.
+        /// PointerPosition is the pointer's display position.
         /// </summary>
         public Vector2 PointerPosition { get; private set; }
 
-        // we need to control in screen level dragging in process
-
         /// <summary>
-        /// IsDragActive.
+        /// IsDragActive flag tells if dragging is happening.
         /// </summary>
         public bool IsDragActive => _dragWidget != null;
 
-        // note: this does not take into account screen
-
         /// <summary>
-        /// IsPointerInsideUI.
+        /// IsPointerInsideUI checks if some widget is active.
+        /// It doesn't take into account screen itself.
         /// </summary>
         public bool IsPointerInsideUI => _pointerFocusWidget != null;
 
@@ -154,12 +145,11 @@ namespace NanoUI
 
         #region Methods
 
-        // note: set null, if you want to remove drag widget
-        // note2: tryAttach is a boolean flag, that indicates if we should call TryAttach after dragging is
-        // finished (pointer up). only docking / dock window uses this by now
-
         /// <summary>
-        /// SetDragWidget.
+        /// Sets current drag widget. Set null, if you want to remove drag widget.
+        /// Note: tryAttach is a boolean flag, that indicates if screen should call
+        /// TryAttach after dragging is finished (pointer up).
+        /// Only docking / dock window uses this by now.
         /// </summary>
         public void SetDragWidget(UIWidget? widget, bool tryAttach = false)
         {
@@ -167,10 +157,10 @@ namespace NanoUI
             _tryAttach = tryAttach;
         }
 
-        // note: this changes dialog's parent to this, so it can be shown in this screen
-
         /// <summary>
-        /// RegisterDialog<T>.
+        /// You can register your own dialogs (derived from UIDialog) to the screen,
+        /// so you don't need to create/dispose them every time you want to use them.
+        /// Note: changes dialog's parent to this screen, so it can be shown.
         /// </summary>
         public void RegisterDialog<T>(T dialog) where T : UIDialog
         {
@@ -182,11 +172,10 @@ namespace NanoUI
             _dialogs[typeof(T)] = dialog;
         }
 
-        // todo: test nested dialogs FileDialog --> MessageBox
         // todo : TryGet
 
         /// <summary>
-        /// GetDialog<T>.
+        /// Gets the dialog of type T and calls its Reset method.
         /// </summary>
         public T? GetDialog<T>() where T : UIDialog
         {
@@ -209,7 +198,11 @@ namespace NanoUI
         bool looping = false;
 
         /// <summary>
-        /// UpdateFocus.
+        /// Widgets can call UpdateFocus, when they want to be focused/active widget.
+        /// This method sends OnFocusChanged(false) event to all widgets that are in
+        /// current focus path and recreates focus path and sends OnFocusChanged(true) event
+        /// to widgets in the new focus path. It also rearranges UIWindows.
+        /// Focus path contains widget itself and all its direct parents.
         /// </summary>
         public void UpdateFocus(UIWidget? widget)
         {
@@ -257,13 +250,13 @@ namespace NanoUI
             looping = false;
         }
 
-        // widget wants its layout updated (PerformLayout)
-        // note: we "queue" widgets since there can be many same widgets or one of the 
-        // widgets parent has already requested layout update
-        // real update is executed before draw operations
-
         /// <summary>
-        /// RequestLayoutUpdate.
+        /// Widgets can call RequestLayoutUpdate, when they want to recalculate children
+        /// positions and sizes (for example when adding/removing widgets).
+        /// Note: this method queues the layout requests and they are executed before
+        /// actual drawing is processsed. This method also tries to execute layout commands
+        /// for the same widgets only once. If you want to perform immediate layout change,
+        /// call PerformLayout method in widget.
         /// </summary>
         public override void RequestLayoutUpdate(UIWidget? widget)
         {
@@ -294,16 +287,14 @@ namespace NanoUI
             }
         }
 
-        // this is called from Widget.Dispose()
-
-        // note: if Widget.Dispose(Widget caller) called - focus is automatically set to caller
-        // note: if this is called directly and widget is focused,
-        // then user must manually handle focus change
         // todo: we could check if widget's parent is this (screen) aka is window & it is focused -> set remaining
         // topmost window focused
 
         /// <summary>
-        /// RemoveFromScreen.
+        /// Removes widget from the screen. This is automatically called from
+        /// Widget.Dispose() method.
+        /// Note: if you call this directly and widget is focused,
+        /// you must manually handle focus change (set focus to some other widget).
         /// </summary>
         public void RemoveFromScreen(UIWidget widget)
         {
@@ -340,10 +331,10 @@ namespace NanoUI
             }
         }
 
-        // sends OnPointerEnter events & store new pointerFocus widget
-
         /// <summary>
-        /// RequestPointerFocus.
+        /// RequestPointerFocus is used basically to handle hovering.
+        /// This sends OnPointerEnter(false & true) events and
+        /// store new pointer focus widget.
         /// </summary>
         public void RequestPointerFocus(UIWidget? widget)
         {
@@ -352,6 +343,7 @@ namespace NanoUI
 
             // old
             _pointerFocusWidget?.OnPointerEnter(false);
+
             // we make sure to clear pointer type
             ResetPointerType();
 
@@ -362,11 +354,10 @@ namespace NanoUI
             _pointerFocusWidget?.OnPointerEnter(true);
         }
 
-        // this function resets pointer type to the one specified in theme
-        // note: screen resets pointer type automatically when pointer focus widget changes
-
         /// <summary>
-        /// ResetPointerType.
+        /// Resets pointer type to the one specified in theme.
+        /// Note: screen resets pointer type automatically,
+        /// when pointer focus widget changes
         /// </summary>
         public virtual void ResetPointerType()
         {
@@ -374,14 +365,21 @@ namespace NanoUI
         }
 
         /// <summary>
-        /// DeltaSeconds.
+        /// Delta seconds is stored here from Update method.
         /// </summary>
         public float DeltaSeconds { get; private set; }
 
-        // note: this could be the place to set any animation/timer support
+        // todo: this could be the place to set any animation/timer support?
 
         /// <summary>
-        /// Update.
+        /// Doesn't actually do anything more than store deltaSeconds value.
+        /// So screen doesn't loop all widgets in the widget tree and send them
+        /// "Update" method. This is used only in the need-to-know basis
+        /// (for example widgets want to do some animations).
+        /// You can do your animation/update processes in Draw method before
+        /// actually drawing.
+        /// Note: if you want to process some additional logic here, you can create your
+        /// own screen (based on UIScreen) and override this method.
         /// </summary>
         public virtual void Update(float deltaSeconds)
         {
@@ -392,18 +390,16 @@ namespace NanoUI
         // todo : should we return screen if none found?
 
         /// <summary>
-        /// FindTopmost.
+        /// Finds topmost widget.
         /// </summary>
         public UIWidget? FindTopmost(Vector2 p)
         {
             return Children.FindTopmost(p - Position);
         }
 
-        // check if we should process pointer event
-        // note: this checks by now if we have modal window & pointer is outside modal window
-
         /// <summary>
-        /// ProcessPointerEvent.
+        /// Process pointer event check if we should actually process pointer event.
+        /// Note: this checks by now if we have modal window & pointer is outside modal window.
         /// </summary>
         bool ProcessPointerEvent(Vector2 pointerPos)
         {
@@ -429,18 +425,18 @@ namespace NanoUI
 
         #region OnPointerUpDown
 
-        // order to determine which widgets gets the event
-        // 1. focus path + modal + pointer outside
-        // 2. context menu
-        // 3. drag'n drop
-        // 4. base
-
         /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 pointerPos, PointerButton button, bool down)
         {
+            // order to determine which widgets gets the event
+            // 1. focus path + modal + pointer outside
+            // 2. context menu
+            // 3. drag'n drop
+            // 4. base
+
             // 1. focus path + modal + pointer outside
             // note: PointerPosition is set in OnPointerMove
-            if(!ProcessPointerEvent(pointerPos))
+            if (!ProcessPointerEvent(pointerPos))
                 return false;
 
             // 2. context menu
@@ -511,12 +507,12 @@ namespace NanoUI
 
         #region OnPointerMove
 
-        // note : we could restrict pointer enter/move events only in topmost
-        // (focused) window & allways have 1 focused window (if there is any windows)
-
         /// <inheritdoc />
         public override bool OnPointerMove(Vector2 pointerPos, Vector2 rel)
         {
+            // note : we could restrict pointer enter/move events only in topmost
+            // (focused) window & allways have 1 focused window (if there is any windows)
+
             PointerPosition = pointerPos;
 
             if (!ProcessPointerEvent(pointerPos))
