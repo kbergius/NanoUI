@@ -40,6 +40,10 @@ namespace NanoUI
 
         // note if you extend this class, extended theme class should have empty constructor
         // if you use static CreateDefault or Load methods
+
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public UITheme()
         {
 
@@ -47,13 +51,44 @@ namespace NanoUI
 
         #region Global styles
 
+        /// <summary>
+        /// Global borders styles.
+        /// </summary>
         public BorderStyle Borders { get; set; }
+
+        /// <summary>
+        /// Global common styles.
+        /// </summary>
         public CommonStyle Common { get; set; }
+
+        /// <summary>
+        /// Global docks styles.
+        /// </summary>
         public DockingStyle Docks { get; set; }
+
+        /// <summary>
+        /// Global files styles.
+        /// </summary>
         public FilesStyle Files { get; set; }
+
+        /// <summary>
+        /// Global fonts styles.
+        /// </summary>
         public FontsStyle Fonts { get; set; } = new();
+
+        /// <summary>
+        /// Global pointer styles.
+        /// </summary>
         public PointerStyle Pointer { get; set; }
+
+        /// <summary>
+        /// Global scrollbars styles.
+        /// </summary>
         public ScrollbarStyle Scrollbars { get; set; }
+
+        /// <summary>
+        /// Global windows styles.
+        /// </summary>
         public WindowStyle Windows { get; set; }
 
         #endregion
@@ -63,6 +98,10 @@ namespace NanoUI
         // note: this is basically called from base widget when getting basic properties
         // internally type is stored in ThemeType in Widget.
         // note: type should inherit from Widget & have empty constructor (no params)
+
+        /// <summary>
+        /// Get.
+        /// </summary>
         public UIWidget Get(Type type)
         {
             if (!_widgets.TryGetValue(type, out UIWidget? widget))
@@ -81,6 +120,10 @@ namespace NanoUI
 
         // note: we lazy initialize (create only when called first time)
         // note: T should have empty constructor (no params)
+
+        /// <summary>
+        /// Get<T>.
+        /// </summary>
         public T Get<T>() where T : UIWidget, new()
         {
             if (!_widgets.TryGetValue(typeof(T), out UIWidget? widget))
@@ -91,6 +134,9 @@ namespace NanoUI
             return (T)widget;
         }
 
+        /// <summary>
+        /// Set<T>.
+        /// </summary>
         public void Set<T>(T widget) where T : UIWidget
         {
             _widgets[typeof(T)] = widget;
@@ -292,6 +338,10 @@ namespace NanoUI
 
         // this is ViewPanel basic properties for all ViewWidget<T> view panel implementations.
         // note: properties could be overridden in concrete implemention
+
+        /// <summary>
+        /// ViewPanel.
+        /// </summary>
         public UIViewPanel ViewPanel
         {
             get => Get<UIViewPanel>();
@@ -310,6 +360,10 @@ namespace NanoUI
 
         // this supports dynamic theming with file parts
         // note: this can be extended with using Path in FileFolderInfo (different filetypes ...)
+
+        /// <summary>
+        /// GetFileIcon.
+        /// </summary>
         public virtual (int, Color) GetFileIcon(in FileFolderInfo fileFolderInfo) => fileFolderInfo.FileFolderType switch
         {
             FileFolderType.HardDrive => (Fonts.IconHardDrive, Files.HardDriveColor),
@@ -324,6 +378,10 @@ namespace NanoUI
 
         // This function should only be used to get your app quickly running
         // It is recommended that you use Load function & provide your own theme file
+
+        /// <summary>
+        /// CreateDefault<T>.
+        /// </summary>
         public static T CreateDefault<T>(NvgContext ctx, FontsStyle fonts) where T : UITheme, new()
         {
             T theme = new();
@@ -338,6 +396,10 @@ namespace NanoUI
         }
 
         // T must be Theme or extension of it
+
+        /// <summary>
+        /// Load<T>.
+        /// </summary>
         public static T? Load<T>(NvgContext ctx, string themefile) where T : UITheme
         {
             if (!File.Exists(themefile))
@@ -356,12 +418,18 @@ namespace NanoUI
             return theme;
         }
 
+        /// <summary>
+        /// Save.
+        /// </summary>
         public void Save(string filename)
         {
             ThemeSerializer serializer = new();
             serializer.Save(filename, this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public virtual void Dispose()
         {
 

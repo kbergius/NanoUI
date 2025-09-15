@@ -28,6 +28,7 @@ namespace NanoUI
         // copy data from the old texture to the new one. You can of course do it, if you like.
         // note: NanoUI uses this function - when it wants to resize font atlas texture -
         // this way: it first calls ResizeTexture and then calls UpdateTexture with new data.
+
         /// <summary>
 		/// Resizes a texture according to texture desctiption
 		/// </summary>
@@ -35,6 +36,7 @@ namespace NanoUI
 
         // this is called also when font atlas texture is resized
         // (delete old, create new)
+
         /// <summary>
 		/// Deletes a texture
 		/// </summary>

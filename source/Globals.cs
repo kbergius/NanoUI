@@ -10,34 +10,77 @@ namespace NanoUI
         // this is used to indicate that int value (that points to struct/class) is not defined/incorrect.
         // used with textures, fonts, glyphs etc
         // note: basically all negative values are treated as invalid
+
+        /// <summary>
+        /// INVALID.
+        /// </summary>
         public const int INVALID = -1;
-        
+
         // Uncomment the following definition to draw red bounding
         // boxes around widgets(useful for debugging drawing code)
+
+        /// <summary>
+        /// DEBUG_WIDGET_BOUNDS.
+        /// </summary>
         public static bool DEBUG_WIDGET_BOUNDS = false;
+
+        /// <summary>
+        /// SHOW_TOOLTIPS.
+        /// </summary>
         public static bool SHOW_TOOLTIPS = true;
 
         // these are initial font texture values. if texture becomes full, it informs user to expand texture
+
+        /// <summary>
+        /// FONT_TEXTURE_WIDTH.
+        /// </summary>
         public static int FONT_TEXTURE_WIDTH = 1024;
+
+        /// <summary>
+        /// FONT_TEXTURE_HEIGHT.
+        /// </summary>
         public static int FONT_TEXTURE_HEIGHT = 512;
 
+        /// <summary>
+        /// MAX_TEXT_ROWS.
+        /// </summary>
         public static int MAX_TEXT_ROWS = 1024;
 
         // we restrict layout updates per frame (used in screen)
+
+        /// <summary>
+        /// MAX_LAYOUT_UPDATE_PER_FRAME.
+        /// </summary>
         public const int MAX_LAYOUT_UPDATE_PER_FRAME = 10;
 
         // this determines the time delay (when button is down) after repeated action is fired
         // or when we should update some values (like performance graph text)
         // value is in seconds
+
+        /// <summary>
+        /// UPDATE_DELAY.
+        /// </summary>
         public static float UPDATE_DELAY = 0.1f;
 
         // shall we make caret in active textbox blink?
-        public static bool BLINK_TEXTBOX_CARET = true;       
+
+        /// <summary>
+        /// BLINK_TEXTBOX_CARET.
+        /// </summary>
+        public static bool BLINK_TEXTBOX_CARET = true;
 
         // this is used if folder path not specified or specified path is invalid
+
+        /// <summary>
+        /// DEFAULT_FOLDER_PATH.
+        /// </summary>
         public static string DEFAULT_FOLDER_PATH = Environment.CurrentDirectory;
 
         // Files / folders
+
+        /// <summary>
+        /// FILEFOLDER_DIRECTORY_UP.
+        /// </summary>
         public static string FILEFOLDER_DIRECTORY_UP = "...";
 
         // DEFAULT CATEGORIES
@@ -54,6 +97,10 @@ namespace NanoUI
         public const string CATEGORY_MISC = "Misc";
 
         // the order of this array is used as default category sort order in CategorySorter
+
+        /// <summary>
+        /// GetDefaultCategoryIds.
+        /// </summary>
         public static string[] GetDefaultCategoryIds()
         {
             return[
