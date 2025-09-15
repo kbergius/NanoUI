@@ -153,22 +153,24 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// GlyphBaking. Determines which way glyphs are stored and rendered.
+    /// GlyphBaking determines which way glyphs are stored and rendered.
     /// </summary>
     public enum GlyphBaking : int
     {
         /// <summary>
-        /// Glyphs converted to "normal" bitmaps
+        /// Glyphs converted to bitmaps.
         /// </summary>
         Normal,
 
         /// <summary>
-        /// Glyphs converted to SDF bitmaps
+        /// Glyphs converted to SDF bitmaps.
         /// </summary>
         SDF,
 
         /// <summary>
-        /// Glyphs converted to shapes
+        /// Glyphs converted to shapes (vectorized glyphs).
+        /// Slower than bitmap methods, but adds possiblity to scale, skew etc glyphs dynamically without loosing sharpness
+        /// and paint glyphs with different paint methods (solid, gradients, images).
         /// </summary>
         Shapes
     }
