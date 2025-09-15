@@ -47,6 +47,7 @@ namespace NanoUI
         /// When calling RequestLayoutUpdate, NanoUI queues commands. 
         /// This value tells, howe many queued commands are processed in scene Draw
         /// method / frame. Value: 10.
+        /// Note: If you want to immediately process layout calculations, call PerformLayout.
         /// </summary>
         public const int MAX_LAYOUT_UPDATE_PER_FRAME = 10;
 
