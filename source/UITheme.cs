@@ -27,19 +27,18 @@ namespace NanoUI
     // we can have default values there!!!
 
     /// <summary>
-    /// UITheme.
+    /// UITheme is a class, that holds all theming/styling information for widgets.
+    /// It acts like CSS file in web. When widgets want to get their styling info,
+    /// they get it from the UITheme.
+    /// Note: UITheme is only stored into the UIScreen, so you must pass it to screen when
+    /// you create it. There is also possibility to dynamically change some/all styling
+    /// at runtime and all the widgets use immediately the new styling info.
     /// </summary>
     public class UITheme
     {
-        // this is real place for all theme widgets
-        // needed to support theming of all properties (no need to overloads if property getter/setter
-        // does nothing extra
         // note: we can't (de)serialize widget dictionary, since Type is not serializable as key &
         // Type is more convenient key than whatever string
         readonly Dictionary<Type, UIWidget> _widgets = [];
-
-        // note if you extend this class, extended theme class should have empty constructor
-        // if you use static CreateDefault or Load methods
 
         /// <summary>
         /// Ctor.
@@ -52,7 +51,7 @@ namespace NanoUI
         #region Global styles
 
         /// <summary>
-        /// Global borders styles.
+        /// Global border styles.
         /// </summary>
         public BorderStyle Borders { get; set; }
 
@@ -62,17 +61,17 @@ namespace NanoUI
         public CommonStyle Common { get; set; }
 
         /// <summary>
-        /// Global docks styles.
+        /// Global docking styles.
         /// </summary>
         public DockingStyle Docks { get; set; }
 
         /// <summary>
-        /// Global files styles.
+        /// Global file styles.
         /// </summary>
         public FilesStyle Files { get; set; }
 
         /// <summary>
-        /// Global fonts styles.
+        /// Global font styles.
         /// </summary>
         public FontsStyle Fonts { get; set; } = new();
 
@@ -82,12 +81,12 @@ namespace NanoUI
         public PointerStyle Pointer { get; set; }
 
         /// <summary>
-        /// Global scrollbars styles.
+        /// Global scrollbar styles.
         /// </summary>
         public ScrollbarStyle Scrollbars { get; set; }
 
         /// <summary>
-        /// Global windows styles.
+        /// Global window styles.
         /// </summary>
         public WindowStyle Windows { get; set; }
 
@@ -97,10 +96,11 @@ namespace NanoUI
 
         // note: this is basically called from base widget when getting basic properties
         // internally type is stored in ThemeType in Widget.
-        // note: type should inherit from Widget & have empty constructor (no params)
-
+        
         /// <summary>
-        /// Get.
+        /// Get the theme prototype widget of type.
+        /// Note: Prototype widgets are lazy-initialized and
+        /// created with empty constructor like new UIWidget().
         /// </summary>
         public UIWidget Get(Type type)
         {
@@ -118,11 +118,10 @@ namespace NanoUI
             return widget!;
         }
 
-        // note: we lazy initialize (create only when called first time)
-        // note: T should have empty constructor (no params)
-
         /// <summary>
-        /// Get<T>.
+        /// Get the theme prototype widget of type T.
+        /// Note: Prototype widgets are lazy-initialized and
+        /// created with empty constructor like new UIWidget().
         /// </summary>
         public T Get<T>() where T : UIWidget, new()
         {
@@ -131,28 +130,24 @@ namespace NanoUI
                 widget = new T();
                 _widgets[typeof(T)] = widget;
             }
+
             return (T)widget;
         }
 
         /// <summary>
-        /// Set<T>.
+        /// Store the theme prototype widget of type T.
         /// </summary>
         public void Set<T>(T widget) where T : UIWidget
         {
             _widgets[typeof(T)] = widget;
         }
 
-        // note: we must have theme widgets as properties in order to support easy serialization/deserialization
-        // also type is not (de)serializable as key
-
-        // create theme widgets
-        // note: theme widgets count is quite big (so some kind of dynamic creating?)!
-
-        // todo: should we dynamically find widgets in Assemby & create them with Activator?
+        // todo: could also dynamically find widgets in Assemby & create them with Activator?
         // should also use Reflection PropertyInfo to set them in correct property?
-        // note: not all widgets have widget spesific theme (uses then underlying widgets theme)
-
-        // this provides default properties
+        
+        /// <summary>
+        /// Default theme prototype widget, that is used if spesified widget is not found or defined.
+        /// </summary>
         public UIWidget Widget
         {
             get => Get<UIWidget>();
@@ -190,7 +185,9 @@ namespace NanoUI
             set => Set(value);
         }
 
-        // all dialogs
+        /// <summary>
+        /// Default theme prototype widget for dialogs.
+        /// </summary>
         public UIDialog Dialog
         {
             get => Get<UIDialog>();
@@ -263,7 +260,10 @@ namespace NanoUI
             set => Set(value);
         }
 
-        // note: this is also theming widget for DropDownView<T>, ComboBox<T>, EnumDropDown<T>, MenuView<T>
+        /// <summary>
+        /// Default theme prototype widget for UIPopupButton and all widgets that are derived from it
+        /// (like UIDropDownView<T>, UIComboBox<T>, UIEnumDropDown<T>).
+        /// </summary>
         public UIPopupButton PopupButton
         {
             get => Get<UIPopupButton>();
@@ -336,11 +336,8 @@ namespace NanoUI
             set => Set(value);
         }
 
-        // this is ViewPanel basic properties for all ViewWidget<T> view panel implementations.
-        // note: properties could be overridden in concrete implemention
-
         /// <summary>
-        /// ViewPanel.
+        /// Default theme prototype widget for UIViewPanel and all widgets that are derived from it or use it.
         /// </summary>
         public UIViewPanel ViewPanel
         {
@@ -358,11 +355,8 @@ namespace NanoUI
 
         #region Methods
 
-        // this supports dynamic theming with file parts
-        // note: this can be extended with using Path in FileFolderInfo (different filetypes ...)
-
         /// <summary>
-        /// GetFileIcon.
+        /// Gets file/folder/hard drive icon. Supports dynamic theming.
         /// </summary>
         public virtual (int, Color) GetFileIcon(in FileFolderInfo fileFolderInfo) => fileFolderInfo.FileFolderType switch
         {
@@ -372,15 +366,11 @@ namespace NanoUI
             _ => (Fonts.IconFile, Files.FileColor)
         };
 
-        // Init with default theme
-        // T must be Theme or extension of it
-        // note: T must have paramless ctor new T()
-
-        // This function should only be used to get your app quickly running
-        // It is recommended that you use Load function & provide your own theme file
-
         /// <summary>
-        /// CreateDefault<T>.
+        /// Creates default theme (see Utils/DefaultTheme class).
+        /// This function should only be used to get your app quickly running.
+        /// It is recommended that you use Load function & provide your own theme file.
+        /// Note: T must have paramless ctor new T().
         /// </summary>
         public static T CreateDefault<T>(NvgContext ctx, FontsStyle fonts) where T : UITheme, new()
         {
@@ -395,10 +385,8 @@ namespace NanoUI
             return theme;
         }
 
-        // T must be Theme or extension of it
-
         /// <summary>
-        /// Load<T>.
+        /// Loads theme of type T from the file path "themefile".
         /// </summary>
         public static T? Load<T>(NvgContext ctx, string themefile) where T : UITheme
         {
@@ -419,7 +407,7 @@ namespace NanoUI
         }
 
         /// <summary>
-        /// Save.
+        /// Saves theme to the theme file.
         /// </summary>
         public void Save(string filename)
         {
