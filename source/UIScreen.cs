@@ -31,17 +31,17 @@ namespace NanoUI
     {
         ArrayBuffer<UIWidget> _focusPath = new();
 
-        // post draw list - for drawing "overlay" over normal drawing
+        // post draw list - for drawing an overlay over normal drawing
         ArrayBuffer<UIWidget> _postDrawList = new();
 
-        // Drag
+        // dragging
         UIWidget? _dragWidget;
 
         // flag to indicate, if we should call TryAttach after dragging is finished (pointer up)
         // note: only docking uses this by now
         bool _tryAttach;
 
-        // this is to be sure that only 1 widget can have pointer focus everytime
+        // this is to be sure that only 1 widget can have pointer focus anytime
         UIWidget? _pointerFocusWidget;
 
         // this is called in Draw - before actual drawing
@@ -52,7 +52,7 @@ namespace NanoUI
         Dictionary<Type, UIDialog> _dialogs = new();
 
         /// <summary>
-        /// Craetes screen with given theme and size (normally your window size).
+        /// Creates screen with given theme and size (normally your window size).
         /// </summary>
         public UIScreen(UITheme theme, Vector2 size)
             : base(null, size)
@@ -136,8 +136,9 @@ namespace NanoUI
         public bool IsDragActive => _dragWidget != null;
 
         /// <summary>
-        /// IsPointerInsideUI checks if some widget is active.
+        /// IsPointerInsideUI checks if some widget is active/focused.
         /// It doesn't take into account screen itself.
+        /// Note: this doesn't count widgets that can't have pointer focus.
         /// </summary>
         public bool IsPointerInsideUI => _pointerFocusWidget != null;
 
@@ -160,7 +161,7 @@ namespace NanoUI
         /// <summary>
         /// You can register your own dialogs (derived from UIDialog) to the screen,
         /// so you don't need to create/dispose them every time you want to use them.
-        /// Note: changes dialog's parent to this screen, so it can be shown.
+        /// Note: registering changes dialog's parent to this screen, so it can be shown.
         /// </summary>
         public void RegisterDialog<T>(T dialog) where T : UIDialog
         {
@@ -357,7 +358,7 @@ namespace NanoUI
         /// <summary>
         /// Resets pointer type to the one specified in theme.
         /// Note: screen resets pointer type automatically,
-        /// when pointer focus widget changes
+        /// when pointer focus widget changes.
         /// </summary>
         public virtual void ResetPointerType()
         {
@@ -374,7 +375,7 @@ namespace NanoUI
         /// <summary>
         /// Doesn't actually do anything more than store deltaSeconds value.
         /// So screen doesn't loop all widgets in the widget tree and send them
-        /// "Update" method. This is used only in the need-to-know basis
+        /// "Update" method. DeltaSeconds is used only in the need-to-know basis
         /// (for example widgets want to do some animations).
         /// You can do your animation/update processes in Draw method before
         /// actually drawing.
@@ -399,7 +400,7 @@ namespace NanoUI
 
         /// <summary>
         /// Process pointer event check if we should actually process pointer event.
-        /// Note: this checks by now if we have modal window & pointer is outside modal window.
+        /// Note: this checks by now, if we have modal window & pointer is outside modal window.
         /// </summary>
         bool ProcessPointerEvent(Vector2 pointerPos)
         {
@@ -701,10 +702,8 @@ namespace NanoUI
         public Action? OnStartTextInput;
         public Action? OnStopTextInput;
 
-        // User should extend these (they need access to windowing platform)
-
         /// <summary>
-        /// GetClipboardString.
+        /// Gets clipboard string from the user application.
         /// </summary>
         public virtual string GetClipboardString()
         {
@@ -716,7 +715,7 @@ namespace NanoUI
         }
 
         /// <summary>
-        /// SetClipboardString.
+        /// Sets clipboard string to the user application.
         /// </summary>
         public virtual void SetClipboardString(ReadOnlySpan<char> text)
         {
@@ -726,22 +725,18 @@ namespace NanoUI
         int? _oldPointerType;
         int? _newPointerType;
 
-        // note: widgets (ie Windows) may set pointer type in event handling &
-        // then check what is the current pointer type in draw event
-
         /// <summary>
-        /// GetCurrentPointerType.
+        /// Gets current pointer type.
         /// </summary>
         public int GetCurrentPointerType()
         {
             return _newPointerType.HasValue ? _newPointerType.Value : Theme.Pointer.PointerType;
         }
 
-        // This could be called many times in frame (OnPointerMove etc). so we delay callback call until
-        // all draw actions have been done
-
         /// <summary>
-        /// SetPointerType.
+        /// Sets pointer type.
+        /// Note: this could be called many times in frame (OnPointerMove etc).
+        /// So callback call is delayed until all draw actions have been done.
         /// </summary>
         public override void SetPointerType(int pointerType)
         {
@@ -751,20 +746,19 @@ namespace NanoUI
             _newPointerType = pointerType;
         }
 
-        // widget should call this in OnFocusChanged(true) event, if it wants to get OnKeyChar events
-
         /// <summary>
-        /// StartTextInput.
+        /// Invokes OnStartTextInput action if defined.
+        /// Note: some windowing systems may not handle by themself OnKeyChar/OnTextInput actions.
+        /// So this is here to provide fallback method. Only widgets that provide
+        /// editable texts should call this when they get focused.
         /// </summary>
         public void StartTextInput()
         {
             OnStartTextInput?.Invoke();
         }
 
-        // widget should call this in OnFocusChanged(false) event
-
         /// <summary>
-        /// StopTextInput.
+        /// Invokes OnStopTextInput action if defined.
         /// </summary>
         public void StopTextInput()
         {
@@ -775,11 +769,12 @@ namespace NanoUI
 
         #region Drawing
 
-        /// <summary>
-        /// Draw.
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
+            // note: this is specialized Draw method, that differs a lot from
+            // the draw methods in widgets.
+
             // counter to restrict too many layout updates in frame
             int counter = 0;
 
@@ -824,12 +819,10 @@ namespace NanoUI
             DrawPointer(GetCurrentPointerType(), PointerPosition);
         }
 
-        // this is a function that you can override, if you want to draw your own pointer type
-        // the default implementation just invokes PointerTypeChanged action if pointer type has really changed
-        // this is called after all widgets has been drawn
-
         /// <summary>
-        /// DrawPointer.
+        /// Invokes PointerTypeChanged action if any, if pointer type has really changed.
+        /// Note: you can override this method in your own extended UIScreen,
+        /// if you want to draw your custom pointer type.
         /// </summary>
         protected virtual void DrawPointer(int pointerType, Vector2 position)
         {
