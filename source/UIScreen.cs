@@ -552,10 +552,6 @@ namespace NanoUI
 
         #region OnPointerScroll
 
-        // OnPointerScroll event is sent to to all children (windows) in backwards order,
-        // but first window that is not collapsed & visible & contains pointer position
-        // stops looping (after it tests its children)
-
         /// <inheritdoc />
         public override bool OnPointerScroll(Vector2 pointerPos, Vector2 scroll)
         {
@@ -569,15 +565,15 @@ namespace NanoUI
 
         #region OnKeyUpDown
 
-        // we restrict OnKeyUpDown event only to first widget in focuspath (should be focused)
-        // (in focus path can (?) be widgets that can't have focus -> Focused = false)
-
-        // note: screen can´t get event (stack overflow)
-        // todo: navigation with TAB
-
         /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
+            // we restrict OnKeyUpDown event only to first widget in focuspath and menubars.
+            // the widget that gets event can decide if it propagates event further.
+
+            // note: screen can´t get event (stack overflow)
+            // todo: navigation with TAB
+
             KeyModifiers = modifiers;
 
             if (_focusPath.Count > 0)
@@ -598,16 +594,6 @@ namespace NanoUI
             }
 
             // check if screen has main menubar - we must check shortcuts
-            /*if (down)
-            {
-                foreach (var widget in Children.AsReadOnlySpan())
-                {
-                    if (widget is MenubarOLD menubar)
-                    {
-                        return menubar.OnKeyUpDown(key, down, modifiers);
-                    }
-                }
-            }*/
             foreach (var child in Children.AsReadOnlySpan())
             {
                 if (!child.Visible || child.Disabled)
@@ -629,14 +615,13 @@ namespace NanoUI
 
         #region OnKeyChar
 
-        // we restrict OnKeyChar event only to first widget in focuspath (should be focused)
-        // (in focus path can (?) be widgets that can't have focus -> Focused = false)
-
-        // note: screen can´t get event (stack overflow)
-
         /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {
+            // we restrict OnKeyChar event only to first widget in focuspath
+            
+            // note: screen can´t get event (stack overflow)
+
             if (_focusPath.Count > 0)
             {
                 foreach (var widget in _focusPath.AsReadOnlySpan())
@@ -657,10 +642,6 @@ namespace NanoUI
 
         #region OnScreenResize
 
-        // note: this event is only passed to screen's direct children. they can then decide
-        // if they want to pass event to their children. the default action in UIWidget is
-        // do nothing
-
         /// <inheritdoc />
         public override void OnScreenResize(Vector2 size, NvgContext ctx)
         {
@@ -679,14 +660,14 @@ namespace NanoUI
 
         #region OnFileDrop
 
-        // File drop is restricted to widgets in focus path (screen can't get event)
-
-        // note: we don't operate with byte array (byte[]) since windget that accepts
-        // filedrop, may not need it
-
         /// <inheritdoc />
         public override bool OnFileDrop(string filename)
         {
+            // File drop is restricted to widgets in focus path (screen can't get event).
+
+            // note: we don't operate with byte array (byte[]) since windget that accepts
+            // filedrop, may not need it.
+
             if (!File.Exists(filename))
             {
                 return false;
