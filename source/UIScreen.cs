@@ -16,11 +16,11 @@ namespace NanoUI
     // con for above: allocates more!
 
     // todo: tab key press -. focus next widget that can get focus
-    // note: you can put any widget directly under screen, but only Windows (& their extensions) support
-    // automatic "layering".
-
+    
     /// <summary>
     /// UIScreen.
+    /// Note: you can put any widget directly under screen,
+    /// but only UIWindows (& their extensions) support automatic "layering".
     /// </summary>
     public partial class UIScreen : UIWidget
     {
@@ -31,6 +31,7 @@ namespace NanoUI
 
         // Drag
         UIWidget? _dragWidget;
+
         // flag to indicate, if we should call TryAttach after dragging is finished (pointer up)
         // note: only docking uses this by now
         bool _tryAttach;
@@ -49,6 +50,10 @@ namespace NanoUI
         // we inherit from widget so that we can use widget's event handling mechanics &
         // having screen as parent
         // however most widget properties are not used in screen
+
+        /// <summary>
+        /// UIScreen.
+        /// </summary>
         public UIScreen(UITheme theme, Vector2 size)
             : base(null, size)
         {
@@ -74,6 +79,10 @@ namespace NanoUI
         #region Properties
 
         // this is only point where theme is stored (should not be null)
+
+        /// <summary>
+        /// Theme.
+        /// </summary>
         public UITheme Theme { get; set; }
 
         // ctor creates default, simple tooltip
@@ -83,6 +92,10 @@ namespace NanoUI
         // note2: be sure that tooltip's visibility is set to false, so it doesn't effect any layout code &
         // is not drawn in normal draw
         UITooltip _tooltip;
+
+        /// <summary>
+        /// Tooltip.
+        /// </summary>
         public new UITooltip Tooltip
         {
             get => _tooltip;
@@ -105,16 +118,36 @@ namespace NanoUI
         // this is a list that holds all widgets that are "post-drawn" after real draw process
         // you can add widget to this list if you want to draw overlay over whole screen
         // note: your widget must override PostDraw(NvgContext ctx, Vector2 pointerPosition) function
+
+        /// <summary>
+        /// PostDrawList.
+        /// </summary>
         public ArrayBuffer<UIWidget> PostDrawList => _postDrawList;
 
         // these are stored in case some widget needs to access these outside the events
+
+        /// <summary>
+        /// KeyModifiers.
+        /// </summary>
         public KeyModifiers KeyModifiers { get; private set; }
+
+        /// <summary>
+        /// PointerPosition.
+        /// </summary>
         public Vector2 PointerPosition { get; private set; }
 
         // we need to control in screen level dragging in process
+
+        /// <summary>
+        /// IsDragActive.
+        /// </summary>
         public bool IsDragActive => _dragWidget != null;
-        
+
         // note: this does not take into account screen
+
+        /// <summary>
+        /// IsPointerInsideUI.
+        /// </summary>
         public bool IsPointerInsideUI => _pointerFocusWidget != null;
 
         #endregion
@@ -124,6 +157,10 @@ namespace NanoUI
         // note: set null, if you want to remove drag widget
         // note2: tryAttach is a boolean flag, that indicates if we should call TryAttach after dragging is
         // finished (pointer up). only docking / dock window uses this by now
+
+        /// <summary>
+        /// SetDragWidget.
+        /// </summary>
         public void SetDragWidget(UIWidget? widget, bool tryAttach = false)
         {
             _dragWidget = widget;
@@ -131,6 +168,10 @@ namespace NanoUI
         }
 
         // note: this changes dialog's parent to this, so it can be shown in this screen
+
+        /// <summary>
+        /// RegisterDialog<T>.
+        /// </summary>
         public void RegisterDialog<T>(T dialog) where T : UIDialog
         {
             if (dialog == null)
@@ -143,6 +184,10 @@ namespace NanoUI
 
         // todo: test nested dialogs FileDialog --> MessageBox
         // todo : TryGet
+
+        /// <summary>
+        /// GetDialog<T>.
+        /// </summary>
         public T? GetDialog<T>() where T : UIDialog
         {
             if (_dialogs.TryGetValue(typeof(T), out var dialog))
@@ -162,6 +207,10 @@ namespace NanoUI
         // todo: can't handle recursive popups (HandlePopupFocused)
         // todo: should we set here pointer focus widget???
         bool looping = false;
+
+        /// <summary>
+        /// UpdateFocus.
+        /// </summary>
         public void UpdateFocus(UIWidget? widget)
         {
             if (widget == null || looping)
@@ -212,6 +261,10 @@ namespace NanoUI
         // note: we "queue" widgets since there can be many same widgets or one of the 
         // widgets parent has already requested layout update
         // real update is executed before draw operations
+
+        /// <summary>
+        /// RequestLayoutUpdate.
+        /// </summary>
         public override void RequestLayoutUpdate(UIWidget? widget)
         {
             // check for null, duplicates or parent(s)
@@ -248,6 +301,10 @@ namespace NanoUI
         // then user must manually handle focus change
         // todo: we could check if widget's parent is this (screen) aka is window & it is focused -> set remaining
         // topmost window focused
+
+        /// <summary>
+        /// RemoveFromScreen.
+        /// </summary>
         public void RemoveFromScreen(UIWidget widget)
         {
             // parent
@@ -284,6 +341,10 @@ namespace NanoUI
         }
 
         // sends OnPointerEnter events & store new pointerFocus widget
+
+        /// <summary>
+        /// RequestPointerFocus.
+        /// </summary>
         public void RequestPointerFocus(UIWidget? widget)
         {
             if (_pointerFocusWidget == widget)
@@ -303,14 +364,25 @@ namespace NanoUI
 
         // this function resets pointer type to the one specified in theme
         // note: screen resets pointer type automatically when pointer focus widget changes
+
+        /// <summary>
+        /// ResetPointerType.
+        /// </summary>
         public virtual void ResetPointerType()
         {
             SetPointerType(Theme.Pointer.PointerType);
         }
 
+        /// <summary>
+        /// DeltaSeconds.
+        /// </summary>
         public float DeltaSeconds { get; private set; }
 
         // note: this could be the place to set any animation/timer support
+
+        /// <summary>
+        /// Update.
+        /// </summary>
         public virtual void Update(float deltaSeconds)
         {
             DeltaSeconds = deltaSeconds;
@@ -318,6 +390,10 @@ namespace NanoUI
 
         // todo: should we restict only to last (topmost window)?
         // todo : should we return screen if none found?
+
+        /// <summary>
+        /// FindTopmost.
+        /// </summary>
         public UIWidget? FindTopmost(Vector2 p)
         {
             return Children.FindTopmost(p - Position);
@@ -325,6 +401,10 @@ namespace NanoUI
 
         // check if we should process pointer event
         // note: this checks by now if we have modal window & pointer is outside modal window
+
+        /// <summary>
+        /// ProcessPointerEvent.
+        /// </summary>
         bool ProcessPointerEvent(Vector2 pointerPos)
         {
             if (_focusPath.Count > 0)
@@ -354,6 +434,8 @@ namespace NanoUI
         // 2. context menu
         // 3. drag'n drop
         // 4. base
+
+        /// <inheritdoc />
         public override bool OnPointerUpDown(Vector2 pointerPos, PointerButton button, bool down)
         {
             // 1. focus path + modal + pointer outside
@@ -415,6 +497,8 @@ namespace NanoUI
         #region OnPointerDoubleClick
 
         // todo: we could restrict this solely to focuspath?
+
+        /// <inheritdoc />
         public override bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
             if (!ProcessPointerEvent(p))
@@ -429,6 +513,8 @@ namespace NanoUI
 
         // note : we could restrict pointer enter/move events only in topmost
         // (focused) window & allways have 1 focused window (if there is any windows)
+
+        /// <inheritdoc />
         public override bool OnPointerMove(Vector2 pointerPos, Vector2 rel)
         {
             PointerPosition = pointerPos;
@@ -473,6 +559,8 @@ namespace NanoUI
         // OnPointerScroll event is sent to to all children (windows) in backwards order,
         // but first window that is not collapsed & visible & contains pointer position
         // stops looping (after it tests its children)
+
+        /// <inheritdoc />
         public override bool OnPointerScroll(Vector2 pointerPos, Vector2 scroll)
         {
             if (!ProcessPointerEvent(pointerPos))
@@ -490,6 +578,8 @@ namespace NanoUI
 
         // note: screen can´t get event (stack overflow)
         // todo: navigation with TAB
+
+        /// <inheritdoc />
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             KeyModifiers = modifiers;
@@ -547,6 +637,8 @@ namespace NanoUI
         // (in focus path can (?) be widgets that can't have focus -> Focused = false)
 
         // note: screen can´t get event (stack overflow)
+
+        /// <inheritdoc />
         public override bool OnKeyChar(char c)
         {
             if (_focusPath.Count > 0)
@@ -572,6 +664,8 @@ namespace NanoUI
         // note: this event is only passed to screen's direct children. they can then decide
         // if they want to pass event to their children. the default action in UIWidget is
         // do nothing
+
+        /// <inheritdoc />
         public override void OnScreenResize(Vector2 size, NvgContext ctx)
         {
             Size = size;
@@ -593,6 +687,8 @@ namespace NanoUI
 
         // note: we don't operate with byte array (byte[]) since windget that accepts
         // filedrop, may not need it
+
+        /// <inheritdoc />
         public override bool OnFileDrop(string filename)
         {
             if (!File.Exists(filename))
@@ -629,6 +725,10 @@ namespace NanoUI
         public Action? OnStopTextInput;
 
         // User should extend these (they need access to windowing platform)
+
+        /// <summary>
+        /// GetClipboardString.
+        /// </summary>
         public virtual string GetClipboardString()
         {
             if(ClipboardGet != null)
@@ -638,6 +738,9 @@ namespace NanoUI
             return string.Empty;
         }
 
+        /// <summary>
+        /// SetClipboardString.
+        /// </summary>
         public virtual void SetClipboardString(ReadOnlySpan<char> text)
         {
             ClipboardSet?.Invoke(text.ToString());
@@ -648,6 +751,10 @@ namespace NanoUI
 
         // note: widgets (ie Windows) may set pointer type in event handling &
         // then check what is the current pointer type in draw event
+
+        /// <summary>
+        /// GetCurrentPointerType.
+        /// </summary>
         public int GetCurrentPointerType()
         {
             return _newPointerType.HasValue ? _newPointerType.Value : Theme.Pointer.PointerType;
@@ -655,6 +762,10 @@ namespace NanoUI
 
         // This could be called many times in frame (OnPointerMove etc). so we delay callback call until
         // all draw actions have been done
+
+        /// <summary>
+        /// SetPointerType.
+        /// </summary>
         public override void SetPointerType(int pointerType)
         {
             if (_newPointerType == pointerType)
@@ -664,12 +775,20 @@ namespace NanoUI
         }
 
         // widget should call this in OnFocusChanged(true) event, if it wants to get OnKeyChar events
+
+        /// <summary>
+        /// StartTextInput.
+        /// </summary>
         public void StartTextInput()
         {
             OnStartTextInput?.Invoke();
         }
 
         // widget should call this in OnFocusChanged(false) event
+
+        /// <summary>
+        /// StopTextInput.
+        /// </summary>
         public void StopTextInput()
         {
             OnStopTextInput?.Invoke();
@@ -679,6 +798,9 @@ namespace NanoUI
 
         #region Drawing
 
+        /// <summary>
+        /// Draw.
+        /// </summary>
         public override void Draw(NvgContext ctx)
         {
             // counter to restrict too many layout updates in frame
@@ -728,6 +850,10 @@ namespace NanoUI
         // this is a function that you can override, if you want to draw your own pointer type
         // the default implementation just invokes PointerTypeChanged action if pointer type has really changed
         // this is called after all widgets has been drawn
+
+        /// <summary>
+        /// DrawPointer.
+        /// </summary>
         protected virtual void DrawPointer(int pointerType, Vector2 position)
         {
             if (_oldPointerType != pointerType)
@@ -742,6 +868,9 @@ namespace NanoUI
 
         #region Dispose
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public override void Dispose()
         {
             // call dispose on base
