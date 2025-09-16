@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 namespace NanoUI.Utils
 {
     /// <summary>
-    /// MemoryUtils.
+    /// MemoryUtils provides some unsafe functions.
     /// </summary>
     public unsafe static class MemoryUtils
     {
-        /// <summary>Tries to allocate a chunk of unmanaged memory.</summary>
+        /// <summary>
+        /// Tries to allocate a chunk of unmanaged memory.
+        /// </summary>
         /// <param name="count">The count of elements contained in the allocation.</param>
         /// <param name="zero"><c>true</c> if the allocated memory should be zeroed; otherwise, <c>false</c>.</param>
         /// <returns>The address to an allocated chunk of memory that is bytes in length or <c>null</c> if the allocation failed.</returns>
@@ -47,7 +49,9 @@ namespace NanoUI.Utils
             return (T*)result;
         }
 
-        /// <summary>Frees an allocated chunk of unmanaged memory.</summary>
+        /// <summary>
+        /// Frees an allocated chunk of unmanaged memory.
+        /// </summary>
         /// <param name="pointer">The address to an allocated chunk of memory to free</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Free(void* pointer) => NativeMemory.Free(pointer);
