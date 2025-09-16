@@ -16,7 +16,6 @@ namespace NanoUI.Fonts
 
         // we use same iterator, so we must reset values
         // note: we should check validity before we come here
-        // fonsTextIterInit
         static void _textIterInit(float x, float y, ReadOnlySpan<char> chars, FontGlyphBitmap bitmapOption)
         {
             // Horizontal align
@@ -45,7 +44,6 @@ namespace NanoUI.Fonts
             _textChars.AddRange(chars);
         }
 
-        // fonsTextIterNext
         static bool _textIterNext()
         {
             if (_iter.NextPos >= _textChars.Count)
@@ -91,7 +89,6 @@ namespace NanoUI.Fonts
 
         // gets glyph index or creates new glyph & rasterizes it
         // note: currently we create glyphs for all different font sizes
-        // fons__getGlyph
         // todo: we could rasterize SDF glyphs only once for codepoint & all font sizes and
         // dynamically calculate glyph quad etc? Now rasterizes all font sizes fro same codepoint
         static unsafe bool _getGlyphIndex(int fontId, float fontSize, uint codepoint, GlyphBaking glyphBaking, FontGlyphBitmap bitmapOption, out int glyphIndex)
@@ -312,7 +309,6 @@ namespace NanoUI.Fonts
 
         #region _buildGlyphQuad, _setGlyphQuad
 
-        // fons__getQuad
         // note: when using shapes, it is not necessary to really build glyph quad;
         // we are only intrested to set iterator's values
         static void _buildGlyphQuad(int fontId)
@@ -384,7 +380,6 @@ namespace NanoUI.Fonts
         const int APREC = 16;
         const int ZPREC = 7;
 
-        // fons__blur
         static unsafe void _blur(byte* dst, int w, int h, int dstStride, int blur)
         {
             int alpha;
@@ -404,7 +399,6 @@ namespace NanoUI.Fonts
             _blurCols(dst, w, h, dstStride, alpha);
         }
 
-        // fons__blurCols
         static unsafe void _blurCols(byte* dst, int w, int h, int dstStride, int alpha)
         {
             int x, y;
@@ -433,7 +427,6 @@ namespace NanoUI.Fonts
             }
         }
 
-        // fons__blurRows
         static unsafe void _blurRows(byte* dst, int w, int h, int dstStride, int alpha)
         {
             int x, y;
@@ -470,7 +463,6 @@ namespace NanoUI.Fonts
         // Diagonal convolution overlaps with horizontal & vertical, so we alternate between vertical & horizontal
         // and diagonal directions to prevent the dilation from being too large.
         // https://github.com/rgb2hsv/nanovg/tree/font_dilate
-        // fons__dilate
         static unsafe void _dilate(byte* dst, int w, int h, int dstStride, int dilate)
         {
             for (int iter = 0; iter < dilate; iter++)
@@ -488,7 +480,6 @@ namespace NanoUI.Fonts
             }
         }
 
-        // fons__maxRows
         static unsafe void _dilateMaxRows(byte* dst, int w, int h, int dstStride)
         {
             int x, y;
@@ -529,7 +520,6 @@ namespace NanoUI.Fonts
             }
         }
 
-        // fons__maxCols
         static unsafe void _dilateMaxCols(byte* dst, int w, int h, int dstStride)
         {
             int x, y;
@@ -570,7 +560,6 @@ namespace NanoUI.Fonts
             }
         }
 
-        // fons__maxDiagUp
         static unsafe void _dilateMaxDiagUp(byte* dst, int w, int h, int dstStride)
         {
             int t, y;
@@ -613,7 +602,6 @@ namespace NanoUI.Fonts
             }
         }
 
-        // fons__maxDiagDown
         static unsafe void _dilateMaxDiagDown(byte* dst, int w, int h, int dstStride)
         {
             int t, y;
@@ -661,7 +649,6 @@ namespace NanoUI.Fonts
 
         #region Common
 
-        // nvg__getFontScale
         // we calculate scale & store current font values to font state
         static float _getFontScale(in NvgState nvgState, in NvgParams nvgParams)
         {
@@ -702,15 +689,11 @@ namespace NanoUI.Fonts
             return MathF.Min(_quantize(MathUtils.GetAverageScale(nvgState.Transform), 0.01f), 4.0f);
         }
 
-        // nvg__quantize
         static float _quantize(float a, float d)
         {
             return (int)(a / d + 0.5f) * d;
         }
 
-        // nvg__getAverageScale - in MathUtils
-
-        // nvg__isTransformFlipped
         static bool _isTransformFlipped(Matrix3x2 m)
         {
             float det = m.M11 * m.M22 - m.M21 * m.M12;
@@ -718,7 +701,6 @@ namespace NanoUI.Fonts
         }
 
         // note: atlas should be filled beginning from top left
-        // fons__getVertAlign
         static float _getVertAlign(in Font font, float fontSize, TextAlignment align)
         {
             if ((align & TextAlignment.Top) != 0)

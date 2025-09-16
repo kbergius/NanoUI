@@ -30,6 +30,7 @@ namespace NanoUI
     /// </summary>
     public partial class UIScreen : UIWidget
     {
+        // currently focused widgets
         ArrayBuffer<UIWidget> _focusPath = new();
 
         // post draw list - for drawing an overlay over normal drawing
@@ -206,7 +207,6 @@ namespace NanoUI
             return null;
         }
 
-        // Update focus path
         // todo: handle looping by not sending OnFocusChanged
         // if new & old focus path contains same widgets
         // todo: can't handle recursive popups (HandlePopupFocused)

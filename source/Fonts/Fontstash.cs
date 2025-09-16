@@ -74,8 +74,6 @@ namespace NanoUI.Fonts
         // get individual font ids in case fonts are removed
         static int _fontCounter;
 
-        // fonsAddFont
-        // fonsAddFontMem
         public static int AddFont(ReadOnlySpan<char> name, ReadOnlySpan<byte> data, GlyphBaking fontBaking, int fontCollectionIndex)
         {
             if (_fontManager != null && _fontManager.Load(_fontCounter, data, fontCollectionIndex))
@@ -118,7 +116,6 @@ namespace NanoUI.Fonts
             return Globals.INVALID;
         }
 
-        // fonsGetFontByName
         public static int GetFontByName(ReadOnlySpan<char> name)
         {
             for (int i = 0; i < _fonts.Length; i++)
@@ -133,8 +130,6 @@ namespace NanoUI.Fonts
         #endregion
 
         #region Measure text
-
-        // fonsTextBounds
 
         static float[] _textBoxBounds = new float[4];
         static float TextBounds(in Font font, float x, float y, ReadOnlySpan<char> chars)
@@ -226,8 +221,6 @@ namespace NanoUI.Fonts
             return advance;
         }
 
-        // fonsLineBounds
-
         static void LineBounds(in Font font, float y, out float minY, out float maxY)
         {
             y += _getVertAlign(font, _fontState.FontSize, _fontState.TextAlign);
@@ -235,8 +228,6 @@ namespace NanoUI.Fonts
             minY = y - font.Ascender * _fontState.FontSize;
             maxY = minY + font.LineHeight * _fontState.FontSize;
         }
-
-        // fonsVertMetrics
 
         static void VertMetrics(in Font font, out float ascender, out float descender, out float lineh)
         {
