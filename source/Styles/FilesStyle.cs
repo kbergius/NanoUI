@@ -4,7 +4,7 @@ using System;
 namespace NanoUI.Styles
 {
     /// <summary>
-    /// FilesStyle.
+    /// Global file style.
     /// </summary>
     public struct FilesStyle
     {

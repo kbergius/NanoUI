@@ -3,24 +3,25 @@ using System.Numerics;
 
 namespace NanoUI.Styles
 {
-    // Docking - used only used when drawing docking layout screen
-    // basically determines docking "texture" (hit areas) params (hit areas: top, left, bottom, right, center)
-
     /// <summary>
-    /// DockingStyle.
+    /// Global docking style is only used in docking.
     /// </summary>
     public struct DockingStyle
     {
         public float HitAreaCornerRadius { get; set; }
         public Color HitAreaBackgroundColor { get; set; }
 
-        // draw hit area visualization (left, top, right, bottom, center)
+        /// <summary>
+        /// Hit area visualization (left, top, right, bottom, center).
+        /// </summary>
         public BrushBase? HitAreaFillBrush { get; set; }
 
-        // docking overlay area color to show where docking is going to performed
+        /// <summary>
+        /// Docking overlay area color to show, where docking is going to be performed.
+        /// </summary>
         public Color OverlayColor { get; set; }
 
-        // TITLEBAR
+        // titlebar
         public BrushBase? TitleBackgroundFocused { get; set; }
         public BrushBase? TitleBackgroundUnfocused { get; set; }
         public string? TitleFontType { get; set; }

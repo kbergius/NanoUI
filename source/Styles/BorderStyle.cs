@@ -2,7 +2,7 @@
 namespace NanoUI.Styles
 {
     /// <summary>
-    /// BorderStyle.
+    /// Global border style.
     /// </summary>
     public struct BorderStyle
     {
