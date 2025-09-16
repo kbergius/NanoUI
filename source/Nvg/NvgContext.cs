@@ -9,7 +9,9 @@ using System.Numerics;
 namespace NanoUI.Nvg
 {
     /// <summary>
-    /// NvgContext.
+    /// NvgContext is the real engine of the NanoUI. 
+    /// It provides API for the drawing layer methods.
+    /// You should create it at your application's startup.
     /// </summary>
     public partial class NvgContext : IDisposable
     {
@@ -38,8 +40,7 @@ namespace NanoUI.Nvg
         INvgRenderer _nvgRenderer;
 
         /// <summary>
-        /// NvgContext is the real engine of the NanoUI. You should create it at
-        /// your application's startup.
+        /// Pass your renderer implementation when creating NvgContext.
         /// Note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the font manager
         /// (unmanaged uses pointers)
         /// </summary>
@@ -49,8 +50,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// NvgContext is the real engine of the NanoUI. You should create it at
-        /// your application's startup.
+        /// Pass your renderer implementation when creating NvgContext.
         /// Note: You can set NanoUI to use your own font manager.
         /// </summary>
         public NvgContext(INvgRenderer nvgRenderer, IFontManager fontManager, float devicePixelRatio = 1.0f)
@@ -70,8 +70,8 @@ namespace NanoUI.Nvg
         #region Frames
 
         /// <summary>
-        /// Begin drawing a new frame and clear buffers. All NanoUI draw commands should be executed
-        /// between BeginFrame() and EndFrame().
+        /// Begins drawing a new frame and clears buffers.
+        /// Note: All draw commands should be executed between BeginFrame() and EndFrame().
         /// </summary>
         public void BeginFrame()
         {
@@ -101,8 +101,8 @@ namespace NanoUI.Nvg
         #region States
 
         /// <summary>
-        ///  Pushes and saves the current render state into a state stack.
-        ///  A matching RestoreState() must be used to restore the state.
+        /// Pushes and saves the current render state into a state stack.
+        /// A matching RestoreState() must be used to restore the state.
         /// </summary>
         public void SaveState()
         {
@@ -121,7 +121,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Pops and restores current render state.
+        /// Pops and restores current render state.
         /// </summary>
         public void RestoreState()
         {
@@ -132,8 +132,8 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Resets current render state to default values.
-        ///  Does not affect the render state stack.
+        /// Resets current render state to default values.
+        /// Does not affect the render state stack.
         /// </summary>
         public void ResetState()
         {
@@ -144,7 +144,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Get current state.
+        /// Returns current state.
         /// </summary>
         ref NvgState GetState()
         {
@@ -203,7 +203,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Sets current stroke style to a solid color.
+        /// Sets current stroke style to a solid color.
         /// </summary>
         public void StrokeColor(Color color)
         {
@@ -211,7 +211,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Sets current stroke style to a paint, which can be a one of the gradients or a pattern.
+        /// Sets current stroke style to a paint, which can be a one of the gradients or a pattern.
         /// </summary>
         public void StrokePaint(Paint paint)
         {
@@ -220,7 +220,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Sets current fill style to a solid color.
+        /// Sets current fill style to a solid color.
         /// </summary>
         public void FillColor(Color color)
         {
@@ -228,7 +228,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        ///  Sets current fill style to a paint, which can be a one of the gradients or a pattern.
+        /// Sets current fill style to a paint, which can be a one of the gradients or a pattern.
         /// </summary>
         public void FillPaint(Paint paint)
         {
@@ -351,13 +351,13 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Starts a new sub-path with specified point as first point.
+        /// Starts a new sub-path with specified point as a first point.
         /// </summary>
         public void MoveTo(float x, float y)
             => MoveTo(new Vector2(x, y));
 
         /// <summary>
-        /// Starts a new sub-path with specified point as first point.
+        /// Starts a new sub-path with specified point as a first point.
         /// </summary>
         public void MoveTo(Vector2 p)
         {
@@ -544,27 +544,27 @@ namespace NanoUI.Nvg
             => RoundedRect(new Rect(x, y, width, height), r);
 
         /// <summary>
-        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// Creates a new rounded rectangle shaped sub-path with varying radii (CornerRadius) for each corner.
         /// </summary>
         public void RoundedRectVarying(float x, float y, float width, float height, in CornerRadius radius)
             => RoundedRectVarying(new Rect(x, y, width, height),
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
 
         /// <summary>
-        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// Creates a new rounded rectangle shaped sub-path with varying radii (CornerRadius) for each corner.
         /// </summary>
         public void RoundedRectVarying(Vector2 pos, Vector2 size, in CornerRadius radius)
             => RoundedRectVarying(new Rect(pos, size), 
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
 
         /// <summary>
-        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// Creates a new rounded rectangle shaped sub-path with varying radii (radXXX values) for each corner.
         /// </summary>
         public void RoundedRectVarying(float x, float y, float width, float height, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
             => RoundedRectVarying(new Rect(x, y, width, height), radTopLeft, radTopRight, radBottomRight, radBottomLeft);
 
         /// <summary>
-        /// Creates a new rounded rectangle shaped sub-path with varying radii for each corner.
+        /// Creates a new rounded rectangle shaped sub-path with varying radii (radXXX values) for each corner.
         /// </summary>
         public void RoundedRectVarying(Rect rect, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
         {
@@ -718,12 +718,12 @@ namespace NanoUI.Nvg
         #region Images
 
         /// <summary>
-        /// Creates texture by loading it from the disk from specified file name.
+        /// Creates texture with specified string identifier (normally path).
         /// Note: this is just a helper method and params are passed as-is to renderer.
         /// so you can set in path param whatever file identication you like or
         /// call your renderer directly.
         /// </summary>
-        /// <returns>Handle to the texture.</returns>
+        /// <returns>Id of the texture.</returns>
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
             return _nvgRenderer.CreateTexture(path, textureFlags);
@@ -732,7 +732,7 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates texture from texture description.
         /// </summary>
-        /// <returns>Handle to the texture.</returns>
+        /// <returns>Id of the texture.</returns>
         public int CreateTexture(TextureDesc description)
         {
             return _nvgRenderer.CreateTexture(description);

@@ -38,7 +38,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Vector2
+    /// <summary>
+    /// JsonVector2Converter.
+    /// </summary>
     public class JsonVector2Converter : JsonConverter<Vector2>
     {
         public override Vector2 Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -54,7 +56,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Vector3
+    /// <summary>
+    /// JsonVector3Converter.
+    /// </summary>
     public class JsonVector3Converter : JsonConverter<Vector3>
     {
         public override Vector3 Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -70,7 +74,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Vector4
+    /// <summary>
+    /// JsonVector4Converter.
+    /// </summary>
     public class JsonVector4Converter : JsonConverter<Vector4>
     {
         public override Vector4 Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -86,7 +92,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Quaternion
+    /// <summary>
+    /// JsonQuaternionConverter.
+    /// </summary>
     public class JsonQuaternionConverter : JsonConverter<Quaternion>
     {
         public override Quaternion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -102,7 +110,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Matrix4x4
+    /// <summary>
+    /// JsonMatrix4x4Converter.
+    /// </summary>
     public class JsonMatrix4x4Converter : JsonConverter<Matrix4x4>
     {
         public override Matrix4x4 Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -122,7 +132,9 @@ namespace NanoUI.Serializers
         }
     }
 
-    // Plane
+    /// <summary>
+    /// JsonPlaneConverter.
+    /// </summary>
     public class JsonPlaneConverter : JsonConverter<Plane>
     {
         public override Plane Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

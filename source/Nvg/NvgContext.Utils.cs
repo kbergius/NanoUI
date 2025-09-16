@@ -6,11 +6,11 @@ using System.Numerics;
 
 namespace NanoUI.Nvg
 {
+    // private/internal
     partial class NvgContext
     {
         #region Caps
 
-        // nvg__buttCapStart
         static void _buttCapStart(in NvgPoint p, Vector2 delta, float w, float d, float aa, float u0, float u1)
         {
             Vector2 pPos = p.Position - delta * d;
@@ -22,7 +22,6 @@ namespace NanoUI.Nvg
             DrawCache.AddVertex(pPos - dl * w, u1, 1.0f);
         }
 
-        // nvg__buttCapEnd
         static void _buttCapEnd(in NvgPoint p, Vector2 delta, float w, float d, float aa, float u0, float u1)
         {
             Vector2 pPos = p.Position + delta * d;
@@ -34,7 +33,6 @@ namespace NanoUI.Nvg
             DrawCache.AddVertex(pPos - dl * w + delta * aa, u1, 0.0f);
         }
 
-        // nvg__roundCapStart
         static void _roundCapStart(in NvgPoint p, Vector2 delta, float w, uint ncap, float u0, float u1)
         {
             Vector2 pPos = p.Position;
@@ -54,7 +52,6 @@ namespace NanoUI.Nvg
             DrawCache.AddVertex(pPos - dl * w, u1, 1.0f);
         }
 
-        // nvg__roundCapEnd
         static void _roundCapEnd(in NvgPoint p, Vector2 delta, float w, uint ncap, float u0, float u1)
         {
             Vector2 pPos = p.Position;
@@ -78,7 +75,6 @@ namespace NanoUI.Nvg
 
         #region Joins
 
-        // nvg__bevelJoin
         static void _bevelJoin(in NvgPoint p0, in NvgPoint p1, float lw, float rw, float lu, float ru)
         {
             Vector2 dl0 = new(p0.Delta.Y, -p0.Delta.X);
@@ -150,7 +146,6 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvg__roundJoin
         static void _roundJoin(in NvgPoint p0, in NvgPoint p1, float lw, float rw, float lu, float ru, uint ncap)
         {
             Vector2 dl0 = new(p0.Delta.Y, -p0.Delta.X);
@@ -220,7 +215,6 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvg__chooseBevel
         static void _chooseBevel(bool bevel, in NvgPoint p0, in NvgPoint p1, float w, out Vector2 pos0, out Vector2 pos1)
         {
             if (bevel)
@@ -239,7 +233,6 @@ namespace NanoUI.Nvg
 
         #region Common
 
-        // nvg__polyArea
         static float _polyArea(Span<NvgPoint> points)
         {
             float area = 0;
@@ -252,7 +245,6 @@ namespace NanoUI.Nvg
             return area * 0.5f;
         }
 
-        // nvg__polyReverse
         static void _polyReverse(Span<NvgPoint> points)
         {
             int i = 0, j = points.Length - 1;
@@ -267,7 +259,6 @@ namespace NanoUI.Nvg
             }
         }
 
-        // nvg__isectRects
         static Rect _isectRects(in Rect a, in Rect b)
         {
             Vector2 min = Vector2.Max(a.Position, b.Position);
@@ -275,14 +266,12 @@ namespace NanoUI.Nvg
             return new Rect(min, Vector2.Max(new Vector2(0.0f), max - min));
         }
 
-        // nvg__ptEquals
         static bool _ptEquals(Vector2 p1, Vector2 p2, float tol)
         {
             Vector2 d = p2 - p1;
             return d.X * d.X + d.Y * d.Y < tol * tol;
         }
 
-        // nvg__triarea2
         static float _triarea2(Vector2 a, Vector2 b, Vector2 c)
         {
             Vector2 ab = b - a;
@@ -290,7 +279,6 @@ namespace NanoUI.Nvg
             return ac.X * ab.Y - ab.X * ac.Y;
         }
 
-        // nvg__distPtSeg
         static float _distPtSeg(Vector2 pos, Vector2 p, Vector2 q)
         {
             Vector2 pq = q - p;
@@ -310,7 +298,6 @@ namespace NanoUI.Nvg
             return d.X * d.X + d.Y * d.Y;
         }
 
-        // nvg__curveDivs
         static uint _curveDivs(float r, float arc, float tol)
         {
             float da = MathF.Acos(r / (r + tol)) * 2.0f;

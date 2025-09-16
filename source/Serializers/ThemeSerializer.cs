@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace NanoUI.Serializers
 {
     /// <summary>
-    /// ThemeSerializer.
+    /// Serializes/deserializes UITheme to/from JSON using various converters.
     /// </summary>
     public class ThemeSerializer
     {
@@ -32,9 +32,8 @@ namespace NanoUI.Serializers
                     new JsonPlaneConverter(),
                     // base
                     new JsonColorConverter(),
-                    // NanoUI.Common.Range
-                    new JsonRangeConverter(),
-                    new JsonPaddingConverter(),
+                    new JsonMinMaxConverter(),
+                    new JsonThicknessConverter(),
                     new JsonCornerRadiusConverter(),
                 }
             };

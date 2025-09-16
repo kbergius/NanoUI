@@ -10,6 +10,9 @@ namespace NanoUI.Utils
     /// </summary>
     public static class MathUtils
     {
+        /// <summary>
+        /// IsPointInsideTriangle.
+        /// </summary>
         public static bool IsPointInsideTriangle(Vector2 point, Vector2 a, Vector2 b, Vector2 c)
         {
             bool b1 = ((point.X - b.X) * (a.Y - b.Y) - (point.Y - b.Y) * (a.X - b.X)) < 0.0f;
@@ -19,17 +22,27 @@ namespace NanoUI.Utils
             return (b1 == b2) && (b2 == b3);
         }
 
+        /// <summary>
+        /// Swap<T>.
+        /// </summary>
         public static void Swap<T>(ref T a, ref T b)
         {
             (a, b) = (b, a);
         }
 
-        // note: .NET 10 has this implemented
+        /// <summary>
+        /// Cross.
+        /// </summary>
         public static float Cross(this Vector2 a, Vector2 b)
         {
+            // note: .NET 10 has this implemented
+
             return b.X * a.Y - a.X * b.Y;
         }
 
+        /// <summary>
+        /// GetAverageScale.
+        /// </summary>
         public static float GetAverageScale(Matrix3x2 m)
         {
             float sx = MathF.Sqrt(m.M11 * m.M11 + m.M21 * m.M21);
@@ -38,31 +51,49 @@ namespace NanoUI.Utils
             return (sx + sy) * 0.5f;
         }
 
+        /// <summary>
+        /// RotateAroundPoint.
+        /// </summary>
         public static Vector2 RotateAroundPoint(this Vector2 v, float radians, Vector2 point)
         {
             return Vector2.Transform(v - point, Matrix4x4.CreateRotationZ(radians)) + point;
         }
 
+        /// <summary>
+        /// Quotient.
+        /// </summary>
         public static Vector2 Quotient(this Vector2 a, Vector2 b)
         {
             return new Vector2(a.X / b.X, a.Y / b.Y);
         }
-        
+
+        /// <summary>
+        /// ReplaceZero.
+        /// </summary>
         public static Vector2 ReplaceZero(this Vector2 a, Vector2 b)
         {
             return new Vector2(a.X > 0 ? a.X : b.X, a.Y > 0 ? a.Y : b.Y);
         }
 
+        /// <summary>
+        /// SquaredNorm.
+        /// </summary>
         public static float SquaredNorm(this Vector2 v)
         {
             return v.X * v.X + v.Y * v.Y;
         }
 
+        /// <summary>
+        /// MinCoefficient.
+        /// </summary>
         public static float MinCoefficient(this Vector2 v)
         { 
             return v.X > v.Y ? v.Y : v.X;
         }
 
+        /// <summary>
+        /// Sum<T>.
+        /// </summary>
         public static T Sum<T>(T[] array) where T : INumber<T>
         {
             if (array == null || array.Length == 0)
@@ -71,6 +102,9 @@ namespace NanoUI.Utils
             return array.Aggregate((a, b) => a + b);
         }
 
+        /// <summary>
+        /// Sum<T>.
+        /// </summary>
         public static T Sum<T>(List<T> list) where T : INumber<T>
         {
             if (list == null || list.Count == 0)

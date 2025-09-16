@@ -9,10 +9,10 @@ using System.Text;
 
 namespace NanoUI.Utils
 {
-    // note: parse methods assumes that your have first "sanitized" your string (no control chars & trimmed)
-
     /// <summary>
     /// StringUtils.
+    /// Note: parse methods assumes that you have first sanitized your string
+    /// (no additional spaces, control chars & trimmed)
     /// </summary>
     public static class StringUtils
     {
@@ -24,6 +24,7 @@ namespace NanoUI.Utils
 
         #region Named colors
 
+        // named colors dictionary maps strings to Colors
         internal static Dictionary<string, Color> _namedColors = new()
         {
             { "transparent", Color.Transparent },
@@ -171,6 +172,9 @@ namespace NanoUI.Utils
 
         #endregion
 
+        /// <summary>
+        /// Returns string from number & format.
+        /// </summary>
         public static string GetNumberFormat<T>(T value, NumericFormat numericFormat) where T : INumber<T>
         {
             switch (numericFormat)
@@ -186,13 +190,17 @@ namespace NanoUI.Utils
             }
         }
 
-
-        // if there is html encoding - decode
+        /// <summary>
+        /// HtmlDecode.
+        /// </summary>
         public static ReadOnlySpan<char> HtmlDecode(string value)
         {
             return SanitizeString(WebUtility.HtmlDecode(value));
         }
 
+        /// <summary>
+        /// Removes double <spaces>, <control chars> and trims.
+        /// </summary>
         public static ReadOnlySpan<char> SanitizeString(ReadOnlySpan<char> val)
         {
             // reinit
@@ -227,13 +235,17 @@ namespace NanoUI.Utils
 
         #region Parsing
 
-        // float - use invariant culture (uses '.' as decimal separator)
+        /// <summary>
+        /// Float parsing using invariant culture ('.' as decimal separator).
+        /// </summary>
         public static bool TryParseFloat(ReadOnlySpan<char> val, out float floatResult)
         {
             return float.TryParse(val, CultureInfo.InvariantCulture, out floatResult);
         }
 
-        // float array - separated with separator (normally spaces)
+        /// <summary>
+        /// Float array parsing - separated with separator (normally <space>s).
+        /// </summary>
         public static bool TryParseFloatArray(ReadOnlySpan<char> val, char[] separators, out ReadOnlySpan<float> floatArray)
         {
             string[] split = val.ToString().Split(separators, StringSplitOptions.RemoveEmptyEntries);
@@ -258,7 +270,9 @@ namespace NanoUI.Utils
             return false;
         }
 
-        // number + unit
+        /// <summary>
+        /// Number + unit parsing. Units can be "%", "px", "pt" or "em".
+        /// </summary>
         public static bool TryParseNumberUnit(ReadOnlySpan<char> val, out float result, out bool isPercent)
         {
             // default
@@ -316,10 +330,13 @@ namespace NanoUI.Utils
             return false;
         }
 
-        // color: hexstring, named color, rgb(...), rgba(...)
-        // todo: hsl(), hsla()
+        /// <summary>
+        /// Color parsing. Supports hexstrings, named colors, rgb(...), rgba(...).
+        /// </summary>
         public static bool TryParseColor(ReadOnlySpan<char> val, out Color? color)
         {
+            // todo: hsl(), hsla()
+
             // format: "#ff00AA"
             if (IsHexString(val))
             {
@@ -388,7 +405,6 @@ namespace NanoUI.Utils
             color = null;
             return false;
         }
-
 
         #endregion
 
