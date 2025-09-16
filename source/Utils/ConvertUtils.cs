@@ -5,20 +5,23 @@ using System.Collections.Generic;
 namespace NanoUI.Utils
 {
     /// <summary>
-    /// ConvertUtils.
+    /// ConvertUtils provides some common conversions.
     /// </summary>
     public static class ConvertUtils
     {
-        // icon strings (we convert int to string)
-        // note: we must use this since char.ConvertFromUtf32(int) allocates new string
         static Dictionary<int, string> _iconStrings = new();
 
+        /// <summary>
+        /// Converts icon int to string and stores them.
+        /// Note: prevents allocating new strings.
+        /// </summary>
         public static ReadOnlySpan<char> GetIconString(int icon)
         {
             if (!_iconStrings.TryGetValue(icon, out var str))
             {
                 _iconStrings.Add(icon, char.ConvertFromUtf32(icon));
             }
+
             return str;
         }
 
@@ -35,6 +38,7 @@ namespace NanoUI.Utils
             }
             return TextAlignment.Left;
         }
+
         public static TextAlignment ConvertVerticalAlign(TextVerticalAlign verticalAlign)
         {
             switch (verticalAlign)
@@ -49,6 +53,9 @@ namespace NanoUI.Utils
             return TextAlignment.Top;
         }
 
+        /// <summary>
+        /// Converts separate horizontalAlign & verticalAlign to 1 TextAlignment value.
+        /// </summary>
         public static TextAlignment ConvertTextAlign(TextHorizontalAlign horizontalAlign, TextVerticalAlign verticalAlign)
         {
             return ConvertHorizontalAlign(horizontalAlign) | ConvertVerticalAlign(verticalAlign);

@@ -4,17 +4,9 @@ using System.Numerics;
 
 namespace NanoUI.Utils
 {
-    // this can be used to create default theme properties
-
-    // todo: when we don't set any widget properties - then the properties are not saved in JSON theme &
-    // we can have default values there!!!
-    // note: it is recommended that you only have few theme widgets for basic properties
-    // (like UiWidget, UILabel, UiButton etc) and set all extended widgets use as ThemeType their theme type.
-    // you can of course extend any property in extended widget when it is different than in base teheme type.
-    // so any special themetype in these extended widgets can be accessed directly calling extensted theme widget
-
     /// <summary>
     /// DefaultTheme.
+    /// You can use this to get your application quickly up and running.
     /// </summary>
     public static class DefaultTheme
     {

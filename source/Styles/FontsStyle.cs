@@ -6,7 +6,8 @@ using System.IO;
 
 namespace NanoUI.Styles
 {
-    // todo: this could be simpler & support also non-desktops!
+    // todo: this could be simpler & support also non-desktops (AddFont(byte[] array)!
+    // todo: could be Screen.AddFont / Theme.AddFont?
     // todo?: embed FontAwesome icons & use it as default icon file (because icons point at enum FontAwesome)?
 
     /// <summary>

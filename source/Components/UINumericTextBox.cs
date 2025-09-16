@@ -136,7 +136,7 @@ namespace NanoUI.Components
 
         string DoGetFormatted(T val)
         {
-            return FormatUtils.GetNumberFormat(val, _numericFormat);
+            return StringUtils.GetNumberFormat(val, _numericFormat);
         }
 
         #endregion

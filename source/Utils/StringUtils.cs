@@ -3,6 +3,7 @@ using Color = NanoUI.Common.Color;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Numerics;
 using System.Net;
 using System.Text;
 
@@ -169,6 +170,22 @@ namespace NanoUI.Utils
         };
 
         #endregion
+
+        public static string GetNumberFormat<T>(T value, NumericFormat numericFormat) where T : INumber<T>
+        {
+            switch (numericFormat)
+            {
+                case NumericFormat.Decimal0: return $"{value:0}";
+                case NumericFormat.Decimal1: return $"{value:0.0}";
+                case NumericFormat.Decimal2: return $"{value:0.00}";
+                case NumericFormat.Decimal3: return $"{value:0.000}";
+                case NumericFormat.Decimal4: return $"{value:0.0000}";
+                case NumericFormat.Decimal5: return $"{value:0.00000}";
+                case NumericFormat.Decimal6: return $"{value:0.000000}";
+                default: return $"{value}";
+            }
+        }
+
 
         // if there is html encoding - decode
         public static ReadOnlySpan<char> HtmlDecode(string value)
