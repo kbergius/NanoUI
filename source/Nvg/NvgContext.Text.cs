@@ -62,7 +62,7 @@ namespace NanoUI.Nvg
         /// Note: this checks, that your path is in normal filesystem (System.IO.File.Exists).
         /// If you use some other filesystem solution, pass byte array.
         /// </summary>
-        /// <returns>Handle to the font.</returns>
+        /// <returns>Id of the font.</returns>
         public int CreateFont(ReadOnlySpan<char> name, string path, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             if (!File.Exists(path))
@@ -77,7 +77,7 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a font by loading it from the specified memory chunk.
         /// </summary>
-        /// <returns>Handle to the font.</returns>
+        /// <returns>Id of the font.</returns>
         public int CreateFont(ReadOnlySpan<char> name, ReadOnlySpan<byte> data, GlyphBaking fontBaking = GlyphBaking.SDF, int fontCollectionIndex = 0)
         {
             return Fontstash.AddFont(name, data, fontBaking, fontCollectionIndex);
@@ -86,7 +86,7 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Finds a loaded font from specified name.
         /// </summary>
-        /// <returns>Handle to it, or -1 if the font is not found.</returns>
+        /// <returns>Id to it, or -1 if the font is not found.</returns>
         public int GetFontByName(ReadOnlySpan<char> name)
         {
             if (name.IsEmpty)
@@ -242,14 +242,14 @@ namespace NanoUI.Nvg
             => Text(pos, ConvertUtils.GetIconString(icon));
 
         /// <summary>
-        /// Draws text string at specified location.
+        /// Draws text at specified location.
         /// Note: Returns x position after text drawn.
         /// </summary>
         public float Text(float x, float y, ReadOnlySpan<char> text)
             => Text(new Vector2(x, y), text);
 
         /// <summary>
-        /// Draws text string at specified location.
+        /// Draws text at specified location.
         /// Note: Returns x position after text drawn.
         /// </summary>
         public float Text(Vector2 pos, ReadOnlySpan<char> text)
@@ -264,25 +264,25 @@ namespace NanoUI.Nvg
         #region TextBounds
 
         /// <summary>
-        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measures the specified icon. Parameter bounds contains the bounds of the icon.<br/>
         /// Measured values are returned in local coordinate space.
         /// </summary>
-        /// <param name="bounds">Contains the bounds of the text when returned.</param>
-        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
+        /// <param name="bounds">Contains the bounds of the icon when returned.</param>
+        /// <returns>The horizontal advance of the measured icon (i.e. where the next character should be drawn).</returns>
         public float TextBounds(float x, float y, int icon, out Rect bounds)
             => TextBounds(new Vector2(x, y), ConvertUtils.GetIconString(icon), out bounds);
 
         /// <summary>
-        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measures the specified icon. Parameter bounds contains the bounds of the icon.<br/>
         /// Measured values are returned in local coordinate space.
         /// </summary>
-        /// <param name="bounds">Contains the bounds of the text when returned.</param>
-        /// <returns>The horizontal advance of the measured text (i.e. where the next character should be drawn).</returns>
+        /// <param name="bounds">Contains the bounds of the icon when returned.</param>
+        /// <returns>The horizontal advance of the measured icon (i.e. where the next character should be drawn).</returns>
         public float TextBounds(Vector2 pos, int icon, out Rect bounds)
             => TextBounds(pos, ConvertUtils.GetIconString(icon), out bounds);
 
         /// <summary>
-        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measures the specified text. Parameter bounds contains the bounds of the text.<br/>
         /// Measured values are returned in local coordinate space.
         /// </summary>
         /// <param name="bounds">Contains the bounds of the text when returned.</param>
@@ -291,7 +291,7 @@ namespace NanoUI.Nvg
             => TextBounds(new Vector2(x, y), text, out bounds);
 
         /// <summary>
-        /// Measures the specified text string. Parameter bounds contains the bounds of the text.<br/>
+        /// Measures the specified text. Parameter bounds contains the bounds of the text.<br/>
         /// Measured values are returned in local coordinate space.
         /// </summary>
         /// <param name="bounds">Contains the bounds of the text when returned.</param>
@@ -306,7 +306,7 @@ namespace NanoUI.Nvg
         #region TextBox
 
         /// <summary>
-        /// Draws multi-line text string at specified location wrapped at the specified width.
+        /// Draws multi-line text at specified location wrapped at the specified width.
         /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
         /// Words longer than the max width are split at nearest character (i.e. no hyphenation).
         /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
@@ -318,7 +318,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Draws multi-line text string at specified location wrapped at the specified width.
+        /// Draws multi-line text at specified location wrapped at the specified width.
         /// White space is stripped at the beginning of the rows, the text is split at word boundries or when new-line characters are encountered.
         /// Words longer than the max width are split at nearest character (i.e. no hyphenation).
         /// Note: it is not recommended to use this in production code, since this calculates text rows every frame.
@@ -336,7 +336,7 @@ namespace NanoUI.Nvg
         #region TextBoxBounds
 
         /// <summary>
-        /// Measures the specified multi-text string.<br/>
+        /// Measures the specified multi-text.<br/>
         /// Measured values are returned in local space.
         /// </summary>
         /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
@@ -344,7 +344,7 @@ namespace NanoUI.Nvg
             => TextBoxBounds(new Vector2(x, y), breakRowWidth, text, Globals.MAX_TEXT_ROWS, out bounds);
 
         /// <summary>
-        /// Measures the specified multi-text string.<br/>
+        /// Measures the specified multi-text.<br/>
         /// Measured values are returned in local space.
         /// </summary>
         /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
@@ -352,7 +352,7 @@ namespace NanoUI.Nvg
             => TextBoxBounds(new Vector2(x, y), breakRowWidth, text, maxRows, out bounds);
 
         /// <summary>
-        /// Measures the specified multi-text string.<br/>
+        /// Measures the specified multi-text.<br/>
         /// Measured values are returned in local space.
         /// </summary>
         /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
@@ -362,7 +362,7 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Measures the specified multi-text string.<br/>
+        /// Measures the specified multi-text.<br/>
         /// Measured values are returned in local space.
         /// </summary>
         /// <param name="bounds">Contains the bounds box of the multi-text when returned.</param>
