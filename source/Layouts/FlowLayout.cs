@@ -10,7 +10,7 @@ namespace NanoUI.Layouts
     /// <summary>
     /// FlowLayout is an extension of the grid layout, where widgets are positioned
     /// in horizontal order in a way, that they always use all the parent's width.
-    /// It dynamically calculates column count and lets then grid layout do the real work.
+    /// Layout dynamically calculates column count and lets then grid layout do the real work.
     /// </summary>
     public class FlowLayout : GridLayout
     {
@@ -26,7 +26,8 @@ namespace NanoUI.Layouts
         #region Properties
 
         /// <summary>
-        /// Supports only horizontal orientation by now (layout based on columns).
+        /// Supports only horizontal orientation by now (layout based on columns),
+        /// so the setter does nothing.
         /// </summary>
         public override Orientation Orientation
         {
@@ -77,7 +78,7 @@ namespace NanoUI.Layouts
 
         #region Private
 
-        // we calculate column count - rows are calculated from it
+        // calculate column count - rows are calculated from it
         void CalculateColumnCount(NvgContext ctx, UIWidget parent)
         {
             // we care here only for width (columns fit)

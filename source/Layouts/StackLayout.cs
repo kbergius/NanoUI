@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
+    /// <summary>
+    /// StackLayout arranges widgets either horizontally or vertically stacked.
+    /// </summary>
     public class StackLayout : Layout
     {
         public StackLayout(Orientation orientation)

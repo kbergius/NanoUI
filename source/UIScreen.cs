@@ -15,6 +15,7 @@ namespace NanoUI
     // - may have some performance gain!
     // con for above: allocates more!
 
+    // todo: should handle also cases, when screen's position is not (0, 0).
     // todo: tab key press -. focus next widget that can get focus
 
     /// <summary>

@@ -5,7 +5,7 @@ using System.Numerics;
 namespace NanoUI.Layouts
 {
     /// <summary>
-    /// Layout is a base layout class, that all layout implementations should extend.
+    /// Layout is a base, abstract layout class, that all layout implementations should extend.
     /// </summary>
     public abstract class Layout
     {
@@ -17,7 +17,6 @@ namespace NanoUI.Layouts
 
         /// <summary>
         /// Calculates widget's children preferred size with margins.
-        /// note: widget may add more into this size (like UITitlebar).
         /// </summary>
         public abstract Vector2 PreferredSize(NvgContext ctx, UIWidget parent);
 
