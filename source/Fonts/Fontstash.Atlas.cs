@@ -23,14 +23,12 @@ namespace NanoUI.Fonts
 
         public static int GetAtlasTextureId() => _atlasTexture;
 
-        // fonsGetAtlasSize
         public static void GetAtlasSize(out int width, out int height)
         {
             width = _atlas.Width;
             height = _atlas.Height;
         }
 
-        // fonsGetTextureData
         public static ReadOnlySpan<byte> GetTextureData(out int width, out int height)
         {
             width = _atlas.Width;
@@ -39,7 +37,6 @@ namespace NanoUI.Fonts
             return _atlasData;
         }
 
-        // fonsExpandAtlas, fons__atlasExpand
         public static bool ExpandAtlas(int width, int height)
         {
             if(_nvgRenderer == null)
@@ -127,7 +124,6 @@ namespace NanoUI.Fonts
             return true;
         }
 
-        // fonsResetAtlas, fons__atlasReset
         public static bool ResetAtlas(int width, int height)
         {
             if (_nvgRenderer == null)
@@ -191,14 +187,12 @@ namespace NanoUI.Fonts
 
         #region Private
 
-        // fons__allocAtlas
         static void _allocAtlas(int width, int height)
         {
             // note: we could also do here some init
             ResetAtlas(width, height);
         }
 
-        // fons__atlasInsertNode
         static bool _atlasInsertNode(int idx, int x, int y, int w)
         {
             ref FontAtlasNode _node = ref _atlasNodes.Insert(idx);
@@ -210,14 +204,12 @@ namespace NanoUI.Fonts
             return true;
         }
 
-        // fons__atlasRemoveNode
         static bool _atlasRemoveNode(int idx)
         {
             _atlasNodes.RemoveAt(idx);
             return true;
         }
 
-        // fons__atlasAddSkylineLevel
         static bool _atlasAddSkylineLevel(int idx, int x, int y, int w, int h)
         {
             if (!_atlasInsertNode(idx, x, y + h, w))
@@ -262,7 +254,6 @@ namespace NanoUI.Fonts
 
         // Checks if there is enough space at the location of skyline span 'i',
         // and return the max height of all skyline spans under that at that location,
-        // fons__atlasRectFits
         static int _atlasRectFits(int i, int w, int h)
         {
             int x = _atlasNodes[i].X;
@@ -290,7 +281,6 @@ namespace NanoUI.Fonts
             return y;
         }
 
-        // fons__atlasAddRect
         static bool _atlasAddRect(int rw, int rh, ref int rx, ref int ry)
         {
             int besth = _atlas.Height;
@@ -330,7 +320,6 @@ namespace NanoUI.Fonts
             return true;
         }
 
-        // fons__addWhiteRect
         static bool _addWhiteRect(int w, int h)
         {
             int currentWidth = _atlas.Width;
@@ -360,7 +349,6 @@ namespace NanoUI.Fonts
             return true;
         }
 
-        // fonsValidateTexture
         static bool _validateAtlasTexture()
         {
             if (_atlasDirtyRect[0] < _atlasDirtyRect[2] && _atlasDirtyRect[1] < _atlasDirtyRect[3])

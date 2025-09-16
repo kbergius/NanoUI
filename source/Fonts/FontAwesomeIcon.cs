@@ -1,10 +1,8 @@
 namespace NanoUI.Fonts
 {
-    // These are codepoints to FontAwesome icons (FontAwesome6Free-Solid-900.otf)
-    // If you use different iconset, you must provide your own codepoints
-
     /// <summary>
-    /// FontAwesomeIcon.
+    /// FontAwesomeIcon provides codepoints to FontAwesome icons (FontAwesome6Free-Solid-900.otf).
+    /// If you use different iconset, you must provide your own codepoints.
     /// </summary>
     public enum FontAwesomeIcon : int
     {

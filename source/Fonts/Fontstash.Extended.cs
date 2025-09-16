@@ -18,7 +18,6 @@ namespace NanoUI.Fonts
         static Vector2[] _corners = new Vector2[4];
 
         // returns x position after text drawn
-        // nvgText
         public static float DrawText(NvgContext ctx, ref NvgState state, in NvgParams nvgParams, Vector2 pos, ReadOnlySpan<char> chars)
         {
             if (chars.IsEmpty)
@@ -227,7 +226,6 @@ namespace NanoUI.Fonts
 
         // note: it is not recommended to use this in production code, since this calculates text rows every frame.
         // instead use TextBreakLines and cache TextRows.
-        // nvgTextBox
         public static bool TextBox(NvgContext ctx, ref NvgState state, in NvgParams nvgParams, float x, float y, float breakRowWidth, ReadOnlySpan<char> text, int maxRows = int.MaxValue)
         {
             if (!_isValidFont(state.FontId) || text.Length == 0)
@@ -270,7 +268,6 @@ namespace NanoUI.Fonts
 
         #region TextBounds
 
-        // nvgTextBounds
         public static float TextBounds(in NvgState state, in NvgParams nvgParams, Vector2 pos, ReadOnlySpan<char> chars,
             out Rect bounds)
         {
@@ -310,7 +307,6 @@ namespace NanoUI.Fonts
         #region TextBoxBounds
 
         // note: manipulates state!
-        // nvgTextBoxBounds
         public static void TextBoxBounds(ref NvgState state, in NvgParams nvgParams, Vector2 pos, float breakRowWidth,
             ReadOnlySpan<char> chars, int maxRows, out Rect bounds)
         {
@@ -387,7 +383,6 @@ namespace NanoUI.Fonts
 
         #region TextGlyphPositions
 
-        // nvgTextGlyphPositions
         public static void TextGlyphPositions(in NvgState state, in NvgParams nvgParams, Vector2 pos,
             ReadOnlySpan<char> chars, int maxGlyphs, out ReadOnlySpan<GlyphPosition> posSpan)
         {
@@ -432,7 +427,6 @@ namespace NanoUI.Fonts
 
         #region TextMetrics
 
-        // nvgTextMetrics
         public static void TextMetrics(in NvgState state, in NvgParams nvgParams, out float ascender, out float descender, out float lineHeight)
         {
             float scale = _getFontScale(state, nvgParams);
@@ -449,7 +443,6 @@ namespace NanoUI.Fonts
 
         #region TextBreakLines
 
-        // nvgTextBreakLines
         public static void TextBreakLines(in NvgState state, in NvgParams nvgParams, ReadOnlySpan<char> chars,
             float breakRowWidth, int maxRows, out ReadOnlySpan<TextRow> rowsSpan)
         {
@@ -704,7 +697,6 @@ namespace NanoUI.Fonts
 
         #region _flushTextTexture
 
-        // nvg__flushTextTexture
         static void _flushTextTexture()
         {
             if (_validateAtlasTexture())
