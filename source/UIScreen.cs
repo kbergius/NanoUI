@@ -135,16 +135,30 @@ namespace NanoUI
         /// </summary>
         public bool IsDragActive => _dragWidget != null;
 
-        /// <summary>
-        /// IsPointerInsideUI checks if some widget is active/focused.
-        /// It doesn't take into account screen itself.
-        /// Note: this doesn't count widgets that can't have pointer focus.
-        /// </summary>
-        public bool IsPointerInsideUI => _pointerFocusWidget != null;
-
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// IsPointerInsideUI checks if pointer is in some visible widget's area.
+        /// It doesn't take into account screen itself.
+        /// </summary>
+        public bool IsPointerInsideUI(Vector2 pointerPosition)
+        {
+            var pos = pointerPosition - Position;
+
+            // todo: there could be some corner cases, when widgets draw outside
+            // their scissors area.
+
+            // loop immediate childs
+            foreach (var child in Children.AsReadOnlySpan())
+            {
+                if (child.Visible && child.Contains(pos))
+                    return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Sets current drag widget. Set null, if you want to remove drag widget.
