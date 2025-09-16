@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text;
 
-
 namespace NanoUI.Serializers
 {
     #region IntArray
@@ -92,12 +91,12 @@ namespace NanoUI.Serializers
     }
     #endregion
 
-    #region Range
+    #region MinMax
 
     /// <summary>
-    /// JsonRangeConverter.
+    /// JsonMinMaxConverter.
     /// </summary>
-    public class JsonRangeConverter : JsonConverter<MinMax>
+    public class JsonMinMaxConverter : JsonConverter<MinMax>
     {
         public override MinMax Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -174,9 +173,9 @@ namespace NanoUI.Serializers
     #region Thickness
 
     /// <summary>
-    /// JsonPaddingConverter.
+    /// JsonThicknessConverter.
     /// </summary>
-    public class JsonPaddingConverter : JsonConverter<Thickness>
+    public class JsonThicknessConverter : JsonConverter<Thickness>
     {
         public override Thickness Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

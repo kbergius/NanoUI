@@ -32,9 +32,8 @@ namespace NanoUI.Serializers
                     new JsonPlaneConverter(),
                     // base
                     new JsonColorConverter(),
-                    // NanoUI.Common.Range
-                    new JsonRangeConverter(),
-                    new JsonPaddingConverter(),
+                    new JsonMinMaxConverter(),
+                    new JsonThicknessConverter(),
                     new JsonCornerRadiusConverter(),
                 }
             };
