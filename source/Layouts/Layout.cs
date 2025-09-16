@@ -4,22 +4,28 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
-    // this is a base layout that all layout implementations should extend
-
     /// <summary>
-    /// Layout.
+    /// Layout is a base layout class, that all layout implementations should extend.
     /// </summary>
     public abstract class Layout
     {
-        // note: layout spacing may use only 1 dimension
+        /// <summary>
+        /// Spacing between widgets.
+        /// Note: layout spacing may use only 1 dimension.
+        /// </summary>
         public Vector2 Spacing { get; set; }
 
-        // calculates widget's children preferred size with margins
-        // note: widget may add more into this size (like titlebar)
+        /// <summary>
+        /// Calculates widget's children preferred size with margins.
+        /// note: widget may add more into this size (like UITitlebar).
+        /// </summary>
         public abstract Vector2 PreferredSize(NvgContext ctx, UIWidget parent);
 
-        // sets widget's children positions and sizes & calls childs to perform layout
-        // note: this method calls widget.GetLayoutArea(), so to get offset/topLeft & children area size
+        /// <summary>
+        /// Sets widget's children positions and sizes & calls childs to perform layout,
+        /// where you can tweak calculated values.
+        /// Note: calls parent widget's GetLayoutArea method in order to get offset/topLeft & children area size.
+        /// </summary>
         public abstract void PerformLayout(NvgContext ctx, UIWidget parent);
     }
 }

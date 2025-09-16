@@ -30,11 +30,13 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             return parent.GetLayoutArea().Size;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             // no margins!

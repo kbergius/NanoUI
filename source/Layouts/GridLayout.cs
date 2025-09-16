@@ -110,6 +110,7 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
@@ -128,6 +129,7 @@ namespace NanoUI.Layouts
             return size;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
