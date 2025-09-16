@@ -3,10 +3,8 @@ using System.Numerics;
 
 namespace NanoUI.Serializers
 {
-    // this is used when serializing JSON
-
     /// <summary>
-    /// NumericsArrayConverter.
+    /// NumericsArrayConverter is used when serializing JSON.
     /// </summary>
     public static class NumericsArrayConverter
     {
@@ -56,6 +54,7 @@ namespace NanoUI.Serializers
         {
             return [ quaternion.X, quaternion.Y, quaternion.Z, quaternion.W ];
         }
+
         public static Quaternion ToQuaternion(this float[] arr)
         {
             if (arr == null || arr.Length != 4)
@@ -74,7 +73,6 @@ namespace NanoUI.Serializers
                 mat.M31, mat.M32
             ];
         }
-
 
         // Matrix4x4
         public static float[] ToArray(this Matrix4x4 mat)

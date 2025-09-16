@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace NanoUI.Serializers
 {
     /// <summary>
-    /// ThemeSerializer.
+    /// Serializes/deserializes UITheme to/from JSON using various converters.
     /// </summary>
     public class ThemeSerializer
     {
