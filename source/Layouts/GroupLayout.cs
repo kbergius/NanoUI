@@ -7,7 +7,9 @@ using System.Numerics;
 namespace NanoUI.Layouts
 {
     /// <summary>
-    /// GroupLayout.
+    /// GroupLayout arranges widgets in stack layout vertical manner.
+    /// If there is UILabel it will be positioned at left and other widgets
+    /// are indented.
     /// </summary>
     public class GroupLayout : Layout
     {
@@ -24,14 +26,18 @@ namespace NanoUI.Layouts
 
         #region Properties
 
-        // The indent of widgets in a group (underneath a Label - normally)
+        /// <summary>
+        /// The indent of widgets in a group (underneath a UILabel - normally).
+        /// </summary>
         public virtual int GroupIndent
         {
             get => _groupIndent;
             set => _groupIndent = value;
         }
 
-        // The spacing between groups
+        /// <summary>
+        /// Spacing between groups.
+        /// </summary>
         public virtual int GroupSpacing
         {
             get => _groupSpacing;
@@ -42,6 +48,7 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
@@ -93,6 +100,7 @@ namespace NanoUI.Layouts
             return new Vector2(width, height);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;

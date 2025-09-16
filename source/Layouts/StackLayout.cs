@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
+    /// <summary>
+    /// StackLayout arranges widgets either horizontally or vertically stacked.
+    /// </summary>
     public class StackLayout : Layout
     {
         public StackLayout(Orientation orientation)
@@ -40,6 +43,7 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
@@ -82,6 +86,7 @@ namespace NanoUI.Layouts
             return size;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;

@@ -51,42 +51,42 @@ namespace NanoUI
         #region Global styles
 
         /// <summary>
-        /// Global border styles.
+        /// Global border style.
         /// </summary>
         public BorderStyle Borders { get; set; }
 
         /// <summary>
-        /// Global common styles.
+        /// Global common style.
         /// </summary>
         public CommonStyle Common { get; set; }
 
         /// <summary>
-        /// Global docking styles.
+        /// Global docking style.
         /// </summary>
         public DockingStyle Docks { get; set; }
 
         /// <summary>
-        /// Global file styles.
+        /// Global file style.
         /// </summary>
         public FilesStyle Files { get; set; }
 
         /// <summary>
-        /// Global font styles.
+        /// Global font style.
         /// </summary>
         public FontsStyle Fonts { get; set; } = new();
 
         /// <summary>
-        /// Global pointer styles.
+        /// Global pointer style.
         /// </summary>
         public PointerStyle Pointer { get; set; }
 
         /// <summary>
-        /// Global scrollbar styles.
+        /// Global scrollbar style.
         /// </summary>
         public ScrollbarStyle Scrollbars { get; set; }
 
         /// <summary>
-        /// Global window styles.
+        /// Global window style.
         /// </summary>
         public WindowStyle Windows { get; set; }
 

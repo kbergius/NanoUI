@@ -6,14 +6,12 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
-    // this is needed when using Splitter
-    // note: if you use this layout directly, you must create splitter panels & splitter(s) yourself.
-
-    // There is a widget (SplitPanel), that provides 2-panel functionality & is easier to use
     // todo: does not use margin by now
 
     /// <summary>
-    /// SplitLayout.
+    /// SplitLayout is needed when using Splitter.
+    /// If you use this layout directly, you must create splitter panels & splitter(s) yourself.
+    /// Note: there is a widget (UISplitPanel), that provides 2-panel functionality & is easier to use.
     /// </summary>
     public class SplitLayout : Layout
     {
@@ -30,11 +28,13 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             return parent.GetLayoutArea().Size;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             // no margins!

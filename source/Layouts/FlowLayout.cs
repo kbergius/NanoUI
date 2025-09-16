@@ -7,15 +7,16 @@ using NanoUI.Components;
 
 namespace NanoUI.Layouts
 {
-    // this is an extension of the grid layout, that dynamically calculates column count and
-    // lets then grid layout do the real work
-
     /// <summary>
-    /// FlowLayout.
+    /// FlowLayout is an extension of the grid layout, where widgets are positioned
+    /// in horizontal order in a way, that they always use all the parent's width.
+    /// Layout dynamically calculates column count and lets then grid layout do the real work.
     /// </summary>
     public class FlowLayout : GridLayout
     {
-        // we support only horizontal orientation by now (layout based on columns)
+        /// <summary>
+        /// Ctor. Supports only horizontal orientation by now (layout based on columns).
+        /// </summary>
         public FlowLayout(LayoutAlignment defaultAlignments = LayoutAlignment.Middle)
             :base(Orientation.Horizontal, 1, defaultAlignments)
         {
@@ -24,9 +25,10 @@ namespace NanoUI.Layouts
 
         #region Properties
 
-        // we limit some property setters, since they are not user configurable
-
-        // we supoort only horizontal orientation by now
+        /// <summary>
+        /// Supports only horizontal orientation by now (layout based on columns),
+        /// so the setter does nothing.
+        /// </summary>
         public override Orientation Orientation
         {
             get => base.Orientation;
@@ -36,20 +38,23 @@ namespace NanoUI.Layouts
             }
         }
 
+        /// <summary>
+        /// Column count is calculated dynamically, so the setter does nothing.
+        /// </summary>
         public override int ColumnOrRowCount
         {
             get => base.ColumnOrRowCount;
             set
             {
                 // no - op in flow layout
-                // we calculate dynamically column count
             }
         }
-        
+
         #endregion
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             // 1. calculate column count
@@ -59,6 +64,7 @@ namespace NanoUI.Layouts
             return base.PreferredSize(ctx, parent);
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             // 1. calculate column count
@@ -72,7 +78,7 @@ namespace NanoUI.Layouts
 
         #region Private
 
-        // we calculate column count - rows are calculated from it
+        // calculate column count - rows are calculated from it
         void CalculateColumnCount(NvgContext ctx, UIWidget parent)
         {
             // we care here only for width (columns fit)

@@ -7,17 +7,15 @@ using System.Numerics;
 
 namespace NanoUI.Layouts
 {
-    // Widgets are arranged in a grid that has a fixed column ot row count.
-    // The orientation indicates the fixed dimension (columns/rows).
-    // The spacing between widgets can be specified per axis.
-    // The horizontal/vertical alignment can be specified per row and column.
-
     // todo: make Dictionary<Widget, stretch> -based stretching functionality
     // todo?: _alignments -> for columns & rows: Dictionary<row/colIndex, LayoutAlignment>
     // it would be easier to SetRowAlignment(rowIndex, LayoutAlignment) - NOW MUST SET ALL AT ONCE
 
     /// <summary>
-    /// GridLayout.
+    /// In GridLayout widgets are arranged in a grid that has a fixed column or row count.
+    /// The orientation indicates the fixed dimension (columns or rows).
+    /// The spacing between widgets can be specified per axis.
+    /// The horizontal/vertical alignment can be specified per row and column.
     /// </summary>
     public class GridLayout : Layout
     {
@@ -40,15 +38,20 @@ namespace NanoUI.Layouts
 
         Orientation _orientation;
 
-        // this is virtual since FlowLayout overrides (fixed orientation)
+        /// <summary>
+        /// Orientation. Virtual since FlowLayout overrides (fixed orientation).
+        /// </summary>
         public virtual Orientation Orientation
         {
             get => _orientation;
             set => _orientation = value;
         }
 
-        // The number of rows or columns before starting a new one, depending on the orientation.
         int _columnOrRowCount;
+
+        /// <summary>
+        /// The number of fixed rows or columns before starting a new one, depending on the orientation.
+        /// </summary>
         public virtual int ColumnOrRowCount
         {
             get => _columnOrRowCount;
@@ -71,7 +74,9 @@ namespace NanoUI.Layouts
 
         #region Methods
 
-        // Sets the spacing for a specific axis (axis0 = X, axis1 = Y)
+        /// <summary>
+        /// Sets the spacing for a specific axis (axis-0 = X, axis-1 = Y).
+        /// </summary>
         public void SetSpacing(int axis, int spacing)
         {
             if(axis == 0)
@@ -84,8 +89,10 @@ namespace NanoUI.Layouts
             }
         }
 
-         // The alignment of the specified axis (row or column number, depending on
-         // the orientation) at the specified index of that row or column.
+        /// <summary>
+        /// The alignment of the specified axis (row or column number, depending on
+        /// the orientation) at the specified index of that row or column.
+        /// </summary>
         public LayoutAlignment GetAlignment(int axis, int item)
         {
             if (_alignments[axis] != null && item < _alignments[axis].Length)
@@ -94,13 +101,17 @@ namespace NanoUI.Layouts
                  return _defaultAlignments[axis];
         }
 
-        // Use this to set alignments for columns
+        /// <summary>
+        /// Sets alignments for columns.
+        /// </summary>
         public void SetColumnAlignments(LayoutAlignment[] value)
         {
             _alignments[0] = value;
         }
 
-        // Use this to set alignments for rows
+        /// <summary>
+        /// Sets alignments for rows.
+        /// </summary>
         public void SetRowAlignments(LayoutAlignment[] value)
         {
             _alignments[1] = value;
@@ -110,6 +121,7 @@ namespace NanoUI.Layouts
 
         #region Layout
 
+        /// <inheritdoc />
         public override Vector2 PreferredSize(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
@@ -128,6 +140,7 @@ namespace NanoUI.Layouts
             return size;
         }
 
+        /// <inheritdoc />
         public override void PerformLayout(NvgContext ctx, UIWidget parent)
         {
             var margin = parent.Margin;
