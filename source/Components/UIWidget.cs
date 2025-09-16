@@ -606,13 +606,13 @@ namespace NanoUI.Components
 
         #region Methods
 
-        // todo: should this be public?
-
         /// <summary>
         /// CreateParented.
         /// </summary>
         internal bool CreateParented(UIWidget parent)
         {
+            // todo: should this be public?
+
             if (parent == null)
                 return false;
 
@@ -1107,12 +1107,26 @@ namespace NanoUI.Components
 
         #endregion
 
+        #region Updating
+
+        /// <summary>
+        /// Update.
+        /// Note: this is not currently used.
+        /// </summary>
+        public virtual void Update(float deltaSeconds)
+        {
+            // todo: animation framework!
+        }
+
+        #endregion
+
         #region Drawing
 
         /// <summary>
         /// Draw is a method that is executed every frame. So avoid placing here
         /// any expensive operations.
         /// Note: widget is "inside" scissor, that it's parent has set.
+        /// Also call base.Draw, if you want to draw your widgets' children.
         /// </summary>
         public virtual void Draw(NvgContext ctx)
         {
