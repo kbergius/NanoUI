@@ -7,6 +7,7 @@ using System.Numerics;
 
 namespace NanoUI.Nvg
 {
+    // private/internal
     partial class NvgContext
     {
         // Length proportional to radius of a cubic bezier handle for 90deg arcs
@@ -14,6 +15,7 @@ namespace NanoUI.Nvg
         const byte MAX_TESSELATION_DEPTH = 10;
 
         NvgBounds _bounds;
+
         // last registered position in path creation
         Vector2 _lastPosition;
 
@@ -22,7 +24,6 @@ namespace NanoUI.Nvg
 
         #region PathCommands
 
-        // nvg__appendCommands
         // note: must be internal, since FontStash when using glyph shapes must access this function
         internal void _pathMoveTo(in NvgState state, Vector2 pos)
         {
@@ -129,7 +130,6 @@ namespace NanoUI.Nvg
             _pathArc(state, valuesC, radius, a0, a1, dir);
         }
 
-        // nvg__closePath
         // note: must be internal, since FontStash when using glyph shapes must access this function
         internal void _pathClose()
         {
@@ -138,7 +138,6 @@ namespace NanoUI.Nvg
             command.CommandType = NvgPathCommandType.Close;
         }
 
-        // nvg__pathWinding
         // note: must be internal, since FontStash when using glyph shapes must access this function
         internal void _pathWinding(Winding winding)
         {
@@ -410,7 +409,6 @@ namespace NanoUI.Nvg
 
         #region _expandStroke
 
-        // nvg__expandStroke
         void _expandStroke(float w, float fringe, LineCap lineCap, LineCap lineJoin, float miterLimit,
             float tessTol)
         {
@@ -563,7 +561,6 @@ namespace NanoUI.Nvg
 
         #region _expandFill
 
-        // nvg__expandFill
         void _expandFill(float w, LineCap lineJoin, float miterLimit, float fringeWidth)
         {
             float aa = fringeWidth;
@@ -697,7 +694,6 @@ namespace NanoUI.Nvg
 
         #region _flattenPath
 
-        // nvg__flattenPaths
         void _flattenPath(ref NvgPath path, float distTol)
         {
             int p0Index = path.PointOffset + path.PointCount - 1;
@@ -764,7 +760,6 @@ namespace NanoUI.Nvg
 
         #region _calculateJoins
 
-        // nvg__calculateJoins
         void _calculateJoins(float w, LineCap lineJoin, float miterLimit)
         {
             float iw = 0.0f;
@@ -851,7 +846,6 @@ namespace NanoUI.Nvg
 
         #region _tesselateBezier
 
-        // nvg__tesselateBezier
         void _tesselateBezier(float tessTol, Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4,
             byte level, NvgPointFlags flags)
         {
@@ -886,7 +880,6 @@ namespace NanoUI.Nvg
 
         #region _addPoint
 
-        // nvg__addPoint
         void _addPoint(ref NvgPath path, Vector2 position, NvgPointFlags flags)
         {
             if (path.PointCount > 0)

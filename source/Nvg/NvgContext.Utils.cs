@@ -6,6 +6,7 @@ using System.Numerics;
 
 namespace NanoUI.Nvg
 {
+    // private/internal
     partial class NvgContext
     {
         #region Caps
