@@ -3,7 +3,7 @@
 namespace NanoUI
 {
     /// <summary>
-    /// Globals has global values for NanoUI.
+    /// Global values for NanoUI.
     /// </summary>
     public class Globals
     {
