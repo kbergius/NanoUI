@@ -43,13 +43,17 @@ namespace NanoUIDemos.UI
 
         void TestFileFolderTree(UIScreen screen)
         {
-            var window = new UIWindow(screen, "FileFolderTree");
-            window.Position = new Vector2(15, 15);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "FileFolderTree")
+            {
+                Position = new Vector2(15, 15),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             var fileFolderTree = new UIFileFolderTree(window, "Root");
             fileFolderTree.Size = new Vector2(400, 290);
 
@@ -136,14 +140,18 @@ namespace NanoUIDemos.UI
 
         void TestFileWidgets(UIScreen screen)
         {
-            var window = new UIWindow(screen, "File dropdows & details");
-            window.Position = new Vector2(480, 15);
-            window.ChildrenLayout = new GroupLayout();
+            var window = new UIWindow(screen, "File dropdows & details")
+            {
+                Position = new Vector2(480, 15),
+                ChildrenLayout = new GroupLayout()
+            };
 
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-            lblEvent.Caption = startFolder;
-
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red,
+                Caption = startFolder
+            };
+            
             new UILabel(window, "Dropdowns");
 
             // Drives
@@ -189,14 +197,18 @@ namespace NanoUIDemos.UI
 
         void FileFolderList(UIScreen screen)
         {
-            var window = new UIWindow(screen, "FileFolderList");
-            window.Position = new Vector2(870, 15);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-            lblEvent.Caption = startFolder;
-
+            var window = new UIWindow(screen, "FileFolderList")
+            {
+                Position = new Vector2(870, 15),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red,
+                Caption = startFolder
+            };
+            
             var fileFolderList = new UIFileFolderList(window);
             fileFolderList.Size = new Vector2(250, 190);
 
@@ -214,15 +226,19 @@ namespace NanoUIDemos.UI
 
         void TestFileFolderFlow(UIScreen screen)
         {
-            var window = new UIWindow(screen, "FileFolderFlow");
-            window.Position = new Vector2(15, 400);
-            window.ChildrenLayout = new GroupLayout();
-            window.Size = new Vector2(400, 200);
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-            lblEvent.Caption = startFolder;
-
+            var window = new UIWindow(screen, "FileFolderFlow")
+            {
+                Position = new Vector2(15, 400),
+                ChildrenLayout = new GroupLayout(),
+                Size = new Vector2(400, 200)
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red,
+                Caption = startFolder
+            };
+            
             var fileFolderFlow = new UIFileFolderFlow(window);
             fileFolderFlow.Size = window.Size;
 
@@ -240,10 +256,12 @@ namespace NanoUIDemos.UI
 
         void TestGridView(UIScreen screen)
         {
-            var window = new UIWindow(screen, "GridView");
-            window.Position = new Vector2(480, 400);
-            window.ChildrenLayout = new GroupLayout();
-
+            var window = new UIWindow(screen, "GridView")
+            {
+                Position = new Vector2(480, 400),
+                ChildrenLayout = new GroupLayout()
+            };
+            
             var cols = new List<int> { 100, 120, 100 };
             var rows = new List<int> { 30, 30, 30, 50 };
             int gridPadding = 0;
@@ -294,10 +312,12 @@ namespace NanoUIDemos.UI
 
         void TestScrollPanel(UIScreen screen)
         {
-            var window = new UIWindow(screen, "ScrollPanel");
-            window.Position = new Vector2(870, 300);
-            window.ChildrenLayout = new GroupLayout();
-
+            var window = new UIWindow(screen, "ScrollPanel")
+            {
+                Position = new Vector2(870, 300),
+                ChildrenLayout = new GroupLayout()
+            };
+            
             // attach scroll
             var scroll = new UIScrollPanel(window);
             scroll.Size = new Vector2(250, 320);
