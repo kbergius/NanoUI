@@ -236,8 +236,7 @@ namespace NanoUIDemos.UI
             b1.Name = "Info";
             b1.Clicked += () =>
             {
-                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIMessageBox>(out var dlg))
                 {
                     dlg.DialogType = MessageDialogType.Information;
                     dlg.Text = "This is an information message.";
@@ -252,8 +251,7 @@ namespace NanoUIDemos.UI
             b2.Name = "Info2";
             b2.Clicked += () =>
             {
-                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIMessageBox>(out var dlg))
                 {
                     dlg.DialogType = MessageDialogType.Information;
                     dlg.Text = _longText.Substring(0, 200);
@@ -267,8 +265,7 @@ namespace NanoUIDemos.UI
             b3.Name = "Warn";
             b3.Clicked += () =>
             {
-                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIMessageBox>(out var dlg))
                 {
                     dlg.DialogType = MessageDialogType.Warning;
                     dlg.Text = "This is a warning message\nwrapped by new line char.";
@@ -281,8 +278,7 @@ namespace NanoUIDemos.UI
             b4.Name = "Ask";
             b4.Clicked += () =>
             {
-                UIMessageBox? dlg = screen.GetDialog<UIMessageBox>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIMessageBox>(out var dlg))
                 {
                     dlg.DialogType = MessageDialogType.Question;
                     dlg.Text = "This is a question message?";
@@ -300,8 +296,7 @@ namespace NanoUIDemos.UI
             multi.Name = "Multi";
             multi.Clicked += () =>
             {
-                UIMultilineMessageBox? dlg = screen.GetDialog<UIMultilineMessageBox>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIMultilineMessageBox>(out var dlg))
                 {
                     dlg.Text = _longText;
                     dlg.Title = "License";
@@ -340,8 +335,7 @@ namespace NanoUIDemos.UI
 
             colorButton.Clicked += () =>
             {
-                UIColorDialog? dlg = screen.GetDialog<UIColorDialog>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIColorDialog>(out var dlg))
                 {
                     // todo: SetButtonTexts(string[] texts) or localization
                     if (dlg.PickButton != null)
@@ -386,8 +380,7 @@ namespace NanoUIDemos.UI
             newFile.Name = "NewFile";
             newFile.Clicked += () =>
             {
-                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIFileDialog>(out var dlg))
                 {
                     dlg.Title = "New file";
                     dlg.StartPath = startPath;
@@ -410,8 +403,7 @@ namespace NanoUIDemos.UI
             openFile.Name = "OpenFile";
             openFile.Clicked += () =>
             {
-                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIFileDialog>(out var dlg))
                 {
                     dlg.Title = "Open file";
                     dlg.StartPath = startPath;
@@ -434,8 +426,7 @@ namespace NanoUIDemos.UI
             saveAs.Name = "SaveAsFile";
             saveAs.Clicked += () =>
             {
-                UIFileDialog? dlg = screen.GetDialog<UIFileDialog>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIFileDialog>(out var dlg))
                 {
                     dlg.Title = "Save file as";
                     dlg.StartPath = startPath;
@@ -465,8 +456,7 @@ namespace NanoUIDemos.UI
             var chooseFolder = new UIButton(window, "Choose folder");
             chooseFolder.Clicked += () =>
             {
-                UIFolderDialog? dlg = screen.GetDialog<UIFolderDialog>();
-                if (dlg != null)
+                if (screen.TryGetDialog<UIFolderDialog>(out var dlg))
                 {
                     dlg.StartPath = startPath;
                     // todo: SetButtonTexts(string[] texts) or localization
