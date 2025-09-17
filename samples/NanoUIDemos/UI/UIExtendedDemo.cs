@@ -46,10 +46,12 @@ namespace NanoUIDemos.UI
 
             if (_screen != null)
             {
-                var info = new UILabel(_screen, "If window is selected, shortcuts goes to window, otherwise to screen.");
-                info.Position = new Vector2(35, 60);
-                info.TextColor = Color.White;
-                info.FontSize = 22;
+                var info = new UILabel(_screen, "If window is selected, shortcuts goes to window, otherwise to screen.")
+                {
+                    Position = new Vector2(35, 60),
+                    TextColor = Color.White,
+                    FontSize = 22
+                };
             }
 
             // ImageViewer & Flows
@@ -69,13 +71,17 @@ namespace NanoUIDemos.UI
 
         void TestImageViewerFlows(UIScreen screen)
         {
-            var window = new UIWindow(screen, "Image viewer & flows");
-            window.Position = new Vector2(15, _windowTop);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "Image viewer & flows")
+            {
+                Position = new Vector2(15, _windowTop),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             // viewer
             new UILabel(window, "Image Viewer");
 
@@ -90,9 +96,11 @@ namespace NanoUIDemos.UI
             // ImageFlow
             new UILabel(window, "ImageFlow");
 
-            var flowView = new UIFlowView<int>(window);
-            flowView.Size = new Vector2(245, 150);
-            flowView.PartSize = new Vector2(64);
+            var flowView = new UIFlowView<int>(window)
+            {
+                Size = new Vector2(245, 150),
+                PartSize = new Vector2(64)
+            };
 
             if(DemoAssets.Textures != null)
             {
@@ -113,10 +121,12 @@ namespace NanoUIDemos.UI
 
             new UILabel(window, "TextFlow");
 
-            var flowView2 = new UIFlowView<string>(window);
-            flowView2.Size = new Vector2(245, 80);
-            flowView2.PartSize = new Vector2(50, 20);
-
+            var flowView2 = new UIFlowView<string>(window)
+            {
+                Size = new Vector2(245, 80),
+                PartSize = new Vector2(50, 20)
+            };
+            
             for (int i = 0; i < 30; i++)
             {
                 var text = "Item" + i;
@@ -140,17 +150,23 @@ namespace NanoUIDemos.UI
 
         void TextNumericTextUpDowns(UIScreen screen)
         {
-            var window = new UIWindow(screen, "NumericText & UpDowns");
-            window.Position = new Vector2(350, _windowTop);
-            window.ChildrenLayout = new GridLayout(Orientation.Horizontal,2, LayoutAlignment.Fill);
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-            lblEvent.FixedSize = new Vector2(200, 35);
-
-            var w = new UIWidget(window);
-            w.FixedSize = new Vector2(200, 35);
-
+            var window = new UIWindow(screen, "NumericText & UpDowns")
+            {
+                Position = new Vector2(350, _windowTop),
+                ChildrenLayout = new GridLayout(Orientation.Horizontal, 2, LayoutAlignment.Fill)
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red,
+                FixedSize = new Vector2(200, 35)
+            };
+            
+            var w = new UIWidget(window)
+            {
+                FixedSize = new Vector2(200, 35)
+            };
+            
             new UILabel(window, "Int");
 
             var numeric1 = new UINumericTextBox<int>(window, 50);
@@ -173,33 +189,51 @@ namespace NanoUIDemos.UI
 
             new UILabel(window, "BYTE");
 
-            var numeric3 = new UINumericUpDown<byte>(window, 50) { Size = new Vector2(200,0) };
+            var numeric3 = new UINumericUpDown<byte>(window, 50)
+            {
+                Size = new Vector2(200,0)
+            };
             numeric3.ValueChanged += (val) => lblEvent.Caption = $"BYTE: {val}";
 
             new UILabel(window, "FLOAT");
 
-            var numeric3f = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2) { Size = new Vector2(200, 0) };
+            var numeric3f = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2)
+            {
+                Size = new Vector2(200, 0)
+            };
             numeric3f.ValueChanged += (val) => lblEvent.Caption = "FLOAT: " + numeric3f.GetFormatted();
 
             new UILabel(window, "CURRENCY");
 
-            var numeric3c = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2) { Size = new Vector2(200, 0) };
-            numeric3c.Units = "€";
+            var numeric3c = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2)
+            {
+                Size = new Vector2(200, 0),
+                Units = "€"
+            };
+            
             numeric3c.ValueChanged += (val) => lblEvent.Caption = "CURRENCY: " + numeric3c.GetFormatted() + numeric3c.Units;
 
             new UILabel(window, "PERCENT (0-100)");
 
-            var numeric3p = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0) { Size = new Vector2(200, 0) };
-            numeric3p.Units = "%";
-            numeric3p.Min = 0;
-            numeric3p.Max = 100;
+            var numeric3p = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0)
+            {
+                Size = new Vector2(200, 0),
+                Units = "%",
+                Min = 0,
+                Max = 100
+            };
+            
             numeric3p.ValueChanged += (val) => lblEvent.Caption = "PERCENT: " + numeric3p.GetFormatted() + numeric3p.Units;
 
             new UILabel(window, "CUSTOM UNIT");
 
-            var numeric3cu = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0) { Size = new Vector2(200, 0) };
-            numeric3cu.Step = 1;
-            numeric3cu.Units = "MB";
+            var numeric3cu = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0)
+            {
+                Size = new Vector2(200, 0),
+                Step = 1,
+                Units = "MB"
+            };
+            
             numeric3cu.ValueChanged += (val) => lblEvent.Caption = "CUSTOM UNIT: " + numeric3cu.GetFormatted();
         }
 
@@ -258,11 +292,13 @@ namespace NanoUIDemos.UI
             CreateToolbar(_screen, screenMenubar.PreferredSize(ctx).Y);
 
             // window
-            var window = new UIWindow(_screen, "Menu, Toolbar & SVGs");
-            window.Position = new Vector2(630, _windowTop);
-            window.ChildrenLayout = new GroupLayout();
-            window.FixedSize = new Vector2(550, 550);
-
+            var window = new UIWindow(_screen, "Menu, Toolbar & SVGs")
+            {
+                Position = new Vector2(630, _windowTop),
+                ChildrenLayout = new GroupLayout(),
+                FixedSize = new Vector2(550, 550)
+            };
+            
             // window menubar
             var menubar = new UIMenubar(window);
 
@@ -295,9 +331,11 @@ namespace NanoUIDemos.UI
 
             var contextMenuInfo = new UILabel(window, "Right-click in window area to launch context menu");
 
-            var contextMenuLabel = new UILabel(window, "ContextMenuResult:");
-            contextMenuLabel.TextColor = Color.Red;
-
+            var contextMenuLabel = new UILabel(window, "ContextMenuResult:")
+            {
+                TextColor = Color.Red
+            };
+            
             var contextMenu = new UIContextMenu(window);
 
             contextMenu.MenuItemSelected += (menuItemId) =>
@@ -311,11 +349,14 @@ namespace NanoUIDemos.UI
             // SVGs
             new UILabel(window, "SVG background in UILabel");
 
-            var lbl = new UILabel(window, "tiger2.svg");
-            lbl.FontSize = 30;
-            lbl.FixedSize = new Vector2(250, 80);
-            lbl.TextHorizontalAlignment = TextHorizontalAlign.Center;
-            lbl.TextVerticalAlignment = TextVerticalAlign.Middle;
+            var lbl = new UILabel(window, "tiger2.svg")
+            {
+                FontSize = 30,
+                FixedSize = new Vector2(250, 80),
+                TextHorizontalAlignment = TextHorizontalAlign.Center,
+                TextVerticalAlignment = TextVerticalAlign.Middle
+            };
+
             lbl.BackgroundFocused = lbl.BackgroundUnfocused = new SvgBrush(_svgBrush);
 
             // we get widget size so we can have correct width/height proportion
@@ -324,9 +365,11 @@ namespace NanoUIDemos.UI
             {
                 new UILabel(window, "SVG widget");
 
-                var svgPanel = new UISvgWidget(window);
-                svgPanel.FixedSize = svgSize / 1.25f;
-                svgPanel.SvgId = _svgShape;
+                var svgPanel = new UISvgWidget(window)
+                {
+                    FixedSize = svgSize / 1.25f,
+                    SvgId = _svgShape
+                };
             }
         }
 
@@ -418,9 +461,11 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            var toolbar = new UIToolbar(parent);
-            toolbar.Position = new Vector2(0, offsetY);
-
+            var toolbar = new UIToolbar(parent)
+            {
+                Position = new Vector2(0, offsetY)
+            };
+            
             new UILabel(toolbar, "ToolButtons:");
 
             // create toolbuttons
@@ -429,9 +474,11 @@ namespace NanoUIDemos.UI
                 new UIToolButton(toolbar, _menuIcons[i]);
             }
             
-            var lbl = new UILabel(toolbar, "DropDown:");
-            lbl.TextColor = Color.Yellow;
-
+            var lbl = new UILabel(toolbar, "DropDown:")
+            {
+                TextColor = Color.Yellow
+            };
+            
             // todo: min size for dropdown
             var enumDropDown = new UIEnumDropDown<PointerType>(toolbar);
             enumDropDown.FixedSize = new Vector2(100, _screen.Theme.ToolButton.Size.Y);
@@ -446,14 +493,18 @@ namespace NanoUIDemos.UI
 
         void TestTabWidget(UIScreen screen)
         {
-            var window = new UIWindow(screen, "TabWidget");
-            window.Position = new Vector2(350, 350);
-            window.ChildrenLayout = new GroupLayout();
-
-            var tabWidget = new UITabWidget(window);
-            tabWidget.ContentPaddingHorizontal = 10;
-            tabWidget.ContentPaddingVertical = 5;
-
+            var window = new UIWindow(screen, "TabWidget")
+            {
+                Position = new Vector2(350, 350),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var tabWidget = new UITabWidget(window)
+            {
+                ContentPaddingHorizontal = 10,
+                ContentPaddingVertical = 5
+            };
+            
             // MultilineText
             var tabTextArea = new UITabItem(tabWidget) { Caption = "MultilineText" };
             tabTextArea.ChildrenLayout = new GroupLayout();
@@ -463,24 +514,45 @@ namespace NanoUIDemos.UI
             textArea.SetText(_longText);
 
             // ColorWheel
-            var tabColorWheel = new UITabItem(tabWidget) { Caption = "Color Wheel" };
-            tabColorWheel.ChildrenLayout = new GroupLayout();
-
+            var tabColorWheel = new UITabItem(tabWidget)
+            {
+                Caption = "Color Wheel",
+                ChildrenLayout = new GroupLayout()
+            };
+            
             var wheel = new UIColorWheel(tabColorWheel, Color.White);
             wheel.Size = new Vector2(150);
 
             // Spinners
-            var tabSpinners = new UITabItem(tabWidget) { Caption = "Spinners" };
-            tabSpinners.ChildrenLayout = new GroupLayout();
-
+            var tabSpinners = new UITabItem(tabWidget)
+            {
+                Caption = "Spinners",
+                ChildrenLayout = new GroupLayout()
+            };
+            
             var spinnerWidget = new UIWidget(tabSpinners)
             {
                 ChildrenLayout = new StackLayout(Orientation.Horizontal, LayoutAlignment.Middle),
             };
 
-            new UISpinner(spinnerWidget) { Size = new Vector2(80) };
-            new UISpinner(spinnerWidget) { Speed = -0.5f, Size = new Vector2(120), InnerRadius = 0.65f };
-            new UISpinner(spinnerWidget) { Speed = 0.2f, Size = new Vector2(80), HalfCircle = true };
+            new UISpinner(spinnerWidget)
+            {
+                Size = new Vector2(80)
+            };
+
+            new UISpinner(spinnerWidget)
+            {
+                Speed = -0.5f,
+                Size = new Vector2(120),
+                InnerRadius = 0.65f
+            };
+
+            new UISpinner(spinnerWidget)
+            {
+                Speed = 0.2f,
+                Size = new Vector2(80),
+                HalfCircle = true
+            };
         }
 
         #endregion
