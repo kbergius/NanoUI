@@ -32,7 +32,7 @@ namespace NanoUIDemos.UI
                 "occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim " +
                 "id est laborum.";
 
-        // we update progressbar, so we must have reference
+        // progressbar is updated, so we must have reference
         UIProgressbar? _progress;
 
         public UIBasicDemo(UIScreen screen)
@@ -64,13 +64,17 @@ namespace NanoUIDemos.UI
 
         void TestButtons(UIScreen screen)
         {
-            var window = new UIWindow(screen, "Buttons");
-            window.Position = new Vector2(15);
-            window.ChildrenLayout = new GroupLayout();
+            var window = new UIWindow(screen, "Buttons")
+            {
+                Position = new Vector2(15),
+                ChildrenLayout = new GroupLayout()
+            };
 
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             new UILabel(window, "Push buttons");
 
             // normal
@@ -90,9 +94,11 @@ namespace NanoUIDemos.UI
                 new LinearGradient(new Color(0, 0, 255, 180), new Color(0, 0, 255, 60), new CornerRadius(3));
 
             // disabled
-            b = new UIButton(window, "Disabled button");
-            b.Disabled = true;
-
+            b = new UIButton(window, "Disabled button")
+            {
+                Disabled = true
+            };
+            
             // Toggle button
             new UILabel(window, "Toggle button");
 
@@ -178,6 +184,7 @@ namespace NanoUIDemos.UI
             mainPopup.Margin = popupMargin;
 
             new UILabel(mainPopup, "Arbitrary widgets can be placed here");
+
             new UICheckBox(mainPopup, "A check box");
 
             // popup right
@@ -215,14 +222,18 @@ namespace NanoUIDemos.UI
 
         void TestDialogs(UIScreen screen)
         {
-            var window = new UIWindow(screen, "Dialogs");
-            window.Position = new Vector2(220, 15);
-            window.ChildrenLayout = new GroupLayout();
-            //window.FixedSize = new Vector2(350);
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "Dialogs")
+            {
+                Position = new Vector2(220, 15),
+                ChildrenLayout = new GroupLayout(),
+                //FixedSize = new Vector2(350)
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             // Message boxes
             new UILabel(window, "Message dialogs");
 
@@ -486,13 +497,17 @@ namespace NanoUIDemos.UI
 
         void TestDropDownsLists(UIScreen screen)
         {
-            var window = new UIWindow(screen, "DropDowns & Lists");
-            window.Position = new Vector2(600, 15);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "DropDowns & Lists")
+            {
+                Position = new Vector2(600, 15),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             new UILabel(window, "Combo box");
 
             var combo = new UIComboBox<int>(window);
@@ -529,6 +544,7 @@ namespace NanoUIDemos.UI
                     new UIText("Item-" + i),
                     new UIText("DESC-" + i),
                 ];
+
                 dropDownView.Add(new RowItem<string>(cells, "ROW-" + i));
             }
 
@@ -555,11 +571,12 @@ namespace NanoUIDemos.UI
             // ListView
             new UILabel(window, "ListView");
 
-            var listView = new UIListView<string>(window);
-            listView.Size = new Vector2(220, 80);
-
-            listView.TextColor = Color.Red;
-
+            var listView = new UIListView<string>(window)
+            {
+                Size = new Vector2(220, 80),
+                TextColor = Color.Red
+            };
+            
             // Columns
             listView.ViewPanel.Columns =
             [
@@ -576,6 +593,7 @@ namespace NanoUIDemos.UI
                     new UIText("Item-" + i),
                     new UIText("DESC-" + i),
                 ];
+
                 listView.Add(new RowItem<string>(cells, "ROW-" + i));
             }
 
@@ -591,14 +609,19 @@ namespace NanoUIDemos.UI
 
         void TestCheckboxProgressSlider(UIScreen screen)
         {
-            var window = new UIWindow(screen, "CheckboxProgressSlider");
-            window.Position = new Vector2(225, 390);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "CheckboxProgressSlider")
+            {
+                Position = new Vector2(225, 390),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             new UILabel(window, "Checkbox");
+
             var cb = new UICheckBox(window, "Normal");
             cb.CheckedChanged += (state) =>
             {
@@ -606,14 +629,19 @@ namespace NanoUIDemos.UI
             };
             cb.Checked = true;
 
-            cb = new UICheckBox(window, "Disabled");
-            cb.Disabled = true;
-            cb.Checked = true;
-
+            cb = new UICheckBox(window, "Disabled")
+            {
+                Disabled = true,
+                Checked = true
+            };
+            
             new UILabel(window, "Progress bar");
-            _progress = new UIProgressbar(window);
-            _progress.Size = new Vector2(70, 12);
 
+            _progress = new UIProgressbar(window)
+            {
+                Size = new Vector2(70, 12)
+            };
+            
             new UILabel(window, "Slider and text box");
 
             var panel = new UIWidget(window);
@@ -623,18 +651,21 @@ namespace NanoUIDemos.UI
                 Spacing = new Vector2(10)
             };
 
-            var slider = new UISlider(panel);
-            slider.Value = 0.5f;
-            slider.Size = new Vector2(170, 26);
-
-            var textBox = new UITextField(panel);
-            textBox.FixedSize = new Vector2(60, 25);
-            textBox.Text = "50";
-            textBox.Units = "%";
-            textBox.FixedSize = new Vector2(60, 25);
-            textBox.FontSize = 16;
-            textBox.TextHorizontalAlignment = TextHorizontalAlign.Right;
-
+            var slider = new UISlider(panel)
+            {
+                Value = 0.5f,
+                Size = new Vector2(170, 26)
+            };
+            
+            var textBox = new UITextField(panel)
+            {
+                FixedSize = new Vector2(60, 25),
+                Text = "50",
+                Units = "%",
+                FontSize = 16,
+                TextHorizontalAlignment = TextHorizontalAlign.Right
+            };
+            
             slider.ValueChanged += (value) =>
             {
                 textBox.Text = ((int)(value * 100)).ToString();
@@ -652,14 +683,17 @@ namespace NanoUIDemos.UI
 
         void TestTreeView(UIScreen screen)
         {
-            var window = new UIWindow(screen, "TreeView");
-            window.Position = new Vector2(890, 15);
-
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "TreeView")
+            {
+                Position = new Vector2(890, 15),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             new UILabel(window, "Tree view");
 
             var tree = new UITreeView<string>(window, "Root");
@@ -692,6 +726,7 @@ namespace NanoUIDemos.UI
                 {
                     string group;
                     string groupCaption = "Group" + i + "-Level" + level;
+
                     if (string.IsNullOrEmpty(parentId))
                     {
                         group = "Group" + i;
@@ -733,8 +768,8 @@ namespace NanoUIDemos.UI
 
                 UIWidget[] cells =
                 [
-                        new UIIcon { Icon = screen.Theme.Fonts.IconFile },
-                        new UIText { Text = fileCaption },
+                    new UIIcon { Icon = screen.Theme.Fonts.IconFile },
+                    new UIText { Text = fileCaption },
                 ];
 
                 tree.AddItem(new TreeItem<string>(cells, file, file, parentId));
@@ -747,13 +782,17 @@ namespace NanoUIDemos.UI
 
         void TestTableView(UIScreen screen)
         {
-            var window = new UIWindow(screen, "TableView");
-            window.Position = new Vector2(530, 450);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "TableView")
+            {
+                Position = new Vector2(530, 450),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             var tableView = new UITableView<string>(window);
             tableView.Size = new Vector2(290, 150);
 
@@ -804,6 +843,7 @@ namespace NanoUIDemos.UI
                         res = "TEXTURE-" + ((UIImage)cell).Texture;
                         break;
                 }
+
                 lblEvent.Caption = "Grid-Cell: " + res;
             };
         }
@@ -814,10 +854,12 @@ namespace NanoUIDemos.UI
 
         void TestGrid(UIScreen screen)
         {
-            var window = new UIWindow(screen, "Grid");
-            window.Position = new Vector2(890, 410);
-            window.ChildrenLayout = new GroupLayout();
-
+            var window = new UIWindow(screen, "Grid")
+            {
+                Position = new Vector2(890, 410),
+                ChildrenLayout = new GroupLayout()
+            };
+            
             var grid = new UIGrid(window)
             {
                 Orientation = Orientation.Horizontal,
@@ -829,44 +871,52 @@ namespace NanoUIDemos.UI
             // we have 2 columns
             grid.SetColumnAlignments([LayoutAlignment.Minimum, LayoutAlignment.Fill]);
 
-            // TextBox
+            // TextField
             {
                 new UILabel(grid, "TEXT BOX :");
 
-                var textBox = new UITextField(grid, "äöåÄÖÅ");
-                textBox.Editable = true;
-                textBox.TextHorizontalAlignment = TextHorizontalAlign.Left;
+                var textBox = new UITextField(grid, "äöåÄÖÅ")
+                {
+                    Editable = true,
+                    TextHorizontalAlignment = TextHorizontalAlign.Left
+                };
             }
 
             // float
             {
                 new UILabel(grid, "Floating point :");
 
-                var floatBox = new UINumericTextBox<float>(grid, 50);
-                floatBox.Editable = true;
-                floatBox.Units = "GiB";
-                floatBox.TextHorizontalAlignment = TextHorizontalAlign.Right;
+                var floatBox = new UINumericTextBox<float>(grid, 50)
+                {
+                    Editable = true,
+                    Units = "GiB",
+                    TextHorizontalAlignment = TextHorizontalAlign.Right
+                };
             }
 
             // Positive integer
             {
                 new UILabel(grid, "Positive integer :");
 
-                var intBox = new UINumericTextBox<int>(grid, 50);
-                intBox.Editable = true;
-                intBox.Units = "Mhz";
-                intBox.DefaultText = "0";
-                intBox.Min = 0;
-                intBox.Max = int.MaxValue;
-                intBox.TextHorizontalAlignment = TextHorizontalAlign.Right;
+                var intBox = new UINumericTextBox<int>(grid, 50)
+                {
+                    Editable = true,
+                    Units = "Mhz",
+                    DefaultText = "0",
+                    Min = 0,
+                    Max = int.MaxValue,
+                    TextHorizontalAlignment = TextHorizontalAlign.Right
+                };
             }
 
             // Checkbox
             {
                 new UILabel(grid, "Checkbox :");
 
-                var cb = new UICheckBox(grid, "Check me");
-                cb.Checked = true;
+                var cb = new UICheckBox(grid, "Check me")
+                {
+                    Checked = true
+                };
             }
 
             new UILabel(grid, "Color picker :");
