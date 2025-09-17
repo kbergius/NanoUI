@@ -113,10 +113,7 @@ namespace NanoUIDemos.Experimental.Components.Editors
             if(Screen == null)
                 return;
 
-            //var dlg = new ColorDialog(Screen);
-            UIColorDialog? dlg = Screen.GetDialog<UIColorDialog>();
-
-            if (dlg == null)
+            if (!Screen.TryGetDialog<UIColorDialog>(out var dlg))
                 return;
 
             // todo: get these strings sowewhere

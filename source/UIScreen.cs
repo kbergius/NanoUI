@@ -189,22 +189,24 @@ namespace NanoUI
             _dialogs[typeof(T)] = dialog;
         }
 
-        // todo : TryGet
-
         /// <summary>
-        /// Gets the dialog of type T and calls its Reset method.
+        /// Tries to get the dialog of type T and call its Reset method.
         /// </summary>
-        public T? GetDialog<T>() where T : UIDialog
+        public bool TryGetDialog<T>(out T dialog) where T : UIDialog, new()
         {
-            if (_dialogs.TryGetValue(typeof(T), out var dialog))
+            if (_dialogs.TryGetValue(typeof(T), out var d))
             {
+                dialog = (T)d;
+
                 // we must reset values, since we use same instance
                 dialog.Reset();
 
-                return (T)dialog;
+                return true;
             }
 
-            return null;
+            dialog = new T();
+
+            return false;
         }
 
         // todo: handle looping by not sending OnFocusChanged
@@ -397,7 +399,7 @@ namespace NanoUI
         /// Note: if you want to process some additional logic here, you can create your
         /// own screen (based on UIScreen) and override this method.
         /// </summary>
-        public virtual void Update(float deltaSeconds)
+        public override void Update(float deltaSeconds)
         {
             DeltaSeconds = deltaSeconds;
         }
