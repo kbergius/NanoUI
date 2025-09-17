@@ -11,6 +11,7 @@ namespace NanoUIDemos.UI
 {
     public class UIExperimentalDemo : DemoBase
     {
+        // store reference, since this is updated
         UIRoundMeter? _speedMeter;
 
         public UIExperimentalDemo(UIScreen screen)
@@ -30,7 +31,7 @@ namespace NanoUIDemos.UI
 
         void TestMiscWidgets(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Search, Switch, Dial ...");
+            var window = new UIWindow(screen, "Search, Switch, Dial ...");
             window.Position = new Vector2(30);
             window.ChildrenLayout = new GroupLayout();
 
@@ -94,6 +95,7 @@ namespace NanoUIDemos.UI
             };
 
             new UILabel(window, "ToleranceBar");
+
             new UIToleranceBar(window)
             {
                 FixedSize = new Vector2(230, 50),
@@ -117,11 +119,11 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "TextArea");
+            var window = new UIWindow(_screen, "TextArea");
             window.Position = new Vector2(30, 380);
             window.ChildrenLayout = new GroupLayout();
 
-            UIScrollPanel scrollPanel = new UIScrollPanel(window);
+            var scrollPanel = new UIScrollPanel(window);
             scrollPanel.Size = new Vector2(250, 200);
 
             var textArea = new UITextArea(scrollPanel);
@@ -135,7 +137,6 @@ namespace NanoUIDemos.UI
             {
                 textArea.Append("LINES " + i + ":\n" + _text);
             }
-
         }
 
         #endregion
@@ -144,14 +145,14 @@ namespace NanoUIDemos.UI
 
         void TestGraphs(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Graphs & meters");
+            var window = new UIWindow(screen, "Graphs & meters");
             window.Position = new Vector2(350, 30);
             window.ChildrenLayout = new GroupLayout();
 
             // Graph
             new UILabel(window, "Simple graph");
 
-            UIGraph graph = new UIGraph(window);
+            var graph = new UIGraph(window);
             graph.Size = new Vector2(280, 200);
 
             // generate example values
@@ -211,14 +212,14 @@ namespace NanoUIDemos.UI
 
         void TestPropertyGrid(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "PropertyGrid");
+            var window = new UIWindow(screen, "PropertyGrid");
             window.Position = new Vector2(720, 30);
             window.ChildrenLayout = new GroupLayout();
 
             // test object
             _propertGridObj = new UILabel(window, "TestObject ");
 
-            UIPropertyGrid propertyGrid = new UIPropertyGrid(window);
+            var propertyGrid = new UIPropertyGrid(window);
             propertyGrid.Size = new Vector2(370, 500);
 
             // wrap actions to reflect get/set methods
@@ -239,6 +240,7 @@ namespace NanoUIDemos.UI
 
             return null;
         }
+
         public void SetValue(PropertyInfo property, object? value)
         {
             // note : for structs this should be dynamic,

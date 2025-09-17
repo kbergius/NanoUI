@@ -37,7 +37,7 @@ namespace NanoUIDemos.UI
             if(_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "GroupLayout");
+            var window = new UIWindow(_screen, "GroupLayout");
             window.Position = new Vector2(20, 170);
             window.ChildrenLayout = new GroupLayout();
 
@@ -53,7 +53,7 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "StackLayout-Horizontal");
+            var window = new UIWindow(_screen, "StackLayout-Horizontal");
             window.Position = new Vector2(20, 70);
             window.ChildrenLayout = new StackLayout(Orientation.Horizontal, LayoutAlignment.Middle) { Spacing = new Vector2(10)};
             // TODO
@@ -66,7 +66,7 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "StackLayout-Vertical");
+            var window = new UIWindow(_screen, "StackLayout-Vertical");
             window.Position = new Vector2(220, 170);
             window.ChildrenLayout = new StackLayout(Orientation.Vertical) { Spacing = new Vector2(10) };
 
@@ -82,10 +82,10 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "GridLayout");
+            var window = new UIWindow(_screen, "GridLayout");
             window.Position = new Vector2(490, 170);
 
-            GridLayout layout = new GridLayout(Orientation.Horizontal, 2, LayoutAlignment.Middle)
+            var layout = new GridLayout(Orientation.Horizontal, 2, LayoutAlignment.Middle)
             { Spacing = new Vector2(5) };
 
             layout.SetColumnAlignments([LayoutAlignment.Minimum, LayoutAlignment.Fill]);
@@ -104,7 +104,7 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "FlowLayout");
+            var window = new UIWindow(_screen, "FlowLayout");
             window.Position = new Vector2(820, 170);
             window.Size = new Vector2(300);
 
@@ -131,7 +131,7 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "SplitLayout");
+            var window = new UIWindow(_screen, "SplitLayout");
             window.Position = new Vector2(490, 415);
             window.ChildrenLayout = new GroupLayout();
 
@@ -180,7 +180,8 @@ namespace NanoUIDemos.UI
             // TextBox
             {
                 new UILabel(parent, "TextBox:");
-                UITextField textBox = new UITextField(parent, "äöåÄÖÅ");
+
+                var textBox = new UITextField(parent, "äöåÄÖÅ");
                 textBox.Editable = true;
                 textBox.TextHorizontalAlignment = TextHorizontalAlign.Left;
             }
@@ -188,6 +189,7 @@ namespace NanoUIDemos.UI
             // float
             {
                 new UILabel(parent, "NumericTextBox:");
+
                 var floatBox = new UINumericTextBox<float>(parent, 50);
                 floatBox.Editable = true;
                 floatBox.Units = "GiB";
@@ -197,7 +199,8 @@ namespace NanoUIDemos.UI
             // Checkbox
             {
                 new UILabel(parent, "Checkbox:");
-                UICheckBox cb = new UICheckBox(parent, "Check me");
+
+                var cb = new UICheckBox(parent, "Check me");
                 cb.Checked = true;
             }
 
@@ -219,6 +222,7 @@ namespace NanoUIDemos.UI
             {
                 comboBox.AddItem("Item-" + i, i);
             }
+
             comboBox.SelectedIndex = 5;
         }
 

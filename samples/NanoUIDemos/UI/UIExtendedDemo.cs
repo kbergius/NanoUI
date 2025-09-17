@@ -69,7 +69,7 @@ namespace NanoUIDemos.UI
 
         void TestImageViewerFlows(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Image viewer & flows");
+            var window = new UIWindow(screen, "Image viewer & flows");
             window.Position = new Vector2(15, _windowTop);
             window.ChildrenLayout = new GroupLayout();
 
@@ -79,7 +79,7 @@ namespace NanoUIDemos.UI
             // viewer
             new UILabel(window, "Image Viewer");
 
-            UIImageViewer imageViewer = new UIImageViewer(window);
+            var imageViewer = new UIImageViewer(window);
             imageViewer.Size = new Vector2(245, 150);
 
             if (DemoAssets.Textures != null && DemoAssets.Textures.Length > 0)
@@ -140,26 +140,30 @@ namespace NanoUIDemos.UI
 
         void TextNumericTextUpDowns(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "NumericText & UpDowns");
+            var window = new UIWindow(screen, "NumericText & UpDowns");
             window.Position = new Vector2(350, _windowTop);
             window.ChildrenLayout = new GridLayout(Orientation.Horizontal,2, LayoutAlignment.Fill);
 
             var lblEvent = new UILabel(window, "Event Value");
             lblEvent.TextColor = Color.Red;
             lblEvent.FixedSize = new Vector2(200, 35);
+
             var w = new UIWidget(window);
             w.FixedSize = new Vector2(200, 35);
 
             new UILabel(window, "Int");
+
             var numeric1 = new UINumericTextBox<int>(window, 50);
             numeric1.ValueChanged += (val) => lblEvent.Caption = $"INT: {val}";
 
             new UILabel(window, "Float");
+
             var numeric1f = new UINumericTextBox<float>(window, 50, NumericFormat.Decimal2);// Globals.NUMBER_FORMAT_FLOAT);
             numeric1f.ValueChanged += (val) => lblEvent.Caption = "FLOAT: " + numeric1f.GetFormatted();
             numeric1f.InvalidFormat += () => { };
 
             new UILabel(window, "Range int (0 - 100)");
+
             var numeric2 = new UINumericTextBox<int>(window, 50)
             {
                 Min = 0,
@@ -168,19 +172,23 @@ namespace NanoUIDemos.UI
             numeric2.ValueChanged += (val) => lblEvent.Caption = $"RANGE INT: {val}";
 
             new UILabel(window, "BYTE");
+
             var numeric3 = new UINumericUpDown<byte>(window, 50) { Size = new Vector2(200,0) };
             numeric3.ValueChanged += (val) => lblEvent.Caption = $"BYTE: {val}";
 
             new UILabel(window, "FLOAT");
+
             var numeric3f = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2) { Size = new Vector2(200, 0) };
             numeric3f.ValueChanged += (val) => lblEvent.Caption = "FLOAT: " + numeric3f.GetFormatted();
 
             new UILabel(window, "CURRENCY");
+
             var numeric3c = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal2) { Size = new Vector2(200, 0) };
             numeric3c.Units = "€";
             numeric3c.ValueChanged += (val) => lblEvent.Caption = "CURRENCY: " + numeric3c.GetFormatted() + numeric3c.Units;
 
             new UILabel(window, "PERCENT (0-100)");
+
             var numeric3p = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0) { Size = new Vector2(200, 0) };
             numeric3p.Units = "%";
             numeric3p.Min = 0;
@@ -188,6 +196,7 @@ namespace NanoUIDemos.UI
             numeric3p.ValueChanged += (val) => lblEvent.Caption = "PERCENT: " + numeric3p.GetFormatted() + numeric3p.Units;
 
             new UILabel(window, "CUSTOM UNIT");
+
             var numeric3cu = new UINumericUpDown<float>(window, 50, NumericFormat.Decimal0) { Size = new Vector2(200, 0) };
             numeric3cu.Step = 1;
             numeric3cu.Units = "MB";
@@ -232,7 +241,7 @@ namespace NanoUIDemos.UI
             {
                 int val = i;
 
-                UIMenu screenMenuButton = new UIMenu(screenMenubar, $"ScreenMenu {val}");
+                var screenMenuButton = new UIMenu(screenMenubar, $"ScreenMenu {val}");
 
                 screenMenuButton.MenuItemSelected += (menuItemId) =>
                 {
@@ -249,7 +258,7 @@ namespace NanoUIDemos.UI
             CreateToolbar(_screen, screenMenubar.PreferredSize(ctx).Y);
 
             // window
-            UIWindow window = new UIWindow(_screen, "Menu, Toolbar & SVGs");
+            var window = new UIWindow(_screen, "Menu, Toolbar & SVGs");
             window.Position = new Vector2(630, _windowTop);
             window.ChildrenLayout = new GroupLayout();
             window.FixedSize = new Vector2(550, 550);
@@ -262,7 +271,7 @@ namespace NanoUIDemos.UI
             {
                 int val = i;
 
-                UIMenu mainMenuButton = new UIMenu(menubar, $"MainMenu {val}");
+                var mainMenuButton = new UIMenu(menubar, $"MainMenu {val}");
 
                 mainMenuButton.MenuItemSelected += (menuItemId) =>
                 {
@@ -289,7 +298,7 @@ namespace NanoUIDemos.UI
             var contextMenuLabel = new UILabel(window, "ContextMenuResult:");
             contextMenuLabel.TextColor = Color.Red;
 
-            UIContextMenu contextMenu = new UIContextMenu(window);
+            var contextMenu = new UIContextMenu(window);
 
             contextMenu.MenuItemSelected += (menuItemId) =>
             {
@@ -315,7 +324,7 @@ namespace NanoUIDemos.UI
             {
                 new UILabel(window, "SVG widget");
 
-                UISvgWidget svgPanel = new UISvgWidget(window);
+                var svgPanel = new UISvgWidget(window);
                 svgPanel.FixedSize = svgSize / 1.25f;
                 svgPanel.SvgId = _svgShape;
             }
@@ -374,7 +383,7 @@ namespace NanoUIDemos.UI
 
                 if (i == 4)
                 {
-                    UIMenuSubmenu popupButtonRight = new UIMenuSubmenu(submenu, "SubSubPopup 1");
+                    var popupButtonRight = new UIMenuSubmenu(submenu, "SubSubPopup 1");
 
                     CreateSubSubmenu(popupButtonRight.Popup, modifiers, shortcuts);
                 }
@@ -437,11 +446,11 @@ namespace NanoUIDemos.UI
 
         void TestTabWidget(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "TabWidget");
+            var window = new UIWindow(screen, "TabWidget");
             window.Position = new Vector2(350, 350);
             window.ChildrenLayout = new GroupLayout();
 
-            UITabWidget tabWidget = new UITabWidget(window);
+            var tabWidget = new UITabWidget(window);
             tabWidget.ContentPaddingHorizontal = 10;
             tabWidget.ContentPaddingVertical = 5;
 

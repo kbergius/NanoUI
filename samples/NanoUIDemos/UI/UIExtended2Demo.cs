@@ -43,7 +43,7 @@ namespace NanoUIDemos.UI
 
         void TestFileFolderTree(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "FileFolderTree");
+            var window = new UIWindow(screen, "FileFolderTree");
             window.Position = new Vector2(15, 15);
             window.ChildrenLayout = new GroupLayout();
 
@@ -81,6 +81,7 @@ namespace NanoUIDemos.UI
                 {
                     string group;
                     string groupCaption = "Folder" + i + "-Level" + level;
+
                     if (string.IsNullOrEmpty(parentId))
                     {
                         group = "Folder" + i;
@@ -132,9 +133,10 @@ namespace NanoUIDemos.UI
         #endregion
 
         #region FileWidgets
+
         void TestFileWidgets(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "File dropdows & details");
+            var window = new UIWindow(screen, "File dropdows & details");
             window.Position = new Vector2(480, 15);
             window.ChildrenLayout = new GroupLayout();
 
@@ -187,7 +189,7 @@ namespace NanoUIDemos.UI
 
         void FileFolderList(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "FileFolderList");
+            var window = new UIWindow(screen, "FileFolderList");
             window.Position = new Vector2(870, 15);
             window.ChildrenLayout = new GroupLayout();
 
@@ -212,7 +214,7 @@ namespace NanoUIDemos.UI
 
         void TestFileFolderFlow(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "FileFolderFlow");
+            var window = new UIWindow(screen, "FileFolderFlow");
             window.Position = new Vector2(15, 400);
             window.ChildrenLayout = new GroupLayout();
             window.Size = new Vector2(400, 200);
@@ -238,12 +240,12 @@ namespace NanoUIDemos.UI
 
         void TestGridView(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "GridView");
+            var window = new UIWindow(screen, "GridView");
             window.Position = new Vector2(480, 400);
             window.ChildrenLayout = new GroupLayout();
 
-            List<int> cols = new List<int> { 100, 120, 100 };
-            List<int> rows = new List<int> { 30, 30, 30, 50 };
+            var cols = new List<int> { 100, 120, 100 };
+            var rows = new List<int> { 30, 30, 30, 50 };
             int gridPadding = 0;
 
             var lblEvent = new UILabel(window, $"This is {cols.Count}x{rows.Count} grid. Stretch in column 0");
@@ -292,7 +294,7 @@ namespace NanoUIDemos.UI
 
         void TestScrollPanel(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "ScrollPanel");
+            var window = new UIWindow(screen, "ScrollPanel");
             window.Position = new Vector2(870, 300);
             window.ChildrenLayout = new GroupLayout();
 

@@ -32,7 +32,7 @@ namespace NanoUIDemos.UI
                 "occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim " +
                 "id est laborum.";
 
-        // we update progress here, so we must have reference
+        // we update progressbar, so we must have reference
         UIProgressbar? _progress;
 
         public UIBasicDemo(UIScreen screen)
@@ -64,7 +64,7 @@ namespace NanoUIDemos.UI
 
         void TestButtons(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Buttons");
+            var window = new UIWindow(screen, "Buttons");
             window.Position = new Vector2(15);
             window.ChildrenLayout = new GroupLayout();
 
@@ -74,7 +74,7 @@ namespace NanoUIDemos.UI
             new UILabel(window, "Push buttons");
 
             // normal
-            UIButton b = new UIButton(window, "Normal button");
+            var b = new UIButton(window, "Normal button");
             b.Clicked += () => { lblEvent.Caption = "Normal clicked"; };
             b.Tooltip = "short tooltip";
 
@@ -143,7 +143,8 @@ namespace NanoUIDemos.UI
 
             // Tool buttons
             new UILabel(window, "Tool buttons");
-            UIWidget tools = new UIWidget(window);
+
+            var tools = new UIWidget(window);
             tools.ChildrenLayout = new StackLayout(Orientation.Horizontal)
             {
                 Alignment = LayoutAlignment.Middle,
@@ -158,7 +159,7 @@ namespace NanoUIDemos.UI
             // Popup button
             new UILabel(window, "Popup button");
 
-            UIPopupButton mainPopupButton = new UIPopupButton(window, "Popup")
+            var mainPopupButton = new UIPopupButton(window, "Popup")
             {
                 // icon - todo : should we have default icon in theme?
                 Icon = (int)FontAwesomeIcon.ChevronDown,
@@ -168,9 +169,9 @@ namespace NanoUIDemos.UI
                 Padding = new Thickness(10, 4)
             };
 
-            Thickness popupMargin = new Thickness(10);
+            var popupMargin = new Thickness(10);
 
-            UIPopup mainPopup = mainPopupButton.Popup;
+            var mainPopup = mainPopupButton.Popup;
             mainPopup.ChildrenLayout = new GroupLayout();
             mainPopup.RelativePosition = PopupPosition.Bottom;
             mainPopup.AnchorSize = 10;
@@ -214,7 +215,7 @@ namespace NanoUIDemos.UI
 
         void TestDialogs(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Dialogs");
+            var window = new UIWindow(screen, "Dialogs");
             window.Position = new Vector2(220, 15);
             window.ChildrenLayout = new GroupLayout();
             //window.FixedSize = new Vector2(350);
@@ -225,14 +226,14 @@ namespace NanoUIDemos.UI
             // Message boxes
             new UILabel(window, "Message dialogs");
 
-            UIWidget boxes = new UIWidget(window);
+            var boxes = new UIWidget(window);
             boxes.ChildrenLayout = new StackLayout(Orientation.Horizontal)
             {
                 Alignment = LayoutAlignment.Middle,
                 Spacing = new Vector2(6)
             };
 
-            UIButton b1 = new UIButton(boxes, "Info");
+            var b1 = new UIButton(boxes, "Info");
             b1.Name = "Info";
             b1.Clicked += () =>
             {
@@ -247,7 +248,7 @@ namespace NanoUIDemos.UI
             };
 
             // this is to test very long message text
-            UIButton b2 = new UIButton(boxes, "Info2");
+            var b2 = new UIButton(boxes, "Info2");
             b2.Name = "Info2";
             b2.Clicked += () =>
             {
@@ -261,7 +262,7 @@ namespace NanoUIDemos.UI
             };
 
             // this is message box with user specified wrapping (new line char '\n')
-            UIButton b3 = new UIButton(boxes, "Warn");
+            var b3 = new UIButton(boxes, "Warn");
             b3.Name = "Warn";
             b3.Clicked += () =>
             {
@@ -274,7 +275,7 @@ namespace NanoUIDemos.UI
                 }
             };
 
-            UIButton b4 = new UIButton(boxes, "Ask");
+            var b4 = new UIButton(boxes, "Ask");
             b4.Name = "Ask";
             b4.Clicked += () =>
             {
@@ -369,7 +370,7 @@ namespace NanoUIDemos.UI
 
             new UILabel(window, "File dialogs");
 
-            UIWidget tools = new UIWidget(window);
+            var tools = new UIWidget(window);
             tools.ChildrenLayout = new StackLayout(Orientation.Horizontal)
             {
                 Alignment = LayoutAlignment.Middle,
@@ -485,7 +486,7 @@ namespace NanoUIDemos.UI
 
         void TestDropDownsLists(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "DropDowns & Lists");
+            var window = new UIWindow(screen, "DropDowns & Lists");
             window.Position = new Vector2(600, 15);
             window.ChildrenLayout = new GroupLayout();
 
@@ -598,7 +599,7 @@ namespace NanoUIDemos.UI
             lblEvent.TextColor = Color.Red;
 
             new UILabel(window, "Checkbox");
-            UICheckBox cb = new UICheckBox(window, "Normal");
+            var cb = new UICheckBox(window, "Normal");
             cb.CheckedChanged += (state) =>
             {
                 lblEvent.Caption = "CheckBox-checked: " + state;
@@ -614,18 +615,19 @@ namespace NanoUIDemos.UI
             _progress.Size = new Vector2(70, 12);
 
             new UILabel(window, "Slider and text box");
-            UIWidget panel = new UIWidget(window);
+
+            var panel = new UIWidget(window);
             panel.ChildrenLayout = new StackLayout(Orientation.Horizontal)
             {
                 Alignment = LayoutAlignment.Middle,
                 Spacing = new Vector2(10)
             };
 
-            UISlider slider = new UISlider(panel);
+            var slider = new UISlider(panel);
             slider.Value = 0.5f;
             slider.Size = new Vector2(170, 26);
 
-            UITextField textBox = new UITextField(panel);
+            var textBox = new UITextField(panel);
             textBox.FixedSize = new Vector2(60, 25);
             textBox.Text = "50";
             textBox.Units = "%";
@@ -650,7 +652,7 @@ namespace NanoUIDemos.UI
 
         void TestTreeView(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "TreeView");
+            var window = new UIWindow(screen, "TreeView");
             window.Position = new Vector2(890, 15);
 
             window.ChildrenLayout = new GroupLayout();
@@ -745,7 +747,7 @@ namespace NanoUIDemos.UI
 
         void TestTableView(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "TableView");
+            var window = new UIWindow(screen, "TableView");
             window.Position = new Vector2(530, 450);
             window.ChildrenLayout = new GroupLayout();
 
@@ -812,7 +814,7 @@ namespace NanoUIDemos.UI
 
         void TestGrid(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Grid");
+            var window = new UIWindow(screen, "Grid");
             window.Position = new Vector2(890, 410);
             window.ChildrenLayout = new GroupLayout();
 
@@ -830,7 +832,8 @@ namespace NanoUIDemos.UI
             // TextBox
             {
                 new UILabel(grid, "TEXT BOX :");
-                UITextField textBox = new UITextField(grid, "äöåÄÖÅ");
+
+                var textBox = new UITextField(grid, "äöåÄÖÅ");
                 textBox.Editable = true;
                 textBox.TextHorizontalAlignment = TextHorizontalAlign.Left;
             }
@@ -838,6 +841,7 @@ namespace NanoUIDemos.UI
             // float
             {
                 new UILabel(grid, "Floating point :");
+
                 var floatBox = new UINumericTextBox<float>(grid, 50);
                 floatBox.Editable = true;
                 floatBox.Units = "GiB";
@@ -847,6 +851,7 @@ namespace NanoUIDemos.UI
             // Positive integer
             {
                 new UILabel(grid, "Positive integer :");
+
                 var intBox = new UINumericTextBox<int>(grid, 50);
                 intBox.Editable = true;
                 intBox.Units = "Mhz";
@@ -859,7 +864,8 @@ namespace NanoUIDemos.UI
             // Checkbox
             {
                 new UILabel(grid, "Checkbox :");
-                UICheckBox cb = new UICheckBox(grid, "Check me");
+
+                var cb = new UICheckBox(grid, "Check me");
                 cb.Checked = true;
             }
 
