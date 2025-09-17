@@ -11,6 +11,7 @@ namespace NanoUIDemos.UI
 {
     public class UIExperimentalDemo : DemoBase
     {
+        // store reference, since this is updated
         UIRoundMeter? _speedMeter;
 
         public UIExperimentalDemo(UIScreen screen)
@@ -30,13 +31,17 @@ namespace NanoUIDemos.UI
 
         void TestMiscWidgets(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Search, Switch, Dial ...");
-            window.Position = new Vector2(30);
-            window.ChildrenLayout = new GroupLayout();
-
-            var lblEvent = new UILabel(window, "Event Value");
-            lblEvent.TextColor = Color.Red;
-
+            var window = new UIWindow(screen, "Search, Switch, Dial ...")
+            {
+                Position = new Vector2(30),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var lblEvent = new UILabel(window, "Event Value")
+            {
+                TextColor = Color.Red
+            };
+            
             var lbl = new UILabel(window, "SearchBox");
 
             var search = new UISearchBox(window);
@@ -47,16 +52,26 @@ namespace NanoUIDemos.UI
             };
 
             new UILabel(window, "SwitchBoxes");
+
             var switchPanel = new UIWidget(window)
             {
                 ChildrenLayout = new GridLayout(Orientation.Horizontal, 2)
             };
 
             // horizontal
-            new UISwitchBox(switchPanel) { Size = new Vector2(80, 30), Checked = true };
+            new UISwitchBox(switchPanel)
+            {
+                Size = new Vector2(80, 30),
+                Checked = true
+            };
 
             // vertical
-            new UISwitchBox(switchPanel) { Size = new Vector2(28, 60), Checked = true, Orientation = Orientation.Vertical };
+            new UISwitchBox(switchPanel)
+            {
+                Size = new Vector2(28, 60),
+                Checked = true,
+                Orientation = Orientation.Vertical
+            };
 
             new UILabel(window, "Dial and text box");
 
@@ -94,6 +109,7 @@ namespace NanoUIDemos.UI
             };
 
             new UILabel(window, "ToleranceBar");
+
             new UIToleranceBar(window)
             {
                 FixedSize = new Vector2(230, 50),
@@ -117,25 +133,30 @@ namespace NanoUIDemos.UI
             if (_screen == null)
                 return;
 
-            UIWindow window = new UIWindow(_screen, "TextArea");
-            window.Position = new Vector2(30, 380);
-            window.ChildrenLayout = new GroupLayout();
-
-            UIScrollPanel scrollPanel = new UIScrollPanel(window);
-            scrollPanel.Size = new Vector2(250, 200);
-
-            var textArea = new UITextArea(scrollPanel);
-            textArea.Selectable = true;
-            textArea.Padding = 10;
-            textArea.SelectionColor = Color.Blue;
-            textArea.CaretColor = Color.Red;
-
+            var window = new UIWindow(_screen, "TextArea")
+            {
+                Position = new Vector2(30, 380),
+                ChildrenLayout = new GroupLayout()
+            };
+            
+            var scrollPanel = new UIScrollPanel(window)
+            {
+                Size = new Vector2(250, 200)
+            };
+            
+            var textArea = new UITextArea(scrollPanel)
+            {
+                Selectable = true,
+                Padding = 10,
+                SelectionColor = Color.Blue,
+                CaretColor = Color.Red
+            };
+            
             // add text
             for (int i = 0; i < 13; i++)
             {
                 textArea.Append("LINES " + i + ":\n" + _text);
             }
-
         }
 
         #endregion
@@ -144,14 +165,16 @@ namespace NanoUIDemos.UI
 
         void TestGraphs(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "Graphs & meters");
-            window.Position = new Vector2(350, 30);
-            window.ChildrenLayout = new GroupLayout();
-
+            var window = new UIWindow(screen, "Graphs & meters")
+            {
+                Position = new Vector2(350, 30),
+                ChildrenLayout = new GroupLayout()
+            };
+            
             // Graph
             new UILabel(window, "Simple graph");
 
-            UIGraph graph = new UIGraph(window);
+            var graph = new UIGraph(window);
             graph.Size = new Vector2(280, 200);
 
             // generate example values
@@ -169,9 +192,11 @@ namespace NanoUIDemos.UI
             graph.Values = values;
 
             // SpeedMeter
-            var lblSpeed = new UILabel(window, "SpeedMeter");
-            lblSpeed.TextColor = Color.LightGreen;
-
+            var lblSpeed = new UILabel(window, "SpeedMeter")
+            {
+                TextColor = Color.LightGreen
+            };
+            
             _speedMeter = new UIRoundMeter(window)
             {
                 UnitsText = "km/h",
@@ -179,9 +204,8 @@ namespace NanoUIDemos.UI
                 MinValue = 0,
                 MaxValue = 200,
                 Threshold = 120,
-            };
-
-            _speedMeter.Size = new Vector2(160);
+                Size = new Vector2(160)
+            };          
 
             _speedMeter.ValueChanged += (val) =>
             {
@@ -199,8 +223,10 @@ namespace NanoUIDemos.UI
             // Perf Graph
             new UILabel(window, "Perf Graph");
 
-            var perfGraph = new UIPerformanceGraph(window);
-            perfGraph.Size = new Vector2(200, 40);
+            var perfGraph = new UIPerformanceGraph(window)
+            {
+                Size = new Vector2(200, 40)
+            };
         }
 
         #endregion
@@ -211,19 +237,22 @@ namespace NanoUIDemos.UI
 
         void TestPropertyGrid(UIScreen screen)
         {
-            UIWindow window = new UIWindow(screen, "PropertyGrid");
-            window.Position = new Vector2(720, 30);
-            window.ChildrenLayout = new GroupLayout();
-
+            var window = new UIWindow(screen, "PropertyGrid")
+            {
+                Position = new Vector2(720, 30),
+                ChildrenLayout = new GroupLayout()
+            };
+            
             // test object
             _propertGridObj = new UILabel(window, "TestObject ");
 
-            UIPropertyGrid propertyGrid = new UIPropertyGrid(window);
-            propertyGrid.Size = new Vector2(370, 500);
-
             // wrap actions to reflect get/set methods
-            propertyGrid.GetValueFunc = GetValue;
-            propertyGrid.SetValueFunc = SetValue;
+            var propertyGrid = new UIPropertyGrid(window)
+            {
+                Size = new Vector2(370, 500),
+                GetValueFunc = GetValue,
+                SetValueFunc = SetValue
+            };            
 
             propertyGrid.Set(_propertGridObj);
         }
@@ -239,6 +268,7 @@ namespace NanoUIDemos.UI
 
             return null;
         }
+
         public void SetValue(PropertyInfo property, object? value)
         {
             // note : for structs this should be dynamic,
