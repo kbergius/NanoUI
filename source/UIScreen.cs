@@ -16,6 +16,7 @@ namespace NanoUI
     // con for above: allocates more!
 
     // todo: should handle also cases, when screen's position is not (0, 0).
+
     // todo: tab key press -. focus next widget that can get focus
 
     /// <summary>
@@ -90,28 +91,36 @@ namespace NanoUI
 
         /// <summary>
         /// Gets/sets tooltip.
-        /// If you don't spesify this, NanoUI uses its own simple tooltip widget.
-        /// You can use same tooltip widget in many screens,
-        /// since widget's parent property is not used / should not be used.
-        /// Note: be sure that tooltip's visibility is set to false,
-        /// so it doesn't affect any layout code & is not drawn in normal draw.
+        /// If you don't spesify this, screen uses its own simple tooltip widget.
         /// </summary>
         public new UITooltip Tooltip
         {
             get => _tooltip;
             set
             {
-                _tooltip = value;
+                if (value == null)
+                    return;
 
-                // find previous & remove it (if it is not same as new tooltip)
+                // find previous & remove it
                 foreach (var child in Children.AsReadOnlySpan())
                 {
-                    if(child is UITooltip tooltip && tooltip != _tooltip)
+                    if(child is UITooltip tooltip)
                     {
                         Children.Remove(child);
                         break;
                     }
                 }
+
+                // set new
+                _tooltip = value;
+
+                // set visibility to false,
+                // so it doesn't affect any layout code &
+                // it is not drawn in normal draw.
+                _tooltip.Visible = false;
+
+                // set parent
+                _tooltip.Parent = this;
             }
         }
 
@@ -166,7 +175,7 @@ namespace NanoUI
         /// Sets current drag widget. Set null, if you want to remove drag widget.
         /// Note: tryAttach is a boolean flag, that indicates if screen should call
         /// TryAttach after dragging is finished (pointer up).
-        /// Only docking / dock window uses this by now.
+        /// Only docking / dock window uses tryAttach flag by now.
         /// </summary>
         public void SetDragWidget(UIWidget? widget, bool tryAttach = false)
         {
@@ -404,14 +413,14 @@ namespace NanoUI
             DeltaSeconds = deltaSeconds;
         }
 
-        // todo: should we restict only to last (topmost window)?
-        // todo : should we return screen if none found?
-
         /// <summary>
         /// Finds topmost widget.
         /// </summary>
         public UIWidget? FindTopmost(Vector2 p)
         {
+            // todo: should we restict only to last (topmost window)?
+            // todo : should we return screen if none found?
+
             return Children.FindTopmost(p - Position);
         }
 
@@ -510,11 +519,11 @@ namespace NanoUI
 
         #region OnPointerDoubleClick
 
-        // todo: we could restrict this solely to focuspath?
-
         /// <inheritdoc />
         public override bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
+            // todo: we could restrict this solely to focuspath?
+
             if (!ProcessPointerEvent(p))
                 return false;
 
@@ -813,9 +822,9 @@ namespace NanoUI
             base.Draw(ctx);
 
             // this method draws overlay over normal drawing
-            // todo: should we send relative position?
             foreach (var postDrawWidget in PostDrawList.AsReadOnlySpan())
             {
+                // we send pointer display position
                 postDrawWidget?.PostDraw(ctx, PointerPosition);
             }
 
