@@ -174,7 +174,7 @@ button.Clicked += () => label.Caption = "Clicked!";
 
 ```
 
-**Note:** The button click doesn't work here until you call **screen.OnPointerUpDown(...)** methods with your mouse position.
+**Note:** The button click doesn't work here until you call **screen.OnPointerUpDown(...)** methods when your user clicks mouse button.
 
 There are plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
 
