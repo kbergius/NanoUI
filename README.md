@@ -101,7 +101,11 @@ The limitation of the immediate mode drawing is, that it is purely drawing; so n
 
 ### Retained mode
 
-The retained mode (UI layer) has the bells & whistles of the modern UI. It is basically tree of the ui widgets, where the root widget (owner) of the tree is **UIScreen**. So your first task is to create **UIScreen** object:
+The retained mode (UI layer) has the bells & whistles of the modern UI. It is basically tree of the UI widgets, where the root widget (owner) of the tree is **UIScreen**.
+
+### 1. UIScreen
+
+Create screen like this:
 
 ```cs
 
@@ -132,11 +136,45 @@ var screen = new UIScreen(theme, <your windowSize>);
 // and it will handle rest.
 ```
 
-After this you can **add/remove/modify** any widget in the **UIScreen's** widget tree both in the initializing and running mode.
+After this you can **add/remove/modify** any widget in the **UIScreen's** widget tree and modify theme properties both in the initializing and running mode.
 
-You can also modify dynamically at runtime layouts and theme properties (for example you can change the theme in the **UIScreen** and all the widgets then use this new theme). You can also have many predefined **UIScreens** (with their own widget sets) and change them whenever you want.
+### 2. UIWidgets
 
 Every widget has it's own ctor method, but basically they are like **new UIWidget('widget's parent widget', 'widget params if any')**. The parent widget must be defined, if the widget is going to be added to the **UIScreen's** widget tree.
+
+So you can do something like this:
+
+```cs
+// create container to screen
+var panel = new UIWidget(screen)
+{
+    Position = new Vector2(100, 100),
+};
+
+// set layout (positions & sizes children)
+panel.ChildrenLayout = new StackLayout(Orientation.Vertical, LayoutAlignment.Middle)
+{
+    Spacing = new Vector2(0, 10),
+};
+
+// create centered label
+var label = new UILabel(panel, "Hello world")
+{
+    TextHorizontalAlignment = TextHorizontalAlign.Center,
+};
+
+// create button & wrap clicked action
+var button = new UIButton(panel, "Click me!");
+button.Clicked += () => label.Caption = "Clicked!";
+
+----------
+
+// in your main Draw/Render method call screen.Draw(ctx) and
+// the screen will handle rendering.
+
+```
+
+**Note:** The button click doesn't work here until you call **screen.OnPointerUpDown(...)** methods with your mouse position.
 
 There are plenty of examples, how to create/use widgets in the **samples/NanoUIDemos/UI** folder.
 
@@ -145,7 +183,7 @@ There is also more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) do
 
 ## Examples
 
-There are examples, that use [MonoGame](https://monogame.net/) or [Veldrid](https://github.com/veldrid/veldrid) backend.
+There are examples, that use **MonoGame** or **Veldrid** backend.
 
 There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDemos/Assets/shaders** folder.
 
