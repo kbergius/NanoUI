@@ -145,23 +145,15 @@ Every widget has it's own ctor method, but basically they are like **new UIWidge
 So you can do something like this:
 
 ```cs
-// create container to screen
-var panel = new UIWidget(screen)
-{
-    Position = new Vector2(100, 100),
-};
+// create container
+var panel = new UIWidget(screen);
+panel.Position = new Vector2(100, 100);
 
-// set layout (positions & sizes children)
-panel.ChildrenLayout = new StackLayout(Orientation.Vertical, LayoutAlignment.Middle)
-{
-    Spacing = new Vector2(0, 10),
-};
+// set layout
+panel.ChildrenLayout = new StackLayout(Orientation.Vertical);
 
-// create centered label
-var label = new UILabel(panel, "Hello world")
-{
-    TextHorizontalAlignment = TextHorizontalAlign.Center,
-};
+// create label
+var label = new UILabel(panel, "Hello world");
 
 // create button & wrap clicked action
 var button = new UIButton(panel, "Click me!");
@@ -169,8 +161,8 @@ button.Clicked += () => label.Caption = "Clicked!";
 
 ----------
 
-// in your main Draw/Render method call screen.Draw(ctx) and
-// the screen will handle rendering.
+// in your main Draw/Render method
+// call screen.Draw(ctx)
 
 ```
 
