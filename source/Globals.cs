@@ -27,6 +27,19 @@ namespace NanoUI
         public static bool SHOW_TOOLTIPS = true;
 
         /// <summary>
+        /// Value the SDF should increase by when moving one SDF "pixel" away from the edge
+        /// (on the 0..255 scale). If positive, > onedge_value is inside;
+        /// if negative, < onedge_value is inside. Default: 200.
+        /// </summary>
+        public static float SDF_PIXEL_DIST_SCALE = 200;
+
+        /// <summary>
+        /// Value 0-255 to test the SDF against to reconstruct the character
+        /// (i.e. the isocontour of the character). Default: 128.
+        /// </summary>
+        public static byte SDF_ONE_EDGE = 128;
+
+        /// <summary>
         /// Initial font texture width. Default value: 1024.
         /// If font texture becomes full, NanoUI informs user to expand it.
         /// </summary>

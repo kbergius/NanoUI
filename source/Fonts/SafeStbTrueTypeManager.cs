@@ -17,10 +17,8 @@ namespace NanoUI.Fonts
     /// </summary>
     internal class SafeStbTrueTypeManager : IFontManager
     {
-        // these affects sharpness & brightness when using FontBaking.SDF
-        const float PIXEL_DIST = 200;// in sdf_test.c 64.0f
-        const byte ONE_EDGE = 128;
-        const int FONT_ATLAS_PADDING = 1; // we use 1 pixel padding
+        // use 1 pixel padding
+        const int FONT_ATLAS_PADDING = 1;
 
         Dictionary<int, FontInfo> _fonts = new();
 
@@ -163,7 +161,7 @@ namespace NanoUI.Fonts
                 int h = 0;
 
                 byte[]? bitmap = font.stbtt_GetGlyphSDF(Math.Max(scaleX, scaleY), glyph, FONT_ATLAS_PADDING,
-                    ONE_EDGE, PIXEL_DIST, ref w, ref h, ref xoff, ref yoff);
+                    Globals.SDF_ONE_EDGE, Globals.SDF_PIXEL_DIST_SCALE, ref w, ref h, ref xoff, ref yoff);
 
                 if (bitmap == null || bitmap.Length == 0)
                 {
