@@ -15,12 +15,13 @@ using UIVector2 = System.Numerics.Vector2;
 
 namespace FNAExample
 {
-    // note: I had to add NPE hack in the beginning of the SDL3_FNAPlatform.PollEvents method
+    // Note: I had to add NPE hack in the beginning of the SDL3_FNAPlatform.PollEvents method
     // if(textInputControlDown == null)
 	// {
 	//    textInputControlDown = new bool[7];
 	// }
-    // There could better solution.
+    // There could be better solution.
+
     public class NanoUIGame : Game
     {
         // DemoTypes:
