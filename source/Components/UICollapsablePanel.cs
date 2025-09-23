@@ -77,6 +77,9 @@ namespace NanoUI.Components
         // todo: should be calculated dynamically?
         // todo2: use button layout/draw code?
 
+        /// <summary>
+        /// Collapsed status changed.
+        /// </summary>
         public Action<bool>? CollapsedChanged;
 
         /// <inheritdoc />
@@ -123,6 +126,10 @@ namespace NanoUI.Components
         }
 
         bool _collapsed = false;
+
+        /// <summary>
+        /// Collapsed status.
+        /// </summary>
         public bool Collapsed
         {
             get => _collapsed;
@@ -142,6 +149,10 @@ namespace NanoUI.Components
         }
 
         int? _collapseIcon;
+
+        /// <summary>
+        /// CollapseIcon.
+        /// </summary>
         public int CollapseIcon
         {
             get => _collapseIcon?? GetTheme().Fonts.IconCollapsed;
@@ -149,6 +160,10 @@ namespace NanoUI.Components
         }
 
         int? _expandIcon;
+
+        /// <summary>
+        /// ExpandIcon.
+        /// </summary>
         public int ExpandIcon
         {
             get => _expandIcon ?? GetTheme().Fonts.IconExpanded;

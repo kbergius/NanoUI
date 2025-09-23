@@ -36,20 +36,42 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Tint color
+        /// </summary>
         public Color TintColor { get; set; }
+
+        /// <summary>
+        /// Scale
+        /// </summary>
         public float Scale { get; set; }
+
+        /// <summary>
+        /// Fixed scale
+        /// </summary>
         public bool FixedScale { get; set; }
        
         Vector2 _offset;
+
+        /// <summary>
+        /// Offset
+        /// </summary>
         public Vector2 Offset
         {
             get => _offset;
             set => _offset = value;
         }
 
+        /// <summary>
+        /// Fixed offset
+        /// </summary>
         public bool FixedOffset { get; set; }
         
         float? _zoomSensitivity;
+
+        /// <summary>
+        /// Zoom sensitivity
+        /// </summary>
         public float ZoomSensitivity
         {
             get => _zoomSensitivity?? GetTheme().ImageViewer.ZoomSensitivity;
@@ -57,6 +79,10 @@ namespace NanoUI.Components
         }
 
         int? _texture;
+
+        /// <summary>
+        /// Texture id
+        /// </summary>
         public int Texture
         {
             get => _texture?? Globals.INVALID;
@@ -71,8 +97,15 @@ namespace NanoUI.Components
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Texture size
+        /// </summary>
         public Vector2 TextureSize => _textureSize;
+
+        /// <summary>
+        /// Scaled texture size
+        /// </summary>
         public Vector2 ScaledTextureSize => Scale * _textureSize;
 
         #endregion
@@ -82,11 +115,18 @@ namespace NanoUI.Components
         /// <summary>
         /// Calculates the texture coordinates of the given pixel position on the widget.
         /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>(Position - Offset) / Scale</returns>
         public Vector2 TextureCoordinateAt(Vector2 position)
         {
             return (position - Offset) / Scale;
         }
 
+        /// <summary>
+        /// Clamped texture coordinate at
+        /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>Clamped coordinate</returns>
         public Vector2 ClampedTextureCoordinateAt(Vector2 position)
         {
             var textureCoordinate = TextureCoordinateAt(position);
@@ -97,11 +137,18 @@ namespace NanoUI.Components
         /// <summary>
         /// Calculates the position inside the widget for the given texture coordinate.
         /// </summary>
+        /// <param name="textureCoordinate">Texture coordinate</param>
+        /// <returns>Scale * textureCoordinate + Offset</returns>
         public Vector2 PositionForCoordinate(Vector2 textureCoordinate)
         {
             return Scale * textureCoordinate + Offset;
         }
 
+        /// <summary>
+        /// Set texture coordinate at
+        /// </summary>
+        /// <param name="position">Position</param>
+        /// <param name="textureCoordinate">Texture coordinate</param>
         public void SetTextureCoordinateAt(Vector2 position, Vector2 textureCoordinate)
         {
             // Calculate where the new offset must be in order to satisfy the texture position equation.
@@ -134,6 +181,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Set the scale while keeping the texture centered.
         /// </summary>
+        /// <param name="scale">Scale</param>
         public void SetScaleCentered(float scale)
         {
             var centerPosition = Size / 2;
@@ -146,6 +194,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Moves the offset by the specified amount. Does bound checking.
         /// </summary>
+        /// <param name="delta">Delta</param>
         public void MoveOffset(Vector2 delta)
         {
             // Apply the delta to the offset.
@@ -167,6 +216,11 @@ namespace NanoUI.Components
                 _offset.Y = Size.Y;
         }
 
+        /// <summary>
+        /// Zoom.
+        /// </summary>
+        /// <param name="amount">Amount</param>
+        /// <param name="focusPosition">Focus position</param>
         public void Zoom(int amount, Vector2 focusPosition)
         {
             var focusedCoordinate = TextureCoordinateAt(focusPosition);

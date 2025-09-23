@@ -44,12 +44,18 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// DefaultColumnAlignment.
+        /// </summary>
         public LayoutAlignment DefaultColumnAlignment
         {
             get => _gridLayout.DefaultColumnAlignment;
             set => _gridLayout.DefaultColumnAlignment = value;
         }
 
+        /// <summary>
+        /// DefaultRowAlignment.
+        /// </summary>
         public LayoutAlignment DefaultRowAlignment
         {
             get => _gridLayout.DefaultRowAlignment;
@@ -90,20 +96,32 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <summary>
+        /// SetColumnAlignments
+        /// </summary>
+        /// <param name="value">List of the alignments</param>
         public void SetColumnAlignments(List<LayoutAlignment> value)
         {
             _gridLayout.SetColumnAlignments(value.ToArray());
         }
 
+        /// <summary>
+        /// SetRowAlignments.
+        /// </summary>
+        /// <param name="value">List of the alignments</param>
         public void SetRowAlignments(List<LayoutAlignment> value)
         {
             _gridLayout.SetRowAlignments(value.ToArray());
         }
 
+
         /// <summary>
         /// The alignment of the specified axis (row or column number, depending on
         /// the orientation) at the specified index of that row or column.
         /// </summary>
+        /// <param name="axis">Spesified axis (0 = X, 1 = Y).</param>
+        /// <param name="item">Item.</param>
+        /// <returns></returns>
         public LayoutAlignment GetAlignment(int axis, int item)
         {
             return _gridLayout.GetAlignment(axis, item);

@@ -26,6 +26,12 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <summary>
+        /// AddItem
+        /// </summary>
+        /// <param name="caption">Caption</param>
+        /// <param name="eventData">Data that is passed when selected</param>
+        /// <returns></returns>
         public UIViewItemWidget<T> AddItem(string caption, T eventData)
         {
             // get the longest caption so we can calculate min width of the display column / popup
