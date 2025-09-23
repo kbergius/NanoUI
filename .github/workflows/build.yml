@@ -9,11 +9,15 @@ on:
     paths-ignore:
       - '*.md'
       - 'LICENSE'
+      - 'docs/**'
+      - 'samples/FNAExample/**'
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - '*.md'
       - 'LICENSE'
+      - 'docs/**'
+      - 'samples/FNAExample/**'
 
 jobs:
   build:
