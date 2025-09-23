@@ -9,4 +9,4 @@ if(textInputControlDown == null)
 }
 ```
 
-// There could be better solution.
+There could be better solution.
