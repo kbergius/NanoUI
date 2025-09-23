@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\NanoUI\samples\NanoUIDemos\NanoUIDemos.csproj" />
+    <ProjectReference Include="..\NanoUIDemos\NanoUIDemos.csproj" />
   </ItemGroup>
 
 </Project>
