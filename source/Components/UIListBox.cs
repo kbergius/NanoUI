@@ -20,6 +20,12 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <summary>
+        /// Add item
+        /// </summary>
+        /// <param name="caption">Caption</param>
+        /// <param name="eventData">Passed event data, when selected</param>
+        /// <returns></returns>
         public UIViewItemWidget<T> AddItem(string caption, T eventData)
         {
             UIWidget[] cells =

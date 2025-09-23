@@ -42,11 +42,19 @@ namespace NanoUI.Components
         #region Properties
 
         UIPopup _popup;
+
+        /// <summary>
+        /// Associared popup
+        /// </summary>
         public UIPopup Popup => _popup;
         
         // todo: when changed -. we must update layout?
 
         uint? _maxPopupHeight;
+
+        /// <summary>
+        /// Max popup height
+        /// </summary>
         public uint MaxPopupHeight
         {
             get => _maxPopupHeight?? GetTheme().PopupButton.MaxPopupHeight;

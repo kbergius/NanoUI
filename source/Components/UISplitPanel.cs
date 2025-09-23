@@ -47,6 +47,9 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// Orientation
+        /// </summary>
         public Orientation Orientation
         {
             get => _splitterLayout.Orientation;
@@ -60,6 +63,9 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// Spacing
+        /// </summary>
         public Vector2 Spacing
         {
             get => _splitterLayout.Spacing;
@@ -76,6 +82,9 @@ namespace NanoUI.Components
         /// </summary>
         public UIWidget? Panel2 { get; private set; }
 
+        /// <summary>
+        /// Splitter
+        /// </summary>
         public UISplitter? Splitter { get; private set; }
 
         #endregion

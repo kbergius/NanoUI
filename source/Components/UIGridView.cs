@@ -21,14 +21,35 @@ namespace NanoUI.Components
     {
         #region Cell
 
+        /// <summary>
+        /// Grid cell.
+        /// </summary>
         public struct Cell
         {
-            public uint[] Position = new uint[2];   // (columnIndex, rowIndex)
-            public uint[] Span = new uint[2];       // (columnSpan, rowSpan)
-            public LayoutAlignment[] Align = new LayoutAlignment[2]; // (horizontal, vertical)
+            /// <summary>
+            /// (columnIndex, rowIndex)
+            /// </summary>
+            public uint[] Position = new uint[2];
+
+            /// <summary>
+            /// (columnSpan, rowSpan)
+            /// </summary>
+            public uint[] Span = new uint[2];
+
+            /// <summary>
+            /// (horizontal, vertical)
+            /// </summary>
+            public LayoutAlignment[] Align = new LayoutAlignment[2];
 
             public Cell() { }
 
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="columnIndex">Column index</param>
+            /// <param name="rowIndex">Row index</param>
+            /// <param name="horizontal">Horizontal aligment</param>
+            /// <param name="vertical">Vertical aligment</param>
             public Cell(uint columnIndex, uint rowIndex, LayoutAlignment horizontal = LayoutAlignment.Fill,
                   LayoutAlignment vertical = LayoutAlignment.Fill)
             {
@@ -39,6 +60,15 @@ namespace NanoUI.Components
                 Align[1] = vertical;
             }
 
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="columnIndex">Column index</param>
+            /// <param name="rowIndex">Row index</param>
+            /// <param name="columnSpan">Column span</param>
+            /// <param name="rowSpan">Row span</param>
+            /// <param name="horizontal">Horizontal aligment</param>
+            /// <param name="vertical">Vertical aligment</param>
             public Cell(uint columnIndex, uint rowIndex, uint columnSpan, uint rowSpan,
                   LayoutAlignment horizontal = LayoutAlignment.Fill,
                   LayoutAlignment vertical = LayoutAlignment.Fill)
@@ -94,16 +124,36 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Grid padding
+        /// </summary>
         public int GridPadding { get; set; }
+
+        /// <summary>
+        /// Columns
+        /// </summary>
         public List<int> Columns => _columns;
+
+        /// <summary>
+        /// Rows
+        /// </summary>
         public List<int> Rows => _rows;
         public int ColumnCount =>_columns.Count;
+
+        /// <summary>
+        /// Row count
+        /// </summary>
         public int RowCount => _rows.Count;
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Append row
+        /// </summary>
+        /// <param name="height">Height</param>
+        /// <param name="stretch">Stretch</param>
         public void AppendRow(uint height, float stretch = 0.0f)
         {
             _rows.Add((int)height);
@@ -113,6 +163,11 @@ namespace NanoUI.Components
             _rowStreches[_rowStreches.Length - 1] = stretch;
         }
 
+        /// <summary>
+        /// Append column
+        /// </summary>
+        /// <param name="width">Width</param>
+        /// <param name="stretch">Stretch</param>
         public void AppendColumn(uint width, float stretch = 0.0f)
         {
             _columns.Add((int)width);
@@ -122,18 +177,33 @@ namespace NanoUI.Components
             _columnStretches[_columnStretches.Length - 1] = stretch;
         }
 
+        /// <summary>
+        /// Set row stretch
+        /// </summary>
+        /// <param name="rowIndex">Row index</param>
+        /// <param name="stretch">Stretch</param>
         public void SetRowStretch(uint rowIndex, float stretch)
         {
             // todo: validate index
             _rowStreches[rowIndex] = stretch;
         }
 
+        /// <summary>
+        /// Set column stretch
+        /// </summary>
+        /// <param name="columnIndex">Column index</param>
+        /// <param name="stretch">Stretch</param>
         public void SetColumnStretch(int columnIndex, float stretch)
         {
             // todo: validate index
             _columnStretches[columnIndex] = stretch;
         }
 
+        /// <summary>
+        /// Set widget to cell
+        /// </summary>
+        /// <param name="widget">Widget</param>
+        /// <param name="anchor">Anchor cell</param>
         public void SetCell(UIWidget widget, Cell anchor)
         {
             _widgetAnchors[widget.Id] = anchor;
@@ -142,6 +212,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Returns a copy of the cell. So if you modify it, you should call SetCell.
         /// </summary>
+        /// <param name="widget">Widget</param>
+        /// <param name="cell">Cell</param>
+        /// <returns></returns>
         public bool TryGetCell(UIWidget widget, out Cell cell)
         {
             if (_widgetAnchors.TryGetValue(widget.Id, out cell))

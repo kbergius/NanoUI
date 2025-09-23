@@ -9,12 +9,18 @@ namespace NanoUI.Components
     // todo: vertical
 
     /// <summary>
-    /// UISlider.
-    /// Note: slider has not normal background/border drawing.
+    /// UISlider has not normal background/border drawing.
     /// </summary>
     public class UISlider : UIWidget
     {
+        /// <summary>
+        /// Value changed action
+        /// </summary>
         public Action<float>? ValueChanged;
+
+        /// <summary>
+        /// Final value action
+        /// </summary>
         public Action<float>? FinalValue;
 
         /// <inheritdoc />
@@ -34,6 +40,10 @@ namespace NanoUI.Components
         #region Properties
 
         float _value;
+
+        /// <summary>
+        /// Current value
+        /// </summary>
         [Browsable(false)]
         public float Value
         {
@@ -46,9 +56,17 @@ namespace NanoUI.Components
 
         // note : there is no editor for this - so this property is not shown in
         // property grid
+
+        /// <summary>
+        /// Range
+        /// </summary>
         public MinMax Range { get; set; } = new MinMax(0.0f, 1.0f);
 
         Color? _valueColor;
+
+        /// <summary>
+        /// Value color
+        /// </summary>
         public Color ValueColor
         {
             get => _valueColor?? GetTheme().Slider.ValueColor;

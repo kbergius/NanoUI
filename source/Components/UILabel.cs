@@ -55,6 +55,10 @@ namespace NanoUI.Components
         #region Properties
 
         string _caption = string.Empty;
+
+        /// <summary>
+        /// Caption.
+        /// </summary>
         public string Caption
         {
             get => _caption;
@@ -69,6 +73,10 @@ namespace NanoUI.Components
         }
 
         bool _wrapText = false;
+
+        /// <summary>
+        /// Wrap text.
+        /// </summary>
         public bool WrapText
         {
             get => _wrapText;
@@ -84,6 +92,10 @@ namespace NanoUI.Components
 
         // used only when wrapping
         int? _maxTextRows;
+
+        /// <summary>
+        /// Max text rows
+        /// </summary>
         public int MaxTextRows
         {
             get => _maxTextRows?? Globals.MAX_TEXT_ROWS;
@@ -91,6 +103,10 @@ namespace NanoUI.Components
         }
 
         Thickness? _padding;
+
+        /// <summary>
+        /// Padding
+        /// </summary>
         public virtual Thickness Padding
         {
             get => _padding ?? GetTheme().Label.Padding;

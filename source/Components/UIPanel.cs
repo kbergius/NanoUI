@@ -3,10 +3,11 @@
 namespace NanoUI.Components
 {
     /// <summary>
-    /// UIPanel is simple container widget, that only draws background (if spesified) and children.
+    /// UIPanel is a simple container widget, that only draws background (if spesified) and children.
     /// </summary>
     public class UIPanel : UIWidget
     {
+        /// <inheritdoc />
         public UIPanel(UIWidget parent)
             : base(parent)
         {

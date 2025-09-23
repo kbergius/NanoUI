@@ -13,6 +13,9 @@ namespace NanoUI.Components
     /// </summary>
     public class UICheckBox : UIWidget
     {
+        /// <summary>
+        /// CheckedChanged action.
+        /// </summary>
         public Action<bool>? CheckedChanged;
 
         // this is used if not wrapping caption
@@ -48,6 +51,9 @@ namespace NanoUI.Components
 
         string _caption = string.Empty;
 
+        /// <summary>
+        /// Caption.
+        /// </summary>
         public string Caption
         {
             get => _caption;
@@ -61,6 +67,9 @@ namespace NanoUI.Components
 
         Thickness? _padding;
 
+        /// <summary>
+        /// Padding.
+        /// </summary>
         public virtual Thickness Padding
         {
             get => _padding?? GetTheme().CheckBox.Padding;
@@ -69,6 +78,9 @@ namespace NanoUI.Components
 
         bool _checked;
 
+        /// <summary>
+        /// Checked status.
+        /// </summary>
         public bool Checked
         {
             get => _checked;
@@ -85,6 +97,9 @@ namespace NanoUI.Components
         // todo : uint O means no icon
         int? _checkedIcon;
 
+        /// <summary>
+        /// CheckedIcon displayed when checked.
+        /// </summary>
         public int CheckedIcon
         {
             get => _checkedIcon?? GetTheme().Fonts.IconChecked;
@@ -92,6 +107,10 @@ namespace NanoUI.Components
         }
 
         BrushBase? _boxBackgroundBrush;
+
+        /// <summary>
+        /// BoxBackgroundBrush.
+        /// </summary>
         public virtual BrushBase? BoxBackgroundBrush
         {
             get => _boxBackgroundBrush ?? GetTheme().CheckBox.BoxBackgroundBrush;

@@ -24,6 +24,10 @@ namespace NanoUI.Components
         #region Properties
 
         int? svgId;
+
+        /// <summary>
+        /// Svg id
+        /// </summary>
         public int? SvgId
         {
             get => svgId;

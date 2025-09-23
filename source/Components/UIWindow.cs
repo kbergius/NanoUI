@@ -97,12 +97,19 @@ namespace NanoUI.Components
         public Vector2 ScrollOffset => _contentRect.Position;
 
         uint? _borderSize;
+
+        /// <summary>
+        /// Border size
+        /// </summary>
         public uint BorderSize
         {
             get => _borderSize?? GetTheme().Window.BorderSize;
             set => _borderSize = value;
         }
 
+        /// <summary>
+        /// Title
+        /// </summary>
         public string? Title
         {
             get
@@ -126,6 +133,10 @@ namespace NanoUI.Components
         }
 
         bool _modal;
+
+        /// <summary>
+        /// Modal
+        /// </summary>
         public bool Modal
         {
             get => _modal;
@@ -141,6 +152,10 @@ namespace NanoUI.Components
         }
 
         uint? _scrollbarDimension;
+
+        /// <summary>
+        /// Scrollbars dimension
+        /// </summary>
         public uint ScrollbarDimension
         {
             get => _scrollbarDimension ?? GetTheme().Window.ScrollbarDimension;
@@ -148,6 +163,10 @@ namespace NanoUI.Components
         }
 
         bool? _draggable;
+
+        /// <summary>
+        /// Draggable
+        /// </summary>
         public bool Draggable
         {
             get => _draggable?? GetTheme().Window.Draggable;
@@ -155,6 +174,10 @@ namespace NanoUI.Components
         }
 
         bool? _dragResizable;
+
+        /// <summary>
+        /// Drag resizable
+        /// </summary>
         public bool DragResizable
         {
             get => _dragResizable ?? GetTheme().Window.DragResizable;
@@ -165,10 +188,13 @@ namespace NanoUI.Components
         /// Flag to indicate if this is attachable;
         /// meaning that after dragging is finished (pointer up),
         /// screen calls TryAttach.
-        /// Note: this is currently only used in docking / dock window.
         /// </summary>
+        /// <remarks>This is currently only used in docking / dock window</remarks>
         public bool Attachable { get; set; } = false;
-                
+
+        /// <summary>
+        /// Window drag mode
+        /// </summary>
         protected DragMode WindowDragMode => _windowDragMode;
 
         // these are currently same to all windows
@@ -182,6 +208,12 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <summary>
+        /// ShowBar of type T
+        /// </summary>
+        /// <typeparam name="T">Bar type</typeparam>
+        /// <param name="show">show/hide</param>
+        /// <returns>true if success</returns>
         public bool ShowBar<T>(bool show) where T : UIWidgetbar
         {
             var bar = GetBar<T>();
@@ -201,6 +233,11 @@ namespace NanoUI.Components
             return false;
         }
 
+        /// <summary>
+        /// GetBar of type T
+        /// </summary>
+        /// <typeparam name="T">type of T</typeparam>
+        /// <returns>Bar of type T</returns>
         public T? GetBar<T>() where T : UIWidgetbar
         {
             // not initialized (in theme?)

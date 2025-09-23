@@ -14,6 +14,9 @@ namespace NanoUI.Components
         // this makes pushed button text dimmer
         const float PUSHED_TEXT_MULTIPLIER = 0.6f;
 
+        /// <summary>
+        /// Button clicked action
+        /// </summary>
         public Action? Clicked;
 
         /// <summary>
@@ -51,9 +54,15 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Caption.
+        /// </summary>
         public string Caption { get; set; }
 
         Thickness? _padding;
+        /// <summary>
+        /// Padding.
+        /// </summary>
         public virtual Thickness Padding
         {
             get => _padding?? GetTheme().Button.Padding;
@@ -80,11 +89,14 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// -1 means no icon.
+        /// Icon id. -1 means no icon.
         /// </summary>
         public virtual int Icon { get; set; }
 
         IconAlign? _iconAlign;
+        /// <summary>
+        /// Icon alignment.
+        /// </summary>
         public IconAlign IconAlign
         {
             get => _iconAlign?? GetTheme().Button.IconAlign;
@@ -101,7 +113,10 @@ namespace NanoUI.Components
             get => _buttonGroup;
             set => _buttonGroup = value;
         }
-        
+
+        /// <summary>
+        /// Flags differiante button behaviour.
+        /// </summary>
         public virtual ButtonFlags Flags { get; set; } = ButtonFlags.NormalButton;
 
         #endregion
