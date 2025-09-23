@@ -7,10 +7,7 @@ namespace NanoUI.Components
     /// </summary>
     public class UIPanel : UIWidget
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="parent">Parent widget. Can't be null</param>
+        /// <inheritdoc />
         public UIPanel(UIWidget parent)
             : base(parent)
         {

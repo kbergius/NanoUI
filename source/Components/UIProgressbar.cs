@@ -29,10 +29,17 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Value
+        /// </summary>
         [Browsable(false)]
         public virtual float Value { get; set; }
        
         Color? _valueColor;
+
+        /// <summary>
+        /// Value color
+        /// </summary>
         public Color ValueColor
         {
             get => _valueColor?? GetTheme().Progressbar.ValueColor;

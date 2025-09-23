@@ -35,6 +35,10 @@ namespace NanoUI.Components
             Visible = false;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="parentButton">Parent UIPopupButton</param>
         public UIPopup(UIPopupButton? parentButton)
             :this(parentButton?.Screen)
         {
@@ -65,20 +69,43 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Anchor's background color
+        /// </summary>
         public virtual Color AnchorBackgroundColor { get; set; }
+
+        /// <summary>
+        /// Anchor size
+        /// </summary>
         public virtual int AnchorSize { get; set; }
+
+        /// <summary>
+        /// Anchor position
+        /// </summary>
         public Vector2 AnchorPos { get; set; }
+
+        /// <summary>
+        /// Relative position
+        /// </summary>
         public PopupPosition RelativePosition { get; set; }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Get parent button
+        /// </summary>
+        /// <returns>Parent UIPopupButton</returns>
         public UIPopupButton? GetParentButton()
         {
             return _parentButton;
         }
 
+        /// <summary>
+        /// Show/hide.
+        /// </summary>
+        /// <param name="visible">Visible flag</param>
         public virtual void Show(bool visible)
         {
             if (Visible == visible)
@@ -101,6 +128,10 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// Recursive close child popups.
+        /// </summary>
+        /// <param name="popup"></param>
         protected void RecursiveCloseChildPopups(UIPopup popup)
         {
             if (popup == null)
@@ -153,6 +184,10 @@ namespace NanoUI.Components
         /// so editing menu item (button) values in popup doesn't work
         /// since clicking menu item closes popup that removes menu item from focuspath.
         /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="down">Down</param>
+        /// <param name="modifiers">Modifiers</param>
+        /// <returns>boolean value indicating if this handles event</returns>
         public override bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             // todo: this works now with menus. Are there any downsides?

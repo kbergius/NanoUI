@@ -16,7 +16,14 @@ namespace NanoUI.Components
         // numeric format (decimals)
         NumericFormat _numericFormat = NumericFormat.NONE;
 
+        /// <summary>
+        /// Value changed action
+        /// </summary>
         public Action<T>? ValueChanged;
+
+        /// <summary>
+        /// Invalid format action
+        /// </summary>
         public Action? InvalidFormat;
 
         /// <inheritdoc />
@@ -45,6 +52,9 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Current value
+        /// </summary>
         public T CurrentValue => _currentValue;
 
         /// <summary>
@@ -61,14 +71,23 @@ namespace NanoUI.Components
 
         #region Methods
 
+        /// <summary>
+        /// Get formatted
+        /// </summary>
+        /// <returns>string</returns>
         public string GetFormatted()
         {
             return DoGetFormatted(_currentValue);
         }
-
-        // outside call like updown button
+                
+        /// <summary>
+        /// Set change
+        /// </summary>
+        /// <param name="valueChange">Value change</param>
         public void SetChange(T valueChange)
         {
+            // outside call like updown button
+
             if (T.TryParse((_currentValue + valueChange).ToString(), null, out var val))
             {
                 if (Min != null && Max != null && Min < Max && (val < Min || val > Max))
