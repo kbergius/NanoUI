@@ -23,6 +23,9 @@ namespace NanoUI.Components
 
         static Vector2 VECTOR_INVALID = new Vector2(-1);
 
+        /// <summary>
+        /// Text changed action
+        /// </summary>
         public Action<string>? TextChanged;
 
         // if not committed, we must (re)calculate text (using tempText) & caret pos etc
@@ -81,15 +84,26 @@ namespace NanoUI.Components
         #region Properties
 
         Thickness? _padding;
+
+        /// <summary>
+        /// Padding
+        /// </summary>
         public virtual Thickness Padding
         {
             get => _padding?? GetTheme().TextField.Padding;
             set => _padding = value;
         }
 
+        /// <summary>
+        /// Editable
+        /// </summary>
         public bool Editable { get; set; }
         
         string _text;
+
+        /// <summary>
+        /// Text
+        /// </summary>
         public string Text
         {
             get => _text;
@@ -100,7 +114,14 @@ namespace NanoUI.Components
             }
         }
 
+        /// <summary>
+        /// Default text. Default: string.Empty.
+        /// </summary>
         public string DefaultText {  get; set; } = string.Empty;
+
+        /// <summary>
+        /// Units. Default: string.Empty.
+        /// </summary>
         public string Units { get; set; } = string.Empty;
 
         float? _lineHeight;
@@ -115,6 +136,10 @@ namespace NanoUI.Components
         }
 
         Color? _unitsColor;
+
+        /// <summary>
+        /// Units color
+        /// </summary>
         public Color UnitsColor
         {
             get => _unitsColor?? GetTheme().TextField.UnitsColor;
@@ -122,6 +147,10 @@ namespace NanoUI.Components
         }
 
         Color? _caretColor;
+
+        /// <summary>
+        /// Caret color
+        /// </summary>
         public Color CaretColor
         {
             get => _caretColor?? GetTheme().TextField.CaretColor;
@@ -129,6 +158,10 @@ namespace NanoUI.Components
         }
 
         Color? _selectionColor;
+
+        /// <summary>
+        /// Selection color
+        /// </summary>
         public Color SelectionColor
         {
             get => _selectionColor ?? GetTheme().TextField.SelectionColor;
@@ -136,6 +169,10 @@ namespace NanoUI.Components
         }
 
         Color? _placeHolderColor;
+
+        /// <summary>
+        /// Place holder color
+        /// </summary>
         public Color PlaceHolderColor
         {
             get => _placeHolderColor?? GetTheme().TextField.PlaceHolderColor;
@@ -171,6 +208,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Resets text, but doesn't change status (committed / focused).
         /// </summary>
+        /// <param name="text">Text</param>
         public void ResetText(string text)
         {
             // prevent circular - needed?

@@ -16,11 +16,15 @@ namespace NanoUI.Components
         /// <summary>
         /// Sets widget as a first widget in parent's widget list. Same as MoveToFirst.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Success</returns>
         public static bool SendToBack(this UIWidget w) => MoveToFirst(w);
 
         /// <summary>
         /// Sets widget as a first widget in parent's widget list. 
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Success</returns>
         public static bool MoveToFirst(this UIWidget w)
         {
             if (w.Parent != null)
@@ -32,11 +36,15 @@ namespace NanoUI.Components
         /// <summary>
         /// Sets widget as a last widget in parent's widget list. Same as MoveToLast.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Success</returns>
         public static bool BringToFront(this UIWidget w) => MoveToLast(w);
 
         /// <summary>
         /// Sets widget as a last widget in parent's widget list.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Success</returns>
         public static bool MoveToLast(this UIWidget w)
         {
             if (w.Parent != null)
@@ -54,8 +62,12 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Gets text with ellpsis ("..."), if text doesn't fit in available width.
-        /// Note: you should probably call PerformLayout or RequestLayoutUpdate, when you are using this.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="text">Text</param>
+        /// <returns>string</returns>
+        /// <remarks>You should probably call PerformLayout or RequestLayoutUpdate, when you are using this.</remarks>
         public static string GetText(this UIWidget w, NvgContext ctx, ReadOnlySpan<char> text)
         {
             return GetText(w, ctx, text, w.FixedSize.X > 0 ? w.FixedSize.X : w.Size.X);
@@ -63,8 +75,13 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Gets text with ellpsis ("..."), if text doesn't fit in available width.
-        /// Note: you should probably call PerformLayout or RequestLayoutUpdate, when you are using this.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="textSpan">Text</param>
+        /// <param name="maxWidth">MaxWidth</param>
+        /// <returns>string</returns>
+        /// <remarks>You should probably call PerformLayout or RequestLayoutUpdate, when you are using this.</remarks>
         public static string GetText(this UIWidget w, NvgContext ctx, ReadOnlySpan<char> textSpan, float maxWidth)
         {
             ctx.FontSize(w.FontSize);
@@ -97,9 +114,10 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Finds parent UIWindow widget if any.
-        /// Note: used in UIContextMenu & UIPopup when they want to keep their owner's window widget focused
-        /// (their own parent is Screen).
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>UIWindow</returns>
+        /// <remarks> Used in UIContextMenu & UIPopup when they want to keep their owner's window widget focused (their own parent is Screen).</remarks>
         public static UIWindow? FindParentWindow(this UIWidget w)
         {
             if(w is UIWindow window)
@@ -113,6 +131,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds parent widget of type T if any.
         /// </summary>
+        /// <typeparam name="T">Type of Widget</typeparam>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Widget of type T</returns>
         public static T? FindParent<T>(this UIWidget w) where T : UIWidget
         {
             if (w.Parent is T res)
@@ -141,9 +162,10 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Gets widget's widget tree position.
-        /// Returns widget's absolute position in widget tree.
-        /// Note: use GetDisplayPosition, when you want to get widget's position in display.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Widget's absolute position in widget tree.</returns>
+        /// <remarks>Use GetDisplayPosition, when you want to get widget's position in display.</remarks>
         public static Vector2 GetWidgetTreePosition(this UIWidget w)
         {
             return w.Parent != null ? (w.Parent.GetWidgetTreePosition() + w.Position) : w.Position;
@@ -152,8 +174,10 @@ namespace NanoUI.Components
         /// <summary>
         /// Gets widget's display position. Returns widget's position in display.
         /// This handles also cases when widget is inside IScrollables & there is some scrolling happening.
-        /// Note: use this allways when you are dealing with pointer position
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Position</returns>
+        /// <remarks>Use this allways, when you are dealing with pointer position.</remarks>
         public static Vector2 GetDisplayPosition(this UIWidget w)
         {
             if (w.Parent == null)
@@ -170,9 +194,10 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Gets visible property recursively.
-        /// Takes parent widgets into account.
+        /// Gets visible property recursively. Takes parent widgets into account.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <returns>Success</returns>
         public static bool GetVisibleRecursive(this UIWidget w)
         {
             bool visible = true;
@@ -191,11 +216,13 @@ namespace NanoUI.Components
 
         #region Draw border
 
-       /// <summary>
+        /// <summary>
         /// Draws (rounded) rectangle borders.
-        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
-        /// possibly drawn before.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="sunken">Sunken</param>
+        /// <remarks>This should be called last in draw phase, since this draws in widget area, that cound be possibly drawn before.</remarks>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, bool sunken)
         {
             DrawBorder(w, ctx, w.Position, w.Size, sunken);
@@ -203,9 +230,13 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Draws (rounded) rectangle borders.
-        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
-        /// possibly drawn before.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="position">Position</param>
+        /// <param name="size">Size</param>
+        /// <param name="sunken">Sunken</param>
+        /// <remarks>This should be called last in draw phase, since this draws in widget area, that cound be possibly drawn before.</remarks>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, Vector2 position, Vector2 size,
             bool sunken)
         {
@@ -236,19 +267,27 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Draws (rounded) rectangle borders.
-        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
-        /// possibly drawn before.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="borderSize">Border size</param>
+        /// <param name="borderColor">Border color</param>
+        /// <remarks>This should be called last in draw phase, since this draws in widget area, that cound be possibly drawn before.</remarks>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, float borderSize, Color borderColor)
         {
             DrawBorder(w, ctx, w.Position, w.Size, borderSize, borderColor);
         }
 
         /// <summary>
-        /// Draws (rounded) rectangle borders.
-        /// Note: this should be called last in draw phase, since this draws in widget area that cound be
-        /// possibly drawn before.
+        ///  Draws (rounded) rectangle borders.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="position">Position</param>
+        /// <param name="size">Size</param>
+        /// <param name="borderSize">Border size</param>
+        /// <param name="borderColor">Border color</param>
+        /// <remarks>This should be called last in draw phase, since this draws in widget area, that cound be possibly drawn before.</remarks>
         public static void DrawBorder(this UIWidget w, NvgContext ctx, Vector2 position, Vector2 size,
             float borderSize, Color borderColor)
         {
@@ -274,6 +313,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Draws red rectangle around widget.
         /// </summary>
+        /// <param name="w">UIWidget</param>
+        /// <param name="ctx">NvgContext</param>
         public static void DrawDebug(this UIWidget w, NvgContext ctx)
         {
             // we are inside scissor - so we must reset in order to draw outside scissor

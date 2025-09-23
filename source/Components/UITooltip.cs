@@ -75,6 +75,10 @@ namespace NanoUI.Components
         }
 
         int? _maxTextRows;
+
+        /// <summary>
+        /// Max text rows
+        /// </summary>
         public int MaxTextRows
         {
             get => _maxTextRows ?? GetTheme().Tooltip.MaxTextRows;
