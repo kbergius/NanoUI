@@ -43,7 +43,9 @@ namespace NanoUI.Components
 
         #region Properties
 
-        // determines if we draw whole/half circle (default = true)
+        /// <summary>
+        /// Determines if we draw whole/half circle (default = true)
+        /// </summary>
         public bool HalfCircle { get; set; }
         
         float? _speed;
@@ -80,6 +82,10 @@ namespace NanoUI.Components
         }
 
         Color? _startColor;
+
+        /// <summary>
+        /// Start color
+        /// </summary>
         public Color StartColor
         {
             get => _startColor?? GetTheme().Spinner.StartColor;
@@ -87,6 +93,10 @@ namespace NanoUI.Components
         }
 
         Color? _endColor;
+
+        /// <summary>
+        /// End color
+        /// </summary>
         public Color EndColor
         {
             get => _endColor ?? GetTheme().Spinner.EndColor;

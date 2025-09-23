@@ -8,8 +8,8 @@ namespace NanoUI.Components
     /// UISplitter works by finding previous widget of this splitter ("left", "top") and
     /// setting its size fixed based on splitter position, then request layout change
     /// in parent.
-    /// Note: needs SplitLayout in parent to work.
     /// </summary>
+    /// <remarks>Needs SplitLayout in parent to work.</remarks>
     public class UISplitter : UIWidget
     {
         /// <inheritdoc />
@@ -50,6 +50,10 @@ namespace NanoUI.Components
         #region Properties
 
         uint? _dimension;
+
+        /// <summary>
+        /// Dimension
+        /// </summary>
         public uint Dimension
         {
             get => _dimension?? GetTheme().Splitter.Dimension;
@@ -59,6 +63,10 @@ namespace NanoUI.Components
         // todo: should we calculate this dynamically from dimension?
 
         float? _dotsRadius;
+
+        /// <summary>
+        /// DotsRadius
+        /// </summary>
         public float DotsRadius
         {
             get => _dotsRadius?? GetTheme().Splitter.DotsRadius;
@@ -79,6 +87,10 @@ namespace NanoUI.Components
         }
 
         Color? _dotsColor;
+
+        /// <summary>
+        /// Dots color
+        /// </summary>
         public Color DotsColor
         {
             get => _dotsColor?? GetTheme().Splitter.DotsColor;
@@ -86,6 +98,10 @@ namespace NanoUI.Components
         }
 
         Orientation _orientation;
+
+        /// <summary>
+        /// Orientation
+        /// </summary>
         public Orientation Orientation
         {
             get => _orientation;

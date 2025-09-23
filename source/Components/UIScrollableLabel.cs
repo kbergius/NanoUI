@@ -38,7 +38,7 @@ namespace NanoUI.Components
 
         #region Properties
 
-        // we must override some properties, so we can pass them to Label
+        // must override some properties, so we can pass them to Label
 
         /// <inheritdoc />
         public override bool Disabled

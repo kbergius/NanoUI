@@ -35,8 +35,19 @@ namespace NanoUI.Components
 
         #region Properties
 
+        /// <summary>
+        /// Caption
+        /// </summary>
         public string Caption {  get; set; }
+
+        /// <summary>
+        /// Closable
+        /// </summary>
         public bool Closable { get; set; }
+
+        /// <summary>
+        /// Draggable
+        /// </summary>
         public bool Draggable { get; set; }
 
         #endregion
@@ -81,7 +92,10 @@ namespace NanoUI.Components
         int _tabDragEnd = INVALID;
         int _closeIndex = INVALID;
         int _closeIndexPushed = INVALID;
-                
+
+        /// <summary>
+        /// Tab changed action
+        /// </summary>
         public Action<UITabItem>? TabChanged;
 
         /// <inheritdoc />
@@ -119,6 +133,10 @@ namespace NanoUI.Components
         #region Properties
 
         int? _closeIcon;
+
+        /// <summary>
+        /// Close icon
+        /// </summary>
         public int CloseIcon
         {
             get => _closeIcon?? GetTheme().Fonts.IconClose;
@@ -126,6 +144,10 @@ namespace NanoUI.Components
         }
 
         float? _tabCornerRadius;
+
+        /// <summary>
+        /// Tabs corner tadius
+        /// </summary>
         public float TabCornerRadius
         {
             get => _tabCornerRadius?? GetTheme().TabWidget.TabCornerRadius;
@@ -133,6 +155,10 @@ namespace NanoUI.Components
         }
 
         uint? _contentPaddingHorizontal;
+
+        /// <summary>
+        /// Horizontal content padding
+        /// </summary>
         public virtual uint ContentPaddingHorizontal
         {
             get => _contentPaddingHorizontal ?? GetTheme().TabWidget.ContentPaddingHorizontal;
@@ -140,6 +166,10 @@ namespace NanoUI.Components
         }
 
         uint? _contentPaddingVertical;
+
+        /// <summary>
+        /// Vertical content padding
+        /// </summary>
         public virtual uint ContentPaddingVertical
         {
             get => _contentPaddingVertical?? GetTheme().TabWidget.ContentPaddingVertical;
@@ -147,6 +177,10 @@ namespace NanoUI.Components
         }
 
         uint? _tabPaddingHorizontal;
+
+        /// <summary>
+        /// Horizontal tab padding
+        /// </summary>
         public virtual uint TabPaddingHorizontal
         {
             get => _tabPaddingHorizontal ?? GetTheme().TabWidget.TabPaddingHorizontal;
@@ -154,6 +188,10 @@ namespace NanoUI.Components
         }
 
         uint? _tabPaddingVertical;
+
+        /// <summary>
+        /// Vertical tab padding
+        /// </summary>
         public virtual uint TabPaddingVertical
         {
             get => _tabPaddingVertical?? GetTheme().TabWidget.TabPaddingVertical;
@@ -172,6 +210,9 @@ namespace NanoUI.Components
         public int TabsCount => Children.Count;
 
         // todo : needed in docking solution by now
+        /// <summary>
+        /// Tabs height
+        /// </summary>
         public int TabHeight { get; private set; }
 
         /// <summary>
@@ -193,6 +234,10 @@ namespace NanoUI.Components
         }
 
         Color? _tabDragColor;
+
+        /// <summary>
+        /// Tabs drag color
+        /// </summary>
         public Color TabDragColor
         {
             get => _tabDragColor ?? GetTheme().TabWidget.TabDragColor;
@@ -200,6 +245,10 @@ namespace NanoUI.Components
         }
 
         Color? _tabInactiveTop;
+
+        /// <summary>
+        /// Tabs inactive top color
+        /// </summary>
         public Color TabInactiveTop
         {
             get => _tabInactiveTop?? GetTheme().TabWidget.TabInactiveTop;
@@ -207,6 +256,10 @@ namespace NanoUI.Components
         }
 
         Color? _tabInactiveBottom;
+
+        /// <summary>
+        /// Tabs inactive bottom color
+        /// </summary>
         public Color TabInactiveBottom
         {
             get => _tabInactiveBottom ?? GetTheme().TabWidget.TabInactiveBottom;
@@ -220,6 +273,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Add a new tab.
         /// </summary>
+        /// <param name="caption">Caption</param>
+        /// <returns>UITabItem</returns>
         public UITabItem AddTab(string caption)
         {
             var res = new UITabItem(this) { Caption = caption };
@@ -251,6 +306,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Remove a tab.
         /// </summary>
+        /// <param name="tab">UITabItem</param>
         public void RemoveTab(UITabItem tab)
         {
             RemoveTab(Children.IndexOf(tab));
@@ -259,6 +315,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Removes a tab with the specified index.
         /// </summary>
+        /// <param name="index">Index</param>
         public void RemoveTab(int index)
         {
             if (Children.TryGet(index, out UITabItem? tab))
