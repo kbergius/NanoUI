@@ -32,7 +32,10 @@ NanoUI is a small, extendable and quite feature-rich UI & drawing library with n
 
 NanoUI knows nothing about your OS, graphics system and windowing environment.
 
-In the **samples** folder there are ready-made renderers for **MonoGame** and **Veldrid** - you can use them.
+In the **samples** folder there are ready-made renderers for:
+- **FNA**
+- **MonoGame**
+- **Veldrid**
 
 If your platform is different, you must create your own **INvgRenderer** implementation.
 
@@ -105,7 +108,7 @@ The retained mode (UI layer) has the bells & whistles of the modern UI. It is ba
 
 ### 1. UIScreen
 
-Create screen like this:
+You can create screen like this:
 
 ```cs
 
@@ -176,6 +179,8 @@ There is also more information in the [BASIC CONCEPTS](docs/BASICCONCEPTS.md) do
 ## Examples
 
 There are examples, that use **MonoGame** or **Veldrid** backend.
+
+**FNA** example doesn't run out-of-box: you have to setup **FNA** first.
 
 There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDemos/Assets/shaders** folder.
 
