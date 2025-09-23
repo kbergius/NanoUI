@@ -21,6 +21,10 @@ namespace NanoUI.Components
 
         UIWidget _parent;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="parent">Owner</param>
         public WidgetList(UIWidget parent)
             :base(4)
         { 
@@ -33,8 +37,9 @@ namespace NanoUI.Components
         public UIWidget Parent => _parent;
 
         /// <summary>
-        /// Add widget.
+        /// Add a widget.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         public override void Add(UIWidget widget)
         {
             // remove from last parent?
@@ -47,8 +52,9 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Add widget.
+        /// Add a widget.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         public override void Add(ref UIWidget widget)
         {
             // remove from last parent?
@@ -62,8 +68,12 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Tries tod get widget in index and convert it to desired type if possible.
-        /// Note: if conversion is not needed, use Childen[index].
         /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <param name="index">Index</param>
+        /// <param name="widget">Widget of type T</param>
+        /// <returns>Success</returns>
+        /// <remarks>If conversion is not needed, use Childen[index].</remarks>
         public bool TryGet<T>(int index, out T? widget) where T : UIWidget
         {
             if(index >= 0 && index < Count)
@@ -83,6 +93,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds widget by id property.
         /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>UIWidget</returns>
         public UIWidget? FindById(Guid id, bool recursive = true)
         {
             if (_parent.Id == id)
@@ -110,6 +123,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds widget by name property.
         /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>UIWidget</returns>
         public UIWidget? FindByName(string name, bool recursive = true) 
         {
             if (_parent.Name == name)
@@ -137,6 +153,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds widget by name property and converts it to T if possible.
         /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <param name="name">Name</param>
+        /// <returns>Widget of type T</returns>
         public T? FindByName<T>(string name) where T : UIWidget
         {
             if (_parent.Name == name && _parent is T res)
@@ -157,8 +176,11 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Finds first widget of type T.
+        ///  Finds first widget of type T.
         /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>Widget of type T</returns>
         public T? FindFirst<T>(bool recursive = true) where T : UIWidget
         {
             if (_parent is T parentType)
@@ -187,6 +209,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds last widget of type T.
         /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>Widget of type T</returns>
         public T? FindLast<T>(bool recursive = true) where T : UIWidget 
         {
             T? found = null;
@@ -217,6 +242,10 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds first widget of type T with position.
         /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <param name="displayPosition">Display position</param>
+        /// <param name="recursive">Recursive</param>
+        /// <returns>Widget of type T</returns>
         public T? Find<T>(Vector2 displayPosition, bool recursive = true) where T : UIWidget
         {
             var position = ConvertPosition(displayPosition);
@@ -243,8 +272,11 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Finds first widget with position and returns also index.
-        /// Note: searches only current children; doesn't support hierarcial structures.
         /// </summary>
+        /// <param name="displayPosition">Display position</param>
+        /// <param name="index">Index</param>
+        /// <returns>UIWidget</returns>
+        /// <remarks>Searches only current children; doesn't support hierarchial structures.</remarks>
         public UIWidget? Find(Vector2 displayPosition, out int index)
         {
             if (Count > 0)
@@ -272,6 +304,8 @@ namespace NanoUI.Components
         /// Finds the topmost widget located at the given position value.
         /// Uses recursive search.
         /// </summary>
+        /// <param name="displayPosition">Display position</param>
+        /// <returns>UIWidget</returns>
         public UIWidget? FindTopmost(Vector2 displayPosition)
         {
             if(Count > 0)
@@ -302,6 +336,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds widget by predicate.
         /// </summary>
+        /// <param name="condition">Predicate</param>
+        /// <param name="inchildren">In children?</param>
+        /// <returns>UIWidget</returns>
         public UIWidget? Find(Predicate<UIWidget> condition, bool inchildren = true)
         {
             if (Count > 0)
@@ -330,9 +367,11 @@ namespace NanoUI.Components
         /// <summary>
         /// Tries to attach widget.
         /// This is called from the UIScreen, when it has dragwidget and pointer up event is fired.
-        /// Note: this calls widget's OnAttach event and if widget wants to handle event (returns true),
-        /// this stops looking further.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
+        /// <param name="displayPosition">Display position</param>
+        /// <returns>Success</returns>
+        /// <remarks>Calls widget's OnAttach event and if widget wants to handle event (returns true), this stops looking further.</remarks>
         public bool TryAttachWidget(UIWidget widget, Vector2 displayPosition)
         {
             if (Count > 0)
@@ -360,8 +399,9 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Remove widget.
+        /// Remove a widget.
         /// </summary>
+        /// <param name="name">Name</param>
         public void Remove(string name)
         {
             var w = FindByName(name, false);
@@ -381,6 +421,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Move to first.
         /// </summary>
+        /// <param name="child">UIWidget</param>
+        /// <returns>Success</returns>
         public bool MoveToFirst(UIWidget child)
         {
             if (IndexOf(child) == 0)
@@ -398,6 +440,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Move to last.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
+        /// <returns>Success</returns>
         public bool MoveToLast(UIWidget widget)
         {
             if (Contains(widget))
@@ -414,6 +458,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Swap childs in indexes.
         /// </summary>
+        /// <param name="index1">Index1</param>
+        /// <param name="index2">Index2</param>
+        /// <returns>Success</returns>
         public bool Swap(int index1, int index2)
         {
             if (index1 < 0 || index2 < 0 || index1 >= Count || index2 >= Count)
