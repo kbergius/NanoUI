@@ -78,12 +78,18 @@ namespace NanoUI.Components.Docking
 
         #endregion
 
-        #region Attach
+        #region TryAttach
 
         /// <summary>
+        /// Tries to attach.
+        /// </summary>
+        /// <param name="dockWindow">DockWindow</param>
+        /// <param name="tabItem">UITabItem</param>
+        /// <returns>Success</returns>
+        /// <remarks>
         /// If dock node has subnodes, we can't attach,
         /// since we don't know in which subnode tabs should be attached.
-        /// </summary>
+        /// </remarks>
         public bool TryAttach(DockWindow dockWindow, out UITabItem? tabItem)
         {
             if (HasSubnodes)

@@ -1,8 +1,7 @@
 ﻿namespace NanoUI.Components.Docking
 {
     /// <summary>
-    /// DockArea.
-    /// Note: values (int) are used as array indexes
+    /// DockArea. Values (int) are used as array indexes.
     /// </summary>
     public enum DockArea : int
     {

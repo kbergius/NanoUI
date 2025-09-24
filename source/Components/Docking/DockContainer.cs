@@ -7,8 +7,7 @@ namespace NanoUI.Components.Docking
     // todo: load docking specification from file & create docking hierarchy
 
     /// <summary>
-    /// DockContainer.
-    /// Note: screen can consist only 1 dock container.
+    /// DockContainer. Screen can consist only 1 dock container.
     /// </summary>
     public class DockContainer : UIWidget
     {
@@ -30,9 +29,19 @@ namespace NanoUI.Components.Docking
 
         #region Properties
 
+        /// <summary>
+        /// First node.
+        /// </summary>
         public DockNode? FirstNode => _root.FirstNode;
+
+        /// <summary>
+        /// Second node.
+        /// </summary>
         public DockNode? SecondNode => _root.SecondNode;
 
+        /// <summary>
+        /// Root orientaton.
+        /// </summary>
         public Orientation RootOrientaton
         {
             get => _root.Orientation;

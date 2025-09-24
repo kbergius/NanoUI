@@ -24,8 +24,20 @@ namespace NanoUI.Components.Docking
         /// </summary>
         public Rect Overlay;
 
+        /// <summary>
+        /// Contains
+        /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>Success</returns>
         public bool Contains(Vector2 position) => Area.Contains(position);
 
+        /// <summary>
+        /// Draws hit area.
+        /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="cornerRadius">Corner radius</param>
+        /// <param name="backgroundColor">Background color</param>
+        /// <param name="brush">Brush</param>
         public void DrawHitArea(NvgContext ctx, float cornerRadius, Color backgroundColor, BrushBase brush)
         {
             if (Area.Size == Vector2.Zero)
@@ -52,6 +64,11 @@ namespace NanoUI.Components.Docking
             ctx.Stroke();
         }
 
+        /// <summary>
+        /// Draws overlay.
+        /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="color">Color</param>
         public void DrawOverlay(NvgContext ctx, Color color)
         {
             ctx.BeginPath();

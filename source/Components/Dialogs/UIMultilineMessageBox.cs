@@ -8,10 +8,12 @@ namespace NanoUI.Components.Dialogs
 {
     /// <summary>
     /// UIMultilineMessageBox.
-    /// Note: it is not recommended to create this in your code.
+    /// </summary>
+    /// <remarks>
+    /// It is not recommended to create this in your code.
     /// Instead use screen's GetDialog<UIMultilineMessageBox>().
     /// If you still want to create this manually, you are responsible to handle disposing new instance.
-    /// </summary>
+    /// </remarks>
     public class UIMultilineMessageBox : UIDialog
     {
         bool _inited;
@@ -68,15 +70,26 @@ namespace NanoUI.Components.Dialogs
 
         #region Properties
 
+        /// <summary>
+        /// Text
+        /// </summary>
         public string Text
         {
             set => _multilineText?.SetText(value);
         }
 
         UIButton? _okButton;
+
+        /// <summary>
+        /// OK button.
+        /// </summary>
         public UIButton? OKButton => _okButton;
         
         UIButton? _altButton;
+
+        /// <summary>
+        /// Alt button.
+        /// </summary>
         public UIButton? AltButton => _altButton;
 
         #endregion
@@ -84,8 +97,10 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         /// <summary>
-        /// Use caller as an owner.
+        /// Sets callback. Use caller as an owner.
         /// </summary>
+        /// <param name="caller">Caller</param>
+        /// <param name="action">Action</param>
         public void SetCallback(UIWidget caller, Action<UIWidget, int> action)
         {
             _caller = caller;

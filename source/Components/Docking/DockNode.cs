@@ -8,8 +8,7 @@ namespace NanoUI.Components.Docking
     // todo: title + close action (in close, we must rearrange parent subnodes etc)
 
     /// <summary>
-    /// DockNode.
-    /// Hote: hit & overlays operate in screen coordinates,
+    /// DockNode. Hit & overlays operate in screen coordinates,
     /// since DrawDockAreas call comes directly from the screen with pointer position.
     /// </summary>
     public partial class DockNode : UIWidget
@@ -68,6 +67,9 @@ namespace NanoUI.Components.Docking
 
         #region Properties
 
+        /// <summary>
+        /// Title
+        /// </summary>
         public string Title
         {
             get => _titlebar.Title;
@@ -77,7 +79,7 @@ namespace NanoUI.Components.Docking
         Orientation _orientation;
 
         /// <summary>
-        /// This has an effect only if Children consist DockNodes & Splitter.
+        /// Orientation has an effect only if Children consist DockNodes & Splitter.
         /// </summary>
         public Orientation Orientation
         {
@@ -93,9 +95,19 @@ namespace NanoUI.Components.Docking
             }
         }
 
+        /// <summary>
+        /// First node
+        /// </summary>
         public DockNode? FirstNode { get; private set; }
+
+        /// <summary>
+        /// Second node
+        /// </summary>
         public DockNode? SecondNode { get; private set; }
 
+        /// <summary>
+        /// DockTabWidget
+        /// </summary>
         public DockTabWidget TabWidget => _tabWidget;
 
         #endregion
@@ -122,10 +134,11 @@ namespace NanoUI.Components.Docking
             // invokes dispose
             base.Close();
         }
-                
+
         /// <summary>
-        /// If subnodes already exist - no need to recreate.
+        /// Creates subnodes. If subnodes already exist - no need to recreate.
         /// </summary>
+        /// <param name="orientation">Orientation</param>
         public void CreateSubNodes(Orientation orientation)
         {
             // todo: should we inform user that this has already subnodes - so they are not created?

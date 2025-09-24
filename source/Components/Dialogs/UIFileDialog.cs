@@ -14,9 +14,11 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIFileDialog.
-    /// Note: it is not recommended to craete this in your code. Instead call screen GetDialog<FileDialog>.
-    /// If you still want to create this manually, you are responsible to handle dispose new instance.
     /// </summary>
+    /// <remarks>
+    /// It is not recommended to craete this in your code. Instead call screen GetDialog<FileDialog>.
+    /// If you still want to create this manually, you are responsible to handle dispose new instance.
+    /// </remarks>
     public class UIFileDialog : UIDialog
     {
         Action<UIWidget, FileFolderInfo>? _selected;
@@ -157,6 +159,9 @@ namespace NanoUI.Components.Dialogs
         // default path
         string _startPath = Globals.DEFAULT_FOLDER_PATH;
 
+        /// <summary>
+        /// Start path. Default: Globals.DEFAULT_FOLDER_PATH.
+        /// </summary>
         public string StartPath
         {
             get => _startPath;
@@ -170,12 +175,23 @@ namespace NanoUI.Components.Dialogs
             }
         }
 
+        /// <summary>
+        /// Dialog type. Default: FileDialogType.Open.
+        /// </summary>
         public FileDialogType DialogType { get; set; } = FileDialogType.Open;
 
         UIButton? _okButton;
+
+        /// <summary>
+        /// OK button
+        /// </summary>
         public UIButton? OKButton => _okButton;
         
         UIButton? _cancelButton;
+
+        /// <summary>
+        /// Cancel button
+        /// </summary>
         public UIButton? CancelButton => _cancelButton;
 
         #endregion
@@ -183,8 +199,10 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         /// <summary>
-        /// Use caller as an owner.
+        /// Sets callback. Use caller as an owner.
         /// </summary>
+        /// <param name="caller">Caller</param>
+        /// <param name="action">Action</param>
         public void SetCallback(UIWidget caller, Action<UIWidget, FileFolderInfo> action)
         {
             _caller = caller;
