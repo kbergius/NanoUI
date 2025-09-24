@@ -8,9 +8,7 @@ using NanoUI.Components;
 namespace NanoUI.Layouts
 {
     /// <summary>
-    /// FlowLayout is an extension of the grid layout, where widgets are positioned
-    /// in horizontal order in a way, that they always use all the parent's width.
-    /// Layout dynamically calculates column count and lets then grid layout do the real work.
+    /// FlowLayout arranges widgets in horizontal order in a way, that they always use all the parent's width.
     /// </summary>
     public class FlowLayout : GridLayout
     {
@@ -78,7 +76,7 @@ namespace NanoUI.Layouts
 
         #region Private
 
-        // calculate column count - rows are calculated from it
+        // dynamically calculate column count and let the grid layout do the real work.
         void CalculateColumnCount(NvgContext ctx, UIWidget parent)
         {
             // we care here only for width (columns fit)
