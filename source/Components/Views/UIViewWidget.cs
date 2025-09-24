@@ -15,12 +15,12 @@ namespace NanoUI.Components.Views
     public abstract class UIViewWidget<T> : UIWidget
     {
         /// <summary>
-        /// Fired when selection mode = item.
+        /// Selected changed action is fired when selection mode = item.
         /// </summary>
         public Action<T>? SelectedChanged;
 
         /// <summary>
-        /// Fired when selection mode = cell. Int is column index.
+        /// Cell selected changed action is fired when selection mode = cell. Int is column index.
         /// </summary>
         public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
@@ -71,7 +71,7 @@ namespace NanoUI.Components.Views
         #region Methods
 
         /// <summary>
-        /// ResetIndexes.
+        /// Resets indexes.
         /// </summary>
         public virtual void ResetIndexes()
         {
@@ -79,7 +79,7 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// ClearChildren.
+        /// Clears children.
         /// </summary>
         public virtual void ClearChildren()
         {
@@ -91,8 +91,10 @@ namespace NanoUI.Components.Views
         #region Events
 
         /// <summary>
-        /// Virtual OnCellSelectedChanged.
+        /// OnCellSelectedChanged.
         /// </summary>
+        /// <param name="widget">UIViewItemWidget<T></param>
+        /// <param name="columnIndex">Column index</param>
         public virtual void OnCellSelectedChanged(
             UIViewItemWidget<T> widget, int columnIndex)
         {
@@ -100,8 +102,9 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// Virtual OnSelectedChanged.
+        /// OnSelectedChanged.
         /// </summary>
+        /// <param name="widget">UIViewItemWidget<T></param>
         public virtual void OnSelectedChanged(UIViewItemWidget<T> widget)
         {
             if(widget.EventData != null)
@@ -111,8 +114,9 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// Virtual OnSelectedChanged.
+        /// OnSelectedChanged.
         /// </summary>
+        /// <param name="data">Event data</param>
         public virtual void OnSelectedChanged(T data)
         {
             SelectedChanged?.Invoke(data);

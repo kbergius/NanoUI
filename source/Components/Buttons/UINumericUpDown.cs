@@ -51,6 +51,9 @@ namespace NanoUI.Components.Buttons
 
         #region Properties
 
+        /// <summary>
+        /// TextBox
+        /// </summary>
         internal UINumericTextBox<T> TextBox => _numericTextBox;
 
         /// <summary>
@@ -71,6 +74,9 @@ namespace NanoUI.Components.Buttons
             set => _numericTextBox.Max = value;
         }
 
+        /// <summary>
+        /// Units
+        /// </summary>
         public string Units
         {
             get => _numericTextBox.Units;
@@ -78,7 +84,7 @@ namespace NanoUI.Components.Buttons
         }
 
         /// <summary>
-        /// Updown step.
+        /// Up/down step.
         /// </summary>
         public T Step
         {
@@ -90,6 +96,10 @@ namespace NanoUI.Components.Buttons
 
         #region Methods
 
+        /// <summary>
+        /// Returns formatted string
+        /// </summary>
+        /// <returns>formatted string</returns>
         public string GetFormatted()
         {
             return _numericTextBox.GetFormatted();
@@ -98,6 +108,7 @@ namespace NanoUI.Components.Buttons
         /// <summary>
         /// Sets value as a text to underlyieng text field, that triggers value changed.
         /// </summary>
+        /// <param name="value">Value</param>
         public void SetValue(T value)
         {
             _numericTextBox.Text = $"{value}";
@@ -106,6 +117,7 @@ namespace NanoUI.Components.Buttons
         /// <summary>
         /// Support for nested and custom settings.
         /// </summary>
+        /// <param name="width">Width</param>
         public virtual void SetTextBoxWidth(int width)
         {
             _numericTextBox.FixedSize = new Vector2(width, 0);

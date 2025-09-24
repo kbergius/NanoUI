@@ -28,6 +28,11 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
+        /// <summary>
+        /// Adds item.
+        /// </summary>
+        /// <param name="viewItem">RowItem<T></param>
+        /// <returns>UIViewItemWidget<T></returns>
         public UIViewItemWidget<T> Add(RowItem<T> viewItem)
         {
             return new UIViewItemWidget<T>(ViewPanel, viewItem) { StretchWidth = true };

@@ -26,6 +26,9 @@ namespace NanoUI.Components.Simple
         // todo: also orientation vertical & Height => Dimension?
         float? _height;
 
+        /// <summary>
+        /// Height
+        /// </summary>
         public override float Height
         {
             get => _height?? 1f;
@@ -37,7 +40,7 @@ namespace NanoUI.Components.Simple
         Color? _color;
 
         /// <summary>
-        /// If not set makes this dimmer(currently TextColor * 0.7f).
+        /// Color. If not set makes this dimmer(currently TextColor * 0.7f).
         /// </summary>
         public Color Color
         {
@@ -46,7 +49,7 @@ namespace NanoUI.Components.Simple
         }
 
         /// <summary>
-        /// This is set in view panel - when drawing.
+        /// Padding is set in view panel - when drawing.
         /// </summary>
         internal int Padding { get; set; }
 

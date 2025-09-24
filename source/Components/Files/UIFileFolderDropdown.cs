@@ -13,7 +13,7 @@ namespace NanoUI.Components.Files
 
     /// <summary>
     /// UIFileFolderDropdown.
-    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// Supports dynamic theming. If dynamic theming is not needed,
     /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderDropdown : UIDropDownView<FileFolderInfo>
@@ -51,6 +51,10 @@ namespace NanoUI.Components.Files
         // todo: should we automatically change parent folder if selected changes?
 
         bool? _autoFolderSelectedChange;
+
+        /// <summary>
+        /// AutoFolderSelectedChange
+        /// </summary>
         public bool AutoFolderSelectedChange
         {
             get => _autoFolderSelectedChange?? GetTheme().FileFolderDetails.AutoFolderSelectedChange;
@@ -58,6 +62,10 @@ namespace NanoUI.Components.Files
         }
 
         bool? _showDirectoryUp;
+
+        /// <summary>
+        /// ShowDirectoryUp
+        /// </summary>
         public bool ShowDirectoryUp
         {
             get => _showDirectoryUp?? GetTheme().FileFolderDetails.ShowDirectoryUp;
@@ -69,7 +77,7 @@ namespace NanoUI.Components.Files
         #region Methods
 
         /// <summary>
-        /// Drives.
+        /// Creates drive dropDown.
         /// </summary>
         public void CreateDriveDropDown()
         {
@@ -85,8 +93,9 @@ namespace NanoUI.Components.Files
         }
 
         /// <summary>
-        /// Folders.
+        /// Creates folder dropDown.
         /// </summary>
+        /// <param name="parentFolder">Parent folder</param>
         public void CreateFolderDropDown(string parentFolder)
         {
             // Check is valid directory
@@ -148,8 +157,12 @@ namespace NanoUI.Components.Files
         }
 
         /// <summary>
-        /// Protected virtual method to leave room user customize columns & their content.
+        /// CreateFileItem is protected virtual method to leave room user customize columns & their content.
         /// </summary>
+        /// <param name="displayName">Display name</param>
+        /// <param name="eventData">EventData</param>
+        /// <param name="isDrive">IsDrive?</param>
+        /// <returns></returns>
         protected virtual RowItem<FileFolderInfo> CreateFileItem(string displayName, in FileFolderInfo eventData, bool isDrive = false)
         {
             return new RowItem<FileFolderInfo>(eventData)

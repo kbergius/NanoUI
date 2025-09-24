@@ -53,7 +53,14 @@ namespace NanoUI.Components.Scrolling
 
         #region Properties
 
+        /// <summary>
+        /// Horizontal scrollbar
+        /// </summary>
         public UIScrollbar? HorizontalScrollbar => _horizontalScrollbar;
+
+        /// <summary>
+        /// Vertical scrollbar
+        /// </summary>
         public UIScrollbar? VerticalScrollbar => _verticalScrollbar;
 
         /// <inheritdoc />
@@ -64,9 +71,16 @@ namespace NanoUI.Components.Scrolling
         }
 
         // dragging
+        /// <summary>
+        /// ScrollableDragMode. Default: ScrollableDragMode.None.
+        /// </summary>
         protected ScrollableDragMode ScrollableDragMode { get; set; } = ScrollableDragMode.None;
 
         Vector2 _contentPreferredSize;
+
+        /// <summary>
+        /// Content's preferred size
+        /// </summary>
         public Vector2 ContentPreferredSize
         {
             get => _contentPreferredSize;

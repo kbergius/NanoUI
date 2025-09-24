@@ -26,6 +26,9 @@ namespace NanoUI.Components.Simple
 
         #region Properties
 
+        /// <summary>
+        /// FileFolderInfo
+        /// </summary>
         public FileFolderInfo FileFolderInfo { get; set; }
 
         #endregion

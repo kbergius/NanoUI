@@ -5,7 +5,6 @@ using System.Numerics;
 
 namespace NanoUI.Components.Bars
 {
-    // note: parent should do the positioning, since it knows what bars there exist
     // todo: statusbar (needs positioning info: top / bottom)
     // todo2: if also Scrollbar extends this, there should be also "right" (needs to refactor scrollbar logic!)
 
@@ -13,6 +12,9 @@ namespace NanoUI.Components.Bars
     /// UIWidgetbar is an abstract bar component, that provides some common functionalty.
     /// It could be used for example in UIWindow with other specified bars (menubar, toolbar, etc).
     /// </summary>
+    /// <remarks>
+    /// Parent should do the positioning, since it knows what bars there exist.
+    /// </remarks>
     public abstract class UIWidgetbar : UIWidget
     {
         /// <inheritdoc />

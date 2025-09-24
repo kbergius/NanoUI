@@ -25,6 +25,10 @@ namespace NanoUI.Components.Docking
         #region Properties
 
         string? _tabCaption;
+
+        /// <summary>
+        /// Tab caption
+        /// </summary>
         public string? TabCaption
         {
             get => _tabCaption ?? Title;
@@ -49,8 +53,10 @@ namespace NanoUI.Components.Docking
         internal uint _savedBorderSize;
 
         /// <summary>
-        /// Stores some window properties so we can use them when detaching (undocking).
+        /// Sets state, Stores some window properties so we can use them when detaching (undocking).
         /// </summary>
+        /// <param name="docked">Docked?</param>
+        /// <param name="wasDockNode">Was dock node?</param>
         public virtual void SetState(bool docked, bool wasDockNode)
         {
             if(Screen == null)

@@ -29,14 +29,28 @@ namespace NanoUI.Components.Views
 
         #region Properties
 
+        /// <summary>
+        /// Level. Default: 0.
+        /// </summary>
         public int Level = 0;
+
+        /// <summary>
+        /// Expanded. Default: false.
+        /// </summary>
         public bool Expanded = false;
+
+        /// <summary>
+        /// Is group?
+        /// </summary>
         public bool IsGroup
         {
             get;
             internal set;
         }
 
+        /// <summary>
+        /// Parent item
+        /// </summary>
         public UITreeItemWidget<T>? ParentItem;
 
         #endregion
@@ -137,6 +151,12 @@ namespace NanoUI.Components.Views
         // todo : should we return widget so that user can add directly to its children
         // Actions AddGroup/AddItem should then be in TreeViewItem self
         // (No need to find parent & mess with parent ids!)
+
+        /// <summary>
+        /// Adds group.
+        /// </summary>
+        /// <param name="treeItem">TreeItem<T></param>
+        /// <exception cref="InvalidOperationException">Root/groups must have id</exception>
         public void AddGroup(TreeItem<T> treeItem)
         {
             // check not root
@@ -170,6 +190,10 @@ namespace NanoUI.Components.Views
             CreateItem(treeItem, true);
         }
 
+        /// <summary>
+        /// Adds item.
+        /// </summary>
+        /// <param name="treeItem">TreeItem<T></param>
         public void AddItem(TreeItem<T> treeItem)
         {
             // set to root

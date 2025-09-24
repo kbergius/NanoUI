@@ -40,8 +40,8 @@ namespace NanoUI.Components.Views
 
         /// <summary>
         /// PartSize is just a helper.
-        /// Note: since Columns (ViewColumn[]) is not stored with theme (has owner widget).
         /// </summary>
+        /// <remarks>Since Columns (ViewColumn[]) is not stored with theme (has owner widget).</remarks>
         public Vector2 PartSize
         {
             get => _partSize;
@@ -62,8 +62,10 @@ namespace NanoUI.Components.Views
         #region Methods
 
         /// <summary>
-        /// Forces to use flow item.
+        /// Adds item.
         /// </summary>
+        /// <param name="flowItem">FlowItem<T></param>
+        /// <returns>UIViewItemWidget<T></returns>
         public UIViewItemWidget<T> Add(FlowItem<T> flowItem)
         {
             return new UIViewItemWidget<T>(ViewPanel, flowItem)

@@ -17,6 +17,11 @@ namespace NanoUI.Components.Scrolling
         // owner widget
         UIWidget _owner;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="owner">UIWidget</param>
+        /// <param name="orientation">Orientation</param>
         public UIScrollbar(UIWidget owner, Orientation orientation)
         {
             _owner = owner;
@@ -27,11 +32,26 @@ namespace NanoUI.Components.Scrolling
 
         // todo: these are like in Widget!
 
+        /// <summary>
+        /// Visible
+        /// </summary>
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// PointerFocus
+        /// </summary>
         public bool PointerFocus { get; set; }
+
+        /// <summary>
+        /// Position
+        /// </summary>
         public Vector2 Position { get; set; }
 
         Vector2 _size;
+
+        /// <summary>
+        /// Size
+        /// </summary>
         public Vector2 Size
         {
             get => _size;
@@ -55,9 +75,16 @@ namespace NanoUI.Components.Scrolling
             set => _scroll = Math.Clamp(value, 0, 1);
         }
 
+        /// <summary>
+        /// Orientation
+        /// </summary>
         public Orientation Orientation { get; private set; }
 
         uint? _dimension;
+
+        /// <summary>
+        /// Dimension
+        /// </summary>
         public uint Dimension
         {
             get => _dimension ?? _owner.GetTheme().Scrollbars.ScrollbarDimension;
@@ -65,6 +92,10 @@ namespace NanoUI.Components.Scrolling
         }
 
         BrushBase? _backgroundEnabled;
+
+        /// <summary>
+        /// Background enabled brush
+        /// </summary>
         public BrushBase? BackgroundEnabled
         {
             get => _backgroundEnabled ?? _owner.GetTheme().Scrollbars.BackgroundEnabled;
@@ -72,6 +103,10 @@ namespace NanoUI.Components.Scrolling
         }
 
         BrushBase? _backgroundDisabled;
+
+        /// <summary>
+        /// Background disabled brush
+        /// </summary>
         public BrushBase? BackgroundDisabled
         {
             get => _backgroundDisabled ?? _owner.GetTheme().Common.BackgroundDisabled;
@@ -79,6 +114,10 @@ namespace NanoUI.Components.Scrolling
         }
 
         BrushBase? _sliderBrush;
+
+        /// <summary>
+        /// Slider brush
+        /// </summary>
         public BrushBase? SliderBrush
         {
             get => _sliderBrush != null ? _sliderBrush : _owner.GetTheme().Scrollbars.SliderBrush;
@@ -86,6 +125,10 @@ namespace NanoUI.Components.Scrolling
         }
 
         Color? _sliderHoverTint;
+
+        /// <summary>
+        /// Slider hover tint color
+        /// </summary>
         public Color SliderHoverTint
         {
             get => _sliderHoverTint ?? _owner.GetTheme().Scrollbars.SliderHoverTint;
@@ -96,6 +139,11 @@ namespace NanoUI.Components.Scrolling
 
         #region Methods
 
+        /// <summary>
+        /// Contains
+        /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>Success</returns>
         public virtual bool Contains(Vector2 position)
         {
             var d = position - Position;

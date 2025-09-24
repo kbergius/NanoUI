@@ -11,7 +11,7 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIMessageBox.
-    /// Note: it is not recommended to create this in your code.
+    /// It is not recommended to create this in your code.
     /// Instead use screen's GetDialog<UIMessageBox>().
     /// If you still want to create this manually, you are responsible to handle disposing new instance.
     /// </summary>
@@ -111,6 +111,10 @@ namespace NanoUI.Components.Dialogs
         #region Properties
 
         MessageDialogType _dialogType;
+
+        /// <summary>
+        /// Message dialog type
+        /// </summary>
         public MessageDialogType DialogType
         {
             get => _dialogType;
@@ -123,6 +127,10 @@ namespace NanoUI.Components.Dialogs
         }
 
         bool _scrollText = false;
+
+        /// <summary>
+        /// Scroll text?
+        /// </summary>
         public bool ScrollText
         {
             get => _scrollText;
@@ -144,6 +152,9 @@ namespace NanoUI.Components.Dialogs
             }
         }
 
+        /// <summary>
+        /// Text
+        /// </summary>
         public string Text
         {
             set
@@ -159,6 +170,10 @@ namespace NanoUI.Components.Dialogs
         }
         
         int? _icon;
+
+        /// <summary>
+        /// Icon id.
+        /// </summary>
         public int Icon
         {
             get => _icon?? GetMessageIcon();
@@ -166,9 +181,17 @@ namespace NanoUI.Components.Dialogs
         }
 
         UIButton? _okButton;
+
+        /// <summary>
+        /// OK Button.
+        /// </summary>
         public UIButton? OKButton => _okButton;
         
         UIButton? _altButton;
+
+        /// <summary>
+        /// Alt button.
+        /// </summary>
         public UIButton? AltButton => _altButton;
 
         #endregion
@@ -176,8 +199,10 @@ namespace NanoUI.Components.Dialogs
         #region Methods
 
         /// <summary>
-        /// Use caller as an owner.
+        /// Sets callback. Use caller as an owner.
         /// </summary>
+        /// <param name="caller">Caller</param>
+        /// <param name="action">Action</param>
         public void SetCallback(UIWidget caller, Action<UIWidget, int>? action)
         {
             _caller = caller;

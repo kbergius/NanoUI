@@ -28,6 +28,9 @@ namespace NanoUI.Components.Simple
 
         #region Properties
 
+        /// <summary>
+        /// Icon.
+        /// </summary>
         public int Icon { get; set; }
         
         // todo: in base Widget
@@ -42,6 +45,10 @@ namespace NanoUI.Components.Simple
         }
 
         TextAlignment? _iconAlignment;
+
+        /// <summary>
+        /// Icon alignment
+        /// </summary>
         public TextAlignment IconAlignment
         {
             get => _iconAlignment?? TextAlignment.Left | TextAlignment.Middle;
@@ -50,11 +57,19 @@ namespace NanoUI.Components.Simple
 
         // todo: should this be in Widget?
         Color? _iconColor;
+
+        /// <summary>
+        /// Icon color
+        /// </summary>
         public virtual Color IconColor
         {
             get => _iconColor ?? GetTheme().Widget.TextColor;
             set => _iconColor = value;
         }
+
+        /// <summary>
+        /// Text
+        /// </summary>
         public string? Text { get; set; }
 
         float? _fontSize;
@@ -67,6 +82,10 @@ namespace NanoUI.Components.Simple
         }
         
         TextAlignment? _alignment;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
         public TextAlignment Alignment
         {
             get => _alignment?? TextAlignment.Left | TextAlignment.Middle;

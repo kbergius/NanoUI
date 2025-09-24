@@ -17,6 +17,9 @@ namespace NanoUI.Components.Colors
         // marker pos (y position in relation to size y)
         float _markerY = 0;
 
+        /// <summary>
+        /// Alpha changed action
+        /// </summary>
         public Action<byte>? AlphaChanged;
 
         /// <inheritdoc />
@@ -29,11 +32,17 @@ namespace NanoUI.Components.Colors
 
         #region Properties
 
+        /// <summary>
+        /// Marker color. Default: Color.White.
+        /// </summary>
         public Color MarkerColor { get; set; } = Color.White;
 
 
         byte _alphaValue;
 
+        /// <summary>
+        /// Alpha value
+        /// </summary>
         public byte AlphaValue
         {
             get => _alphaValue;

@@ -39,6 +39,10 @@ namespace NanoUI.Components.Simple
         }
 
         TextAlignment? _alignment;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
         public TextAlignment Alignment
         {
             get => _alignment ?? TextAlignment.Left | TextAlignment.Middle;
@@ -46,12 +50,19 @@ namespace NanoUI.Components.Simple
         }
         
         Color? _color;
+
+        /// <summary>
+        /// Color
+        /// </summary>
         public virtual Color Color
         {
             get => _color ?? GetTheme().Widget.TextColor;
             set => _color = value;
         }
 
+        /// <summary>
+        /// Shortcut
+        /// </summary>
         public Shortcut? Shortcut { get; set; }
 
         #endregion

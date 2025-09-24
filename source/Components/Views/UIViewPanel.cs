@@ -60,8 +60,8 @@ namespace NanoUI.Components.Views
         /// RowHeight is default value for all view rows.
         /// It is used in view item widget when creating,
         /// if IViewItem implementation doesn't define spesific row height.
-        /// Note: this is not in theme by now since if it changes, all view items should be recreated.
         /// </summary>
+        /// <remarks>This is not in theme by now since if it changes, all view items should be recreated.</remarks>
         public int RowHeight
         {
             get => _rowHeight?? GetTheme().ViewPanel.RowHeight;
@@ -71,7 +71,7 @@ namespace NanoUI.Components.Views
         ColumnDefinition[] _columns = Array.Empty<ColumnDefinition>();
 
         /// <summary>
-        /// Columns.
+        /// Column definitions.
         /// </summary>
         [JsonIgnore]
         public virtual ColumnDefinition[] Columns
@@ -92,7 +92,7 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// ViewSelectionMode (item/cell).
+        /// ViewSelectionMode (item/cell). Default:  ViewSelectionMode.Item.
         /// </summary>
         public ViewSelectionMode ViewSelectionMode { get; set; } = ViewSelectionMode.Item;
 
@@ -185,16 +185,18 @@ namespace NanoUI.Components.Views
     /// </summary>
     public class UIViewPanel<T> : UIViewPanel
     {
-        // ViewSelectionMode = item
+        /// <summary>
+        /// Selected changed action. ViewSelectionMode = item.
+        /// </summary>
         public Action<UIViewItemWidget<T>>? SelectedChanged;
 
         // ViewSelectionMode = item - ViewItemWidget is row, int is column index
         // note: this provides also possibility to edit items dynamically. However there are
         // no helpers to do editing (needs cells to provide editing functionality - possibly use same
         // kind of editing as in propertygrid!)
-        
+
         /// <summary>
-        /// Fired only when selection mode is Cell.
+        /// Cell selected changed action. Fired only when selection mode is Cell.
         /// </summary>
         public Action<UIViewItemWidget<T>, int>? CellSelectedChanged;
 
@@ -208,7 +210,7 @@ namespace NanoUI.Components.Views
            
         }
 
-        // must be public, since some implementaion does not have own view panel implementation
+        // must be public, since some implementation does not have own view panel implementation
 
         /// <inheritdoc />
         public UIViewPanel(UIWidget parent)
@@ -227,7 +229,7 @@ namespace NanoUI.Components.Views
         // Is there a better way?
 
         /// <summary>
-        /// HasSubPopups is needed in menus to open submenus.
+        /// HasSubPopups is needed in menus to open submenus. Default: false.
         /// </summary>
         protected bool HasSubPopups { get; set; } = false;       
 

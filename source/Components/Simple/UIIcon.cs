@@ -31,11 +31,15 @@ namespace NanoUI.Components.Simple
         #region Properties
 
         /// <summary>
-        /// -1 means no icon.
+        /// Icon. -1 means no icon.
         /// </summary>
         public virtual int Icon { get; set; }
 
         float? _iconSize;
+
+        /// <summary>
+        /// IconSize
+        /// </summary>
         public float IconSize
         {
             get => _iconSize?? GetTheme().Widget.FontSize;
@@ -54,6 +58,10 @@ namespace NanoUI.Components.Simple
         }
 
         TextAlignment? _alignment;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
         public TextAlignment Alignment
         {
             get => _alignment ?? TextAlignment.Left | TextAlignment.Middle;
@@ -62,6 +70,10 @@ namespace NanoUI.Components.Simple
 
         // todo: should this be in Widget?
         Color? _iconColor;
+
+        /// <summary>
+        /// Icon color
+        /// </summary>
         public virtual Color IconColor
         {
             get => _iconColor?? GetTheme().Widget.TextColor;

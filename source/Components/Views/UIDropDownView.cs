@@ -22,7 +22,7 @@ namespace NanoUI.Components.Views
         UIScrollPanel? _scroll;
 
         /// <summary>
-        /// Panel calls - popup button no.
+        /// Panel calls SelectedChanged - popup button no.
         /// </summary>
         public Action<T>? SelectedChanged;
 
@@ -69,11 +69,14 @@ namespace NanoUI.Components.Views
         [JsonIgnore]
         public UIViewPanel<T> ViewPanel => _viewPanel;
 
-        
         // todo: should we just force to use view pnel property?
         // todo: must call RequestLayoutUpdate if something changes?
         // todo: needed?
         // note: we don't need to save these since they are in view panel
+
+        /// <summary>
+        /// Column definitions
+        /// </summary>
         //[JsonIgnore]
         public ColumnDefinition[] Columns
         {
@@ -81,6 +84,9 @@ namespace NanoUI.Components.Views
             set => _viewPanel.Columns = value;
         }
 
+        /// <summary>
+        /// Selected index
+        /// </summary>
         [JsonIgnore]
         public int SelectedIndex
         {
@@ -92,6 +98,10 @@ namespace NanoUI.Components.Views
 
         #region Methods
 
+        /// <summary>
+        /// Sets selected
+        /// </summary>
+        /// <param name="value">Value</param>
         public virtual void SetSelected(T value)
         {
             int index = 0;
@@ -116,11 +126,17 @@ namespace NanoUI.Components.Views
             _viewPanel.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Clears chilren
+        /// </summary>
         public void ClearChilren()
         {
             _viewPanel.Children.Clear();
         }
 
+        /// <summary>
+        /// Requests list update
+        /// </summary>
         protected void RequestListUpdate()
         {
             // todo?
@@ -136,10 +152,12 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
+        /// Adds item.
         /// Cells can have their own data OR row can have common data.
         /// Search order: first cell data & if it is null then row data.
-        /// Note: returns widget so you can set common properties.
         /// </summary>
+        /// <param name="listItem">RowItem<T></param>
+        /// <returns>widget so you can set common properties.</returns>
         public UIViewItemWidget<T> Add(RowItem<T> listItem)
         {
             return new UIViewItemWidget<T>(_viewPanel, listItem) { StretchWidth = true };
@@ -149,6 +167,10 @@ namespace NanoUI.Components.Views
 
         #region Events
 
+        /// <summary>
+        /// OnSelectedChanged
+        /// </summary>
+        /// <param name="widget">UIViewItemWidget<T></param>
         public virtual void OnSelectedChanged(UIViewItemWidget<T> widget)
         {
             // close popup - set state
@@ -207,11 +229,11 @@ namespace NanoUI.Components.Views
 
         #region Drawing
 
-        /// <summary>
-        /// Doesn't use popup button's draw methods; draws button manually here.
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx)
         {
+            // Doesn't use popup button's draw methods; draws button manually here.
+
             // todo?: we could also just call base.Draw, where is Popup.Show logic
             if (Disabled && Pushed)
                 Pushed = false;
@@ -258,8 +280,9 @@ namespace NanoUI.Components.Views
         }
 
         /// <summary>
-        /// Virtual because some extensions may override DrawSelected.
+        /// DrawSelected is virtual, because some extensions may override DrawSelected.
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
         protected virtual void DrawSelected(NvgContext ctx)
         {
             // we get selected index (if no item is selected we use first, if there are childs)

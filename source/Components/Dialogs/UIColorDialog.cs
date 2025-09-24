@@ -13,7 +13,7 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIColorDialog.
-    /// Note: it is not recommended to create this in your code.
+    /// It is not recommended to create this in your code.
     /// Instead use screen's GetDialog<ColorDialog>().
     /// If you still want to create this manually, you are responsible to handle disposing new instance.
     /// </summary>
@@ -153,9 +153,17 @@ namespace NanoUI.Components.Dialogs
         #region Properties
 
         UIButton? _pickButton;
+
+        /// <summary>
+        /// Pick button
+        /// </summary>
         public UIButton? PickButton => _pickButton;
         
         UIButton? _cancelButton;
+
+        /// <summary>
+        /// Cancel button
+        /// </summary>
         public UIButton? CancelButton => _cancelButton;
 
         #endregion
@@ -166,6 +174,8 @@ namespace NanoUI.Components.Dialogs
         /// Since this is mostly used as a singleton (called UIScreen.GetDialog<ColorDialog>()),
         /// you must set correct callback when using this (use caller as an owner).
         /// </summary>
+        /// <param name="caller">UIWidget</param>
+        /// <param name="colorSelected">Action</param>
         public void SetCallback(UIWidget caller, Action<UIWidget, Color> colorSelected)
         {
             _caller = caller;
@@ -175,6 +185,10 @@ namespace NanoUI.Components.Dialogs
             _inited = false;
         }
 
+        /// <summary>
+        /// Sets color
+        /// </summary>
+        /// <param name="color">Color</param>
         public void SetColor(Color color)
         {
             // must set alpha first

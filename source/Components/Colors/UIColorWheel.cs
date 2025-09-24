@@ -37,6 +37,9 @@ namespace NanoUI.Components.Colors
         // The 'V' (value) component of the HSV color model. Valid values are in the range [0, 1].
         float _white;
 
+        /// <summary>
+        /// Color changed action.
+        /// </summary>
         public Action<Color>? ColorChanged;
 
         /// <inheritdoc />
@@ -65,7 +68,7 @@ namespace NanoUI.Components.Colors
         #region Methods
 
         /// <summary>
-        /// Returns rhe current Color this UIColorWheel has selected (RGB; A is "full" - 255).
+        /// Returns the current Color this UIColorWheel has selected (RGB; A is "full" - 255).
         /// </summary>
         public Color GetColor()
         {

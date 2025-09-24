@@ -6,8 +6,8 @@ namespace NanoUI.Components.Buttons
 {
     /// <summary>
     /// UIToolButton can be combined with button flags RadioButton & ToggleButton.
-    /// Note: there is no text by default.
     /// </summary>
+    /// <remarks>There is no text by default.</remarks>
     public class UIToolButton : UIButton
     {
         /// <inheritdoc />
@@ -37,6 +37,10 @@ namespace NanoUI.Components.Buttons
         #region Properties
 
         uint? _dimension;
+
+        /// <summary>
+        /// Dimension
+        /// </summary>
         public uint Dimension
         {
             get => _dimension?? GetTheme().ToolButton.Dimension;
