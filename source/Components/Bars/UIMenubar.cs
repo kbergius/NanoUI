@@ -3,15 +3,17 @@ using NanoUI.Nvg;
 
 namespace NanoUI.Components.Bars
 {
-    // note2: this doesn't pass OnKeyChar event to children, because widget needs to be in focuspath
+    // note: this doesn't pass OnKeyChar event to children, because widget needs to be in focuspath
 
     /// <summary>
     /// UIMenubar is only widget, that can receive OnKeyUpDown event while not in UIScreen's focus path.
-    /// Note: to get this event parent of this (screen or window) must be in focus path (screen is allways).
+    /// </summary>
+    /// <remarks>
+    /// To get this OnKeyUpDown event parent of this (screen or window) must be in focus path (screen is allways).
     /// The main use case is to pass keyboard shortcuts to menu items.
     /// This means also that you can have multiple windows with menubars, but only the active/focused
     /// window gets event and passes it to this widget.
-    /// </summary>
+    /// </remarks>
     public class UIMenubar : UIWidgetbar
     {
         /// <inheritdoc />

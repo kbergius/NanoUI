@@ -46,6 +46,9 @@ namespace NanoUI.Components.Bars
 
         #region Properties
 
+        /// <summary>
+        /// Title
+        /// </summary>
         public string Title
         {
             get => _title.Caption;
@@ -53,6 +56,10 @@ namespace NanoUI.Components.Bars
         }
 
         Vector2? _buttonSize;
+
+        /// <summary>
+        /// Buttons' size
+        /// </summary>
         public virtual Vector2 ButtonSize
         {
             get => _buttonSize?? GetTheme().Titlebar.ButtonSize;
@@ -61,6 +68,9 @@ namespace NanoUI.Components.Bars
 
         int? _buttonFontIconsId;
 
+        /// <summary>
+        /// Buttons' font icons id
+        /// </summary>
         [JsonIgnore]
         public virtual int ButtonFontIconsId
         {
@@ -69,6 +79,10 @@ namespace NanoUI.Components.Bars
         }
 
         int[]? _buttonIcons;
+
+        /// <summary>
+        /// Button icons
+        /// </summary>
         public virtual int[] ButtonIcons
         {
             get => _buttonIcons?? GetTheme().Titlebar.ButtonIcons;

@@ -8,11 +8,10 @@ namespace NanoUI.Components.Buttons
 {
     #region Base
 
-    // note: there is really only dimension property used. Other properties comes from button
-
     /// <summary>
     /// UIUpDownButton base widget.
     /// </summary>
+    /// <remarks>Only dimension property used. Other properties comes from button.</remarks>
     public class UIUpDownButton : UIWidget
     {
         /// <inheritdoc />
@@ -32,6 +31,10 @@ namespace NanoUI.Components.Buttons
         #region Properties
 
         uint? _dimension;
+
+        /// <summary>
+        /// Dimension
+        /// </summary>
         public uint Dimension
         {
             get => _dimension?? GetTheme().UpDownButton.Dimension;
@@ -128,6 +131,7 @@ namespace NanoUI.Components.Buttons
 
         /// <summary>
         /// Value to increase/decrease every push/repeat event.
+        /// Default: T.One.
         /// </summary>
         public T Step { get; set; } = T.One;
 

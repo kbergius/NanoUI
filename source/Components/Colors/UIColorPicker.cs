@@ -19,7 +19,7 @@ namespace NanoUI.Components.Colors
         public Action<Color>? Changed;
 
         /// <summary>
-        /// FinalColor.
+        /// Final color action.
         /// </summary>
         public Action<Color>? FinalColor;
 
@@ -113,12 +113,24 @@ namespace NanoUI.Components.Colors
         }
 
         UIColorWheel _colorWheel;
+
+        /// <summary>
+        /// UIColorWheel
+        /// </summary>
         public UIColorWheel ColorWheel => _colorWheel;
 
         UIButton _pickButton;
+
+        /// <summary>
+        /// Pick button
+        /// </summary>
         public UIButton PickButton => _pickButton;
         
         UIButton _cancelButton;
+
+        /// <summary>
+        /// Cancel button
+        /// </summary>
         public UIButton CancelButton => _cancelButton;
 
         #endregion
