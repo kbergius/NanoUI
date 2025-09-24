@@ -762,16 +762,20 @@ namespace NanoUI.Components
         #region BackgroundBrush
 
         /// <summary>
-        /// DrawBackgroundBrush.
+        /// Draws background brush
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
         public virtual void DrawBackgroundBrush(NvgContext ctx)
         {
             DrawBackgroundBrush(ctx, Position, Size);
         }
 
         /// <summary>
-        /// DrawBackgroundBrush.
+        /// Draws background brush
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="topLeft">TopLeft</param>
+        /// <param name="size">Size</param>
         public virtual void DrawBackgroundBrush(NvgContext ctx, Vector2 topLeft, Vector2 size)
         {
             // we draw tint when enabled &pointer mocus (hovered "action")
@@ -779,8 +783,13 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// DrawBackgroundBrush.
+        /// Draws background brush
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="topLeft">TopLeft</param>
+        /// <param name="size">Size</param>
+        /// <param name="brush">Brush</param>
+        /// <param name="tint">Tint color</param>
         public virtual void DrawBackgroundBrush(NvgContext ctx, Vector2 topLeft, Vector2 size,
             BrushBase? brush, Color? tint)
         {
@@ -788,7 +797,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// GetBackgroundBrush.
+        /// Returns background brush.
         /// </summary>
         protected BrushBase? GetBackgroundBrush()
         {
@@ -809,7 +818,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// GetDrawMode.
+        /// Returns draw mode.
         /// </summary>
         protected WidgetState GetDrawMode()
         {
@@ -836,8 +845,14 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles pointer button events (up & down).
         /// Default action: propagate to children.
-        /// Note: UIContextMenu (PointerButton.Right) is handled in UIScreen.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <param name="button">PointerButton</param>
+        /// <param name="down">Down</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// UIContextMenu (PointerButton.Right) is handled in UIScreen.
+        /// </remarks>
         public virtual bool OnPointerUpDown(Vector2 p, PointerButton button, bool down)
         {
             if (Children.Count > 0)
@@ -874,6 +889,9 @@ namespace NanoUI.Components
         /// Handles pointer double click.
         /// Default action: propagate to children.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <param name="button">PointerButton</param>
+        /// <returns>Success</returns>
         public virtual bool OnPointerDoubleClick(Vector2 p, PointerButton button)
         {
             if (Children.Count > 0)
@@ -899,9 +917,14 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Handles pointer motion event.
-        /// Note: we reset pointer type here. So if your widget wants to set pointer type,
-        /// you must call first base.OnPointerMove & then set the pointer type (if needed) in your widget.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <param name="rel">Delta from previous position</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// We reset pointer type here. So if your widget wants to set pointer type,
+        /// you must call first base.OnPointerMove & then set the pointer type (if needed) in your widget.
+        /// </remarks>
         public virtual bool OnPointerMove(Vector2 p, Vector2 rel)
         {
             if (Children.Count > 0)
@@ -951,10 +974,13 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles pointer enter/leave event.
         /// Default action: record this fact, but do nothing.
-        /// This is mainly called from UIScreen after screen pointer focus widget has changed.
-        /// Note: you don't need to extent this unless your widget manages its children pointer focuses (like views) OR
-        /// your widget sets some other status flags (like cursor type).
         /// </summary>
+        /// <param name="enter">Enter/leave</param>
+        /// <remarks>
+        /// This is mainly called from UIScreen after screen pointer focus widget has changed.
+        /// You don't need to extent this unless your widget manages its children pointer focuses (like views) OR
+        /// your widget sets some other status flags (like cursor type).
+        /// </remarks>
         public virtual void OnPointerEnter(bool enter)
         {
             PointerFocus = enter;
@@ -963,6 +989,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles pointer drag event. Default action: do nothing.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <param name="rel">Delta from previous position</param>
+        /// <returns>Success</returns>
         public virtual bool OnPointerDrag(Vector2 p, Vector2 rel)
         {
             return false;
@@ -971,8 +1000,13 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles pointer scroll/wheel event.
         /// Scroll is Vector2 in order to support trackballs.
-        /// Note: hardly any core widget uses scroll.X value.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <param name="scroll">Scroll value</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// Hardly any core widget uses scroll.X value.
+        /// </remarks>
         public virtual bool OnPointerScroll(Vector2 p, Vector2 scroll)
         {
             if(Children.Count > 0)
@@ -1006,10 +1040,16 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Handles keyboard event. Default action: do nothing.
-        /// Note: OnKeyUpDown event is restricted only to widgets in UIScreen's focuspath.
-        /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
-        /// Note3: there is an exception in UIPopup (handles shortcut keys in menus).
         /// </summary>
+        /// <param name="key">Keyboard key</param>
+        /// <param name="down">Down</param>
+        /// <param name="modifiers">Key modifiers</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// OnKeyUpDown event is restricted only to widgets in UIScreen's focuspath.
+        /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
+        /// There is an exception in UIPopup (handles shortcut keys in menus).
+        /// </remarks>
         public virtual bool OnKeyUpDown(Key key, bool down, KeyModifiers modifiers)
         {
             return false;
@@ -1017,9 +1057,13 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Handles text input. Default action: do nothing.
-        /// Note: OnKeyChar event is restricted only to widgets in UIScreen's focuspath.
-        /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
         /// </summary>
+        /// <param name="c">Chararcter</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// OnKeyChar event is restricted only to widgets in UIScreen's focuspath.
+        /// So in order to widget get this event, widget must be in focuspath (RequestFocus() called).
+        /// </remarks>
         public virtual bool OnKeyChar(char c)
         {
             return false;
@@ -1029,8 +1073,12 @@ namespace NanoUI.Components
         /// OnScreenResize is an event that UIScreen passes only to its direct children.
         /// They can then decide, if they do something and if they want to pass event to their children.
         /// Default action: do nothing.
-        /// Note: if widget resizes itself, it should then call PerformLayout or RequestLayoutUpdate.
         /// </summary>
+        /// <param name="size">New size</param>
+        /// <param name="ctx">NvgContext</param>
+        /// <remarks>
+        /// If widget resizes itself, it should then call PerformLayout or RequestLayoutUpdate.
+        /// </remarks>
         public virtual void OnScreenResize(Vector2 size, NvgContext ctx)
         {
         
@@ -1039,6 +1087,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles file drop event. Default action: do nothing.
         /// </summary>
+        /// <param name="filename">Filename</param>
+        /// <returns>Success</returns>
         public virtual bool OnFileDrop(string filename)
         {
             // todo: active only when in focus path?
@@ -1049,8 +1099,10 @@ namespace NanoUI.Components
         /// <summary>
         /// OnDetach is an event, that child fires, when it wants to break loose from parental control.
         /// It is by now used only in docking, when dragging/reordering dock components as a part of drag & drop process.
-        /// The default answer to this request, is firm "No!".
+        /// The default parental answer to this request, is firm "No!".
         /// </summary>
+        /// <param name="child">UIWidget that wants to break loose</param>
+        /// <returns>Success</returns>
         public virtual bool OnDetach(UIWidget child)
         {
             return false;
@@ -1059,9 +1111,14 @@ namespace NanoUI.Components
         /// <summary>
         /// UIScreen calls OnAttach when dragging ends (dragwidget != null && pointer button up).
         /// This is only used by now in docking as a part of drag & drop process.
-        /// Note: position is relative pointer position.
-        /// If you want to use this, extend this function, otherwise this does nothing.
         /// </summary>
+        /// <param name="widget">Child widget</param>
+        /// <param name="position">Position</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// Position is relative pointer position.
+        /// If you want to use this, extend this function, otherwise this does nothing.
+        /// </remarks>
         public virtual bool OnAttach(UIWidget widget, Vector2 position)
         {
             return false;
