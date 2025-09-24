@@ -16,9 +16,13 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Returns shape id or -1, if couldn't create svg shape.
+        /// </summary>
+        /// <param name="path">Path</param>
+        /// <returns>shape id or -1</returns>
+        /// <remarks>
         /// Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
         /// If you use some other filesystem solution, pass byte array.
-        /// </summary>
+        /// </remarks>
         public int CreateSvg(string path)
         {
             if (!File.Exists(path))
@@ -37,8 +41,10 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Returns shape id or -1 if couldn't create svg shape.
+        /// Returns shape id or -1, if couldn't create svg shape.
         /// </summary>
+        /// <param name="data">SVG data</param>
+        /// <returns>shape id or -1</returns>
         public int CreateSvg(byte[] data)
         {
             if (data == null || data.Length == 0)
@@ -56,8 +62,12 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Returns the size of the svg. You can do this as layouting hint.
+        /// Returns the size of the svg.
         /// </summary>
+        /// <param name="svgId">SVG id</param>
+        /// <param name="size">SVG size</param>
+        /// <returns>Success</returns>
+        /// <remarks>You can use this as a layouting hint.</remarks>
         public bool TryGetSvgSize(int svgId, out Vector2 size)
         {
             if(svgId < 0 || svgId >= _svgShapes.Count)
@@ -76,9 +86,11 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Draws the SVG. If returns false, shape was not found.
         /// </summary>
-        public bool DrawSvg(int shapeId)
+        /// <param name="svgId">SVG id</param>
+        /// <returns>Success</returns>
+        public bool DrawSvg(int svgId)
         {
-            if(shapeId < 0 || shapeId >= _svgShapes.Count)
+            if(svgId < 0 || svgId >= _svgShapes.Count)
             {
                 return false;
             }
@@ -87,7 +99,7 @@ namespace NanoUI.Nvg
             ref NvgState state = ref GetState();
 
             // get shape
-            ref SvgShape shape = ref _svgShapes[shapeId];
+            ref SvgShape shape = ref _svgShapes[svgId];
 
             // loop paths
             for (int i = 0; i < shape.Paths.Length; i++)
