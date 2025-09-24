@@ -17,11 +17,10 @@ namespace NanoUI.Components
     // todo: tab navigation? (in screen?), MaxSize?
 
     /// <summary>
-    /// UIWidget is the base class in UI layer.
+    /// UIWidget is the base widget class in UI layer.
     /// It provides most common properties and methods.
-    /// Note: all widgets in UILayer should be derived from this, if they are going to be
-    /// added into the widget tree.
     /// </summary>
+    /// <remarks>All widgets in UILayer should be derived from this, if they are going to be added into the widget tree.</remarks>
     public partial class UIWidget : IDisposable
     {
         WidgetList _children;
@@ -36,9 +35,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Constructor for theme prototype widgets.
         /// Normally use ctor new UIWidget(UIWidget? parent, <params>), when attaching widgets into the widget tree.
-        /// Note: if you create your own theme widget prototype, be careful to set all themable
-        /// properties in order to avoid circular reference.
         /// </summary>
+        /// <remarks>if you create your own theme widget prototype, be careful to set all themable properties in order to avoid circular reference.</remarks>
         public UIWidget()
         {
             // todo: should we set all these to theme?
@@ -77,6 +75,7 @@ namespace NanoUI.Components
         /// Basic constructor where widget is created and added to parent widget's
         /// WidgetList. Derived widgets can have additional params.
         /// </summary>
+        /// <param name="parent">Parent UIWidget. Should not be null.</param>
         public UIWidget(UIWidget? parent)
         {
             _parent = parent;
@@ -95,8 +94,8 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Children list.
-        /// Note: All widgets have this; so they can act as a container oy layer.
         /// </summary>
+        /// <remarks>All widgets have this; so they can act as a container oy layer.</remarks>
         [JsonIgnore]
         public WidgetList Children => _children;
 
@@ -197,9 +196,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Theme type is a type that determines which widget in theme we use when getting theneable property.
         /// If extended widget doesn't set this, uses base Widget theme properties.
-        /// Note: setting this overrides all base widget themeable properties.
-        /// So you must configure all of them at your specified theme widget.
         /// </summary>
+        /// <remarks>setting this overrides all base widget themeable properties. So you must configure all of them at your specified theme widget.</remarks>
         [JsonIgnore]
         public Type ThemeType
         {
@@ -255,28 +253,34 @@ namespace NanoUI.Components
         public virtual Vector2 Position { get; set; }
 
         /// <summary>
-        /// Widget's size.
-        /// Note: Layouting code calculates this based on Size, MinSize & FixedSize values,
-        /// if widget is inside layout and visible. If not this value is used as-is.
-        /// Note: You can manually reset this value after layouting has calculated this in order
-        /// tweak/correct size.
+        /// Widget's size.        
         /// </summary>
+        /// <remarks>
+        /// Layouting code calculates this based on Size, MinSize & FixedSize values,
+        /// if widget is inside layout and visible. If not this value is used as-is.
+        /// You can manually reset this value after layouting has calculated this in order
+        /// tweak/correct size.
+        /// </remarks>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 Size { get; set; }
 
         /// <summary>
         /// Widget's fixed size.
-        /// Note: this is mainly used in layouting. The X & Y values are only used, if their values are > 0.
-        /// Core widgtets use mainly Size property in drawing phase.
         /// </summary>
+        /// <remarks>
+        /// Mainly used in layouting. The X & Y values are only used, if their values are > 0.
+        /// Core widgtets use mainly Size property in drawing phase.
+        /// </remarks>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 FixedSize { get; set; }
 
         /// <summary>
         /// Widget's minimum size.
-        /// Note: this is mainly used in layouting; calculates the "real" size with Vector2.Max(Size, MinSize).
-        /// Core widgtets use mainly Size property in drawing phase.
         /// </summary>
+        /// <remarks>
+        /// Mainly used in layouting; calculates the "real" size with Vector2.Max(Size, MinSize).
+        /// Core widgtets use mainly Size property in drawing phase.
+        /// </remarks>
         [Category(Globals.CATEGORY_LAYOUT)]
         public virtual Vector2 MinSize { get; set; }
 
@@ -330,9 +334,11 @@ namespace NanoUI.Components
         /// Sets/gets "hard" margin for all contents (children etc) in widget.
         /// This is mostly used in layouts, but you can use it also when manually
         /// positioning any other content in widget.
-        /// Note: widgets can also have their own padding property for the content,
-        /// so don't use this property in these situations.
         /// </summary>
+        /// <remarks>
+        /// Widgets can also have their own padding property for the content,
+        /// so don't use this property in these situations.
+        /// </remarks>
         [Category(Globals.CATEGORY_LAYOUT)]
         public Thickness Margin
         {
@@ -347,11 +353,13 @@ namespace NanoUI.Components
         /// <summary>
         /// Sets widget's visibility. If widget is not visible, it can't get any
         /// events and it is also neglected in Draw phase.
-        /// Note: Changing visible property does NOT automatically trigger layout update in parent widget.
+        /// </summary>
+        /// <remarks>
+        /// Changing visible property does NOT automatically trigger layout update in parent widget.
         /// If layout update is needed, call PerformLayout or RequestLayoutUpdate with parent widget.
         /// There are still few widgets that does this automatically in order to preserve
-        /// UIScreen's consitency.
-        /// </summary>
+        /// UIScreen's consistency.
+        /// </remarks>
         public virtual bool Visible { get; set; } = true;
 
         /// <summary>
@@ -377,9 +385,11 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Tells if pointer is "inside" widget.
-        /// Note: you should not normally set pointer focus manually, instead you should let NanoUI
-        /// handle it automatically (the exception is, if your widget handles its children hovering - like views).
         /// </summary>
+        /// <remarks>
+        /// You should not normally set pointer focus manually, instead you should let NanoUI
+        /// handle it automatically (the exception is, if your widget handles its children hovering - like views).
+        /// </remarks>
         [Browsable(false)]
         public virtual bool PointerFocus
         {
@@ -395,7 +405,7 @@ namespace NanoUI.Components
         }
 
         /// <summary>
-        /// Pushed.
+        /// Pushed. Used primarily with buttons.
         /// </summary>
         [Browsable(false)]
         [JsonIgnore]
@@ -638,13 +648,15 @@ namespace NanoUI.Components
         /// <summary>
         /// Relative children layout area (not taking into account widget's relative position & margins).
         /// This is mainly used in layouts when performing layouting (positioning & sizing child widgets).
-        /// Note: the position element of the rect is children's offset/topLeft
+        /// </summary>
+        /// <remarks>
+        /// The position element of the rect is children's offset/topLeft
         /// (for example in window this consists titlebar y offset).
         /// Size property tells children area size, that can be smaller than widgets own size
         /// (you can have content "below" children - like statusbar).
         /// Layouts calculate positions in top down order, so offset indicates where layout
         /// begins calculations (any content after layout should we set omitted in size).
-        /// </summary>
+        /// </remarks>
         public virtual Rect GetLayoutArea()
         {
             return new Rect(
@@ -658,8 +670,11 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Sets the pointer type, that is propgated to UIScreen and user application.
-        /// Note: this function is normally called in widget's OnPointerMove or OnPointerEnter events.
         /// </summary>
+        /// <param name="pointerType">Pointer type id</param>
+        /// <remarks>
+        /// This function is normally called in widget's OnPointerMove or OnPointerEnter events.
+        /// </remarks>
         public virtual void SetPointerType(int pointerType)
         {
             Screen?.SetPointerType(pointerType);
@@ -699,6 +714,7 @@ namespace NanoUI.Components
         /// Queues layout update (PerfomLayout), that is
         /// executed before next Draw call.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         public virtual void RequestLayoutUpdate(UIWidget? widget)
         {
             if(widget == null)
@@ -711,6 +727,9 @@ namespace NanoUI.Components
         /// <summary>
         /// Checks if widget contains position (tests in local space).
         /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <returns></returns>
         public virtual bool Contains(float x, float y)
         {
             return Contains(new Vector2(x, y));
@@ -719,6 +738,8 @@ namespace NanoUI.Components
         /// <summary>
         /// Checks if widget contains position (tests in local space).
         /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>Success</returns>
         public virtual bool Contains(Vector2 position)
         {
             var d = position - Position;
