@@ -546,6 +546,12 @@ namespace NanoUI.Nvg
         /// Creates new circle arc shaped sub-path.
         /// The arc is drawn from angle a0 to a1.
         /// </summary>
+        /// <param name="cx">Center X</param>
+        /// <param name="cy">Center Y</param>
+        /// <param name="r">Radius</param>
+        /// <param name="a0">Angle0</param>
+        /// <param name="a1">Angle1</param>
+        /// <param name="dir">Winding</param>
         public void Arc(float cx, float cy, float r, float a0, float a1, Winding dir)
             => Arc(new Vector2(cx, cy), r, a0, a1, dir);
 
@@ -553,6 +559,11 @@ namespace NanoUI.Nvg
         /// Creates new circle arc shaped sub-path.
         /// The arc is drawn from angle a0 to a1.
         /// </summary>
+        /// <param name="c">Center</param>
+        /// <param name="r">Radius</param>
+        /// <param name="a0">Angle0</param>
+        /// <param name="a1">Angle1</param>
+        /// <param name="dir">Winding</param>
         public void Arc(Vector2 c, float r, float a0, float a1, Winding dir)
         {
             _pathArc(GetState(), c, r, a0, a1, dir);
@@ -561,18 +572,25 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new rectangle shaped sub-path.
         /// </summary>
+        /// <param name="pos">TopLeft position</param>
+        /// <param name="size">Size</param>
         public void Rect(Vector2 pos, Vector2 size)
             => Rect(new Rect(pos, size));
 
         /// <summary>
         /// Creates a new rectangle shaped sub-path.
         /// </summary>
+        /// <param name="x">Left position</param>
+        /// <param name="y">Top position</param>
+        /// <param name="width">width</param>
+        /// <param name="height">height</param>
         public void Rect(float x, float y, float width, float height)
             => Rect(new Rect(x, y, width, height));
 
         /// <summary>
         /// Creates a new rectangle shaped sub-path.
         /// </summary>
+        /// <param name="rect">Rectangle</param>
         public void Rect(Rect rect)
         {
             _pathRect(GetState(), rect);
@@ -581,6 +599,8 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path.
         /// </summary>
+        /// <param name="rect">Rectangle</param>
+        /// <param name="r">Corner radius</param>
         public void RoundedRect(Rect rect, float r)
         {
             RoundedRectVarying(rect, r, r, r, r);
@@ -589,18 +609,31 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path.
         /// </summary>
+        /// <param name="pos">TopLeft position</param>
+        /// <param name="size">Size</param>
+        /// <param name="r">Corner radius</param>
         public void RoundedRect(Vector2 pos, Vector2 size, float r)
             => RoundedRect(pos.X, pos.Y, size.X, size.Y, r);
 
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path.
         /// </summary>
+        /// <param name="x">Left position</param>
+        /// <param name="y">Top position</param>
+        /// <param name="width">width</param>
+        /// <param name="height">height</param>
+        /// <param name="r">Corner radius</param>
         public void RoundedRect(float x, float y, float width, float height, float r)
             => RoundedRect(new Rect(x, y, width, height), r);
 
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path with varying radii (CornerRadius) for each corner.
         /// </summary>
+        /// <param name="x">Left</param>
+        /// <param name="y">Top</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
+        /// <param name="radius">CornerRadius</param>
         public void RoundedRectVarying(float x, float y, float width, float height, in CornerRadius radius)
             => RoundedRectVarying(new Rect(x, y, width, height),
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
@@ -608,6 +641,9 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path with varying radii (CornerRadius) for each corner.
         /// </summary>
+        /// <param name="pos">TopLeft</param>
+        /// <param name="size">Size</param>
+        /// <param name="radius">CornerRadius</param>
         public void RoundedRectVarying(Vector2 pos, Vector2 size, in CornerRadius radius)
             => RoundedRectVarying(new Rect(pos, size), 
                 radius.TopLeft, radius.TopRight, radius.BottomRight, radius.BottomLeft);
@@ -615,12 +651,25 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path with varying radii (radXXX values) for each corner.
         /// </summary>
+        /// <param name="x">Left</param>
+        /// <param name="y">Top</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
+        /// <param name="radTopLeft">Radius top-left</param>
+        /// <param name="radTopRight">Radius top-right</param>
+        /// <param name="radBottomRight">Radius bottom-right</param>
+        /// <param name="radBottomLeft">Radius bottom-left</param>
         public void RoundedRectVarying(float x, float y, float width, float height, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
             => RoundedRectVarying(new Rect(x, y, width, height), radTopLeft, radTopRight, radBottomRight, radBottomLeft);
 
         /// <summary>
         /// Creates a new rounded rectangle shaped sub-path with varying radii (radXXX values) for each corner.
         /// </summary>
+        /// <param name="rect">Rectangle</param>
+        /// <param name="radTopLeft">Radius top-left</param>
+        /// <param name="radTopRight">Radius top-right</param>
+        /// <param name="radBottomRight">Radius bottom-right</param>
+        /// <param name="radBottomLeft">Radius bottom-left</param>
         public void RoundedRectVarying(Rect rect, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft)
         {
             _pathRoundedRectVarying(GetState(), rect, radTopLeft, radTopRight, radBottomRight, radBottomLeft);
@@ -629,12 +678,17 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new circle shaped sub-path.
         /// </summary>
+        /// <param name="centerX">Center-X</param>
+        /// <param name="centerY">Center-Y</param>
+        /// <param name="radius">Radius</param>
         public void Circle(float centerX, float centerY, float radius)
             => Circle(new Vector2(centerX, centerY), radius);
 
         /// <summary>
         /// Creates a new circle shaped sub-path.
         /// </summary>
+        /// <param name="center">Center</param>
+        /// <param name="radius">Radius</param>
         public void Circle(Vector2 center, float radius)
         {
             Ellipse(center, radius, radius);
@@ -643,12 +697,19 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new ellipse shaped sub-path.
         /// </summary>
+        /// <param name="cx">Center-X</param>
+        /// <param name="cy">Center-Y</param>
+        /// <param name="rx">Radius-X</param>
+        /// <param name="ry">Radius-Y</param>
         public void Ellipse(float cx, float cy, float rx, float ry)
             => Ellipse(new Vector2(cx, cy), rx, ry);
 
         /// <summary>
         /// Creates a new ellipse shaped sub-path.
         /// </summary>
+        /// <param name="c">Center</param>
+        /// <param name="rx">Radius-X</param>
+        /// <param name="ry">Radius-Y</param>
         public void Ellipse(Vector2 c, float rx, float ry)
         {
             _pathEllipse(GetState(), c, rx, ry);
@@ -657,6 +718,8 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates a new pentagram shaped sub-path.
         /// </summary>
+        /// <param name="center">Center</param>
+        /// <param name="radius">Radius</param>
         public void Pentagram(Vector2 center, float radius)
         {
             if (radius <= 0)
@@ -673,6 +736,7 @@ namespace NanoUI.Nvg
         /// Sets the current scissor rectangle.
         /// The scissor rectangle is transformed by the current transform.
         /// </summary>
+        /// <param name="rect">Rectangle</param>
         public void Scissor(Rect rect)
             => Scissor(rect.Position, rect.Size);
 
@@ -680,6 +744,10 @@ namespace NanoUI.Nvg
         /// Sets the current scissor rectangle.
         /// The scissor rectangle is transformed by the current transform.
         /// </summary>
+        /// <param name="x">Left position</param>
+        /// <param name="y">Top position</param>
+        /// <param name="width">width</param>
+        /// <param name="height">height</param>
         public void Scissor(float x, float y, float width, float height)
             => Scissor(new Vector2(x, y), new Vector2(width, height));
 
@@ -687,6 +755,8 @@ namespace NanoUI.Nvg
         /// Sets the current scissor rectangle.
         /// The scissor rectangle is transformed by the current transform.
         /// </summary>
+        /// <param name="pos">TopLeft position</param>
+        /// <param name="size">Size</param>
         public void Scissor(Vector2 pos, Vector2 size)
         {
             size.X = MathF.Max(0.0f, size.X);
@@ -711,6 +781,8 @@ namespace NanoUI.Nvg
         /// rectangle and the previous scissor rectangle transformed in the current
         /// transform space. The resulting shape is always a rectangle.
         /// </summary>
+        /// <param name="pos">TopLeft position</param>
+        /// <param name="size">Size</param>
         public void IntersectScissor(Vector2 pos, Vector2 size)
             => IntersectScissor(new Rect(pos, size));
 
@@ -722,6 +794,10 @@ namespace NanoUI.Nvg
         /// rectangle and the previous scissor rectangle transformed in the current
         /// transform space. The resulting shape is always a rectangle.
         /// </summary>
+        /// <param name="x">Left position</param>
+        /// <param name="y">Top position</param>
+        /// <param name="width">width</param>
+        /// <param name="height">height</param>
         public void IntersectScissor(float x, float y, float width, float height)
             => IntersectScissor(new Rect(x, y, width, height));
 
@@ -733,6 +809,7 @@ namespace NanoUI.Nvg
         /// rectangle and the previous scissor rectangle transformed in the current
         /// transform space. The resulting shape is always a rectangle.
         /// </summary>
+        /// <param name="rect">Rectangle</param>
         public void IntersectScissor(Rect rect)
         {
             ref NvgState state = ref GetState();
@@ -778,6 +855,8 @@ namespace NanoUI.Nvg
         /// so you can set in path param whatever file identication you like or
         /// call your renderer directly.
         /// </summary>
+        /// <param name="path">Path</param>
+        /// <param name="textureFlags">TextureFlags</param>
         /// <returns>Id of the texture.</returns>
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
@@ -787,6 +866,7 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Creates texture from texture description.
         /// </summary>
+        /// <param name="description">Texture description</param>
         /// <returns>Id of the texture.</returns>
         public int CreateTexture(TextureDesc description)
         {
@@ -796,6 +876,9 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Returns the dimensions of a created texture.
         /// </summary>
+        /// <param name="texture">Texture id</param>
+        /// <param name="textureSize">Texture size</param>
+        /// <returns></returns>
         public bool GetTextureSize(int texture, out Vector2 textureSize)
         {
             if (texture == Globals.INVALID)
@@ -810,9 +893,13 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Returns the dimensions of a created texture.
         /// </summary>
-        public bool GetTextureSize(int textureIndex, out uint texWidth, out uint texHeight)
+        /// <param name="texture">Texture id</param>
+        /// <param name="texWidth">Texture width</param>
+        /// <param name="texHeight">Texture height</param>
+        /// <returns></returns>
+        public bool GetTextureSize(int texture, out uint texWidth, out uint texHeight)
         {
-            if(GetTextureSize(textureIndex, out Vector2 size))
+            if(GetTextureSize(texture, out Vector2 size))
             {
                 texWidth = (uint)size.X;
                 texHeight = (uint)size.Y;
@@ -827,6 +914,8 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Updates texture data specified by texture handle.
         /// </summary>
+        /// <param name="texture">Texture id</param>
+        /// <param name="data">Texture data</param>
         public bool UpdateTexture(int texture, ReadOnlySpan<byte> data)
         {
             if (texture == Globals.INVALID)
@@ -838,6 +927,8 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Resizes created texture.
         /// </summary>
+        /// <param name="texture">Texture id</param>
+        /// <param name="description">Texture description</param>
         public void ResizeTexture(int texture, TextureDesc description)
         {
             if (texture == Globals.INVALID)
@@ -849,6 +940,7 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Deletes created texture.
         /// </summary>
+        /// <param name="texture">Texture id</param>
         public bool DeleteTexture(int texture)
         {
             if (texture == Globals.INVALID)
@@ -859,6 +951,10 @@ namespace NanoUI.Nvg
 
         #endregion
 
+        /// <summary>
+        /// Disposes unmanaged memories.
+        /// </summary>
+        /// <remarks>This should be always called when application is closing.</remarks>
         public void Dispose()
         {
             // free unmanaged memories
