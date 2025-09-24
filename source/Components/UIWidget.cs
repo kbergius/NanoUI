@@ -1189,8 +1189,9 @@ namespace NanoUI.Components
 
         /// <summary>
         /// Update.
-        /// Note: this is not currently used.
         /// </summary>
+        /// <param name="deltaSeconds">Delta seconds</param>
+        /// <remarks>This is not currently used.</remarks>
         public virtual void Update(float deltaSeconds)
         {
             // todo: animation framework!
@@ -1203,9 +1204,12 @@ namespace NanoUI.Components
         /// <summary>
         /// Draw is a method that is executed every frame. So avoid placing here
         /// any expensive operations.
-        /// Note: widget is "inside" scissor, that it's parent has set.
-        /// Also call base.Draw, if you want to draw your widgets' children.
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <remarks>
+        /// Widget is "inside" scissor, that it's parent has set.
+        /// Also call base.Draw, if you want to draw your widgets' children.
+        /// </remarks>
         public virtual void Draw(NvgContext ctx)
         {
             // Draw children?
@@ -1242,9 +1246,13 @@ namespace NanoUI.Components
         /// <summary>
         /// PostDraw is called from UIScreen after all widgets have been drawn.
         /// This gives a possiblity to draw overlay over all widgets.
-        /// Note: widget must be in screen's post draw list to get this call.
-        /// UIScreen passes pointer's absolute position.
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="pointerPosition">Pointer's display position</param>
+        /// <remarks>
+        /// Widget must be in screen's post draw list to get this call.
+        /// UIScreen passes pointer's display position.
+        /// </remarks>
         public virtual void PostDraw(NvgContext ctx, Vector2 pointerPosition)
         {
         
@@ -1257,6 +1265,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Handles disposing and sets focus to caller.
         /// </summary>
+        /// <param name="caller">UIWidget</param>
         public void Dispose(UIWidget caller)
         {
             Dispose();
