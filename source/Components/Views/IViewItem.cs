@@ -9,16 +9,23 @@ namespace NanoUI.Components.Views
     public interface IViewItem<T>
     {
         /// <summary>
-        /// Obligatory in flat but mabdatory in hierarcial structures.
+        /// Obligatory id in flat but mabdatory in hierarcial structures.
         /// </summary>
         string? Id { get; }
 
         /// <summary>
-        /// Needed to place correctly into hierarcial structure.
+        /// ParentId is needed to place correctly into hierarcial structure.
         /// </summary>
         string? ParentId { get; }
 
+        /// <summary>
+        /// Widgets
+        /// </summary>
         UIWidget[]? Widgets { get; set; }
+
+        /// <summary>
+        /// Event data
+        /// </summary>
         T? EventData { get; set; }
 
         /// <summary>

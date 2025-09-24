@@ -11,16 +11,23 @@
     public class RowItem<T> : IViewItem<T>
     {
         /// <summary>
-        /// Obligatory in flat but mabdatory in hierarcial structures.
+        /// Obligatory id in flat but mandatory in hierarcial structures.
         /// </summary>
         public string? Id { get; }
 
         /// <summary>
-        /// Needed to place correctly into hierarcial structure.
+        /// ParentId is needed to place correctly into hierarcial structure.
         /// </summary>
         public string? ParentId { get; }
 
+        /// <summary>
+        /// Widgets
+        /// </summary>
         public UIWidget[]? Widgets { get; set; }
+
+        /// <summary>
+        /// Event data
+        /// </summary>
         public T? EventData { get; set; }
 
         /// <summary>

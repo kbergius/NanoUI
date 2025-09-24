@@ -23,9 +23,11 @@ namespace NanoUI.Components.Views
         #region Methods
 
         /// <summary>
+        /// Adds item.
         /// Cells can have their own data OR row can have common data.
-        /// Note: returns widget so you can set common properties.
         /// </summary>
+        /// <param name="listItem">RowItem<T></param>
+        /// <returns>widget so you can set common properties.</returns>
         public UIViewItemWidget<T> Add(RowItem<T> listItem)
         {
             return new UIViewItemWidget<T>(ViewPanel, listItem) { StretchWidth = true };
