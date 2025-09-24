@@ -11,12 +11,10 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIMessageBox.
-    /// </summary>
-    /// <remarks>
     /// It is not recommended to create this in your code.
     /// Instead use screen's GetDialog<UIMessageBox>().
     /// If you still want to create this manually, you are responsible to handle disposing new instance.
-    /// </remarks>
+    /// </summary>
     public class UIMessageBox : UIDialog
     {
         bool _inited;

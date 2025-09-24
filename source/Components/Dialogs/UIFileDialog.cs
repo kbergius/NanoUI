@@ -14,11 +14,9 @@ namespace NanoUI.Components.Dialogs
 
     /// <summary>
     /// UIFileDialog.
-    /// </summary>
-    /// <remarks>
     /// It is not recommended to craete this in your code. Instead call screen GetDialog<FileDialog>.
     /// If you still want to create this manually, you are responsible to handle dispose new instance.
-    /// </remarks>
+    /// </summary>
     public class UIFileDialog : UIDialog
     {
         Action<UIWidget, FileFolderInfo>? _selected;

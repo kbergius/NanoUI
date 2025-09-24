@@ -17,7 +17,7 @@ namespace NanoUI.Components.Files
 
     /// <summary>
     /// UIFileFolderTree shows folders (and possibly files).
-    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// Supports dynamic theming. If dynamic theming is not needed,
     /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderTree : UITreeView<FileFolderInfo>
@@ -57,8 +57,10 @@ namespace NanoUI.Components.Files
         #region Methods
 
         /// <summary>
-        /// Clears previous tree if any.
+        /// Creates tree.
         /// </summary>
+        /// <param name="parentFolder">Parent folder</param>
+        /// <param name="maximumLevels">Maximum levels</param>
         public void CreateTree(string parentFolder, int maximumLevels)
         {
             // clear previous
@@ -121,8 +123,14 @@ namespace NanoUI.Components.Files
         }
 
         /// <summary>
-        /// For hierarcial structures (treeview) - id & parentId are mandatory.
+        /// Creates tree item.
         /// </summary>
+        /// <param name="displayName">Display name</param>
+        /// <param name="eventData">Event data</param>
+        /// <param name="id">Id</param>
+        /// <param name="parentId">Parent id</param>
+        /// <returns>TreeItem<FileFolderInfo></returns>
+        /// <remarks>For hierarcial structures (treeview) - id & parentId are mandatory.</remarks>
         protected virtual TreeItem<FileFolderInfo> CreateTreeItem(string displayName, in FileFolderInfo eventData, string id, string parentId)
         {
             return new TreeItem<FileFolderInfo>(eventData, id, parentId)

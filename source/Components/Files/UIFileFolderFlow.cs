@@ -8,7 +8,7 @@ namespace NanoUI.Components.Files
 {
     /// <summary>
     /// UIFileFolderFlow.
-    /// Note: supports dynamic theming. If dynamic theming is not needed,
+    /// Supports dynamic theming. If dynamic theming is not needed,
     /// use UIIcon instead of UIFileIcon with fixed Icon & IconColor (better performance).
     /// </summary>
     public class UIFileFolderFlow : UIFlowView<FileFolderInfo>
@@ -34,11 +34,18 @@ namespace NanoUI.Components.Files
 
         #region Properties
 
+        /// <summary>
+        /// ShowFiles. Default: true.
+        /// </summary>
         public bool ShowFiles = true;
 
         // todo: should we automatically change parent folder if selected changes?
 
         bool? _autoFolderSelectedChange;
+
+        /// <summary>
+        /// AutoFolderSelectedChange
+        /// </summary>
         public bool AutoFolderSelectedChange
         {
             get => _autoFolderSelectedChange?? GetTheme().FileFolderDetails.AutoFolderSelectedChange;
@@ -46,6 +53,10 @@ namespace NanoUI.Components.Files
         }
 
         bool? _showDirectoryUp;
+
+        /// <summary>
+        /// ShowDirectoryUp
+        /// </summary>
         public bool ShowDirectoryUp
         {
             get => _showDirectoryUp?? GetTheme().FileFolderDetails.ShowDirectoryUp;
@@ -56,6 +67,10 @@ namespace NanoUI.Components.Files
 
         #region Methods
 
+        /// <summary>
+        /// Creates view.
+        /// </summary>
+        /// <param name="parentFolder">Parent folder</param>
         public void CreateView(string parentFolder)
         {
             // Check is valid directory
@@ -127,8 +142,11 @@ namespace NanoUI.Components.Files
         }
 
         /// <summary>
-        /// Protected virtual method to leave room user customize columns & their content.
+        /// CreateFlowItem is protected virtual method to leave room user customize columns & their content.
         /// </summary>
+        /// <param name="displayName">Sisplay name</param>
+        /// <param name="eventData">Event data</param>
+        /// <returns>FlowItem<FileFolderInfo></returns>
         protected virtual FlowItem<FileFolderInfo> CreateFlowItem(string displayName, in FileFolderInfo eventData)
         {
             return new FlowItem<FileFolderInfo>(eventData)
