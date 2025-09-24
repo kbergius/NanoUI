@@ -22,6 +22,9 @@ namespace NanoUI.Layouts
 
         #region Properties
 
+        /// <summary>
+        /// Orientation
+        /// </summary>
         public Orientation Orientation {  get; set; }
 
         #endregion

@@ -26,6 +26,10 @@ namespace NanoUI.Layouts
         #region Properties
 
         Orientation _orientation;
+
+        /// <summary>
+        /// Orientation
+        /// </summary>
         public Orientation Orientation
         {
             get => _orientation;
@@ -33,6 +37,10 @@ namespace NanoUI.Layouts
         }
 
         LayoutAlignment _alignment;
+
+        /// <summary>
+        /// Layout alignment
+        /// </summary>
         public LayoutAlignment Alignment
         {
             get => _alignment;

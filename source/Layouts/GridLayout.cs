@@ -58,12 +58,18 @@ namespace NanoUI.Layouts
             set => _columnOrRowCount = value;
         }
 
+        /// <summary>
+        /// Default column alignment
+        /// </summary>
         public LayoutAlignment DefaultColumnAlignment
         {
             get => _defaultAlignments[0];
             set => _defaultAlignments[0] = value;
         }
 
+        /// <summary>
+        /// Default row alignment
+        /// </summary>
         public LayoutAlignment DefaultRowAlignment
         {
             get => _defaultAlignments[1];
@@ -77,6 +83,8 @@ namespace NanoUI.Layouts
         /// <summary>
         /// Sets the spacing for a specific axis (axis-0 = X, axis-1 = Y).
         /// </summary>
+        /// <param name="axis">Axis</param>
+        /// <param name="spacing">Spacing</param>
         public void SetSpacing(int axis, int spacing)
         {
             if(axis == 0)
@@ -90,9 +98,12 @@ namespace NanoUI.Layouts
         }
 
         /// <summary>
-        /// The alignment of the specified axis (row or column number, depending on
+        /// Gets the alignment of the specified axis (row or column number, depending on
         /// the orientation) at the specified index of that row or column.
         /// </summary>
+        /// <param name="axis">Axis</param>
+        /// <param name="item">Item</param>
+        /// <returns></returns>
         public LayoutAlignment GetAlignment(int axis, int item)
         {
             if (_alignments[axis] != null && item < _alignments[axis].Length)
@@ -104,6 +115,7 @@ namespace NanoUI.Layouts
         /// <summary>
         /// Sets alignments for columns.
         /// </summary>
+        /// <param name="value">Layout alignments</param>
         public void SetColumnAlignments(LayoutAlignment[] value)
         {
             _alignments[0] = value;
@@ -112,6 +124,7 @@ namespace NanoUI.Layouts
         /// <summary>
         /// Sets alignments for rows.
         /// </summary>
+        /// <param name="value">Layout alignments</param>
         public void SetRowAlignments(LayoutAlignment[] value)
         {
             _alignments[1] = value;
