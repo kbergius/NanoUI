@@ -32,12 +32,14 @@ namespace NanoUI.Components.Menus
         #region Properties
 
         /// <summary>
-        /// If this is non-negative, this will try to find its parent menu button & invoke clicked
+        /// If ItemId is non-negative, this will try to find its parent menu button & invoke clicked
         /// event there. Otherwise it will pass input event to base class.
-        /// Note: if you use item ids, you can just wrap the main menu button action & you need not wrap
+        /// </summary>
+        /// <remarks>
+        /// If you use item ids, you can just wrap the main menu button action & you need not wrap
         /// all menuitem clicked events individually. Works same way with shortcuts.
         /// Hint: it would be easier to deal with ids, if you determine them with some custom enum.
-        /// </summary>
+        /// </remarks>
         public int ItemId { get; set; } = -1;
 
         Thickness? _padding;
@@ -49,6 +51,9 @@ namespace NanoUI.Components.Menus
             set => _padding = value;
         }
 
+        /// <summary>
+        /// Shortcut
+        /// </summary>
         public Shortcut? Shortcut { get; set; }
 
         #endregion

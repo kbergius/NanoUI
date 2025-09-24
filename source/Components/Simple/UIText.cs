@@ -32,6 +32,9 @@ namespace NanoUI.Components.Simple
 
         #region Properties
 
+        /// <summary>
+        /// Text
+        /// </summary>
         public string? Text { get; set; }
         
         float? _fontSize;
@@ -46,7 +49,7 @@ namespace NanoUI.Components.Simple
         float? _charSpacing;
 
         /// <summary>
-        /// Additional spacing (default is 0).
+        /// Char spacing is additional spacing (default is 0).
         /// </summary>
         public float CharSpacing
         {
@@ -55,7 +58,7 @@ namespace NanoUI.Components.Simple
         }
 
         /// <summary>
-        /// Proportional line height (default is 1).
+        /// LineHeight is proportional line height (default is 1).
         /// </summary>
         float? _lineHeight;
         public float LineHeight
@@ -65,6 +68,10 @@ namespace NanoUI.Components.Simple
         }
 
         TextAlignment? _alignment;
+
+        /// <summary>
+        /// Text alignment
+        /// </summary>
         public TextAlignment Alignment
         {
             get => _alignment?? TextAlignment.Left | TextAlignment.Middle;

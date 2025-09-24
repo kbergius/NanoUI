@@ -52,6 +52,10 @@ namespace NanoUI.Components.Menus
         #region Properties
 
         int? _popupWidth;
+
+        /// <summary>
+        /// Popup width
+        /// </summary>
         public int PopupWidth
         {
             get => _popupWidth ?? GetTheme().Menu.PopupWidth;

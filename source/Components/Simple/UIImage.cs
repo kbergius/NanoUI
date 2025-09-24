@@ -27,6 +27,10 @@ namespace NanoUI.Components.Simple
         #region Properties
 
         int _texture;
+
+        /// <summary>
+        /// Texture id.
+        /// </summary>
         public int Texture
         {
             get => _texture;
@@ -41,6 +45,10 @@ namespace NanoUI.Components.Simple
                 }
             }
         }
+
+        /// <summary>
+        /// Tint color
+        /// </summary>
         public Color TintColor { get; set; }
 
         #endregion

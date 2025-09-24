@@ -8,7 +8,9 @@ namespace NanoUI.Components.Scrolling
     /// </summary>
     public interface IScrollable
     {
-        // note: scroll offset is negative or Vectro2.Zero
+        /// <summary>
+        /// Scroll offset is negative or Vectro2.Zero
+        /// </summary>
         Vector2 ScrollOffset { get; }
     }
 }
