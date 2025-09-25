@@ -4,7 +4,7 @@ using System.Numerics;
 namespace NanoUI.Serializers
 {
     /// <summary>
-    /// NumericsArrayConverter is used when serializing JSON.
+    /// NumericsArrayConverter is used when serializing/deserializing to/from JSON.
     /// </summary>
     public static class NumericsArrayConverter
     {
