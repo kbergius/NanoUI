@@ -19,12 +19,19 @@ namespace NanoUI.Common
     [JsonDerivedType(typeof(SvgBrush), typeDiscriminator: "SvgBrush")]
     public class BrushBase
     {
+        /// <summary>
+        /// Create
+        /// </summary>
         public BrushBase()
             : this(BrushType.Undefinied)
         {
 
         }
 
+        /// <summary>
+        /// Create with brush type
+        /// </summary>
+        /// <param name="type">Brush type</param>
         public BrushBase(BrushType type)
         {
             Type = type;
@@ -32,14 +39,35 @@ namespace NanoUI.Common
 
         #region Properties
 
+        /// <summary>
+        /// BrushType
+        /// </summary>
         public BrushType Type { get; set; }
+
+        /// <summary>
+        /// CornerRadius
+        /// </summary>
         public CornerRadius Rounding { get; set; }
+
+        /// <summary>
+        /// StrokeWidth
+        /// </summary>
         public float StrokeWidth { get; set; }// = 1;
+
+        /// <summary>
+        /// Filled?
+        /// </summary>
         public bool Filled { get; set; } //= true;
 
         #endregion
 
-        // this is for NanoUI widgets
+        /// <summary>
+        /// Draw
+        /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="topLeft">TopLeft</param>
+        /// <param name="size">Size</param>
+        /// <param name="tint">Tint color</param>
         public virtual void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             // no op - should overridden
@@ -55,9 +83,19 @@ namespace NanoUI.Common
     /// </summary>
     public class BoxGradient : BrushBase
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public BoxGradient()
             : base(BrushType.BoxGradient) { }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="innerColor">Inner color</param>
+        /// <param name="outerColor">Outer color</param>
+        /// <param name="cornerRadius">Corner radius</param>
+        /// <param name="feather">Feather</param>
         public BoxGradient(Color innerColor, Color outerColor, float cornerRadius, float feather = 6)
             :this()
         {
@@ -91,9 +129,7 @@ namespace NanoUI.Common
 
         #endregion
 
-        /// <summary>
-        /// Draw
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -125,10 +161,20 @@ namespace NanoUI.Common
     /// </summary>
     public class LinearGradient : BrushBase
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public LinearGradient()
             : base(BrushType.LinearGradient)
         { }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="startColor">Start color</param>
+        /// <param name="endColor">End color</param>
+        /// <param name="rounding">CornerRadius</param>
+        /// <param name="horizontal">Horizontal?</param>
         public LinearGradient(Color startColor, Color endColor, CornerRadius rounding, bool horizontal = false)
             : this()
         {
@@ -157,9 +203,7 @@ namespace NanoUI.Common
 
         #endregion
 
-        /// <summary>
-        /// Draw
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -187,6 +231,9 @@ namespace NanoUI.Common
     /// </summary>
     public class RadialGradient : BrushBase
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public RadialGradient()
             : base(BrushType.RadialGradient)
         { }
@@ -220,9 +267,7 @@ namespace NanoUI.Common
 
         #endregion
 
-        /// <summary>
-        /// Draw
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             // check valid colors & radius values
@@ -269,19 +314,24 @@ namespace NanoUI.Common
         /// </summary>
         public Color Color { get; set; }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public SolidBrush()
             : base(BrushType.Solid)
         { }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="color">Color</param>
         public SolidBrush(Color color)
             : base(BrushType.Solid)
         {
             Color = color;
         }
 
-        /// <summary>
-        /// Draw
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             ctx.BeginPath();
@@ -309,10 +359,17 @@ namespace NanoUI.Common
     /// </summary>
     public class ImageBrush : BrushBase
     {
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public ImageBrush()
             : base(BrushType.Texture)
         { }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="texture">Texture id</param>
         public ImageBrush(int texture)
             : base(BrushType.Texture)
         {
@@ -353,9 +410,7 @@ namespace NanoUI.Common
 
         #endregion
 
-        /// <summary>
-        /// Draw.
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             if (Texture <= Globals.INVALID)
@@ -405,19 +460,24 @@ namespace NanoUI.Common
         /// </summary>
         public bool FitSvg { get; set; } = true;
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public SvgBrush()
             : base(BrushType.Svg)
         { }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="svgId">Svg id</param>
         public SvgBrush(int svgId)
             : base(BrushType.Svg)
         {
             SvgId = svgId;
         }
 
-        // <summary>
-        /// Draw
-        /// </summary>
+        /// <inheritdoc />
         public override void Draw(NvgContext ctx, Vector2 topLeft, Vector2 size, Color? tint)
         {
             if (SvgId >= 0)
