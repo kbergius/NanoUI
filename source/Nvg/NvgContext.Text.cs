@@ -33,11 +33,11 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Returns font atlas texture data.
-        /// Note: Data is in 8-bit format.
         /// </summary>
         /// <param name="width">Width</param>
         /// <param name="height">Height</param>
         /// <returns>Atlas data</returns>
+        /// <remarks>Data is in 8-bit format.</remarks>
         public ReadOnlySpan<byte> GetAtlasData(out int width, out int height)
         {
             return Fontstash.GetTextureData(out width, out height);
@@ -142,10 +142,11 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Sets the proportinal line height of current text style. The line height is specified as multiple of font size.
-        /// Note: this is PROPORTIONAL line height (default is 1)
+        /// Sets the proportinal line height of current text style.
+        /// The line height is specified as multiple of font size.
         /// </summary>
         /// <param name="lineHeight">Text line height</param>
+        /// <remarks>This is PROPORTIONAL line height (default is 1)</remarks>
         public void TextLineHeight(float lineHeight)
         {
             GetState().TextLineHeight = lineHeight;
@@ -217,10 +218,11 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Sets the text outer color's dimension (outer color = outline color). Only with GlypBaking.Normal.
-        /// Note: When you want to set normal text fill color, reset dilate value to 0.
+        /// Sets the text outer color's dimension (outer color = outline color).
+        /// Only with GlypBaking.Normal.
         /// </summary>
         /// <param name="val">Text dilate value</param>
+        /// <remarks>When you want to set normal text fill color, reset dilate value to 0.</remarks>
         public void TextNormalDilate(int val)
         {
             GetState().TextDilate = Math.Clamp(val, 0, 20);
@@ -237,11 +239,13 @@ namespace NanoUI.Nvg
         /// Sets the text shape's inner and outer color.
         /// This could be used with text effect outline (outer color = outline color) with
         /// text shapes.
-        /// Note: if you don't want outline, set color to null or outlineWidth <= 0.
-        /// Default value is no outline color.
         /// </summary>
         /// <param name="color">Text shape outline color</param>
         /// <param name="outlineWidth">Text outline width</param>
+        /// <remarks>
+        /// If you don't want outline, set color to null or outlineWidth <= 0.
+        /// Default value is no outline color.
+        /// </remarks>
         public void TextShapeOutline(in Color? color, float outlineWidth = 1)
         {
             ref NvgState state = ref GetState();
