@@ -11,7 +11,7 @@ using System.Xml;
 namespace NanoUI.Svg
 {
     /// <summary>
-    /// SvgManager.
+    /// SvgManager parses & creates svg objects.
     /// </summary>
     internal static partial class SvgManager
     {

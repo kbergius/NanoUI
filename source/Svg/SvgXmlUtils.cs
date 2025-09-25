@@ -26,10 +26,8 @@ namespace NanoUI.Svg
     // Note: All of the commands above can also be expressed in lower case.
     // Upper case means absolutely positioned, lower case means relatively positioned.
 
-    // d="m 131.73911,422.01626 c 0,146.85769 43.82213,215.39128 201.5818,141.96244 157.75968,-73.42885 188.43518,-107.69564 354.95926,78.32409 166.5241,186.01973 210.34624,244.76282 162.1419,-122.3814 -48.20435,-367.1442 -4.38221,34.26679 -131.46641,-24.47627 C 591.87149,436.70204 732.10231,191.93923 543.66715,187.04398 355.23198,182.14871 574.34264,265.36807 534.90271,368.16845 495.4628,470.96883 355.23198,627.61702 311.40985,475.8641 267.58772,324.11115 193.09009,333.90166 131.73911,422.01626 z"
-
     /// <summary>
-    /// SvgXmlUtils.
+    /// SvgXmlUtils provides some helper methods to parse svg xml.
     /// </summary>
     public static class SvgXmlUtils
     {
@@ -38,11 +36,17 @@ namespace NanoUI.Svg
 
         static SvgXmlPathCommandType _currentCommandType = SvgXmlPathCommandType.NONE;
         static ArrayBuffer<float> _currentPathValues = new();
+
         // this is collection of all commands that we return after all done
         static ArrayBuffer<SvgXmlPathCommand> _pathCommands = new();
 
         #region Path
 
+        /// <summary>
+        /// Parses path
+        /// </summary>
+        /// <param name="val">Value</param>
+        /// <returns>SvgXmlPath</returns>
         public static SvgXmlPath ParsePath(ReadOnlySpan<char> val)
         {
             // clear values
@@ -231,8 +235,12 @@ namespace NanoUI.Svg
 
         #region Style
 
-        // style
-        // todo: opacities, stroke-dasharray etc
+        /// <summary>
+        /// Parses style
+        /// </summary>
+        /// <param name="val">Value</param>
+        /// <returns>SvgStyle</returns>
+        /// <remarks>Opacities & stroke-dasharrays are not implemented</remarks>
         public static SvgStyle ParseStyle(ReadOnlySpan<char> val)
         {
             SvgStyle style = new();
@@ -259,6 +267,14 @@ namespace NanoUI.Svg
 
         // note: we can come here either from style parsing or from individual style attribute
         // todo: handle "url( ...)" in fill & stroke (only relative)
+
+        /// <summary>
+        /// Parses style attribute.
+        /// </summary>
+        /// <param name="style">SvgStyle</param>
+        /// <param name="attrName">Attribute name</param>
+        /// <param name="attrValue">Attribute value</param>
+        /// <remarks>Not all attributes are implemented</remarks>
         public static void ParseStyleAttribute(ref SvgStyle style, string attrName, ReadOnlySpan<char> attrValue)
         {
             switch (attrName)
@@ -402,7 +418,12 @@ namespace NanoUI.Svg
 
         #region Transform
 
-        // todo: can there bw many transform functions?
+        /// <summary>
+        /// Tries to parse transform.
+        /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="transform">Matrix3x2</param>
+        /// <returns>Success</returns>
         public static bool TryParseTransform(ReadOnlySpan<char> val, out Matrix3x2 transform)
         {
             string[] splitted = val.ToString().Split([ '(', ')', ',', ' ' ], StringSplitOptions.RemoveEmptyEntries);
