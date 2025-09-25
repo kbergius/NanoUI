@@ -17,11 +17,20 @@ namespace NanoUI.Common
         /// </summary>
         public KeyModifiers Modifiers;
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="key">Key</param>
         public Shortcut(Key key)
         {
             Key = key;
         }
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="modifiers">Key modifiers</param>
         public Shortcut(Key key, KeyModifiers modifiers)
         {
             Key = key;
@@ -29,8 +38,11 @@ namespace NanoUI.Common
         }
 
         /// <summary>
-        /// Check if Key + KeyModifiers match shortcut.
+        /// Checks if Key + KeyModifiers match shortcut.
         /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="modifiers">Key modifiers</param>
+        /// <returns>Success</returns>
         public bool Match(Key key, KeyModifiers modifiers)
         {
             return key == Key && Modifiers == modifiers;

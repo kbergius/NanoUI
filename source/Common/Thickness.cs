@@ -4,7 +4,7 @@
     // (separate left/right & top/bottom values)
 
     /// <summary>
-    /// Thickness. Used as layouting hints (margins, paddings etc).
+    /// Thickness is used as layouting hints (margins, paddings etc).
     /// </summary>
     public struct Thickness
     {
@@ -18,17 +18,31 @@
         /// </summary>
         public float Vertical { get; set; }
 
+        /// <summary>
+        /// Creates.
+        /// </summary>
+        /// <param name="val">Horizontal & vertical value</param>
         public Thickness(float val)
         {
             Horizontal = Vertical = val;
         }
 
+        /// <summary>
+        /// Creates.
+        /// </summary>
+        /// <param name="horizontal">Horizontal</param>
+        /// <param name="vertical">Vertical</param>
         public Thickness(float horizontal, float vertical)
         {
             Horizontal = horizontal;
             Vertical = vertical;
         }
 
+        /// <summary>
+        /// Gets value by index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Value</returns>
         public float this[int index]
         {
             get => index == 1? Vertical : Horizontal;
