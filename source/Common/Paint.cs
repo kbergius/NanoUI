@@ -11,24 +11,62 @@ namespace NanoUI.Common
     [StructLayout(LayoutKind.Sequential)]
     public struct Paint
     {
+        /// <summary>
+        /// Transform.
+        /// </summary>
         public Matrix3x2 Transform;
+
+        /// <summary>
+        /// Extent.
+        /// </summary>
         public Vector2 Extent;
+
+        /// <summary>
+        /// Radius.
+        /// </summary>
         public float Radius;
+
+        /// <summary>
+        /// Feather.
+        /// </summary>
         public float Feather;
+
+        /// <summary>
+        /// Inner color.
+        /// </summary>
         public Color InnerColor;
+
+        /// <summary>
+        /// Outer color.
+        /// </summary>
         public Color OuterColor;
+
+        /// <summary>
+        /// Texture id.
+        /// </summary>
         public int Texture;
 
+        /// <summary>
+        /// Ctor.
+        /// </summary>
         public Paint() { }
 
         #region Methods
 
+        /// <summary>
+        /// Premultiply alpha
+        /// </summary>
+        /// <param name="alpha">Alpha</param>
         public void PremultiplyAlpha(float alpha)
         {
             InnerColor = InnerColor.MultiplyAlpha(alpha);
             OuterColor = OuterColor.MultiplyAlpha(alpha);
         }
 
+        /// <summary>
+        /// Copy
+        /// </summary>
+        /// <param name="paint">Paint</param>
         public void Copy(in Paint paint)
         {
             Transform = paint.Transform;
@@ -40,12 +78,20 @@ namespace NanoUI.Common
             Texture = paint.Texture;
         }
 
-        // nvg__setPaintColor
+        /// <summary>
+        /// Reset
+        /// </summary>
+        /// <param name="innerColor">Inner color</param>
         public void Reset(in Color innerColor)
         {
             Reset(innerColor, innerColor);
         }
 
+        /// <summary>
+        /// Reset
+        /// </summary>
+        /// <param name="innerColor">Inner color</param>
+        /// <param name="outerColor">Outer color</param>
         public void Reset(in Color innerColor, in Color outerColor)
         {
             Transform = Matrix3x2.Identity;
@@ -63,6 +109,11 @@ namespace NanoUI.Common
 
         #region Solid
 
+        /// <summary>
+        /// Creates solid paint with color
+        /// </summary>
+        /// <param name="color">Color</param>
+        /// <returns>Paint</returns>
         public static Paint SolidPaint(Color color)
         {
             Paint paint = new();
