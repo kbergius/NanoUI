@@ -20,7 +20,7 @@ namespace NanoUI.Nvg
         /// <param name="path">Path</param>
         /// <returns>shape id or -1</returns>
         /// <remarks>
-        /// Note: this checks, that your path is in "normal" filesystem (System.IO.File.Exists).
+        /// This checks, that your path is in "normal" filesystem (System.IO.File.Exists).
         /// If you use some other filesystem solution, pass byte array.
         /// </remarks>
         public int CreateSvg(string path)

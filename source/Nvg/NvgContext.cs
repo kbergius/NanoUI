@@ -22,37 +22,42 @@ namespace NanoUI.Nvg
         UnsafeBuffer<NvgState> _states = new(10);
         UnsafeBuffer<NvgPoint> _points = new(100);
         UnsafeBuffer<NvgPath> _paths = new(16);
+
         // must be internal since svg must access these
         internal UnsafeBuffer<NvgPathCommand> _commands = new(256);
 
-        // This is not a "correct" way of doing things. However on the user's point of view
-        // it would be quite frustrating to do allways nullable checks with this.
-        // And I guess this will be used a lot.
-        // Since NanoUI is a library, that doesn't know anything where/how/why it is used,
-        // the responsibility to init NanoUI correctly, before any user can access it,
-        // lies on the framework, that provides NanoUI service/renderer.
-        // So if you, the user, get any NPE, blame your framework provider not the NanoUI!
-        // note: this "hack" is not used elsewhere in the NanoUI.
 #pragma warning disable CS8618 // disable nullable warning
+        /// <summary>
+        /// Returns the instance of the NvgContext.
+        /// </summary>
+        /// <remarks>You should have created & stored NvgContext in your application's startup before using this.</remarks>
         public static NvgContext Instance { get; private set; }
 #pragma warning restore CS8618 // enable nullable warning
 
         INvgRenderer _nvgRenderer;
 
         /// <summary>
-        /// Pass your renderer implementation when creating NvgContext.
-        /// Note: if you set useSafeFontManager = true, NanoUI uses builtin managed version of the font manager
-        /// (unmanaged uses pointers)
+        /// Constructor. Pass your renderer implementation when creating NvgContext.
         /// </summary>
+        /// <param name="nvgRenderer">Your INvgRenderer implementation</param>
+        /// <param name="useSafeFontManager">Safe/unsafe font manager</param>
+        /// <param name="devicePixelRatio">DPI</param>
+        /// <remarks>
+        /// If you set useSafeFontManager = true, NanoUI uses builtin managed version
+        /// of the font manager (unmanaged uses pointers).
+        /// </remarks>
         public NvgContext(INvgRenderer nvgRenderer, bool useSafeFontManager = false, float devicePixelRatio = 1.0f)
             :this(nvgRenderer, useSafeFontManager? new SafeStbTrueTypeManager() : new StbTrueTypeManager(), devicePixelRatio)
         {
         }
 
         /// <summary>
-        /// Pass your renderer implementation when creating NvgContext.
-        /// Note: You can set NanoUI to use your own font manager.
+        /// Constructor. Pass your INvgRenderer implementation when creating NvgContext.
+        /// You can also set your own font manager.
         /// </summary>
+        /// <param name="nvgRenderer">INvgRenderer</param>
+        /// <param name="fontManager">Your IFontManager implementation</param>
+        /// <param name="devicePixelRatio">DPI</param>
         public NvgContext(INvgRenderer nvgRenderer, IFontManager fontManager, float devicePixelRatio = 1.0f)
         {
             // some widgets may want to get NvgContext
@@ -71,8 +76,8 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Begins drawing a new frame and clears buffers.
-        /// Note: All draw commands should be executed between BeginFrame() and EndFrame().
         /// </summary>
+        /// <remarks>All draw commands should be executed between BeginFrame and EndFrame.</remarks>
         public void BeginFrame()
         {
             // note: these could also be done in EndFrame
@@ -85,8 +90,8 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Ends drawing and triggers rendering in INvgRenderer. After this DrawCache
-        /// is cleared.
+        /// Ends drawing and triggers rendering in INvgRenderer.
+        /// After this DrawCache is cleared.
         /// </summary>
         public void EndFrame()
         {
@@ -102,7 +107,7 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Pushes and saves the current render state into a state stack.
-        /// A matching RestoreState() must be used to restore the state.
+        /// A matching RestoreState must be used to restore the state.
         /// </summary>
         public void SaveState()
         {
@@ -776,40 +781,46 @@ namespace NanoUI.Nvg
         /// <summary>
         /// Intersects current scissor rectangle with the specified rectangle.
         /// The scissor rectangle is transformed by the current transform.
-        /// Note: in case the rotation of previous scissor rect differs from
-        /// the current one, the intersection will be done between the specified
-        /// rectangle and the previous scissor rectangle transformed in the current
-        /// transform space. The resulting shape is always a rectangle.
         /// </summary>
         /// <param name="pos">TopLeft position</param>
         /// <param name="size">Size</param>
+        /// <remarks>
+        /// In case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </remarks>
         public void IntersectScissor(Vector2 pos, Vector2 size)
             => IntersectScissor(new Rect(pos, size));
 
         /// <summary>
         /// Intersects current scissor rectangle with the specified rectangle.
         /// The scissor rectangle is transformed by the current transform.
-        /// Note: in case the rotation of previous scissor rect differs from
-        /// the current one, the intersection will be done between the specified
-        /// rectangle and the previous scissor rectangle transformed in the current
-        /// transform space. The resulting shape is always a rectangle.
         /// </summary>
         /// <param name="x">Left position</param>
         /// <param name="y">Top position</param>
         /// <param name="width">width</param>
         /// <param name="height">height</param>
+        /// <remarks>
+        /// In case the rotation of previous scissor rect differs from
+        /// the current one, the intersection will be done between the specified
+        /// rectangle and the previous scissor rectangle transformed in the current
+        /// transform space. The resulting shape is always a rectangle.
+        /// </remarks>
         public void IntersectScissor(float x, float y, float width, float height)
             => IntersectScissor(new Rect(x, y, width, height));
 
         /// <summary>
         /// Intersects current scissor rectangle with the specified rectangle.
         /// The scissor rectangle is transformed by the current transform.
-        /// Note: in case the rotation of previous scissor rect differs from
+        /// </summary>
+        /// <param name="rect">Rectangle</param>
+        /// <remarks>
+        /// In case the rotation of previous scissor rect differs from
         /// the current one, the intersection will be done between the specified
         /// rectangle and the previous scissor rectangle transformed in the current
         /// transform space. The resulting shape is always a rectangle.
-        /// </summary>
-        /// <param name="rect">Rectangle</param>
+        /// </remarks>
         public void IntersectScissor(Rect rect)
         {
             ref NvgState state = ref GetState();
@@ -851,13 +862,15 @@ namespace NanoUI.Nvg
 
         /// <summary>
         /// Creates texture with specified string identifier (normally path).
-        /// Note: this is just a helper method and params are passed as-is to renderer.
-        /// so you can set in path param whatever file identication you like or
-        /// call your renderer directly.
         /// </summary>
         /// <param name="path">Path</param>
-        /// <param name="textureFlags">TextureFlags</param>
+        /// <param name="textureFlags">Texture flags</param>
         /// <returns>Id of the texture.</returns>
+        /// <remarks>
+        /// This is just a helper method and params are passed as-is to renderer.
+        /// so you can set in path param whatever file identication you like or
+        /// call your renderer directly.
+        /// </remarks>
         public int CreateTexture(string path, TextureFlags textureFlags = 0)
         {
             return _nvgRenderer.CreateTexture(path, textureFlags);
@@ -878,7 +891,7 @@ namespace NanoUI.Nvg
         /// </summary>
         /// <param name="texture">Texture id</param>
         /// <param name="textureSize">Texture size</param>
-        /// <returns></returns>
+        /// <returns>Success</returns>
         public bool GetTextureSize(int texture, out Vector2 textureSize)
         {
             if (texture == Globals.INVALID)
@@ -896,7 +909,7 @@ namespace NanoUI.Nvg
         /// <param name="texture">Texture id</param>
         /// <param name="texWidth">Texture width</param>
         /// <param name="texHeight">Texture height</param>
-        /// <returns></returns>
+        /// <returns>Success</returns>
         public bool GetTextureSize(int texture, out uint texWidth, out uint texHeight)
         {
             if(GetTextureSize(texture, out Vector2 size))
@@ -912,10 +925,11 @@ namespace NanoUI.Nvg
         }
 
         /// <summary>
-        /// Updates texture data specified by texture handle.
+        /// Updates texture data specified by texture id.
         /// </summary>
         /// <param name="texture">Texture id</param>
         /// <param name="data">Texture data</param>
+        /// <returns>Success</returns>
         public bool UpdateTexture(int texture, ReadOnlySpan<byte> data)
         {
             if (texture == Globals.INVALID)
@@ -941,6 +955,7 @@ namespace NanoUI.Nvg
         /// Deletes created texture.
         /// </summary>
         /// <param name="texture">Texture id</param>
+        /// <returns>Success</returns>
         public bool DeleteTexture(int texture)
         {
             if (texture == Globals.INVALID)
