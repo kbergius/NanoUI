@@ -57,6 +57,8 @@ namespace NanoUI
         /// <summary>
         /// Creates screen with given theme and size (normally your window size).
         /// </summary>
+        /// <param name="theme">Theme</param>
+        /// <param name="size">Size</param>
         public UIScreen(UITheme theme, Vector2 size)
             : base(null, size)
         {
@@ -154,6 +156,8 @@ namespace NanoUI
         /// IsPointerInsideUI checks if pointer is in some visible widget's area.
         /// It doesn't take into account screen itself.
         /// </summary>
+        /// <param name="pointerPosition">PointerPosition</param>
+        /// <returns>Is inside</returns>
         public bool IsPointerInsideUI(Vector2 pointerPosition)
         {
             var pos = pointerPosition - Position;
@@ -174,6 +178,8 @@ namespace NanoUI
         /// <summary>
         /// Sets current drag widget. Set null, if you want to remove drag widget.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
+        /// <param name="tryAttach">Try attach</param>
         /// <remarks>
         /// TryAttach is a boolean flag, that indicates if screen should call
         /// TryAttach after dragging is finished (pointer up).
@@ -189,6 +195,8 @@ namespace NanoUI
         /// You can register your own dialogs (derived from UIDialog) to the screen,
         /// so you don't need to create/dispose them every time you want to use them.
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="dialog">UIDialog</param>
         /// <remarks>
         /// Registering changes dialog's parent to this screen, so it can be shown.
         /// </remarks>
@@ -205,6 +213,9 @@ namespace NanoUI
         /// <summary>
         /// Tries to get the dialog of type T and call its Reset method.
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="dialog">UIDialog</param>
+        /// <returns>Success</returns>
         public bool TryGetDialog<T>(out T dialog) where T : UIDialog, new()
         {
             if (_dialogs.TryGetValue(typeof(T), out var d))
@@ -223,9 +234,9 @@ namespace NanoUI
         }
 
         // todo: handle looping by not sending OnFocusChanged
-        // if new & old focus path contains same widgets
-        // todo: can't handle recursive popups (HandlePopupFocused)
-        // todo: should we set here pointer focus widget???
+        // if new & old focus path contains same widgets?
+        // todo: can't handle recursive popups (HandlePopupFocused)?
+        // todo: should we set here pointer focus widget?
         bool looping = false;
 
         /// <summary>
@@ -235,6 +246,7 @@ namespace NanoUI
         /// to widgets in the new focus path. It also rearranges UIWindows.
         /// Focus path contains widget itself and all its direct parents.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         public void UpdateFocus(UIWidget? widget)
         {
             if (widget == null || looping)
@@ -285,6 +297,7 @@ namespace NanoUI
         /// Widgets can call RequestLayoutUpdate, when they want to recalculate children
         /// positions and sizes (for example when adding/removing widgets).
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         /// <remarks>
         /// This method queues the layout requests and they are executed before
         /// actual drawing is processsed. This method also tries to execute layout commands
@@ -327,6 +340,7 @@ namespace NanoUI
         /// Removes widget from the screen. This is automatically called from
         /// Widget.Dispose() method.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         /// <remarks>
         /// If you call this directly and widget is focused,
         /// you must manually handle focus change (set focus to some other widget).
@@ -371,6 +385,7 @@ namespace NanoUI
         /// This sends OnPointerEnter(false & true) events and
         /// store new pointer focus widget.
         /// </summary>
+        /// <param name="widget">UIWidget</param>
         public void RequestPointerFocus(UIWidget? widget)
         {
             if (_pointerFocusWidget == widget)
@@ -416,6 +431,7 @@ namespace NanoUI
         /// You can do your animation/update processes in Draw method before
         /// actually drawing.
         /// </summary>
+        /// <param name="deltaSeconds">Delta seconds</param>
         /// <remarks>
         /// If you want to process some additional logic here, you can create your
         /// own screen (based on UIScreen) and override this method.
@@ -428,6 +444,8 @@ namespace NanoUI
         /// <summary>
         /// Finds topmost widget.
         /// </summary>
+        /// <param name="p">Position</param>
+        /// <returns>UIWidget</returns>
         public UIWidget? FindTopmost(Vector2 p)
         {
             // todo: should we restict only to last (topmost window)?
@@ -439,6 +457,8 @@ namespace NanoUI
         /// <summary>
         /// Process pointer event check if we should actually process pointer event.
         /// </summary>
+        /// <param name="pointerPos">Pointer position</param>
+        /// <returns>Success</returns>
         /// <remarks>
         /// This checks by now, if we have modal window & pointer is outside modal window.
         /// </remarks>
