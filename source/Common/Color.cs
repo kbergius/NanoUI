@@ -3,20 +3,21 @@ using System.Numerics;
 
 namespace NanoUI.Common
 {
-    // Describes a 32-bit packed color.
-    // Stored as ABGR with R in the least significant octet:
-    // |-------|-------|-------|-------
-    // A       B       G       R
-
-    // todo? : make R,G,B,A readonly - if user must modify -> create new
+    // todo : make R,G,B,A readonly - if user must modify -> create new?
 
     /// <summary>
-    /// Color.
+    /// Color describes a 32-bit packed color
+    /// stored as ABGR with R in the least significant octet:
+    /// |-------|-------|-------|-------
+    /// A       B       G       R
     /// </summary>
     public struct Color : IEquatable<Color>
     {
         uint _packedValue;
 
+        /// <summary>
+        /// Creates with 0 values.
+        /// </summary>
         public Color()
             : this(0, 0, 0, 0) { }
 
@@ -26,55 +27,93 @@ namespace NanoUI.Common
         }
 
         /// <summary>
-        /// Constructs color from red, green, blue values. Alpha will be (by default) set to 255 (1.0f).
+        /// Constructs color from byte red, green, blue values. Alpha will be (by default) set to 255 (1.0f).
         /// </summary>
+        /// <param name="r">Red</param>
+        /// <param name="g">Green</param>
+        /// <param name="b">Blue</param>
+        /// <param name="alpha">Alpha</param>
         public Color(byte r, byte g, byte b, byte alpha = 255)
         {
             _packedValue = (uint)alpha << 24 | (uint)b << 16 | (uint)g << 8 | r;
         }
 
         /// <summary>
-        /// Constructs color from red, green, blue and alpha values.
+        /// Constructs color from float red, green, blue and alpha values.
         /// </summary>
+        /// <param name="r">Red</param>
+        /// <param name="g">Green</param>
+        /// <param name="b">Blue</param>
+        /// <param name="alpha">Alpha</param>
         public Color(float r, float g, float b, float a)
             :this((byte)(r * 255), (byte)(g * 255), (byte)(b * 255), (byte)(a * 255)) { }
 
+        /// <summary>
+        /// Constructs color from color and alpha values.
+        /// </summary>
+        /// <param name="c">Color</param>
+        /// <param name="alpha">Alpha</param>
         public Color(Color c, float alpha)
             : this(c.R, c.G, c.B, (byte)(alpha * 255)) { }
 
+        /// <summary>
+        /// Constructs color from Vector4.
+        /// </summary>
+        /// <param name="value">Vector4</param>
         public Color(Vector4 value)
             :this(value.X, value.Y, value.Z, value.W) { }
 
+        /// <summary>
+        /// Red
+        /// </summary>
         public byte R
         {
             get => (byte)_packedValue;
             set => _packedValue = _packedValue & 0xffffff00 | value;
         }
 
+        /// <summary>
+        /// Green
+        /// </summary>
         public byte G
         {
             get => (byte)(_packedValue >> 8);
             set => _packedValue = _packedValue & 0xffff00ff | (uint)value << 8;
         }
 
+        /// <summary>
+        /// Blue
+        /// </summary>
         public byte B
         {
             get => (byte)(_packedValue >> 16);
             set => _packedValue = _packedValue & 0xff00ffff | (uint)value << 16;
         }
 
+        /// <summary>
+        /// Alpha
+        /// </summary>
         public byte A
         {
             get => (byte)(_packedValue >> 24);
             set => _packedValue = _packedValue & 0x00ffffff | (uint)value << 24;
         }
 
+        /// <summary>
+        /// Packed value
+        /// </summary>
         public uint PackedValue
         {
             get => _packedValue;
             set => _packedValue = value;
         }
 
+        /// <summary>
+        /// Get value in index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Color value</returns>
+        /// <exception cref="IndexOutOfRangeException">Index out of range</exception>
         public byte this[int index]
         {
             get
@@ -101,6 +140,10 @@ namespace NanoUI.Common
             }*/
         }
 
+        /// <summary>
+        /// Convert to Vector4.
+        /// </summary>
+        /// <returns></returns>
         public Vector4 ToVector4()
         {
             return new Vector4(R / 255.0f, G / 255.0f, B / 255.0f, A / 255.0f);
@@ -121,17 +164,31 @@ namespace NanoUI.Common
             return new Color(val, val, val, 1.0f);
         }
 
+        /// <summary>
+        /// Negative
+        /// </summary>
+        /// <param name="color">Color</param>
+        /// <returns>Negative color</returns>
         public static Color Negative(in Color color)
         {
             return new Color(255 - color.R, 255 - color.G, 255 - color.B, color.A);
         }
 
+        /// <summary>
+        /// WithAlpha
+        /// </summary>
+        /// <param name="c">Color</param>
+        /// <returns>Color</returns>
         public Color WithAlpha(Color c)
         {
             return A == 0 ? c : this;
         }
 
-        // multiply all but alpha
+        /// <summary>
+        /// Multiply all but alpha
+        /// </summary>
+        /// <param name="multiplier">Multiplier</param>
+        /// <returns>Color</returns>
         public Color MultiplyColors(float multiplier)
         {
             return new Color
@@ -154,21 +211,44 @@ namespace NanoUI.Common
         /// <summary>
         /// Performs linear interpolation.
         /// </summary>
+        /// <param name="value1">Value1</param>
+        /// <param name="value2">Value2</param>
+        /// <param name="amount">Amount</param>
+        /// <returns>Color</returns>
         public static Color Lerp(in Color value1, in Color value2, float amount)
         {
             return new Color(Vector4.Lerp(value1.ToVector4(), value2.ToVector4(), amount));
         }
 
+        /// <summary>
+        /// Clamp
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="min">Min</param>
+        /// <param name="max">Max</param>
+        /// <returns>Color</returns>
         public static Color Clamp(in Color value, in Color min, in Color max)
         {
             return new (Vector4.Clamp(value.ToVector4(), min.ToVector4(), max.ToVector4()));
         }
 
+        /// <summary>
+        /// Min
+        /// </summary>
+        /// <param name="left">Color1</param>
+        /// <param name="right">Color2</param>
+        /// <returns>Color</returns>
         public static Color Min(in Color left, in Color right)
         {
             return new Color(Vector4.Min(left.ToVector4(), right.ToVector4()));
         }
 
+        /// <summary>
+        /// Max
+        /// </summary>
+        /// <param name="left">Color1</param>
+        /// <param name="right">Color2</param>
+        /// <returns>Color</returns>
         public static Color Max(in Color left, in Color right)
         {
             return new Color(Vector4.Max(left.ToVector4(), right.ToVector4()));
@@ -178,6 +258,11 @@ namespace NanoUI.Common
         /// Returns color specified by hue, saturation and lightness.
         /// HSL values are all in range [0..1], alpha will be in range [0..255].
         /// </summary>
+        /// <param name="h">H</param>
+        /// <param name="s">S</param>
+        /// <param name="l">L</param>
+        /// <param name="a">A</param>
+        /// <returns>Color</returns>
         public static Color HSLA(float h, float s, float l, byte a)
         {
             h = h % 1.0f;
@@ -203,6 +288,13 @@ namespace NanoUI.Common
                 (byte)(int)(fa * 255));
         }
 
+        /// <summary>
+        /// Hue
+        /// </summary>
+        /// <param name="h">H</param>
+        /// <param name="m1">M1</param>
+        /// <param name="m2">M2</param>
+        /// <returns>Value</returns>
         public static float Hue(float h, float m1, float m2)
         {
             if (h < 0)
