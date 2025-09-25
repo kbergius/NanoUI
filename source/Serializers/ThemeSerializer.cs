@@ -54,7 +54,7 @@ namespace NanoUI.Serializers
         /// <summary>
         /// Load from stream. T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="stream">Stream</param>
         /// <returns>T</returns>
         public T? Load<T>(Stream stream) where T : UITheme
@@ -90,7 +90,7 @@ namespace NanoUI.Serializers
         /// <summary>
         /// Load from file path. T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="filePath">File path</param>
         /// <returns>T</returns>
         public T? Load<T>(string filePath) where T : UITheme
@@ -106,7 +106,7 @@ namespace NanoUI.Serializers
         /// <summary>
         /// Try load from file path. T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="filePath">File path</param>
         /// <param name="theme">Theme</param>
         /// <returns>Success</returns>
@@ -127,7 +127,7 @@ namespace NanoUI.Serializers
         /// <summary>
         /// Save to file path. T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="filePath">File path</param>
         /// <param name="theme">Theme</param>
         public void Save<T>(string filePath, T theme) where T : UITheme
@@ -141,7 +141,7 @@ namespace NanoUI.Serializers
         /// Serializes the specified theme and returns the json value.
         /// T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="theme">Theme</param>
         /// <returns>JSON string</returns>
         public string Serialize<T>(T theme) where T : UITheme
@@ -156,7 +156,7 @@ namespace NanoUI.Serializers
         /// Deserializes the JSON content to a specified theme.
         /// T must be UITheme or its extension.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="json">JSON string</param>
         /// <returns>T</returns>
         public T? Deserialize<T>(string json) where T : UITheme

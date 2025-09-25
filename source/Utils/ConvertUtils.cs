@@ -12,9 +12,9 @@ namespace NanoUI.Utils
         static Dictionary<int, string> _iconStrings = new();
 
         /// <summary>
-        /// Converts icon int to string and stores them.
-        /// Note: prevents allocating new strings.
+        /// Converts icon int to string and stores it.
         /// </summary>
+        /// <remarks>Prevents allocating new strings</remarks>
         public static ReadOnlySpan<char> GetIconString(int icon)
         {
             if (!_iconStrings.TryGetValue(icon, out var str))
@@ -25,6 +25,11 @@ namespace NanoUI.Utils
             return str;
         }
 
+        /// <summary>
+        /// Converts horizontal alignment to TextAlignment.
+        /// </summary>
+        /// <param name="horizontalAlign">TextHorizontalAlign</param>
+        /// <returns>TextAlignment</returns>
         public static TextAlignment ConvertHorizontalAlign(TextHorizontalAlign horizontalAlign)
         {
             switch (horizontalAlign)
@@ -39,6 +44,11 @@ namespace NanoUI.Utils
             return TextAlignment.Left;
         }
 
+        /// <summary>
+        /// Converts vertical alignment to TextAlignment.
+        /// </summary>
+        /// <param name="verticalAlign"></param>
+        /// <returns></returns>
         public static TextAlignment ConvertVerticalAlign(TextVerticalAlign verticalAlign)
         {
             switch (verticalAlign)
@@ -56,6 +66,9 @@ namespace NanoUI.Utils
         /// <summary>
         /// Converts separate horizontalAlign & verticalAlign to 1 TextAlignment value.
         /// </summary>
+        /// <param name="horizontalAlign">TextHorizontalAlign</param>
+        /// <param name="verticalAlign">TextVerticalAlign</param>
+        /// <returns>TextAlignment</returns>
         public static TextAlignment ConvertTextAlign(TextHorizontalAlign horizontalAlign, TextVerticalAlign verticalAlign)
         {
             return ConvertHorizontalAlign(horizontalAlign) | ConvertVerticalAlign(verticalAlign);

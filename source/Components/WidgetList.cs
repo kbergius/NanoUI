@@ -69,7 +69,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Tries tod get widget in index and convert it to desired type if possible.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="index">Index</param>
         /// <param name="widget">Widget of type T</param>
         /// <returns>Success</returns>
@@ -153,7 +153,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds widget by name property and converts it to T if possible.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="name">Name</param>
         /// <returns>Widget of type T</returns>
         public T? FindByName<T>(string name) where T : UIWidget
@@ -178,7 +178,7 @@ namespace NanoUI.Components
         /// <summary>
         ///  Finds first widget of type T.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="recursive">Recursive</param>
         /// <returns>Widget of type T</returns>
         public T? FindFirst<T>(bool recursive = true) where T : UIWidget
@@ -209,7 +209,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds last widget of type T.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="recursive">Recursive</param>
         /// <returns>Widget of type T</returns>
         public T? FindLast<T>(bool recursive = true) where T : UIWidget 
@@ -242,7 +242,7 @@ namespace NanoUI.Components
         /// <summary>
         /// Finds first widget of type T with position.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <param name="displayPosition">Display position</param>
         /// <param name="recursive">Recursive</param>
         /// <returns>Widget of type T</returns>

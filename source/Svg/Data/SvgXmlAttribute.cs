@@ -48,7 +48,7 @@ namespace NanoUI.Svg.Data
         /// <summary>
         /// Returns value in type of T or default, if conversion can't be made.
         /// </summary>
-        /// <typeparam name="T">Type of T</typeparam>
+        /// <typeparam name="T">Type</typeparam>
         /// <returns>type of T or default, if conversion can't be made</returns>
         public T? GetValue<T>()
         {

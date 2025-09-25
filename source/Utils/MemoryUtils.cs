@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace NanoUI.Utils
 {
     /// <summary>
-    /// MemoryUtils provides some unsafe functions.
+    /// MemoryUtils provides some unsafe functions with unmanaged types.
     /// </summary>
     public unsafe static class MemoryUtils
     {
@@ -56,23 +56,49 @@ namespace NanoUI.Utils
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Free(void* pointer) => NativeMemory.Free(pointer);
 
+        /// <summary>
+        /// Copies memories from source to destination.
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="src">Source</param>
+        /// <param name="dst">Sestination</param>
+        /// <param name="count">Count</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MemoryCopy<T>(T* src, T* dst, int count) where T : unmanaged
         {
             Buffer.MemoryCopy(src, dst, count * sizeof(T), count * sizeof(T));
         }
 
+        /// <summary>
+        /// Copies memories from source to destination.
+        /// </summary>
+        /// <param name="src">Source</param>
+        /// <param name="dst">Destination</param>
+        /// <param name="dstLength">Destination length</param>
+        /// <param name="srcLength">Source length</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void MemoryCopy(void* src, void* dst, long dstLength, long srcLength)
         {
             Buffer.MemoryCopy(src, dst, dstLength, srcLength);
         }
 
+        /// <summary>
+        /// Swaps values.
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="a">Value1</param>
+        /// <param name="b">Value2</param>
         public static unsafe void SwapT<T>(T* a, T* b) where T : unmanaged
         {
             (*b, *a) = (*a, *b);
         }
 
+        /// <summary>
+        /// Zeroes memory.
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="pointer">Pointer</param>
+        /// <param name="length">Length</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ZeroMemory<T>(T* pointer, int length) where T : unmanaged
         {

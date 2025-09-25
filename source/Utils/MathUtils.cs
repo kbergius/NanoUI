@@ -6,13 +6,18 @@ using System.Linq;
 namespace NanoUI.Utils
 {
     /// <summary>
-    /// MathUtils.
+    /// MathUtils provides some helper math functions.
     /// </summary>
     public static class MathUtils
     {
         /// <summary>
-        /// IsPointInsideTriangle.
+        /// Is point inside triangle?
         /// </summary>
+        /// <param name="point">Point</param>
+        /// <param name="a">Triangle corner1</param>
+        /// <param name="b">Triangle corner2</param>
+        /// <param name="c">Triangle corner3</param>
+        /// <returns>Success</returns>
         public static bool IsPointInsideTriangle(Vector2 point, Vector2 a, Vector2 b, Vector2 c)
         {
             bool b1 = ((point.X - b.X) * (a.Y - b.Y) - (point.Y - b.Y) * (a.X - b.X)) < 0.0f;
@@ -23,16 +28,22 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// Swap<T>.
+        /// Swap values.
         /// </summary>
+        /// <typeparam name="T">Value types</typeparam>
+        /// <param name="a">Value1</param>
+        /// <param name="b">Value2</param>
         public static void Swap<T>(ref T a, ref T b)
         {
             (a, b) = (b, a);
         }
 
         /// <summary>
-        /// Cross.
+        /// Cross vectors.
         /// </summary>
+        /// <param name="a">Vector2-1</param>
+        /// <param name="b">Vector2-2</param>
+        /// <returns>cross result</returns>
         public static float Cross(this Vector2 a, Vector2 b)
         {
             // note: .NET 10 has this implemented
@@ -41,8 +52,10 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// GetAverageScale.
+        /// Get average scale.
         /// </summary>
+        /// <param name="m">Matrix3x2</param>
+        /// <returns>Average scale</returns>
         public static float GetAverageScale(Matrix3x2 m)
         {
             float sx = MathF.Sqrt(m.M11 * m.M11 + m.M21 * m.M21);
@@ -52,8 +65,12 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// RotateAroundPoint.
+        /// Rotates around point
         /// </summary>
+        /// <param name="v">Vector2</param>
+        /// <param name="radians">Radians</param>
+        /// <param name="point">Point</param>
+        /// <returns>Rotation result</returns>
         public static Vector2 RotateAroundPoint(this Vector2 v, float radians, Vector2 point)
         {
             return Vector2.Transform(v - point, Matrix4x4.CreateRotationZ(radians)) + point;
@@ -62,14 +79,20 @@ namespace NanoUI.Utils
         /// <summary>
         /// Quotient.
         /// </summary>
+        /// <param name="a">Vector2-1</param>
+        /// <param name="b">Vector2-2</param>
+        /// <returns>Result</returns>
         public static Vector2 Quotient(this Vector2 a, Vector2 b)
         {
             return new Vector2(a.X / b.X, a.Y / b.Y);
         }
 
         /// <summary>
-        /// ReplaceZero.
+        /// Replace zero.
         /// </summary>
+        /// <param name="a">Vector2-1</param>
+        /// <param name="b">Vector2-2</param>
+        /// <returns>Result</returns>
         public static Vector2 ReplaceZero(this Vector2 a, Vector2 b)
         {
             return new Vector2(a.X > 0 ? a.X : b.X, a.Y > 0 ? a.Y : b.Y);
@@ -78,22 +101,29 @@ namespace NanoUI.Utils
         /// <summary>
         /// SquaredNorm.
         /// </summary>
+        /// <param name="v">Vector2</param>
+        /// <returns>Result</returns>
         public static float SquaredNorm(this Vector2 v)
         {
             return v.X * v.X + v.Y * v.Y;
         }
 
         /// <summary>
-        /// MinCoefficient.
+        /// MinCoefficient
         /// </summary>
+        /// <param name="v">Vector2</param>
+        /// <returns>Result</returns>
         public static float MinCoefficient(this Vector2 v)
         { 
             return v.X > v.Y ? v.Y : v.X;
         }
 
         /// <summary>
-        /// Sum<T>.
+        /// Calculates sum of the values in array.
         /// </summary>
+        /// <typeparam name="T">Values type</typeparam>
+        /// <param name="array">Array</param>
+        /// <returns>Sum</returns>
         public static T Sum<T>(T[] array) where T : INumber<T>
         {
             if (array == null || array.Length == 0)
@@ -103,8 +133,11 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// Sum<T>.
+        /// Calculates sum of the values in list.
         /// </summary>
+        /// <typeparam name="T">Values type</typeparam>
+        /// <param name="list">List</param>
+        /// <returns>Sum</returns>
         public static T Sum<T>(List<T> list) where T : INumber<T>
         {
             if (list == null || list.Count == 0)
