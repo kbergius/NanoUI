@@ -18,28 +18,65 @@ namespace NanoUI.Common
         const int DefaultCapacity = 4;
         const float GrowthFactor = 2f;
 
+        /// <summary>
+        /// Create ArrayBuffer with default capacity (= 4).
+        /// </summary>
         public ArrayBuffer() : this(DefaultCapacity) { }
 
+        /// <summary>
+        /// Create ArrayBuffer with capacity.
+        /// </summary>
+        /// <param name="capacity">Capacity</param>
         public ArrayBuffer(int capacity)
         {
             Debug.Assert(capacity > 0);
             _items = new T[capacity];
         }
 
+        /// <summary>
+        /// Items count.
+        /// </summary>
         public int Count => _count;
-        
+
+        /// <summary>
+        /// Get items.
+        /// </summary>
+        /// <returns>ReadOnlySpan<T></returns>
         public ReadOnlySpan<T> AsReadOnlySpan() => new ReadOnlySpan<T>(_items, 0, _count);
+
+        /// <summary>
+        /// Get items.
+        /// </summary>
+        /// <param name="offset">Start index</param>
+        /// <param name="count">Count</param>
+        /// <returns>ReadOnlySpan<T></returns>
         public ReadOnlySpan<T> AsReadOnlySpan(int offset, int count)
         {
             return new ReadOnlySpan<T>(_items, offset, count);
         }
 
+        /// <summary>
+        /// Get items.
+        /// </summary>
+        /// <returns>Span<T></returns>
         public Span<T> AsSpan() => new Span<T>(_items, 0, _count);
+
+        /// <summary>
+        /// Get items.
+        /// </summary>
+        /// <param name="offset">Start index</param>
+        /// <param name="count">Count</param>
+        /// <returns>Span<T></returns>
         public Span<T> AsSpan(int offset, int count)
         {
             return new Span<T>(_items, offset, count);
         }
-        
+
+        /// <summary>
+        /// Get Item at index.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Item</returns>
         public ref T this[int index]
         {
             get
@@ -48,6 +85,10 @@ namespace NanoUI.Common
                 return ref _items[index];
             }
         }
+
+        /// <summary>
+        /// Get last item.
+        /// </summary>
         public ref T Last
         {
             get
@@ -57,6 +98,11 @@ namespace NanoUI.Common
             }
         }
 
+        /// <summary>
+        /// Buffer contains item?
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <returns>Contains</returns>
         public bool Contains(T item)
         {
             //return GetIndex(item, out _);
@@ -64,6 +110,10 @@ namespace NanoUI.Common
             return index >= 0 && index < _count;
         }
 
+        /// <summary>
+        /// Add item.
+        /// </summary>
+        /// <param name="item">Item</param>
         public virtual void Add(ref T item)
         {
             if (_count == _items.Length)
@@ -75,6 +125,10 @@ namespace NanoUI.Common
             _count += 1;
         }
 
+        /// <summary>
+        /// Add item.
+        /// </summary>
+        /// <param name="item">Item</param>
         public virtual void Add(T item)
         {
             if (_count == _items.Length)
@@ -86,6 +140,10 @@ namespace NanoUI.Common
             _count += 1;
         }
 
+        /// <summary>
+        /// Add items.
+        /// </summary>
+        /// <param name="items">Array of items</param>
         public void AddRange(T[] items)
         {
             Debug.Assert(items != null);
@@ -100,6 +158,10 @@ namespace NanoUI.Common
             _count += items.Length;
         }
 
+        /// <summary>
+        /// Add items.
+        /// </summary>
+        /// <param name="items">Span of items</param>
         public void AddRange(ReadOnlySpan<T> items)
         {
             int requiredSize = _count + items.Length;
@@ -113,6 +175,11 @@ namespace NanoUI.Common
             _count += items.Length;
         }
 
+        /// <summary>
+        /// Insert item at index.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="item">Item</param>
         public void Insert(int index, T item)
         {
             if (_count == _items.Length)
@@ -127,6 +194,11 @@ namespace NanoUI.Common
             _count++;
         }
 
+        /// <summary>
+        /// Insert items.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="items">Items</param>
         public void InsertRange(int index, T[] items)
         {
             Debug.Assert(items != null);
@@ -146,14 +218,25 @@ namespace NanoUI.Common
             _count += items.Length;
         }
 
+        /// <summary>
+        /// Replace item at index.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="item">Item</param>
         public void Replace(int index, ref T item)
         {
             ValidateIndex(index);
             _items[index] = item;
         }
 
-        // if array has grown too big, it can be shrinked to current count.
-        // No data loss.
+        /// <summary>
+        /// Optimize.
+        /// </summary>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// If array has grown too big, it can be shrinked to current count.
+        /// No data loss.
+        /// </remarks>
         public bool Optimize()
         {
             // prevent to shrink array to 0 length (can't resize then)
@@ -167,8 +250,14 @@ namespace NanoUI.Common
             return false;
         }
 
-        // NOTE : this can lead losing data
-        // Can't resize to 0 length
+        /// <summary>
+        /// Resize.
+        /// </summary>
+        /// <param name="count">Count</param>
+        /// <returns>Success</returns>
+        /// <remarks>
+        /// This can lead to losing data. Can't resize to 0 length
+        /// </remarks>
         public bool Resize(int count)
         {
             Debug.Assert(count > 0);
@@ -184,6 +273,11 @@ namespace NanoUI.Common
             return false;
         }
 
+        /// <summary>
+        /// Remove item.
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <returns>Success</returns>
         public bool Remove(ref T item)
         {
             bool contained = IndexOf(item, out int index);
@@ -196,6 +290,11 @@ namespace NanoUI.Common
             return contained;
         }
 
+        /// <summary>
+        /// Remove item.
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <returns>Success</returns>
         public bool Remove(T item)
         {
             bool contained = IndexOf(item, out int index);
@@ -207,6 +306,10 @@ namespace NanoUI.Common
             return contained;
         }
 
+        /// <summary>
+        /// Remove last item.
+        /// </summary>
+        /// <returns>Success</returns>
         public bool RemoveLast()
         { 
             if(_count > 0)
@@ -218,6 +321,11 @@ namespace NanoUI.Common
             return false;
         }
 
+        /// <summary>
+        /// Remove item at index.
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Success</returns>
         public bool RemoveAt(int index)
         {
             if(index >= _count)
@@ -230,6 +338,12 @@ namespace NanoUI.Common
             return true;
         }
 
+        /// <summary>
+        /// Remove item(s).
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="count">Count</param>
+        /// <returns>Success</returns>
         public bool RemoveAt(int index, int count)
         {
             if (_count < index + count)
@@ -247,7 +361,12 @@ namespace NanoUI.Common
             return true;
         }
 
-        public virtual void FindAll(Predicate<T> filter, List<T> result, bool recursive = true)
+        /// <summary>
+        /// Find all with filter.
+        /// </summary>
+        /// <param name="filter">Predicate</param>
+        /// <param name="result">Result</param>
+        public virtual void FindAll(Predicate<T> filter, List<T> result)
         {
             for(int i = 0; i < _count; i++)
             {
@@ -258,24 +377,41 @@ namespace NanoUI.Common
             }
         }
 
+        /// <summary>
+        /// Clear.
+        /// </summary>
         public void Clear()
         {
             //Array.Clear(_items, 0, _items.Length);
             _count = 0;
         }
 
-        // release reference for unused classes (outside count)
+        /// <summary>
+        /// Release reference for unused classes (outside count).
+        /// </summary>
+        /// <remarks>Not implemented</remarks>
         public void ReleaseUnused()
         {
             // todo
             return;
         }
 
+        /// <summary>
+        /// Find index of item.
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <returns>Index</returns>
         public int IndexOf(T item)
         {
             return Array.IndexOf(_items, item);
         }
 
+        /// <summary>
+        /// Find index of item.
+        /// </summary>
+        /// <param name="item">Item</param>
+        /// <param name="index">Index</param>
+        /// <returns>Success</returns>
         public bool IndexOf(T item, out int index)
         {
             int signedIndex = Array.IndexOf(_items, item);
@@ -284,6 +420,10 @@ namespace NanoUI.Common
             return signedIndex != -1 && signedIndex < _count;
         }
 
+        /// <summary>
+        /// Sort with comparer.
+        /// </summary>
+        /// <param name="comparer">Comparer</param>
         public void Sort(IComparer<T> comparer)
         {
             Debug.Assert(comparer != null);
@@ -292,6 +432,10 @@ namespace NanoUI.Common
             new Span<T>(_items, 0, _count).Sort(comparer);
         }
 
+        /// <summary>
+        /// Transform all items.
+        /// </summary>
+        /// <param name="transformation">Transformation</param>
         public void TransformAll(Func<T, T> transformation)
         {
             Debug.Assert(transformation != null);
