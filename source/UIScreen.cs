@@ -127,8 +127,8 @@ namespace NanoUI
         /// <summary>
         /// PostDrawList is a list of widgets, that are post-drawn after normal draw process.
         /// You can add any widget to this list and it will be drawn as an overlay over whole screen.
-        /// Note: your widget must override and implement widget's PostDraw method.
         /// </summary>
+        /// <remarks>Your widget must override and implement widget's PostDraw method.</remarks>
         public ArrayBuffer<UIWidget> PostDrawList => _postDrawList;
 
         /// <summary>
@@ -173,10 +173,12 @@ namespace NanoUI
 
         /// <summary>
         /// Sets current drag widget. Set null, if you want to remove drag widget.
-        /// Note: tryAttach is a boolean flag, that indicates if screen should call
+        /// </summary>
+        /// <remarks>
+        /// TryAttach is a boolean flag, that indicates if screen should call
         /// TryAttach after dragging is finished (pointer up).
         /// Only docking / dock window uses tryAttach flag by now.
-        /// </summary>
+        /// </remarks>
         public void SetDragWidget(UIWidget? widget, bool tryAttach = false)
         {
             _dragWidget = widget;
@@ -186,8 +188,10 @@ namespace NanoUI
         /// <summary>
         /// You can register your own dialogs (derived from UIDialog) to the screen,
         /// so you don't need to create/dispose them every time you want to use them.
-        /// Note: registering changes dialog's parent to this screen, so it can be shown.
         /// </summary>
+        /// <remarks>
+        /// Registering changes dialog's parent to this screen, so it can be shown.
+        /// </remarks>
         public void RegisterDialog<T>(T dialog) where T : UIDialog
         {
             if (dialog == null)
@@ -280,11 +284,13 @@ namespace NanoUI
         /// <summary>
         /// Widgets can call RequestLayoutUpdate, when they want to recalculate children
         /// positions and sizes (for example when adding/removing widgets).
-        /// Note: this method queues the layout requests and they are executed before
+        /// </summary>
+        /// <remarks>
+        /// This method queues the layout requests and they are executed before
         /// actual drawing is processsed. This method also tries to execute layout commands
         /// for the same widgets only once. If you want to perform immediate layout change,
         /// call PerformLayout method in widget.
-        /// </summary>
+        /// </remarks>
         public override void RequestLayoutUpdate(UIWidget? widget)
         {
             // check for null, duplicates or parent(s)
@@ -320,9 +326,11 @@ namespace NanoUI
         /// <summary>
         /// Removes widget from the screen. This is automatically called from
         /// Widget.Dispose() method.
-        /// Note: if you call this directly and widget is focused,
-        /// you must manually handle focus change (set focus to some other widget).
         /// </summary>
+        /// <remarks>
+        /// If you call this directly and widget is focused,
+        /// you must manually handle focus change (set focus to some other widget).
+        /// </remarks>
         public void RemoveFromScreen(UIWidget widget)
         {
             // parent
@@ -383,9 +391,11 @@ namespace NanoUI
 
         /// <summary>
         /// Resets pointer type to the one specified in theme.
-        /// Note: screen resets pointer type automatically,
-        /// when pointer focus widget changes.
         /// </summary>
+        /// <remarks>
+        /// Screen resets pointer type automatically,
+        /// when pointer focus widget changes.
+        /// </remarks>
         public virtual void ResetPointerType()
         {
             SetPointerType(Theme.Pointer.PointerType);
@@ -405,9 +415,11 @@ namespace NanoUI
         /// (for example widgets want to do some animations).
         /// You can do your animation/update processes in Draw method before
         /// actually drawing.
-        /// Note: if you want to process some additional logic here, you can create your
-        /// own screen (based on UIScreen) and override this method.
         /// </summary>
+        /// <remarks>
+        /// If you want to process some additional logic here, you can create your
+        /// own screen (based on UIScreen) and override this method.
+        /// </remarks>
         public override void Update(float deltaSeconds)
         {
             DeltaSeconds = deltaSeconds;
@@ -426,8 +438,10 @@ namespace NanoUI
 
         /// <summary>
         /// Process pointer event check if we should actually process pointer event.
-        /// Note: this checks by now, if we have modal window & pointer is outside modal window.
         /// </summary>
+        /// <remarks>
+        /// This checks by now, if we have modal window & pointer is outside modal window.
+        /// </remarks>
         bool ProcessPointerEvent(Vector2 pointerPos)
         {
             if (_focusPath.Count > 0)
@@ -761,9 +775,11 @@ namespace NanoUI
 
         /// <summary>
         /// Sets pointer type.
-        /// Note: this could be called many times in frame (OnPointerMove etc).
-        /// So callback call is delayed until all draw actions have been done.
         /// </summary>
+        /// <remarks>
+        /// This could be called many times in frame (OnPointerMove etc).
+        /// So callback call is delayed until all draw actions have been done.
+        /// </remarks>
         public override void SetPointerType(int pointerType)
         {
             if (_newPointerType == pointerType)
@@ -774,10 +790,12 @@ namespace NanoUI
 
         /// <summary>
         /// Invokes OnStartTextInput action if defined.
-        /// Note: some windowing systems may not handle by themself OnKeyChar/OnTextInput actions.
+        /// </summary>
+        /// <remarks>
+        /// Some windowing systems may not handle by themself OnKeyChar/OnTextInput actions.
         /// So this is here to provide fallback method. Only widgets that provide
         /// editable texts should call this when they get focused.
-        /// </summary>
+        /// </remarks>
         public void StartTextInput()
         {
             OnStartTextInput?.Invoke();
@@ -847,9 +865,11 @@ namespace NanoUI
 
         /// <summary>
         /// Invokes PointerTypeChanged action if any, if pointer type has really changed.
-        /// Note: you can override this method in your own extended UIScreen,
-        /// if you want to draw your custom pointer type.
         /// </summary>
+        /// <remarks>
+        /// You can override this method in your own extended UIScreen,
+        /// if you want to draw your custom pointer type.
+        /// </remarks>
         protected virtual void DrawPointer(int pointerType, Vector2 position)
         {
             if (_oldPointerType != pointerType)

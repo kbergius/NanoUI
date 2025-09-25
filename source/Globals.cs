@@ -28,7 +28,7 @@ namespace NanoUI
 
         /// <summary>
         /// Value the SDF should increase by when moving one SDF "pixel" away from the edge
-        /// (on the 0..255 scale). If positive, > onedge_value is inside;
+        /// (on the 0..255 scale).
         /// Default: 200.
         /// </summary>
         /// <remarks>Trades off precision with ability to handle smaller sizes.</remarks>
