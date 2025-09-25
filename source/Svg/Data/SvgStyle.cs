@@ -5,30 +5,98 @@ namespace NanoUI.Svg.Data
 {
     // note: we set all fields nullable so we know if field value is set
     // (if null, we could try to get value from parent element style - combine)
+
+    /// <summary>
+    /// SvgStyle.
+    /// Note: StrokeDashArray & StrokeDashOffset are not implemented.
+    /// </summary>
     public struct SvgStyle
     {
+        /// <summary>
+        /// Opacity.
+        /// </summary>
         public float? Opacity;
+
+        /// <summary>
+        /// Fill color
+        /// </summary>
         public Color? FillColor;
+
+        /// <summary>
+        /// Fill opacity.
+        /// </summary>
         public float? FillOpacity;
+
+        /// <summary>
+        /// Stroke color
+        /// </summary>
         public Color? StrokeColor;
+
+        /// <summary>
+        /// Stroke width
+        /// </summary>
         public float? StrokeWidth;
+
+        /// <summary>
+        /// Stroke line sap
+        /// </summary>
         public LineCap? StrokeLineCap;
+
+        /// <summary>
+        /// Stroke line join
+        /// </summary>
         public LineCap? StrokeLineJoin;
+
+        /// <summary>
+        /// Stroke opacity
+        /// </summary>
         public float? StrokeOpacity;
+
+        /// <summary>
+        /// Stroke miter limit
+        /// </summary>
         public float? StrokeMiterLimit;
-        // todo: we don't have drawing function for these bynow
+        
+        /// <summary>
+        /// Stroke dash array (not implemented by now).
+        /// </summary>
         public float[]? StrokeDashArray;
+
+        /// <summary>
+        /// Stroke dash offset (not implemented by now).
+        /// </summary>
         public float? StrokeDashOffset;
 
-        // support for gradients
+        /// <summary>
+        /// Fill paint
+        /// </summary>
         public Paint? FillPaint;
+
+        /// <summary>
+        /// Fill paint id
+        /// </summary>
         public string? FillPaintId;
+
+        /// <summary>
+        /// Stroke paint
+        /// </summary>
         public Paint? StrokePaint;
+
+        /// <summary>
+        /// Stroke paint id
+        /// </summary>
         public string? StrokePaintId;
 
-        // elements can have many style attributes (we convert individual 'fill', 'stroke' etc to style)
-        // if current style doesn't have value set, we set value (can be null)
-        // note: we use first encountered valid style value (that is not null)
+        /// <summary>
+        /// Combines this to given SvgStyle.
+        /// </summary>
+        /// <param name="current">SvgStyle</param>
+        /// <returns>Combined SvgStyle</returns>
+        /// <remarks>
+        /// Elements can have many style attributes (we convert individual 'fill', 'stroke' etc to style).
+        /// If current style doesn't have value set, we set value (can be null).
+        /// We use first encountered valid style value (that is not null).
+        /// </remarks>
         public SvgStyle Combine(SvgStyle? current)
         {
             if(current == null)
@@ -118,7 +186,9 @@ namespace NanoUI.Svg.Data
             return result;
         }
 
-        // set opacities to colors if opacities & colors defined
+        /// <summary>
+        /// Sets opacities to colors, if fill and stroke opacities & colors defined.
+        /// </summary>
         public void SetOpacities()
         {
             if(FillColor != null)

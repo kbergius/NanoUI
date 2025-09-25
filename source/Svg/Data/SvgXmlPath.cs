@@ -1,6 +1,8 @@
 ﻿namespace NanoUI.Svg.Data
 {
-    // this is just parsed commands from the xml
+    /// <summary>
+    /// Consists array of parsed commands from the xml.
+    /// </summary>
     public struct SvgXmlPath
     {
         public SvgXmlPathCommand[] Commands;

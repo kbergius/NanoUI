@@ -2,14 +2,36 @@
 
 namespace NanoUI.Svg.Data
 {
+    /// <summary>
+    /// Svg xml attribute
+    /// </summary>
     public struct SvgXmlAttribute
     {
+        /// <summary>
+        /// Name
+        /// </summary>
         public string Name;
+
+        /// <summary>
+        /// Value
+        /// </summary>
         public object Value;
-        public Type AttributeType; // this is how we cast it
+
+        /// <summary>
+        /// AttributeType tells how we cast value.
+        /// </summary>
+        public Type AttributeType;
+
+        /// <summary>
+        /// Is percent?
+        /// </summary>
         public bool IsPercent;
 
-        // get number value & if is percent value
+        /// <summary>
+        /// Returns number value and flag if value was percent.
+        /// </summary>
+        /// <param name="isPercent">Is percent?</param>
+        /// <returns>number value</returns>
         public float GetNumber(out bool isPercent)
         {
             isPercent = IsPercent;
@@ -23,6 +45,11 @@ namespace NanoUI.Svg.Data
             return default;
         }
 
+        /// <summary>
+        /// Returns value in type of T or default, if conversion can't be made.
+        /// </summary>
+        /// <typeparam name="T">Type of T</typeparam>
+        /// <returns>type of T or default, if conversion can't be made</returns>
         public T? GetValue<T>()
         {
             // check null & correct type

@@ -29,7 +29,7 @@ namespace NanoUI.Styles
         public uint DragAreaWidth { get; set; } = 10;
 
         /// <summary>
-        /// Resizing triangle size in UIWindows bottom-right corner. Default: 25,
+        /// Resizing triangle size in the UIWindows' bottom-right corner. Default: 25,
         /// </summary>
         public float ResizingTriangleSize { get; set; } = 25f;
 
