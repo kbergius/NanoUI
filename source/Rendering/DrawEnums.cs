@@ -1,8 +1,8 @@
 ﻿namespace NanoUI.Rendering
 {
     /// <summary>
-    /// DrawCallType can be used in rendering,
-    /// if some special operation is needed (optional),
+    /// (Optional) DrawCallType can be used in rendering,
+    /// if some special operation is needed.
     /// </summary>
     public enum DrawCallType
     {
@@ -14,7 +14,7 @@
 
     /// <summary>
     /// DrawCommandType should be used in rendering,
-    /// when settings correct pipeline settings.
+    /// when setting correct pipeline settings.
     /// </summary>
     public enum DrawCommandType
     {
