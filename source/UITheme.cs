@@ -96,12 +96,16 @@ namespace NanoUI
 
         // note: this is basically called from base widget when getting basic properties
         // internally type is stored in ThemeType in Widget.
-        
+
         /// <summary>
         /// Get the theme prototype widget of type.
-        /// Note: Prototype widgets are lazy-initialized and
-        /// created with empty constructor like new UIWidget().
         /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>UIWidget</returns>
+        /// <remarks>
+        /// Prototype widgets are lazy-initialized and
+        /// created with empty constructor like new UIWidget().
+        /// </remarks>
         public UIWidget Get(Type type)
         {
             if (!_widgets.TryGetValue(type, out UIWidget? widget))
@@ -120,9 +124,13 @@ namespace NanoUI
 
         /// <summary>
         /// Get the theme prototype widget of type T.
-        /// Note: Prototype widgets are lazy-initialized and
-        /// created with empty constructor like new UIWidget().
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <returns>UIWidget of type T</returns>
+        /// <remarks>
+        /// Prototype widgets are lazy-initialized and
+        /// created with empty constructor like new UIWidget().
+        /// </remarks>
         public T Get<T>() where T : UIWidget, new()
         {
             if (!_widgets.TryGetValue(typeof(T), out UIWidget? widget))
@@ -137,6 +145,8 @@ namespace NanoUI
         /// <summary>
         /// Store the theme prototype widget of type T.
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="widget">UIWidget of type T</param>
         public void Set<T>(T widget) where T : UIWidget
         {
             _widgets[typeof(T)] = widget;
@@ -186,7 +196,7 @@ namespace NanoUI
         }
 
         /// <summary>
-        /// Default theme prototype widget for dialogs.
+        /// Default theme prototype widget for all dialogs.
         /// </summary>
         public UIDialog Dialog
         {
@@ -358,6 +368,8 @@ namespace NanoUI
         /// <summary>
         /// Gets file/folder/hard drive icon. Supports dynamic theming.
         /// </summary>
+        /// <param name="fileFolderInfo">FileFolderInfo</param>
+        /// <returns>(icon id, color)</returns>
         public virtual (int, Color) GetFileIcon(in FileFolderInfo fileFolderInfo) => fileFolderInfo.FileFolderType switch
         {
             FileFolderType.HardDrive => (Fonts.IconHardDrive, Files.HardDriveColor),
@@ -370,8 +382,12 @@ namespace NanoUI
         /// Creates default theme (see Utils/DefaultTheme class).
         /// This function should only be used to get your app quickly running.
         /// It is recommended that you use Load function & provide your own theme file.
-        /// Note: T must have paramless ctor new T().
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="fonts">FontsStyle</param>
+        /// <returns>UITheme of type T</returns>
+        /// <remarks>T must have paramless ctor new T().</remarks>
         public static T CreateDefault<T>(NvgContext ctx, FontsStyle fonts) where T : UITheme, new()
         {
             T theme = new();
@@ -388,6 +404,11 @@ namespace NanoUI
         /// <summary>
         /// Loads theme of type T from the file path "themefile".
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="themefile">Theme file</param>
+        /// <returns>UITheme of type T</returns>
+        /// <exception cref="FileNotFoundException">File not found</exception>
         public static T? Load<T>(NvgContext ctx, string themefile) where T : UITheme
         {
             if (!File.Exists(themefile))
@@ -409,6 +430,7 @@ namespace NanoUI
         /// <summary>
         /// Saves theme to the theme file.
         /// </summary>
+        /// <param name="filename">File</param>
         public void Save(string filename)
         {
             ThemeSerializer serializer = new();
