@@ -18,12 +18,12 @@ namespace NanoUI.Rendering
         internal static int VerticesCount => _vertices.Count;
 
         /// <summary>
-        /// Collected vertices since last BeginFrame() command.
+        /// Collected vertices since last BeginFrame command.
         /// </summary>
         public static ReadOnlySpan<Vertex> Vertices => _vertices.AsReadOnlySpan();
 
         /// <summary>
-        /// Collected fragment uniforms since last BeginFrame() command.
+        /// Collected fragment uniforms since last BeginFrame command.
         /// </summary>
         public static ReadOnlySpan<FragmentUniform> Uniforms => _uniforms.AsReadOnlySpan();
 

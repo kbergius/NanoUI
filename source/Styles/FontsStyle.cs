@@ -24,12 +24,18 @@ namespace NanoUI.Styles
 
         #region Fonts
 
+        /// <summary>
+        /// Default font type is used if font face id is invalid/missing.
+        /// </summary>
         public string? DefaultFontType { get; set; }
 
+        /// <summary>
+        /// Default icons type.
+        /// </summary>
         public string? DefaultIconsType { get; set; }
 
         /// <summary>
-        /// First font type is default.
+        /// Dictionary for font types. First font type is default.
         /// </summary>
         public Dictionary<string, string> FontTypes { get; set; } = new();
 
@@ -153,8 +159,10 @@ namespace NanoUI.Styles
         #region Methods
 
         /// <summary>
-        /// Init style after you have added fonts.
+        /// Inits style after you have added fonts.
         /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <exception cref="Exception">No valid font types found</exception>
         public void Init(NvgContext ctx)
         {
             // loop fontypes, create fonts & mappings
@@ -183,6 +191,8 @@ namespace NanoUI.Styles
         /// GetFontId by name. If not found, returns first font, 
         /// that is added with AddFont method (id = 0).
         /// </summary>
+        /// <param name="fontType">Font type name</param>
+        /// <returns>Font id or 0 if font name not found</returns>
         public int GetFontId(string fontType)
         {
             if (!string.IsNullOrEmpty(fontType) && _fontMappings.TryGetValue(fontType, out int fontId))
@@ -194,6 +204,10 @@ namespace NanoUI.Styles
             return 0;
         }
 
+        /// <summary>
+        /// Returns default font type name.
+        /// </summary>
+        /// <returns>Font type name or empty string if not found</returns>
         public string GetDefaultFontType()
         {
             if(DefaultFontType != null)
@@ -208,6 +222,10 @@ namespace NanoUI.Styles
             return string.Empty;
         }
 
+        /// <summary>
+        /// Returns default icon type.
+        /// </summary>
+        /// <returns>Default icon type  or empty string if not found</returns>
         public string GetDefaultIconType()
         {
             if (DefaultIconsType != null)
@@ -226,6 +244,11 @@ namespace NanoUI.Styles
             return string.Empty;
         }
 
+        /// <summary>
+        /// Returns font type name by font id.
+        /// </summary>
+        /// <param name="fontId">Font id</param>
+        /// <returns>font type name or null if not found</returns>
         public string? GetFontType(int fontId)
         {
             foreach (var kvp in _fontMappings)
@@ -237,7 +260,13 @@ namespace NanoUI.Styles
             return null;
         }
 
-        // todo: check this
+        /// <summary>
+        /// Adds font.
+        /// </summary>
+        /// <param name="ctx">NvgContext</param>
+        /// <param name="fontName">Font name</param>
+        /// <param name="fontPath">Font path</param>
+        /// <returns>Font id or -1 if not found</returns>
         public int AddFont(NvgContext ctx, string fontName, string fontPath)
         {
             if (!string.IsNullOrEmpty(fontName) && File.Exists(fontPath))

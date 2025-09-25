@@ -11,8 +11,8 @@ namespace NanoUI.Utils
 {
     /// <summary>
     /// StringUtils.
-    /// Note: parse methods assumes that you have first sanitized your string
-    /// (no additional spaces, control chars & trimmed)
+    /// Note: parse methods assume, that you have first sanitized your string
+    /// (no additional spaces, control chars & trimmed).
     /// </summary>
     public static class StringUtils
     {
@@ -175,6 +175,10 @@ namespace NanoUI.Utils
         /// <summary>
         /// Returns string from number & format.
         /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="numericFormat">Numeric format</param>
+        /// <returns>string value</returns>
         public static string GetNumberFormat<T>(T value, NumericFormat numericFormat) where T : INumber<T>
         {
             switch (numericFormat)
@@ -191,8 +195,10 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// HtmlDecode.
+        /// HtmlDecode
         /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Decoded value</returns>
         public static ReadOnlySpan<char> HtmlDecode(string value)
         {
             return SanitizeString(WebUtility.HtmlDecode(value));
@@ -201,6 +207,8 @@ namespace NanoUI.Utils
         /// <summary>
         /// Removes double <spaces>, <control chars> and trims.
         /// </summary>
+        /// <param name="val">Value</param>
+        /// <returns>Sanitized string</returns>
         public static ReadOnlySpan<char> SanitizeString(ReadOnlySpan<char> val)
         {
             // reinit
@@ -238,6 +246,9 @@ namespace NanoUI.Utils
         /// <summary>
         /// Float parsing using invariant culture ('.' as decimal separator).
         /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="floatResult">Float result</param>
+        /// <returns>Success</returns>
         public static bool TryParseFloat(ReadOnlySpan<char> val, out float floatResult)
         {
             return float.TryParse(val, CultureInfo.InvariantCulture, out floatResult);
@@ -246,6 +257,10 @@ namespace NanoUI.Utils
         /// <summary>
         /// Float array parsing - separated with separator (normally <space>s).
         /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="separators">Separators</param>
+        /// <param name="floatArray">Float array</param>
+        /// <returns>Success</returns>
         public static bool TryParseFloatArray(ReadOnlySpan<char> val, char[] separators, out ReadOnlySpan<float> floatArray)
         {
             string[] split = val.ToString().Split(separators, StringSplitOptions.RemoveEmptyEntries);
@@ -273,6 +288,10 @@ namespace NanoUI.Utils
         /// <summary>
         /// Number + unit parsing. Units can be "%", "px", "pt" or "em".
         /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="result">Number</param>
+        /// <param name="isPercent">Is percent?</param>
+        /// <returns>Success</returns>
         public static bool TryParseNumberUnit(ReadOnlySpan<char> val, out float result, out bool isPercent)
         {
             // default
@@ -317,6 +336,12 @@ namespace NanoUI.Utils
             return false;
         }
 
+        /// <summary>
+        /// Line cap parisng.
+        /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="lineCap">LineCap</param>
+        /// <returns>Success</returns>
         public static bool TryParseLineCap(ReadOnlySpan<char> val, out LineCap? lineCap)
         {
             // ignore case
@@ -331,8 +356,11 @@ namespace NanoUI.Utils
         }
 
         /// <summary>
-        /// Color parsing. Supports hexstrings, named colors, rgb(...), rgba(...).
+        /// Color parsing supports hexstrings, named colors, rgb(...), rgba(...).
         /// </summary>
+        /// <param name="val">Value</param>
+        /// <param name="color">Color</param>
+        /// <returns>Success</returns>
         public static bool TryParseColor(ReadOnlySpan<char> val, out Color? color)
         {
             // todo: hsl(), hsla()
@@ -408,6 +436,12 @@ namespace NanoUI.Utils
 
         #endregion
 
+        /// <summary>
+        /// Tests if 2 ReadOnlySpan<char>s equals.
+        /// </summary>
+        /// <param name="a">Value1</param>
+        /// <param name="b">Value2</param>
+        /// <returns>Equals result</returns>
         public static bool Equals(ReadOnlySpan<char> a, ReadOnlySpan<char> b)
         {
             if (a.Length != b.Length)
@@ -421,7 +455,11 @@ namespace NanoUI.Utils
             return true;
         }
 
-        // "#ff0000"
+        /// <summary>
+        /// Is hex string (format "#ff0000")?
+        /// </summary>
+        /// <param name="val">Value</param>
+        /// <returns>Result</returns>
         public static bool IsHexString(ReadOnlySpan<char> val)
         {
             if(val.Length != 7 || !val.StartsWith("#"))

@@ -40,12 +40,14 @@
         /// Vertices start index.
         /// </summary>
         public int VertexOffset;
-        
+
         /// <summary>
         /// Vertices count.
-        /// Note: You should not use this when drawing (use indexed drawing),
-        /// since it will produce unspecified results.
         /// </summary>
+        /// <remarks>
+        /// You should not use VertexCount when drawing (use indexed drawing),
+        /// since it will produce unspecified results.
+        /// </remarks>
         public int VertexCount;
     }
 }

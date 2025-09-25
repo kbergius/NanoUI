@@ -56,8 +56,8 @@ namespace NanoUI.Rendering.Data
 
         /// <summary>
         /// Action type.
-        /// Note: the value here is actually int, but some HLSL shaders don't like ints.
         /// </summary>
+        /// <remarks>ActionType is actually int, but some HLSL shaders don't like ints.</remarks>
         public float ActionType;
 
         /// <summary>

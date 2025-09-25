@@ -6,10 +6,11 @@ namespace NanoUI.Rendering
 {
     public static partial class DrawCache
     {
+        // draw commands
         static UnsafeBuffer<DrawCommand> _drawCommands = new(1000);
 
         /// <summary>
-        /// Collected draw commands since last BeginFrame() command.
+        /// Collected draw commands since last BeginFrame command.
         /// </summary>
         public static ReadOnlySpan<DrawCommand> DrawCommands => _drawCommands.AsReadOnlySpan();
 

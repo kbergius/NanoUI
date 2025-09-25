@@ -8,9 +8,24 @@ namespace NanoUI.Styles
     /// </summary>
     public struct ScrollbarStyle
     {
+        /// <summary>
+        /// Scrollbar dimension.
+        /// </summary>
         public uint ScrollbarDimension { get; set; }
+
+        /// <summary>
+        /// Background enabled brush.
+        /// </summary>
         public BrushBase? BackgroundEnabled { get; set; }
+
+        /// <summary>
+        /// Slider brush.
+        /// </summary>
         public BrushBase? SliderBrush { get; set; }
+
+        /// <summary>
+        /// Slider hover tint color.
+        /// </summary>
         public Color SliderHoverTint { get; set; }
     }
 }

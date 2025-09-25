@@ -5,11 +5,14 @@ using System.Numerics;
 namespace NanoUI.Utils
 {
     /// <summary>
-    /// DefaultTheme.
-    /// You can use this to get your application quickly up and running.
+    /// You can use DefaultTheme to get your application quickly up and running.
     /// </summary>
     public static class DefaultTheme
     {
+        /// <summary>
+        /// Populates theme with styles.
+        /// </summary>
+        /// <param name="theme">UITheme</param>
         public static void Populate(UITheme theme)
         {
             #region Global styles

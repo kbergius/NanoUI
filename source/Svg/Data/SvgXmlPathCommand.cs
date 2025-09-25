@@ -1,11 +1,23 @@
 ﻿namespace NanoUI.Svg.Data
 {
+    /// <summary>
+    /// Svg xml path command.
+    /// </summary>
     public struct SvgXmlPathCommand
     {
+        /// <summary>
+        /// SvgXmlPathCommandType
+        /// </summary>
         public SvgXmlPathCommandType CommandType;
-        // collect all values
+
+        /// <summary>
+        /// All values
+        /// </summary>
         public float[] Values;
-        // are values absolute/relative
+
+        /// <summary>
+        /// Are values absolute or relative.
+        /// </summary>
         public bool Absolute;
     }
 }
