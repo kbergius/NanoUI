@@ -7,21 +7,35 @@ namespace NanoUI.Styles
     /// </summary>
     public struct WindowStyle
     {
+        /// <summary>
+        /// Border focused color.
+        /// </summary>
         public Color BorderFocusedColor { get; set; }
+
+        /// <summary>
+        /// Border unfocused color.
+        /// </summary>
         public Color BorderUnfocusedColor { get; set; }
+
+        /// <summary>
+        /// Border resizing color.
+        /// </summary>
         public Color BorderResizingColor { get; set; }
 
         /// <summary>
-        /// Determines the area (border) width where we track if drag is happening.
+        /// DragAreaWidth determines the area (border) width where we track if drag is happening.
         /// Default: 10,
         /// </summary>
         public uint DragAreaWidth { get; set; } = 10;
 
         /// <summary>
-        /// ResizingTriangleSize. Default: 25,
+        /// Resizing triangle size in UIWindows bottom-right corner. Default: 25,
         /// </summary>
         public float ResizingTriangleSize { get; set; } = 25f;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public WindowStyle() { }
     }
 }

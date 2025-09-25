@@ -8,11 +8,18 @@ namespace NanoUI.Styles
     /// </summary>
     public struct DockingStyle
     {
+        /// <summary>
+        /// Hit area corner radius.
+        /// </summary>
         public float HitAreaCornerRadius { get; set; }
+
+        /// <summary>
+        /// Hit area background color.
+        /// </summary>
         public Color HitAreaBackgroundColor { get; set; }
 
         /// <summary>
-        /// Hit area visualization (left, top, right, bottom, center).
+        /// Hit area fill brush is for hit area visualization (left, top, right, bottom, center).
         /// </summary>
         public BrushBase? HitAreaFillBrush { get; set; }
 
@@ -21,11 +28,29 @@ namespace NanoUI.Styles
         /// </summary>
         public Color OverlayColor { get; set; }
 
-        // titlebar
+        /// <summary>
+        /// Title background focused brush.
+        /// </summary>
         public BrushBase? TitleBackgroundFocused { get; set; }
+
+        /// <summary>
+        /// Title background unfocused brush.
+        /// </summary>
         public BrushBase? TitleBackgroundUnfocused { get; set; }
+
+        /// <summary>
+        /// Title font type.
+        /// </summary>
         public string? TitleFontType { get; set; }
+
+        /// <summary>
+        /// Title font size.
+        /// </summary>
         public float TitleFontSize { get; set; }
+
+        /// <summary>
+        /// Title button size.
+        /// </summary>
         public Vector2 TitleButtonSize { get; set; }
     }
 }
