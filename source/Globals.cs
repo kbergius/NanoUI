@@ -10,8 +10,8 @@ namespace NanoUI
         /// <summary>
         /// Used to indicate that methods that return int value is not defined/incorrect/missing.
         /// Used mainly with textures, fonts, icons, glyphs. Value: -1.
-        /// Note: basically all negative values are treated as invalid.
         /// </summary>
+        /// <remarks>Basically all negative values are treated as invalid.</remarks>
         public const int INVALID = -1;
 
         /// <summary>
@@ -29,8 +29,9 @@ namespace NanoUI
         /// <summary>
         /// Value the SDF should increase by when moving one SDF "pixel" away from the edge
         /// (on the 0..255 scale). If positive, > onedge_value is inside;
-        /// if negative, < onedge_value is inside. Default: 200.
+        /// Default: 200.
         /// </summary>
+        /// <remarks>Trades off precision with ability to handle smaller sizes.</remarks>
         public static float SDF_PIXEL_DIST_SCALE = 200;
 
         /// <summary>
@@ -60,8 +61,8 @@ namespace NanoUI
         /// When calling RequestLayoutUpdate, NanoUI queues commands. 
         /// This value tells, howe many queued commands are processed in scene Draw
         /// method / frame. Value: 10.
-        /// Note: If you want to immediately process layout calculations, call PerformLayout.
         /// </summary>
+        /// <remarks>If you want to immediately process layout calculations, call PerformLayout.</remarks>
         public const int MAX_LAYOUT_UPDATE_PER_FRAME = 10;
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace NanoUI
         public static float UPDATE_DELAY = 0.1f;
 
         /// <summary>
-        /// Make caret in active text field blink. Default = true.
+        /// Make caret in active text field blink. Default: true.
         /// </summary>
         public static bool BLINK_TEXTBOX_CARET = true;
 
