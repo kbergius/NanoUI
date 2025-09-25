@@ -756,15 +756,35 @@ namespace NanoUI
 
         #region Clipboard & Pointer type & Input text start/stop
 
+        /// <summary>
+        /// Clipboard set action
+        /// </summary>
         public Action<string>? ClipboardSet;
+
+        /// <summary>
+        /// Clipboard get function
+        /// </summary>
         public Func<string>? ClipboardGet;
+
+        /// <summary>
+        /// Pointer type changed action
+        /// </summary>
         public Action<int>? PointerTypeChanged;
+
+        /// <summary>
+        /// Start text input action
+        /// </summary>
         public Action? OnStartTextInput;
+
+        /// <summary>
+        /// Stop text input action
+        /// </summary>
         public Action? OnStopTextInput;
 
         /// <summary>
         /// Gets clipboard string from the user application.
         /// </summary>
+        /// <returns>string</returns>
         public virtual string GetClipboardString()
         {
             if(ClipboardGet != null)
@@ -777,6 +797,7 @@ namespace NanoUI
         /// <summary>
         /// Sets clipboard string to the user application.
         /// </summary>
+        /// <param name="text"></param>
         public virtual void SetClipboardString(ReadOnlySpan<char> text)
         {
             ClipboardSet?.Invoke(text.ToString());
@@ -788,6 +809,7 @@ namespace NanoUI
         /// <summary>
         /// Gets current pointer type.
         /// </summary>
+        /// <returns>Pointer type</returns>
         public int GetCurrentPointerType()
         {
             return _newPointerType.HasValue ? _newPointerType.Value : Theme.Pointer.PointerType;
@@ -796,6 +818,7 @@ namespace NanoUI
         /// <summary>
         /// Sets pointer type.
         /// </summary>
+        /// <param name="pointerType">Pointer type</param>
         /// <remarks>
         /// This could be called many times in frame (OnPointerMove etc).
         /// So callback call is delayed until all draw actions have been done.
@@ -886,6 +909,8 @@ namespace NanoUI
         /// <summary>
         /// Invokes PointerTypeChanged action if any, if pointer type has really changed.
         /// </summary>
+        /// <param name="pointerType">PointerType</param>
+        /// <param name="position">Position</param>
         /// <remarks>
         /// You can override this method in your own extended UIScreen,
         /// if you want to draw your custom pointer type.
