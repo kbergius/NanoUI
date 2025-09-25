@@ -17,6 +17,11 @@
         /// </summary>
         public bool Stretch { get; set; }
 
+        /// <summary>
+        /// Ctor,
+        /// </summary>
+        /// <param name="width">Width</param>
+        /// <param name="stretch">Stretch</param>
         public ColumnDefinition(int width, bool stretch = false)
         {
             Width = width;

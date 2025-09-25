@@ -202,7 +202,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// LayoutAlignment. Used in layouts.
+    /// LayoutAlignment is used in layouts.
     /// </summary>
     public enum LayoutAlignment : byte
     {
@@ -259,7 +259,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// MessageDialogType. Determines icon.
+    /// MessageDialogType determines icon.
     /// </summary>
     public enum MessageDialogType
     {
@@ -285,7 +285,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// NumericFormat. Determines how many decimals are shown.
+    /// NumericFormat determines how many decimals are shown.
     /// </summary>
     public enum NumericFormat
     {
@@ -399,7 +399,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// Orientation. Primarily used to determine the direction of data flow layouts.
+    /// Orientation is primarily used to determine the direction of data flows in layouts.
     /// </summary>
     public enum Orientation
     {
@@ -415,7 +415,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// PopupPosition. Popup's position relative to its parent (mostly UIPopupButton).
+    /// PopupPosition is popup's position relative to its parent (mostly UIPopupButton).
     /// </summary>
     public enum PopupPosition
     {
@@ -540,7 +540,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// Solidity. Determines how shape is interpreteted.
+    /// Solidity determines how shape is interpreted.
     /// </summary>
     public enum Solidity
     {
@@ -557,7 +557,7 @@ namespace NanoUI.Common
 
 
     /// <summary>
-    /// TextAlignment. Shortcut to both horizontal & vertical aligment.
+    /// TextAlignment is a shortcut to both horizontal & vertical aligment.
     /// </summary>
     [Flags]
     public enum TextAlignment : int
@@ -600,8 +600,8 @@ namespace NanoUI.Common
 
     /// <summary>
     /// TextHorizontalAlign.
-    /// Note: some widgets have fixed alignment - ie changing property has no effect.
     /// </summary>
+    /// <remarks>Some widgets have fixed alignment - ie changing property has no effect.</remarks>
     public enum TextHorizontalAlign
     {
         /// <summary>
@@ -622,8 +622,8 @@ namespace NanoUI.Common
 
     /// <summary>
     /// TextVerticalAlign.
-    /// Note: some widgets have fixed alignment - ie changing property has no effect.
     /// </summary>
+    /// <remarks>Some widgets have fixed alignment - ie changing property has no effect.</remarks>
     public enum TextVerticalAlign
     {
         /// <summary>
@@ -643,7 +643,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// TextureFlags. To deteremine extra texture handling.
+    /// TextureFlags is to deteremine extra texture handling.
     /// </summary>
     [Flags]
     public enum TextureFlags
@@ -680,8 +680,9 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// TextureFormat. You should map these values to your graphics engine PixelFormats.
+    /// TextureFormat.
     /// </summary>
+    /// <remarks>You should map these values to your graphics engine's pixel formats.</remarks>
     public enum TextureFormat
     {
         /// <summary>
@@ -699,7 +700,7 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// ViewSelectionMode. Used in view widgets.
+    /// ViewSelectionMode is used in view widgets.
     /// </summary>
     public enum ViewSelectionMode
     {
@@ -715,9 +716,9 @@ namespace NanoUI.Common
     }
 
     /// <summary>
-    /// WidgetState. Used basically to get correct widget's background brush.
-    /// Note: Hovered/MouseFocus (with tint color) is combined with these
+    /// WidgetState is used basically to get correct widget's background brush.
     /// </summary>
+    /// <remarks>Hovered/MouseFocus (with tint color) is combined with these.</remarks>
     public enum WidgetState
     {
         /// <summary>

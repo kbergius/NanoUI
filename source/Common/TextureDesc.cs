@@ -1,7 +1,7 @@
 ﻿namespace NanoUI.Common
 {
     /// <summary>
-    /// Texture description. This is passed to renderer when creating textures.
+    /// Texture description is passed to renderer when creating textures.
     /// </summary>
     public struct TextureDesc
     {
@@ -16,7 +16,7 @@
         public uint Height;
 
         /// <summary>
-        /// TextureFormat. Should be mapped to graphic engine's pixel format.
+        /// TextureFormat should be mapped to graphic engine's pixel format.
         /// </summary>
         public TextureFormat Format;
 
@@ -25,6 +25,13 @@
         /// </summary>
         public TextureFlags TextureFlags;
 
+        /// <summary>
+        /// Creates TextureDesc.
+        /// </summary>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
+        /// <param name="format">TextureFormat</param>
+        /// <param name="flags">TextureFlags</param>
         public TextureDesc(uint width, uint height, TextureFormat format = TextureFormat.RGBA, TextureFlags flags = 0)
         {
             Width = width;
