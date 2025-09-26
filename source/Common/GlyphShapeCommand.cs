@@ -1,7 +1,6 @@
-﻿using NanoUI.Common;
-using System.Numerics;
+﻿using System.Numerics;
 
-namespace NanoUI.Fonts
+namespace NanoUI.Common
 {
     /// <summary>
     /// GlyphShapeCommandType is converted to NvgPathCommandType
