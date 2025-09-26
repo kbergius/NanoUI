@@ -128,7 +128,7 @@ var fonts = new FontsStyle()
 fonts.FontTypes.Add("Normal", normal_font_id);
 fonts.FontTypes.Add("Icons", icons_font_id);
 
-// create your theme (it is like CSS file in the web)
+// create your theme (it is like a CSS file in the web)
 var theme = UITheme.CreateDefault<UITheme>(ctx, fonts);
 
 // finally create screen
