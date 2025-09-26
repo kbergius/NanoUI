@@ -128,7 +128,7 @@ var fonts = new FontsStyle()
 fonts.FontTypes.Add("Normal", normal_font_id);
 fonts.FontTypes.Add("Icons", icons_font_id);
 
-// create your theme (it is like CSS file in the web; you can create also your own theme)
+// create your theme (it is like CSS file in the web)
 var theme = UITheme.CreateDefault<UITheme>(ctx, fonts);
 
 // finally create screen
@@ -196,4 +196,5 @@ There are also sample shaders in GLSL and HLSL format in the **samples/NanoUIDem
 - [Silk.NET](https://github.com/dotnet/Silk.NET)
 - [Veldrid](https://github.com/veldrid/veldrid)
 - [MonoGame](https://monogame.net/)
+- [FNA](https://fna-xna.github.io/)
 - [StbImageSharp](https://github.com/StbSharp/StbImageSharp)

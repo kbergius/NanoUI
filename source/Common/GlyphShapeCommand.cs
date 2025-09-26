@@ -3,19 +3,6 @@
 namespace NanoUI.Common
 {
     /// <summary>
-    /// GlyphShapeCommandType is converted to NvgPathCommandType
-    /// </summary>
-    public enum GlyphShapeCommandType
-    {
-        MoveTo,
-        LineTo,
-        BezierTo,
-        QuadTo,
-        Close,
-        Winding,
-    }
-    
-    /// <summary>
     /// GlyphShapeCommand is used when glyphs are rendered with shapes.
     /// </summary>
     public struct GlyphShapeCommand
@@ -28,10 +15,29 @@ namespace NanoUI.Common
         // - QuadTo uses P0 as control point, P1 as endpoint
         // note3: this is nearly identical to NvgPathCommand, but we don't use it since it is internal
 
+        /// <summary>
+        /// GlyphShapeCommandType
+        /// </summary>
         public GlyphShapeCommandType CommandType;
+
+        /// <summary>
+        /// Position0
+        /// </summary>
         public Vector2 P0;
+
+        /// <summary>
+        /// Position1
+        /// </summary>
         public Vector2 P1;
+
+        /// <summary>
+        /// Position2
+        /// </summary>
         public Vector2 P2;
+
+        /// <summary>
+        /// Winding
+        /// </summary>
         public Winding Winding;
     }
 }

@@ -13,7 +13,7 @@ namespace NanoUI.Styles
     /// <summary>
     /// Global font style. Normal & icons file is required, rest is optional.
     /// Note: Icon specifications is by default set based on FontAwesome (FontAwesome6Free-Solid-900.otf).
-    /// There is enum for all available icons in Fonts/FontAwesomeIcon.
+    /// There is enum for all available icons in Common/FontAwesomeIcon.
     /// </summary>
     public struct FontsStyle
     {

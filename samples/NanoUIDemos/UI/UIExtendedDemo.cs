@@ -9,7 +9,6 @@ using NanoUI.Components.Menus;
 using NanoUI.Components.Views;
 using NanoUI.Components.Simple;
 using NanoUI.Components.Views.Items;
-using NanoUI.Fonts;
 using NanoUI.Nvg;
 using Color = NanoUI.Common.Color;
 using System.Numerics;

@@ -71,6 +71,11 @@ namespace FNAExample
             // loop draw commands
             foreach (var drawCommand in DrawCache.DrawCommands)
             {
+                if (drawCommand.IndexCount <= 0)
+                {
+                    continue;
+                }
+
                 // uniform params
                 if (_uniformOffset != drawCommand.UniformOffset)
                 {
@@ -136,17 +141,14 @@ namespace FNAExample
                 {
                     pass.Apply();
 
-                    if (drawCommand.IndexCount > 0)
-                    {
-                        // draw indexed
-                        _device.DrawIndexedPrimitives(
-                            PrimitiveType.TriangleList,
-                            drawCommand.VertexOffset,
-                            0,
-                            drawCommand.VertexCount,
-                            drawCommand.IndexOffset,
-                            drawCommand.IndexCount / 3);
-                    }
+                    // draw indexed
+                    _device.DrawIndexedPrimitives(
+                        PrimitiveType.TriangleList,
+                        drawCommand.VertexOffset,
+                        0,
+                        drawCommand.VertexCount,
+                        drawCommand.IndexOffset,
+                        drawCommand.IndexCount / 3);
                 }
             }
         }
