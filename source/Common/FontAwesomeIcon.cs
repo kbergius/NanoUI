@@ -1,4 +1,4 @@
-namespace NanoUI.Fonts
+namespace NanoUI.Common
 {
     /// <summary>
     /// FontAwesomeIcon provides codepoints to FontAwesome icons (FontAwesome6Free-Solid-900.otf).
