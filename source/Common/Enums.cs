@@ -176,6 +176,19 @@ namespace NanoUI.Common
     }
 
     /// <summary>
+    /// GlyphShapeCommandType is converted to NvgPathCommandType
+    /// </summary>
+    public enum GlyphShapeCommandType
+    {
+        MoveTo,
+        LineTo,
+        BezierTo,
+        QuadTo,
+        Close,
+        Winding,
+    }
+
+    /// <summary>
     /// IconAlign.
     /// </summary>
     public enum IconAlign

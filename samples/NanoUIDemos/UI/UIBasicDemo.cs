@@ -7,7 +7,6 @@ using NanoUI.Components.Files;
 using NanoUI.Layouts;
 using NanoUI.Components.Views;
 using NanoUI.Components.Views.Items;
-using NanoUI.Fonts;
 using Color = NanoUI.Common.Color;
 using System.Numerics;
 using NanoUI.Components.Colors;
