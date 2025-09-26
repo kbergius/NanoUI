@@ -35,7 +35,7 @@ namespace NanoUI
         /// </summary>
         /// <param name="texture">Texture id</param>
         /// <param name="data">Data</param>
-        /// <returns></returns>
+        /// <returns>Success</returns>
         /// <remarks>Data is in 8-bit format when updating font texture.</remarks>
         bool UpdateTexture(int texture, ReadOnlySpan<byte> data);
 

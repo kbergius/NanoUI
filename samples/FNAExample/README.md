@@ -1,4 +1,4 @@
-FNA example doesn't run out-of-box, since FNA doesn't provide NuGet. You have to setup it first.
+FNA example doesn't run out-of-box, since FNA doesn't provide official NuGet. You have to setup it first.
 
 **Note:** I had to add NPE hack in the beginning of the **SDL3_FNAPlatform.PollEvents** method
 

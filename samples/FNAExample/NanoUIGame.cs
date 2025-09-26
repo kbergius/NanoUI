@@ -15,13 +15,6 @@ using UIVector2 = System.Numerics.Vector2;
 
 namespace FNAExample
 {
-    // Note: I had to add NPE hack in the beginning of the SDL3_FNAPlatform.PollEvents method
-    // if(textInputControlDown == null)
-	// {
-	//    textInputControlDown = new bool[7];
-	// }
-    // There could be better solution.
-
     public class NanoUIGame : Game
     {
         // DemoTypes:
@@ -421,7 +414,7 @@ namespace FNAExample
             // draw performance graph
             _perfGraph?.Draw(15.0f, Window.ClientBounds.Height - 65, _ctx!);
 
-            // trigger NanoUI rendering in MGRenderer Render() method
+            // trigger NanoUI rendering in FNARenderer Render() method
             _ctx?.EndFrame();
         }
     }
